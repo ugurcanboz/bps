@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <meta name="application-name" content="Eignungstest-Trainer">
 <meta name="description" content="Offlinefähiger Eignungstest-Trainer für CTC, BPS, Mathe, Logik, Konzentration, Visual IQ und IT/FISI.">
-<title>Eignungstest-Trainer V5.1.0 Production Stable</title>
+<title>Eignungstest-Trainer V3.5.3 Cloud Highscore Board</title>
 
 <link rel="stylesheet" href="css/app.css">
 
@@ -23,12 +23,12 @@
 <div class="app">
   <div id="start">
     <section class="premium-hero">
-      <div class="premium-kicker"><span>Premium Plus UI</span><span>Framework V5.1.0</span><span>Offlinefähig</span></div>
+      <div class="premium-kicker"><span>Premium Plus UI</span><span>Framework V3.5.3</span><span>Offlinefähig</span></div>
       <h1 class="premium-title" id="premiumGreeting">Eignungstest-Trainer</h1>
       <p class="premium-subtitle" id="premiumSubtitle">Dein persönliches Trainingsdashboard für CTC, BPS, Visual IQ, Konzentration und technische Eignungstests.</p>
       <div id="profileSetup" class="profile-setup hidden">
-        <input id="profileNameInput" data-profile-name-input="1" type="text" maxlength="32" placeholder="Name eingeben" autocomplete="name" enterkeyhint="done">
-        <button type="button" data-action="save-profile-name" onclick="App.saveProfileName()">Profil starten</button>
+        <input id="profileNameInput" type="text" maxlength="32" placeholder="Name eingeben">
+        <button onclick="App.saveProfileName()">Profil starten</button>
       </div>
     </section>
 
@@ -49,7 +49,7 @@
     <div id="modeSectionTitle" class="modeSectionTitle"></div>
     <div class="modeGrid" id="modeGrid"></div>
     <div id="sectionActions" class="section-actions"></div>
-    <div><span class="system-pill system-ok">Offlinefähig</span><span class="system-pill system-ok">Framework V5.1.0</span><span class="system-pill system-ok">PWA Ready</span></div>
+    <div><span class="system-pill system-ok">Offlinefähig</span><span class="system-pill system-ok">Framework V3.5.3</span><span class="system-pill system-ok">PWA Ready</span></div>
 <div id="healthPanel" class="health-panel"></div>
 
 <div class="exam-options">
@@ -127,7 +127,7 @@
   function updatePanel(status){
     const standalone = isStandalone() ? "Ja" : "Nein";
     const online = navigator.onLine ? "online" : "offline";
-    panel(`<b>PWA Offline Engine V5.1.0</b><br><span class="small">Status: ${status} · Installiert: ${standalone} · Verbindung: ${online}</span><br><span class="small">Cache: V5.1.0 · Update-Erkennung aktiv · Reset möglich</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button>`);
+    panel(`<b>PWA Offline Engine V3.4.1</b><br><span class="small">Status: ${status} · Installiert: ${standalone} · Verbindung: ${online}</span><br><span class="small">Cache: V3.4.1 · Update-Erkennung aktiv · Reset möglich</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button>`);
   }
   async function register(){
     if(!("serviceWorker" in navigator)) { updatePanel("Service Worker nicht unterstützt"); return; }
@@ -174,5 +174,5 @@
 
 </body>
 
-<!-- Eignungstest-Trainer V5.1.0 · Modular Framework -->
+<!-- Eignungstest-Trainer V3.4.1 · Stable Cleanup + Highscore Prep -->
 </html>

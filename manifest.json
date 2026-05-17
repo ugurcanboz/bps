@@ -1,7 +1,7 @@
 {
   "name": "Eignungstest-Trainer",
   "short_name": "Trainer",
-  "description": "Offlinefähiger Eignungstest-Trainer mit lokaler Datenbank, PWA-Cache und Cloud-Highscore-Dashboard, Profilverwaltung, mobilem Dashboard und Stability UX QC und bereinigter EDV-Multi-Simulation und Production-Stable-Struktur.",
+  "description": "Offlinefähiger Eignungstest-Trainer mit lokaler Datenbank und vorbereitetem Highscore-Dashboard.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

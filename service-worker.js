@@ -1,5 +1,5 @@
 "use strict";
-const CACHE_NAME = "eignungstest-trainer-v510-module-stable-cache";
+const CACHE_NAME = "eignungstest-trainer-v353-cache";
 const CACHE_PREFIX = "eignungstest-trainer-";
 const CORE_ASSETS = [
   "./",
@@ -11,8 +11,7 @@ const CORE_ASSETS = [
   "./manifest.json",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/maskable-512.png"
+  "./icons/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
