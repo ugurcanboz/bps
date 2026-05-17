@@ -1,0 +1,41 @@
+Eignungstest-Trainer V5.1.0 Module Stable - Deep QA
+
+Prüfungen:
+- JavaScript Syntax: OK
+- Service Worker Syntax: OK
+- Build Script Syntax: OK
+- Bundle aus 23 Source-Modulen reproduzierbar gebaut: OK
+- Manifest vorhanden: OK
+- PWA Cache auf v510: OK
+- Storage Key auf v510: OK
+- Profil Key auf v510: OK
+
+CTC-Lohr Simulation:
+- Gesamt: 93 Aufgaben
+- Allgemeinwissen: 40
+- Mathe: 9
+- Logik: 18
+- Konzentration: 15
+- EDV Kenntnisse: 11
+
+Modulprüfungen:
+- mathSprint: 20 gültige Fragen, Gruppe Mathe
+- logicSprint: 20 gültige Fragen, Gruppe Logik
+- concentrationSprint: 25 gültige Fragen, Gruppe Konzentration
+- visualIQSprint: 20 gültige Fragen, Gruppe Visual IQ
+- itSprint: 20 gültige Fragen, Gruppe IT/FISI
+- knowledgeSprint: 25 gültige Fragen, Gruppe Allgemeinwissen
+- routeMemoryMode: 8 gültige Fragen, Gruppe Gedächtnis
+- general: 40 gültige Fragen, Gruppe Allgemeinwissen
+- it: 50 gültige Fragen, Gruppe IT/FISI
+- visualIQ: 36 gültige Fragen, Gruppe Visual IQ
+
+EDV-Kontrolle:
+- EDV_ERRORS: 11
+- edvmulti im CTC-Ablauf: 1
+- edvcovered im CTC-Ablauf: 10
+- edvclick Legacy-Einzelfrage im CTC-Ablauf: 0
+
+Bewertung:
+- Innerhalb der Code-, Struktur- und Logiktests: GRÜN
+- Hinweis: Echte Endgeräte-Tests auf iPad/Safari bleiben zusätzlich sinnvoll, weil PWA-Cache und Touch-Verhalten geräteabhängig sein können.
