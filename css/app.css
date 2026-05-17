@@ -478,3 +478,14 @@ body.premium-ui{
 .edv-node-order{position:absolute;top:8px;right:8px;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#2563eb;color:#fff;font-weight:900;font-size:12px;box-shadow:0 2px 8px rgba(37,99,235,.25)}
 .edv-answer-panel .route-action-row{grid-template-columns:1fr 1fr 1.2fr}
 @media(max-width:640px){.edv-answer-panel .route-action-row{grid-template-columns:1fr}.route-option-grid{grid-template-columns:1fr 1fr}.edv-pro-grid{grid-template-columns:1fr}}
+
+/* === V5.1.3 CLOUD HIGHSCORE DASHBOARD === */
+.cloud-highscore-card{display:block!important}
+.cloud-board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px;margin-top:10px}
+.cloud-board{border-radius:16px;background:rgba(255,255,255,.64);border:1px solid rgba(14,165,233,.16);padding:9px}
+.cloud-board h4{margin:0 0 7px;font-size:13px;letter-spacing:-.02em}
+.cloud-rank-list{display:grid;gap:6px}
+.cloud-rank-row{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;border-radius:13px;background:rgba(15,23,42,.045);padding:7px}
+.cloud-rank-pos{font-weight:950;color:#0369a1;min-width:34px}
+.cloud-rank-main{display:grid;line-height:1.08}.cloud-rank-main small{color:#64748b;margin-top:2px}.cloud-rank-score{font-weight:950;text-align:right;display:grid;line-height:1.05}.cloud-rank-score small{font-weight:800;color:#64748b}
+@media(max-width:520px){.mobile-dashboard-more .cloud-highscore-card{display:block!important}.cloud-board-grid{grid-template-columns:1fr}.cloud-rank-row{font-size:13px}.cloud-rank-main small,.cloud-rank-score small{font-size:11px}}

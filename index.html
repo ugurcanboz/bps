@@ -8,24 +8,24 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Eignungstest-Trainer">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="manifest.json?v=5.1.2">
+<link rel="manifest" href="manifest.json?v=5.1.3">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <meta name="application-name" content="Eignungstest-Trainer">
 <meta name="description" content="Offlinefähiger Eignungstest-Trainer für CTC, BPS, Mathe, Logik, Konzentration, Visual IQ und IT/FISI.">
-<meta name="app-version" content="5.1.2">
-<meta name="cache-version" content="v512">
-<title>Eignungstest-Trainer V5.1.2 Production Stable</title>
+<meta name="app-version" content="5.1.3">
+<meta name="cache-version" content="v513">
+<title>Eignungstest-Trainer V5.1.3 Production Stable</title>
 
-<link rel="stylesheet" href="css/app.css?v=5.1.2">
+<link rel="stylesheet" href="css/app.css?v=5.1.3">
 
 </head>
 <body>
 <div class="app">
   <div id="start">
     <section class="premium-hero">
-      <div class="premium-kicker"><span>Premium Plus UI</span><span>Framework V5.1.2</span><span>Offlinefähig</span></div>
+      <div class="premium-kicker"><span>Premium Plus UI</span><span>Framework V5.1.3</span><span>Offlinefähig</span></div>
       <h1 class="premium-title" id="premiumGreeting">Eignungstest-Trainer</h1>
       <p class="premium-subtitle" id="premiumSubtitle">Dein persönliches Trainingsdashboard für CTC, BPS, Visual IQ, Konzentration und technische Eignungstests.</p>
       <div id="profileSetup" class="profile-setup hidden">
@@ -51,7 +51,7 @@
     <div id="modeSectionTitle" class="modeSectionTitle"></div>
     <div class="modeGrid" id="modeGrid"></div>
     <div id="sectionActions" class="section-actions"></div>
-    <div><span class="system-pill system-ok">Offlinefähig</span><span class="system-pill system-ok">Framework V5.1.2</span><span class="system-pill system-ok">PWA Ready</span></div>
+    <div><span class="system-pill system-ok">Offlinefähig</span><span class="system-pill system-ok">Framework V5.1.3</span><span class="system-pill system-ok">PWA Ready</span></div>
 <div id="healthPanel" class="health-panel"></div>
 
 <div class="exam-options">
@@ -109,9 +109,9 @@
 </div>
 
 
-<script src="data/cloud-config.js?v=5.1.2"></script>
-<script src="data/question-bank.js?v=5.1.2"></script>
-<script src="js/app.js?v=5.1.2"></script>
+<script src="data/cloud-config.js?v=5.1.3"></script>
+<script src="data/question-bank.js?v=5.1.3"></script>
+<script src="js/app.js?v=5.1.3"></script>
 
 <script>
 (function(){
@@ -129,7 +129,7 @@
   function updatePanel(status){
     const standalone = isStandalone() ? "Ja" : "Nein";
     const online = navigator.onLine ? "online" : "offline";
-    panel(`<b>PWA Offline Engine V5.1.2</b><br><span class="small">Status: ${status} · Installiert: ${standalone} · Verbindung: ${online}</span><br><span class="small">Cache: V5.1.2 · Update-Erkennung aktiv · Reset möglich</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button>`);
+    panel(`<b>PWA Offline Engine V5.1.3</b><br><span class="small">Status: ${status} · Installiert: ${standalone} · Verbindung: ${online}</span><br><span class="small">Cache: V5.1.3 · Update-Erkennung aktiv · Reset möglich</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button>`);
   }
   async function register(){
     if(!("serviceWorker" in navigator)) { updatePanel("Service Worker nicht unterstützt"); return; }
@@ -176,5 +176,5 @@
 
 </body>
 
-<!-- Eignungstest-Trainer V5.1.2 · Modular Framework -->
+<!-- Eignungstest-Trainer V5.1.3 · Modular Framework -->
 </html>

@@ -116,7 +116,7 @@
       });
       Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
       return {
-        version:"5.1.2",
+        version:"5.1.3",
         mode,
         title,
         total,
@@ -413,6 +413,12 @@
 
 
   const CloudHighscoreEngine = {
+    periods:[
+      {key:"daily", label:"Heute"},
+      {key:"weekly", label:"Woche"},
+      {key:"monthly", label:"Monat"},
+      {key:"all", label:"Gesamt"}
+    ],
     config() {
       const defaults = {
         enabled:true,
@@ -469,6 +475,21 @@
       if(raw) return raw;
       return this.config().allowAnonymous ? "Gast" : "Unbenannt";
     },
+    rankLabel(percent) {
+      return HighscoreEngine.rankLabel(percent);
+    },
+    periodStart(period) {
+      const now=new Date();
+      if(period==="daily") return new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+      if(period==="weekly") {
+        const d=new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const day=(d.getDay()+6)%7;
+        d.setDate(d.getDate()-day);
+        return d.toISOString();
+      }
+      if(period==="monthly") return new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+      return "";
+    },
     cleanRecord(result) {
       const r=Guard.normalizeResult(result||{});
       const c=this.config();
@@ -482,13 +503,14 @@
         score:Number(r.score)||0,
         total:Number(r.total)||0,
         duration:String(r.duration || "").slice(0,60),
-        rank:HighscoreEngine.rankLabel(r.percent),
+        rank:this.rankLabel(r.percent),
         app_version:APP_VERSION
       };
     },
     async submit(result) {
       if(!this.isConfigured()) return {ok:false,reason:"Cloud Highscore nicht verbunden",missing:this.missingFields()};
       const payload=this.cleanRecord(result);
+      if(!payload.total || !Number.isFinite(payload.percent)) return {ok:false,reason:"Ungültiger Highscore-Datensatz"};
       const response=await fetch(this.endpoint(), {method:"POST", headers:this.headers({"Prefer":"return=minimal"}), body:JSON.stringify(payload)});
       if(!response.ok) {
         const text = await response.text().catch(()=>"");
@@ -496,22 +518,44 @@
       }
       return {ok:true,record:payload};
     },
-    async fetchTop() {
+    async fetchTop(period="all") {
       if(!this.isConfigured()) return {ok:false,reason:"Cloud Highscore nicht verbunden",missing:this.missingFields(),items:[]};
       const c=this.config();
-      const qs=`?select=player_name,mode,title,percent,score,total,duration,rank,created_at&class_code=eq.${encodeURIComponent(c.classCode)}&order=percent.desc,score.desc,created_at.desc&limit=${c.limit}`;
-      const response=await fetch(this.endpoint(qs), {method:"GET", headers:this.headers()});
+      const filters=[
+        "select=player_name,mode,title,percent,score,total,duration,rank,created_at,app_version",
+        "class_code=eq."+encodeURIComponent(c.classCode),
+        "order=percent.desc,score.desc,created_at.asc",
+        "limit="+encodeURIComponent(c.limit)
+      ];
+      const start=this.periodStart(period);
+      if(start) filters.push("created_at=gte."+encodeURIComponent(start));
+      const response=await fetch(this.endpoint("?"+filters.join("&")), {method:"GET", headers:this.headers({"Cache-Control":"no-cache"})});
       if(!response.ok) {
         const text = await response.text().catch(()=>"");
         throw new Error("Cloud Highscore Abruf fehlgeschlagen: "+response.status+(text?" · "+text.slice(0,180):""));
       }
       const items=await response.json();
-      return {ok:true,items:Array.isArray(items)?items:[]};
+      return {ok:true,period,items:Array.isArray(items)?items:[]};
+    },
+    async fetchBoards() {
+      if(!this.isConfigured()) return {ok:false,boards:{},reason:"Cloud Highscore nicht verbunden",missing:this.missingFields()};
+      const boards={};
+      for(const p of this.periods) {
+        try { boards[p.key]=(await this.fetchTop(p.key)).items || []; }
+        catch(error) { boards[p.key]={error:String(error && error.message ? error.message : error)}; }
+      }
+      return {ok:true,boards};
+    },
+    renderRows(rows, limit=5) {
+      if(rows && rows.error) return `<div class="small">${escHTML(rows.error)}</div>`;
+      const list=Array.isArray(rows) ? rows.slice(0,limit) : [];
+      if(!list.length) return `<div class="small">Noch keine Einträge in diesem Zeitraum.</div>`;
+      return `<div class="cloud-rank-list">${list.map((r,i)=>`<div class="cloud-rank-row"><span class="cloud-rank-pos">#${i+1}</span><span class="cloud-rank-main"><b>${escHTML(r.player_name||"Gast")}</b><small>${escHTML(r.title||r.mode||"Test")}</small></span><span class="cloud-rank-score">${Number(r.percent)||0}%<small>${escHTML(r.rank||this.rankLabel(r.percent))}</small></span></div>`).join("")}</div>`;
     },
     renderShell() {
       const configured=this.isConfigured();
       const miss=this.missingFields();
-      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Rangliste aktiv":"Cloud nicht verbunden"}</div><div class="small">${configured?"Geräteübergreifende Bestenliste wird live synchronisiert.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div></div>`;
+      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div></div>`;
     },
     async refreshDashboard() {
       const el=$("cloudHighscoreCard");
@@ -521,10 +565,12 @@
         el.innerHTML=`<span class="coach-badge">Cloud Highscore · aktivierbar</span><div class="coach-action">Cloud nicht verbunden</div><div class="small">Keine Fake-Rangliste. Trage echte Supabase URL und anon key in <code>data/cloud-config.js</code> ein. Fehlend: ${escHTML(miss.join(", "))}.</div>`;
         return;
       }
+      el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking wird geladen...</div><div class="small">Supabase wird live abgefragt.</div>`;
       try {
-        const res=await this.fetchTop();
-        const rows=(res.items||[]).slice(0,5);
-        el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">${rows.length?"Top "+rows.length:"Noch keine Cloud-Einträge"}</div><div class="ai-list">${rows.map((r,i)=>`<div>${i+1}. <b>${escHTML(r.player_name||"Gast")}</b> · ${Number(r.percent)||0}% · ${escHTML(r.rank||HighscoreEngine.rankLabel(r.percent))}<br><span class="small">${escHTML(r.title||r.mode||"Test")}</span></div>`).join("") || "<div>Starte einen Test. Danach erscheint der erste echte Online-Highscore.</div>"}</div><div class="small">Geräteübergreifend aktiv · Klasse: ${escHTML(this.config().classCode)}</div>`;
+        const res=await this.fetchBoards();
+        const boards=res.boards||{};
+        const total=Object.values(boards).reduce((s,rows)=>s+(Array.isArray(rows)?rows.length:0),0);
+        el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking aktiv</div><div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="small">${total?"Live aus Supabase geladen":"Noch keine Cloud-Highscores gespeichert"} · Klasse: ${escHTML(this.config().classCode)} · Tabelle: ${escHTML(this.config().table)}</div>`;
       } catch(error) {
         el.innerHTML=`<span class="coach-badge">Cloud Highscore · Fehler</span><div class="coach-action">Verbindung fehlgeschlagen</div><div class="small">${escHTML(error && error.message ? error.message : error)}</div>`;
       }
@@ -543,7 +589,8 @@
         keySet:!!c.anonKey,
         urlHost:c.supabaseUrl ? c.supabaseUrl.replace(/^https?:\/\//,"") : "",
         configLoaded:!!(typeof window !== "undefined" && window.CLOUD_HIGHSCORE_CONFIG),
-        source:"data/cloud-config.js"
+        source:"data/cloud-config.js",
+        periods:this.periods.map(p=>p.key)
       };
     },
     async testConnection() {
@@ -551,7 +598,7 @@
       if(!d.configured) return {...d, online:false, readOk:false, writeReady:false, status:"config-missing", error:"Fehlende Konfiguration: "+d.missing.join(", ")};
       try {
         const c=this.config();
-        const qs=`?select=player_name,percent,created_at&class_code=eq.${encodeURIComponent(c.classCode)}&limit=1`;
+        const qs=`?select=player_name,percent,created_at&class_code=eq.${encodeURIComponent(c.classCode)}&order=created_at.desc&limit=1`;
         const response=await fetch(this.endpoint(qs), {method:"GET", headers:this.headers({"Cache-Control":"no-cache"})});
         const text=await response.text().catch(()=>"");
         if(!response.ok) {
@@ -565,7 +612,6 @@
       }
     }
   };
-
 
   const HighscoreEngine = {
     maxItems:10,
@@ -623,14 +669,14 @@
       const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
       const learning=LearningMemoryEngine.build(normalized,memory);
       const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
-      return {version:"5.1.2",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+      return {version:"5.1.3",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
     },
     renderDashboard(coach) {
       const r=coach.readiness;
       const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
       const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
       return `<div class="premium-card ai-card">
-        <span class="coach-badge">AI Stable Core V5.1.2</span>
+        <span class="coach-badge">AI Stable Core V5.1.3</span>
         <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
         <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
         <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>

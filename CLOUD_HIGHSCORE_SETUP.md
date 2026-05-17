@@ -1,4 +1,4 @@
-# V5.1.2 Cloud Highscore Diagnose
+# V5.1.3 Cloud Highscore Diagnose
 
 Supabase ist im Framework eingebaut und wird über `data/cloud-config.js` geladen.
 
@@ -57,7 +57,7 @@ to anon
 with check (true);
 ```
 
-## Neue Diagnose in V5.1.2
+## Neue Diagnose in V5.1.3
 
 Der Systemstatus zeigt jetzt einzeln:
 
