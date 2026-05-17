@@ -789,7 +789,7 @@
       <div class="health-row"><span>Aktive Engine</span><strong>${d.engine}</strong></div>
       <div class="health-row"><span>IndexedDB verfügbar</span><strong>${d.indexedDbReady ? "Ja" : "Nein"}</strong></div>
       <div class="health-row"><span>IndexedDB Foundation</span><strong>${d.indexedDb && d.indexedDb.ok ? "OK" : (d.indexedDb && d.indexedDb.supported ? "initialisiert..." : "nicht verfügbar")}</strong></div>
-      <div class="health-row"><span>IndexedDB Stores</span><strong>${d.indexedDb && d.indexedDb.stores ? d.indexedDb.stores.length : 0}/${d.indexedDb && d.indexedDb.expectedStores ? d.indexedDb.expectedStores.length : 0}</strong></div><div class="health-row"><span>Highscore Store</span><strong>${d.indexedDb && d.indexedDb.stores && d.indexedDb.stores.includes("highscores") ? "bereit" : "prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${(window.App && App._test && App._test.CloudHighscoreEngine && App._test.CloudHighscoreEngine.diagnostics().configured) ? "online" : "nicht verbunden"}</strong></div>
+      <div class="health-row"><span>IndexedDB Stores</span><strong>${d.indexedDb && d.indexedDb.stores ? d.indexedDb.stores.length : 0}/${d.indexedDb && d.indexedDb.expectedStores ? d.indexedDb.expectedStores.length : 0}</strong></div><div class="health-row"><span>Highscore Store</span><strong>${d.indexedDb && d.indexedDb.stores && d.indexedDb.stores.includes("highscores") ? "bereit" : "prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore Config</span><strong>${(window.App && App._test && App._test.CloudHighscoreEngine && App._test.CloudHighscoreEngine.diagnostics().configured) ? "geladen" : "nicht vollständig"}</strong></div>
       <div class="health-row"><span>Migration</span><strong>${d.migration && d.migration.ready ? "vorbereitet" : "prüfen"}</strong></div>
       <div class="health-row"><span>Migrationsmodus</span><strong>${d.migration ? d.migration.phase : "-"}</strong></div>
       <div class="health-row"><span>Quellläufe gefunden</span><strong>${d.migration ? d.migration.totalRecords : 0}</strong></div>
@@ -797,7 +797,7 @@
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V5.1.0: vorbereitet, aber runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V5.1.2: vorbereitet, aber runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -810,16 +810,17 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "eignungstest-trainer-backup-v5-1-0-module-stable.json";
+    a.download = "eignungstest-trainer-backup-v5-1-2.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
   }
 
-  function showFrameworkHealth() {
+  async function showFrameworkHealth() {
     const panel = $("healthPanel");
     if(!panel) return;
     const summary = QualityEngine.summary();
+    const cloudLive = await CloudHighscoreEngine.testConnection();
     panel.classList.toggle("show");
     panel.innerHTML = `
       <b>Framework-Status</b>
@@ -829,7 +830,7 @@
       <div class="health-row"><span>Simulation</span><strong>${summary.simulation.count} Aufgaben</strong></div>
       <div class="health-row"><span>Modus-Verträge</span><strong>${summary.contracts.length ? summary.contracts.length + " Problem(e)" : "OK"}</strong></div>
       <div class="health-row"><span>AI Engine</span><strong>${summary.ai && summary.ai.ok ? "OK" : "Prüfen"}</strong></div>
-      <div class="health-row"><span>IndexedDB</span><strong>${summary.indexedDb && summary.indexedDb.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Highscore Engine</span><strong>${summary.highscore && summary.highscore.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${summary.cloudHighscore && summary.cloudHighscore.configured ? "online" : "nicht verbunden"}</strong></div>
+      <div class="health-row"><span>IndexedDB</span><strong>${summary.indexedDb && summary.indexedDb.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Highscore Engine</span><strong>${summary.highscore && summary.highscore.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${cloudLive.online ? "online" : (cloudLive.configured ? "konfiguriert · Verbindung prüfen" : "nicht verbunden")}</strong></div>
       <div class="health-row"><span>Migration</span><strong>${summary.migration && summary.migration.ok ? "Aktiv · nicht-destruktiv" : "Prüfen"}</strong></div>
       <div class="health-row"><span>Adaptive Engine</span><strong>${summary.ai && summary.ai.adaptive ? summary.ai.adaptive : "Prüfen"}</strong></div>
       <div class="health-row"><span>Dynamic Generator</span><strong>${summary.ai && summary.ai.mix ? summary.ai.mix + " Mix-Einträge" : "Prüfen"}</strong></div>
@@ -841,6 +842,7 @@
       <div class="health-row"><span>Stabile Module</span><strong>${FEATURE_STATUS.stable.length}</strong></div>
       <div class="health-row"><span>Vorbereitet</span><strong>${FEATURE_STATUS.prepared.length}</strong></div>
       <div class="health-row"><span>Ausgeklammert</span><strong>${FEATURE_STATUS.disabled.length}</strong></div>
+      <div class="db-status-card"><b>Supabase Cloud Diagnose:</b><br>Config geladen: <b>${cloudLive.configLoaded ? "Ja" : "Nein"}</b><br>URL: <b>${cloudLive.urlSet ? "Ja" : "Nein"}</b> · Key: <b>${cloudLive.keySet ? "Ja" : "Nein"}</b><br>Provider: <code>${escHTML(cloudLive.provider || "-")}</code> · Tabelle: <code>${escHTML(cloudLive.table || "-")}</code> · Klasse: <code>${escHTML(cloudLive.classCode || "-")}</code><br>Lesetest: <b>${cloudLive.readOk ? "OK" : "Fehler"}</b> · Status: <code>${escHTML(cloudLive.status || "-")}</code>${cloudLive.httpStatus ? " · HTTP "+cloudLive.httpStatus : ""}${cloudLive.error ? `<br><span class="small">${escHTML(cloudLive.error)}</span>` : ""}<br><span class="small">Wenn hier Config Ja, URL Ja und Key Ja steht, aber Lesetest Fehler zeigt, liegt es fast sicher an Supabase Tabelle/RLS/Policies oder Internet/CORS.</span></div>
       ${summary.contracts.length ? `<div class="db-status-card"><b>Vertragsprobleme:</b><br>${summary.contracts.map(escHTML).join("<br>")}</div>` : ""}
       <div class="health-row"><span>Status</span><strong>${summary.ok ? "OK" : "Prüfen"}</strong></div>
     `;

@@ -1,17 +1,19 @@
 "use strict";
-const CACHE_NAME = "eignungstest-trainer-v353-cache";
+const CACHE_NAME = "eignungstest-trainer-v512-version-clean-cache";
+const SW_VERSION = "5.1.2";
 const CACHE_PREFIX = "eignungstest-trainer-";
 const CORE_ASSETS = [
   "./",
-  "./index.html",
-  "./css/app.css",
-  "./js/app.js",
-  "./data/question-bank.js",
-  "./data/cloud-config.js",
-  "./manifest.json",
+  "./index.html?v=5.1.2",
+  "./css/app.css?v=5.1.2",
+  "./js/app.js?v=5.1.2",
+  "./data/question-bank.js?v=5.1.2",
+  "./data/cloud-config.js?v=5.1.2",
+  "./manifest.json?v=5.1.2",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-512.png",
+  "./icons/maskable-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -41,6 +43,24 @@ self.addEventListener("fetch", event => {
     return;
   }
 
+  const versionCritical = /\/(index\.html|service-worker\.js|js\/app\.js|css\/app\.css|data\/cloud-config\.js|data\/question-bank\.js|manifest\.json)$/i.test(url.pathname);
+
+  if (versionCritical) {
+    event.respondWith((async () => {
+      try {
+        const response = await fetch(req, {cache:"no-store"});
+        if (response && response.ok) {
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(req, response.clone());
+        }
+        return response;
+      } catch (error) {
+        return caches.match(req) || caches.match("./index.html?v=5.1.2") || caches.match("./index.html");
+      }
+    })());
+    return;
+  }
+
   event.respondWith((async () => {
     const cached = await caches.match(req);
     if (cached) return cached;
@@ -52,12 +72,13 @@ self.addEventListener("fetch", event => {
       }
       return response;
     } catch (error) {
-      return caches.match("./index.html");
+      return caches.match("./index.html?v=5.1.2") || caches.match("./index.html");
     }
   })());
 });
 
 self.addEventListener("message", event => {
+  if (event.data && event.data.type === "GET_VERSION") event.source && event.source.postMessage({type:"SW_VERSION", version:SW_VERSION, cache:CACHE_NAME});
   if (event.data && event.data.type === "SKIP_WAITING") self.skipWaiting();
   if (event.data && event.data.type === "CLEAR_CACHE") {
     event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith(CACHE_PREFIX)).map(key => caches.delete(key)))));

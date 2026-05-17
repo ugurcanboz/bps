@@ -1,4 +1,4 @@
-# Eignungstest-Trainer V5.1.0 Module Stable
+# Eignungstest-Trainer V5.1.2 Cloud Diagnostics Stable
 
 ## Architekturprinzip
 
@@ -8,7 +8,7 @@ Die App ist jetzt als Framework-Baum organisiert:
 - Dicke Äste: Fachmodule wie Mathe, Allgemeinwissen, IT, EDV, Logik, Konzentration, Visual IQ und Route Memory
 - Blätter: einzelne Generatoren, Renderer und Interaktionsfunktionen
 
-Die Runtime bleibt für maximale PWA-Kompatibilität als `js/app.js` gebündelt. Die Wartung erfolgt ab V5.1.0 über die modularen Source-Dateien unter `js/src/`.
+Die Runtime bleibt für maximale PWA-Kompatibilität als `js/app.js` gebündelt. Die Wartung erfolgt ab V5.1.2 über die modularen Source-Dateien unter `js/src/`.
 
 ## Wichtigste Source-Struktur
 
@@ -76,10 +76,10 @@ Danach `node js/build/build-app-bundle.js` ausführen.
 
 ## Stabilitätsstatus
 
-- Framework-Version: 5.1.0
-- Cache: eignungstest-trainer-v510-module-stable-cache
-- Storage-Key: eignungstest_trainer_v510_results
-- Profil-Key: eignungstest_trainer_profile_v510
+- Framework-Version: 5.1.2
+- Cache: eignungstest-trainer-v512-version-clean-cache
+- Storage-Key: eignungstest_trainer_v512_results
+- Profil-Key: eignungstest_trainer_profile_v512
 - EDV: 1 Multi-Choice-Gesamtaufgabe + 10 technische Platzhalter für 11 Wertungspunkte
 - CTC-Lohr Simulation: 93 Aufgaben
 

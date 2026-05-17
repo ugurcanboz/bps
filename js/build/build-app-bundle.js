@@ -1,5 +1,5 @@
 /*
-  Eignungstest-Trainer V5.1.0 Bundle Builder
+  Eignungstest-Trainer V5.1.2 Bundle Builder
   Baut js/app.js reproduzierbar aus klar getrennten Framework-Modulen.
   Wichtig: Laufzeit bleibt ein Bundle für iPad/PWA-Kompatibilität, Wartung erfolgt in js/src/.
   Ausführen lokal mit: node js/build/build-app-bundle.js

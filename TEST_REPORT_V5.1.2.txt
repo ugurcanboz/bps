@@ -1,0 +1,12 @@
+Eignungstest-Trainer V5.1.2 Version Clean Stable - QA
+
+Geprüft:
+- Keine sichtbaren Altversion / Altversion Strings in index/app/service-worker.
+- App-Version V5.1.2.
+- Cache V512.
+- Manifest start_url V5.1.2.
+- Service Worker Syntax OK.
+- App Runtime Syntax OK.
+- Cloud Config vorhanden und enabled.
+- Supabase URL/anon key/table im Config-File vorhanden.
+- Systemstatus enthält Supabase Cloud Diagnose.

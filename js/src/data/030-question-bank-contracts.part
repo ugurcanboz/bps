@@ -64,7 +64,7 @@
     importBatch(rawItems=[], source="ocr-import") {
       if(!FEATURE_FLAGS.questionBankRuntimeImport) {
         const validation = rawItems.map(x=>this.validate(this.normalize(x,source)));
-        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V5.1.0 bewusst deaktiviert.", createdAt:new Date().toISOString()};
+        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V5.1.2 bewusst deaktiviert.", createdAt:new Date().toISOString()};
         return QUESTION_BANK.lastImport;
       }
       const normalized=rawItems.map(x=>this.normalize(x,source));
@@ -217,6 +217,14 @@
         return {ok:hs.total===2 && hs.bestOverall.percent===90 && hs.bestSimulation.percent===75, total:hs.total, best:hs.bestOverall.percent};
       } catch(error) { return {ok:false,error:String(error && error.message ? error.message : error)}; }
     },
+    validateCloudHighscore() {
+      try {
+        const d = CloudHighscoreEngine.diagnostics();
+        return {ok:d.configured, configured:d.configured, enabled:d.enabled, provider:d.provider, table:d.table, classCode:d.classCode, urlSet:d.urlSet, keySet:d.keySet, configLoaded:d.configLoaded, missing:d.missing};
+      } catch(error) {
+        return {ok:false, configured:false, error:String(error && error.message ? error.message : error)};
+      }
+    },
     validateAIEngines() {
       try {
         const fakeResults=[
@@ -247,9 +255,10 @@
       const questionBank = this.validateQuestionBank();
       const pwa = this.validatePWA();
       const highscore = this.validateHighscore();
+      const cloudHighscore = this.validateCloudHighscore();
       const indexedDb = this.validateIndexedDB();
       const migration = this.validateMigrationPrep();
-      return {framework:FRAMEWORK.name + " " + FRAMEWORK.version, modes, storage, simulation, contracts, ai, questionBank, pwa, indexedDb, migration, ok:modes.every(m=>m.invalid===0) && simulation.count===93 && contracts.length===0 && ai.ok && questionBank.ok && pwa.ok && indexedDb.ok && migration.ok};
+      return {framework:FRAMEWORK.name + " " + FRAMEWORK.version, modes, storage, simulation, contracts, ai, questionBank, pwa, highscore, cloudHighscore, indexedDb, migration, ok:modes.every(m=>m.invalid===0) && simulation.count===93 && contracts.length===0 && ai.ok && questionBank.ok && pwa.ok && indexedDb.ok && migration.ok};
     }
   };
 

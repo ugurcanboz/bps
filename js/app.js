@@ -1,102 +1,37 @@
+/* AUTO-GENERATED BUNDLE aus js/src/ · Änderungen bitte in den Source-Modulen machen. */
+/* AUTO-GENERATED BUNDLE aus js/src/ · Änderungen bitte in den Source-Schichten machen. */
+/* Bootstrap, Version, Feature Flags, PWA Config, Hilfsfunktionen und Framework-Metadaten. */
 "use strict";
 
 /*
 ===============================================================================
-Eignungstest-Trainer V3.5.3 · Route & Visual Logic Bugfix
+Eignungstest-Trainer V5.1.2 · Cloud Diagnostics Stable
 ===============================================================================
-Ziel:
-- Eine einzelne offlinefähige HTML-Datei
-- Saubere Modulstruktur für zukünftige Erweiterungen
-- Lokale Speicherung über StorageEngine
-- Datenmodell und DatabaseBridge als Vorbereitung für spätere IndexedDB
-- Neue Module werden ergänzend eingebaut, ohne den Core zu überschreiben
+Struktur:
+- Core: Modi, Quiz-Ablauf, Timer, Navigation, Wertung
+- Generatoren: Wissen, Mathe, Logik, Konzentration, Route-Memory, EDV
+- Renderer: Multiple Choice, visuelle Aufgaben, Route-Sequenz, EDV-Multi-Choice
+- Storage: IndexedDB als Hauptspeicher, localStorage als Fallback
+- PWA: Manifest, Service Worker, Cache-Bereinigung
+- Qualität: Guard, Framework-Health, Simulation-Checks
 
-Update-Regel:
-1. Generator ergänzen
-2. Renderer ergänzen, falls neuer Visualtyp nötig ist
-3. Modus-Pool erweitern
-4. QualityEngine prüfen lassen
-
-V1.7.1 Cleanup:
-- Versionsstände sauber zusammengeführt
-- Visual-IQ-Bereich in die Update-Struktur eingeordnet
-- zentrale Escaping-Helfer beibehalten
-- Route-Memory Inline-Handler abgesichert
-- Adaptive-Kategorien für Visual IQ vorbereitet
-- Backup-Dateiname aktualisiert
-- Diagnose und Update-Zweige dokumentiert
-
-V1.8 Blocktraining PRO:
-- Sprint-Modi und Modus-Verträge ergänzt
-
-V1.8.1 UI Cleanup:
-- gezielte Sprint- und Blocktraining-Modi ergänzt
-- Trainingsbereiche sauber über eigene Modus-Pools getrennt
-- Modus-Verträge für Blocktraining erweitert
-- Fehlertraining als vorbereiteter Trainingsmodus angelegt
-
-V1.9.1 Premium Cleanup:
-- Framework-Contract für adaptiven Elite-Modus korrigiert
-- Migrationspfad bereinigt
-- Profil wird im Backup berücksichtigt
-- Versionsstände und Backup-Dateiname aktualisiert
-
-V2.0 bis V2.3 AI Evolution:
-- globale CoachEngine als Hintergrundsystem ergänzt
-- DataReadiness mit 3-Simulationen-Freischaltung eingebaut
-- ErrorMemory, WeaknessProfile und RecommendationEngine ergänzt
-- CognitiveProfile V1 für Denkprofil, Tempo, Präzision und Druckverhalten ergänzt
-- Dashboard zeigt KI-Datenbasis, Schwächen, Empfehlung und Denkprofil
-
-V2.4 bis V2.5 AI Evolution:
-- AdaptiveDifficultyEngine ergänzt Schwierigkeit, Zeitfenster und Fokusbereich
-- DynamicGeneratorEngine ergänzt gewichteten Aufgabenmix nach Schwächen und Fehlerarten
-- adaptiver Elite-Modus nutzt jetzt gespeicherte Coach-Daten statt nur aktuelle Session
-- Dashboard und Analyse zeigen Adaptive Engine und Dynamic Generator PRO
-
-V2.5.1 Focus Guard Cleanup:
-- KI-Empfehlungen respektieren bewusst gewählte Trainingsziele
-- manueller Mathe/Kopfrechnen-Fokus verhindert ungewollte Logik-Dominanz
-- Dynamic Generator nutzt Fokus nur im adaptiven Elite-Modus, normale Modi bleiben strikt getrennt
-- Systemstatus prüft Focus Guard und manuelle Schwerpunktsteuerung
-
-V2.8 UX Mode Hub + Question Bank Framework:
-- UI in Hauptbereiche Dashboard, Übungsmodus, Simulationsmodus, Analyse und Profil geordnet
-- lange Moduslisten durch kompakte Cards und klare Bereiche ersetzt
-- Aufgabenbank-Schema für spätere OCR/Buchaufgaben vorbereitet
-- QuestionBankEngine als zentrale Import-, Filter- und Audit-Schicht ergänzt
-- spätere Erweiterung: Aufgaben kommen in eine zentrale Liste, Modi picken nur nach Kategorie/Tags
-
-V3.1 Offline Engine:
-- teils fertige Zukunftsfunktionen aktiv ausgeklammert und über Feature Flags geparkt
-- Question Bank bleibt als Schema/Audit vorbereitet, greift aber nicht in aktive Quiz-Generatoren ein
-- UI-Texte bereinigt: vorbereitet statt aktiv nutzbar
-- Systemstatus zeigt stabile, vorbereitete und deaktivierte Module getrennt
-- Backup, Versionierung und Legacy-Pfade auf V3.1 Preflight aktualisiert
-- Manifest- und Icon-Pfade ergänzt
-- Service-Worker-Cache bleibt bewusst deaktiviert
-V3.5.3 Active Cloud Highscore Board:
-- IndexedDB als Hauptspeicher aktiviert
-- Sessions/Ergebnisse werden primär in IndexedDB gespeichert
-- localStorage bleibt nur als Notfall-Fallback erhalten
-- nicht-destruktive Übernahme alter localStorage-Daten vorbereitet
-
-V3.5.3 Active Cloud Highscore Board:
-- Projektstruktur in index.html, css/app.css, js/app.js, data/question-bank.js und PWA-Dateien getrennt
-- keine neuen Lernfeatures, nur Strukturumbau
-- App Core bleibt stabil, Question Bank bleibt vorbereitet und deaktiviert
-- Service Worker Cachepfade auf modulare Dateien erweitert
+Framework Refactor V5.1.2:
+- Versions- und Cache-Bezeichnungen vereinheitlicht
+- Legacy-EDV-Einzelfrage aus Export und Runtime entfernt
+- EDV-Modul auf Multi-Choice-Gesamtauswertung stabilisiert
+- MigrationPath auf V5.1.2 aktualisiert
+- alte V3/V4-Kommentarblöcke bereinigt
 ===============================================================================
 */
 
 
 window.App = (() => {
-  const STORE_KEY = "eignungstest_trainer_v353_results";
-  const LEGACY_STORE_KEYS = ["eignungstest_trainer_v35_results","eignungstest_trainer_v341_results","eignungstest_trainer_v34_results","eignungstest_trainer_v332_results","eignungstest_trainer_v33_results","eignungstest_trainer_v331_results","eignungstest_trainer_v321_results","eignungstest_trainer_v32_results","eignungstest_trainer_v311_results","eignungstest_trainer_v31_results","eignungstest_trainer_v292_results","eignungstest_trainer_v291_results","eignungstest_trainer_v29_results","eignungstest_trainer_v281_results","eignungstest_trainer_v28_results","eignungstest_trainer_v231_results","eignungstest_trainer_v251_results","eignungstest_trainer_v23_results","eignungstest_trainer_v19_results","eignungstest_trainer_v18_results","eignungstest_trainer_v17_results","eignungstest_trainer_v16_results"];
-  const APP_VERSION = "3.5.3-route-visual-bugfix";
-  const PROFILE_KEY = "eignungstest_trainer_profile_v353";
-  const PROFILE_LEGACY_KEYS = ["eignungstest_trainer_profile_v35","eignungstest_trainer_profile_v341","eignungstest_trainer_profile_v34","eignungstest_trainer_profile_v332","eignungstest_trainer_profile_v33","eignungstest_trainer_profile_v331","eignungstest_trainer_profile_v321","eignungstest_trainer_profile_v32","eignungstest_trainer_profile_v311","eignungstest_trainer_profile_v31","eignungstest_trainer_profile_v292","eignungstest_trainer_profile_v291","eignungstest_trainer_profile_v29","eignungstest_trainer_profile_v281","eignungstest_trainer_profile_v27","eignungstest_trainer_profile_v251","eignungstest_trainer_profile_v23","eignungstest_trainer_profile_v19"];
-  const FOCUS_KEY = "eignungstest_trainer_focus_v353";
+  const STORE_KEY = "eignungstest_trainer_v512_results";
+  const LEGACY_STORE_KEYS = ["eignungstest_trainer_v501_results","eignungstest_trainer_v42_results","eignungstest_trainer_v36_results","eignungstest_trainer_v355_results","eignungstest_trainer_v354_results","eignungstest_trainer_v353_results","eignungstest_trainer_v35_results","eignungstest_trainer_v341_results","eignungstest_trainer_v34_results","eignungstest_trainer_v332_results","eignungstest_trainer_v33_results","eignungstest_trainer_v331_results","eignungstest_trainer_v321_results","eignungstest_trainer_v32_results","eignungstest_trainer_v311_results","eignungstest_trainer_v31_results","eignungstest_trainer_v292_results","eignungstest_trainer_v291_results","eignungstest_trainer_v29_results","eignungstest_trainer_v281_results","eignungstest_trainer_v28_results","eignungstest_trainer_v231_results","eignungstest_trainer_v251_results","eignungstest_trainer_v23_results","eignungstest_trainer_v19_results","eignungstest_trainer_v18_results","eignungstest_trainer_v17_results","eignungstest_trainer_v16_results"];
+  const APP_VERSION = "5.1.2-version-clean";
+  const PROFILE_KEY = "eignungstest_trainer_profile_v512";
+  const PROFILE_LEGACY_KEYS = ["eignungstest_trainer_profile_v501","eignungstest_trainer_profile_v42","eignungstest_trainer_profile_v36","eignungstest_trainer_profile_v355","eignungstest_trainer_profile_v354","eignungstest_trainer_profile_v353","eignungstest_trainer_profile_v35","eignungstest_trainer_profile_v341","eignungstest_trainer_profile_v34","eignungstest_trainer_profile_v332","eignungstest_trainer_profile_v33","eignungstest_trainer_profile_v331","eignungstest_trainer_profile_v321","eignungstest_trainer_profile_v32","eignungstest_trainer_profile_v311","eignungstest_trainer_profile_v31","eignungstest_trainer_profile_v292","eignungstest_trainer_profile_v291","eignungstest_trainer_profile_v29","eignungstest_trainer_profile_v281","eignungstest_trainer_profile_v27","eignungstest_trainer_profile_v251","eignungstest_trainer_profile_v23","eignungstest_trainer_profile_v19"];
+  const FOCUS_KEY = "eignungstest_trainer_focus_v512";
   const $ = id => document.getElementById(id);
   const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
   const choice = arr => arr[rand(0, arr.length-1)];
@@ -115,7 +50,7 @@ window.App = (() => {
 
   const MODULE_TREE = {
     core:["modes","quiz","timer","navigation","scoring"],
-    render:["mc","matrix","series","fraction","visual","routeMemory","focusgrid","bigschema","edvclick","visualIQ"],
+    render:["mc","matrix","series","fraction","visual","routeMemory","focusgrid","bigschema","edvmulti","visualIQ"],
     modules:["math","logic","knowledge","english","it","concentration","routeMemory","simulation","visualIQ","blockTraining"],
     storage:["results","categoryStats","review"],
     nextBranches:["adaptiveErrorTraining","visualIQHardcore","pwaOfflineCache","indexedDbDatabase","profileSystem"]
@@ -156,15 +91,26 @@ window.App = (() => {
     backgroundColor:"#eef3f9",
     manifestFile:"manifest.json",
     serviceWorkerFile:"service-worker.js",
-    cacheName:"eignungstest-trainer-v353-cache",
+    cacheName:"eignungstest-trainer-v512-version-clean-cache",
     icons:["icons/icon-180.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"],
     status:"indexeddb-primary-active",
-    note:"V3.5.3 aktiviert das Cloud-Highscore-Board technisch vollständig. Ohne echte Supabase URL und anon key zeigt die App klar Cloud nicht verbunden statt Fake-Daten."
+    note:"V5.1.2 Cloud Diagnostics Stable: EDV-Multi-Choice, Route-Memory und Visual-Fixes stabil zusammengeführt, Legacy-Reste bereinigt und Cache/Version vereinheitlicht."
   });
 
-  const FRAMEWORK = {
+  
+
+  const SYSTEM_RUNTIME = Object.freeze({
+    autosave:true,
+    crashRecovery:true,
+    duplicateProtection:true,
+    cloudRetryQueue:true,
+    offlineFirst:true,
+    syncMode:"safe-sync-v512"
+  });
+
+const FRAMEWORK = {
     name:"Eignungstest-Trainer",
-    version:"3.5.3",
+    version:"5.1.2",
     storageVersion:"2",
     offline:true,
     database:"IndexedDB primary + localStorage fallback",
@@ -212,19 +158,22 @@ window.App = (() => {
       "Manifest Template",
       "Service Worker aktiv mit sicherem Runtime Cache",
       "IndexedDB Full Activation",
-      "Stable Cleanup V3.4.1",
+      "Production Stable V5.1.2",
       "Highscore Engine vorbereitet",
       "Active Cloud Highscore Board",
       "Geräteübergreifende Bestenliste vorbereitet",
       "lokale Datenbank-Stores vorbereitet",
-      "Migration vorbereitet, aber bewusst noch nicht automatisch aktiv"
+      "Migration aktiv und nicht-destruktiv"
     ],
     featureFlags:FEATURE_FLAGS,
     featureStatus:FEATURE_STATUS,
     pwaConfig:PWA_CONFIG
   };
 
-  // V2.3.1 Cleanup: Versionspfade vereinheitlicht, Legacy-Profile migriert, AI-Qualitätscheck ergänzt und ungenutzte Alt-Funktionen entfernt.
+
+
+
+/* StorageEngine, IndexedDBEngine, DatabaseBridge und Datenmigration. */
 
   const StorageEngine = {
     key: STORE_KEY,
@@ -324,7 +273,7 @@ window.App = (() => {
 
 
   const DATA_MODEL = {
-    version:"3.5.3",
+    version:"5.1.2",
     stores:{
       results:{
         id:"auto",
@@ -387,7 +336,7 @@ window.App = (() => {
         fields:["source","imported","duplicates","invalid","reviewNeeded","createdAt"]
       }
     },
-    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1"],
+    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.1.0","5.1.1","5.1.2"],
     futureEngine:"active",
     currentEngine:"IndexedDB-primary",
     migrationPolicy:{active:true,mode:"full-activation",source:"localStorage",target:"IndexedDB",requiresManualCleanup:false,noDataDeletion:true},
@@ -400,7 +349,7 @@ window.App = (() => {
     active:true,
     source:"localStorage",
     target:"IndexedDB",
-    version:"3.5.3",
+    version:"5.1.2",
     rules:[
       "Keine automatische Datenlöschung",
       "IndexedDB ist Hauptspeicher",
@@ -430,7 +379,7 @@ window.App = (() => {
       const blockers=[];
       if(!IndexedDBEngine.status.supported) blockers.push("IndexedDB nicht verfügbar");
       if(!StorageEngine.health().ok) blockers.push("localStorage nicht stabil lesbar");
-      if(!this.active) blockers.push("Migration sollte in V3.4 aktiv sein");
+      if(!this.active) blockers.push("Migration sollte aktiv sein");
       status.blockers=blockers;
       status.ready=blockers.length===0;
       status.rules=this.rules;
@@ -605,6 +554,11 @@ window.App = (() => {
   };
 
 
+
+
+
+
+/* Guard, Analytics, SessionTracker, ErrorMemory, Coach/Adaptive/Dynamic/Learning/Highscore Engines. */
   const Guard = {
     safeNumber(value, fallback=0) { return Number.isFinite(Number(value)) ? Number(value) : fallback; },
     validQuestion(q) {
@@ -612,7 +566,8 @@ window.App = (() => {
       if(typeof q.q !== "string") return false;
       if(!Array.isArray(q.a) || q.a.length < 1) return false;
       if(q.type === "routeMemory") return Array.isArray(q.routeStreets) && q.routeStreets.length >= 6;
-      if(q.type === "edvclick") return typeof q.edvCorrectId === "string" && typeof q.edvKind === "string" && typeof q.correct === "number" && q.correct >= 0 && q.correct < q.a.length;
+      if(q.type === "edvmulti") return Array.isArray(q.edvCorrectIds) && q.edvCorrectIds.length > 0;
+      if(q.type === "edvcovered") return true;
       return typeof q.correct === "number" && q.correct >= 0 && q.correct < q.a.length;
     },
     repairQuestion(q) {
@@ -721,7 +676,7 @@ window.App = (() => {
       });
       Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
       return {
-        version:"3.5.3",
+        version:"5.1.2",
         mode,
         title,
         total,
@@ -1137,7 +1092,37 @@ window.App = (() => {
     diagnostics() {
       const c=this.config();
       const missing=this.missingFields();
-      return {enabled:!!c.enabled, configured:missing.length===0, missing, provider:c.provider, table:c.table, classCode:c.classCode || "default", urlSet:!!c.supabaseUrl, keySet:!!c.anonKey};
+      return {
+        enabled:!!c.enabled,
+        configured:missing.length===0,
+        missing,
+        provider:c.provider,
+        table:c.table,
+        classCode:c.classCode || "default",
+        urlSet:!!c.supabaseUrl,
+        keySet:!!c.anonKey,
+        urlHost:c.supabaseUrl ? c.supabaseUrl.replace(/^https?:\/\//,"") : "",
+        configLoaded:!!(typeof window !== "undefined" && window.CLOUD_HIGHSCORE_CONFIG),
+        source:"data/cloud-config.js"
+      };
+    },
+    async testConnection() {
+      const d=this.diagnostics();
+      if(!d.configured) return {...d, online:false, readOk:false, writeReady:false, status:"config-missing", error:"Fehlende Konfiguration: "+d.missing.join(", ")};
+      try {
+        const c=this.config();
+        const qs=`?select=player_name,percent,created_at&class_code=eq.${encodeURIComponent(c.classCode)}&limit=1`;
+        const response=await fetch(this.endpoint(qs), {method:"GET", headers:this.headers({"Cache-Control":"no-cache"})});
+        const text=await response.text().catch(()=>"");
+        if(!response.ok) {
+          return {...d, online:false, readOk:false, writeReady:false, status:"supabase-error", httpStatus:response.status, error:text.slice(0,240) || response.statusText};
+        }
+        let items=[];
+        try { items=JSON.parse(text || "[]"); } catch(_) { items=[]; }
+        return {...d, online:true, readOk:true, writeReady:true, status:"online", httpStatus:response.status, sampleCount:Array.isArray(items)?items.length:0, error:""};
+      } catch(error) {
+        return {...d, online:false, readOk:false, writeReady:false, status:"network-error", error:String(error && error.message ? error.message : error)};
+      }
     }
   };
 
@@ -1162,7 +1147,7 @@ window.App = (() => {
     },
     toRecord(result) {
       const r=Guard.normalizeResult(result||{});
-      return {date:r.date,mode:r.mode,title:r.title,percent:r.percent,score:r.score,total:r.total,duration:r.duration,rank:this.rankLabel(r.percent),source:"session",createdAt:new Date().toISOString()};
+      const p=readProfile(); return {date:r.date,mode:r.mode,title:r.title,percent:r.percent,score:r.score,total:r.total,duration:r.duration,rank:this.rankLabel(r.percent),player_name:p.name||"Gast",player_id:p.player_id,source:"session",createdAt:new Date().toISOString()};
     },
     async persistFromResults(results=[]) {
       if(!IndexedDBEngine.status.supported) return {ok:false,reason:"IndexedDB nicht verfügbar"};
@@ -1198,14 +1183,14 @@ window.App = (() => {
       const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
       const learning=LearningMemoryEngine.build(normalized,memory);
       const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
-      return {version:"3.5.3",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+      return {version:"5.1.2",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
     },
     renderDashboard(coach) {
       const r=coach.readiness;
       const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
       const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
       return `<div class="premium-card ai-card">
-        <span class="coach-badge">AI Stable Core V3.4</span>
+        <span class="coach-badge">AI Stable Core V5.1.2</span>
         <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
         <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
         <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>
@@ -1248,6 +1233,11 @@ window.App = (() => {
   };
 
 
+
+
+
+
+/* Question Bank Schema, Quality Engine, Modusverträge, Blocklimits und Blockinfo. */
   const QUESTION_BANK_SCHEMA = {
     version:"1.0",
     required:["id","source","category","group","question","answers","correct","explanation","tags"],
@@ -1313,7 +1303,7 @@ window.App = (() => {
     importBatch(rawItems=[], source="ocr-import") {
       if(!FEATURE_FLAGS.questionBankRuntimeImport) {
         const validation = rawItems.map(x=>this.validate(this.normalize(x,source)));
-        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V3.2 bewusst deaktiviert.", createdAt:new Date().toISOString()};
+        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V5.1.2 bewusst deaktiviert.", createdAt:new Date().toISOString()};
         return QUESTION_BANK.lastImport;
       }
       const normalized=rawItems.map(x=>this.normalize(x,source));
@@ -1466,6 +1456,14 @@ window.App = (() => {
         return {ok:hs.total===2 && hs.bestOverall.percent===90 && hs.bestSimulation.percent===75, total:hs.total, best:hs.bestOverall.percent};
       } catch(error) { return {ok:false,error:String(error && error.message ? error.message : error)}; }
     },
+    validateCloudHighscore() {
+      try {
+        const d = CloudHighscoreEngine.diagnostics();
+        return {ok:d.configured, configured:d.configured, enabled:d.enabled, provider:d.provider, table:d.table, classCode:d.classCode, urlSet:d.urlSet, keySet:d.keySet, configLoaded:d.configLoaded, missing:d.missing};
+      } catch(error) {
+        return {ok:false, configured:false, error:String(error && error.message ? error.message : error)};
+      }
+    },
     validateAIEngines() {
       try {
         const fakeResults=[
@@ -1496,9 +1494,10 @@ window.App = (() => {
       const questionBank = this.validateQuestionBank();
       const pwa = this.validatePWA();
       const highscore = this.validateHighscore();
+      const cloudHighscore = this.validateCloudHighscore();
       const indexedDb = this.validateIndexedDB();
       const migration = this.validateMigrationPrep();
-      return {framework:FRAMEWORK.name + " " + FRAMEWORK.version, modes, storage, simulation, contracts, ai, questionBank, pwa, indexedDb, migration, ok:modes.every(m=>m.invalid===0) && simulation.count===93 && contracts.length===0 && ai.ok && questionBank.ok && pwa.ok && indexedDb.ok && migration.ok};
+      return {framework:FRAMEWORK.name + " " + FRAMEWORK.version, modes, storage, simulation, contracts, ai, questionBank, pwa, highscore, cloudHighscore, indexedDb, migration, ok:modes.every(m=>m.invalid===0) && simulation.count===93 && contracts.length===0 && ai.ok && questionBank.ok && pwa.ok && indexedDb.ok && migration.ok};
     }
   };
 
@@ -1557,6 +1556,11 @@ const MODES = {
     "5. EDV Kenntnisse": {title:"Block 5: EDV-Kenntnisse / Logikdiagramm", text:"Großes EDV-Schema mit 11 Fehlern.", rules:["Geschichte lesen","Schemaeinträge gegen die Story prüfen","Fehlerart beachten: Logik, Pfeilrichtung oder Inhalt"]}
   };
 
+
+
+
+
+/* Question Factory, Group Mapping, EDV-Schema, Generatoren, Route- und EDV-Fragenaufbau. */
   function makeMC(cat,time,q,a,correct,ex,type="mc",extra={}) {
     return {cat,time,type,q,a,correct,ex,group:groupFor(cat),signature:"",...extra};
   }
@@ -1591,6 +1595,8 @@ const MODES = {
   function stableSignature(q) {
     return [q.cat,q.q,q.type,JSON.stringify(q.grid||q.series||q.symbols||q.visual||q.tableRows||q.schemaRows||q.fraction||q.fractionRule||q.routeStreets||q.signatureSeed||{}),String(q.correct),JSON.stringify(q.a)].join("|");
   }
+
+
 
   const generalPool = [
     ["Allgemeinwissen","Wie viele Bundesländer hat Deutschland?",["14","15","16","17"],2,"Deutschland hat 16 Bundesländer."],
@@ -1639,9 +1645,13 @@ const MODES = {
     ["Australien","Canberra","Sydney","Melbourne","Perth"],["Kanada","Ottawa","Toronto","Vancouver","Montreal"],["USA","Washington, D.C.","New York","Los Angeles","Chicago"],["Türkei","Ankara","Istanbul","Izmir","Bursa"],["Griechenland","Athen","Thessaloniki","Patras","Kreta"],["Portugal","Lissabon","Porto","Faro","Coimbra"],["Niederlande","Amsterdam","Rotterdam","Den Haag","Utrecht"],["Belgien","Brüssel","Antwerpen","Gent","Brügge"],["Schweden","Stockholm","Göteborg","Malmö","Uppsala"],["Norwegen","Oslo","Bergen","Trondheim","Stavanger"],["Dänemark","Kopenhagen","Aarhus","Odense","Aalborg"],["Tschechien","Prag","Brünn","Pilsen","Ostrava"],["Ungarn","Budapest","Debrecen","Szeged","Pécs"],["Rumänien","Bukarest","Cluj","Timișoara","Iași"]
   ];
 
+
+
   const englishPool = [
     ["Englisch Vokabeln","Deutsch → Englisch: schnell",["fast","slow","late","weak"],0,"fast = schnell"],["Englisch Vokabeln","Deutsch → Englisch: günstig",["cheap","heavy","wide","angry"],0,"cheap = günstig"],["Englisch Vokabeln","Deutsch → Englisch: zuverlässig",["reliable","avlable","dangerous","foreign"],0,"reliable = zuverlässig"],["Englisch Vokabeln","Deutsch → Englisch: notwendig",["necessary","noisy","narrow","native"],0,"necessary = notwendig"],["Englisch Vokabeln","Deutsch → Englisch: Gerät",["device","advice","invoice","choice"],0,"device = Gerät"],["Englisch Übersetzen","Englisch → Deutsch: network",["Netzwerk","Bildschirm","Werkzeug","Rechnung"],0,"network = Netzwerk"],["Englisch Übersetzen","Englisch → Deutsch: schedule",["Zeitplan","Schalter","Bildschirm","Rechnung"],0,"schedule = Zeitplan"],["Englisch Übersetzen","Englisch → Deutsch: appointment",["Termin","Bewerbung","Passwort","Fehler"],0,"appointment = Termin"],["Englisch Übersetzen","Englisch → Deutsch: requirement",["Anforderung","Rückmeldung","Betriebssystem","Lieferung"],0,"requirement = Anforderung"],["Englisch Grammatik","Which sentence is correct?",["He goes to work.","He go to work.","He going work.","He gone work."],0,"Bei he/she/it bekommt das Verb im Simple Present ein -s."],["Englisch Grammatik","Fill in: I ___ a computer.",["have","has","having","had been"],0,"I have = ich habe."],["Englisch Grammatik","Fill in: We ___ ready.",["are","is","am","be"],0,"We are ready."],["Englisch Grammatik","Fill in: He ___ a ticket yesterday.",["bought","buy","buys","buying"],0,"Yesterday verlangt Vergangenheit: bought."],["Englisch Zeiten","Tomorrow I ___ call you.",["will","was","did","have"],0,"Tomorrow weist auf Zukunft hin: will."],["Englisch Schule","Plural of child",["children","childs","childes","childrens"],0,"child → children."],["Englisch Schule","Opposite of expensive",["cheap","clean","early","empty"],0,"cheap ist das Gegenteil von expensive."],["Englisch Schule","Opposite of strong",["weak","wide","cheap","early"],0,"weak ist das Gegenteil von strong."],["Berufsenglisch","Translate: application",["Bewerbung","Stecker","Kabel","Besprechung"],0,"application kann Bewerbung bedeuten."],["Berufsenglisch","Translate: invoice",["Rechnung","Werkzeug","Urlaub","Monitor"],0,"invoice = Rechnung."],["Berufsenglisch","Translate: customer",["Kunde","Kollege","Chef","Lieferant"],0,"customer = Kunde."],["Berufsenglisch","Translate: employee",["Mitarbeiter","Arbeitgeber","Kunde","Lieferant"],0,"employee = Mitarbeiter"],["Berufsenglisch","Translate: deadline",["Frist/Abgabetermin","Bewerbung","Rechnung","Urlaub"],0,"deadline = Frist/Abgabetermin"],["IT-Englisch","Translate: password",["Passwort","Bildschirm","Drucker","Ordner"],0,"password = Passwort"],["IT-Englisch","Translate: folder",["Ordner","Router","Kabel","Sicherung"],0,"folder = Ordner."],["IT-Englisch","Translate: access denied",["Zugriff verweigert","Netzwerk bereit","Datei gelöscht","Drucker aktiv"],0,"access denied = Zugriff verweigert."],["IT-Englisch","Translate: backup",["Datensicherung","Bildschirm","Fehler","Tastatur"],0,"backup = Datensicherung"],["IT-Englisch","Translate: settings",["Einstellungen","Dateien","Fehler","Schalter"],0,"settings = Einstellungen"],["IT-Englisch","Translate: connection",["Verbindung","Bewerbung","Rechnung","Lieferung"],0,"connection = Verbindung"]
   ];
+
+
 
   const itPool = [
     ["IT Netzwerk","Was macht DNS?",["Namen in IP-Adressen übersetzen","RAM erweitern","Dateien drucken","Strom speichern"],0,"DNS löst Domainnamen zu IP-Adressen auf."],["IT Netzwerk","Was vergibt DHCP typischerweise?",["IP-Adressen","Bildschirmauflösung","Passwortlänge","CPU-Takt"],0,"DHCP vergibt automatisch Netzwerkkonfigurationen."],["IT Netzwerk","Welche IPv4-Adresse ist privat?",["192.168.1.20","8.8.8.8","1.1.1.1","217.160.0.1"],0,"192.168.x.x ist privat."],["IT Netzwerk","Was macht ein Switch im LAN?",["Geräte im lokalen Netz verbinden","IP-Adressen weltweit registrieren","Strom speichern","Bilder komprimieren"],0,"Ein Switch verbindet Geräte im lokalen Netzwerk."],["IT Netzwerk","Was macht ein Router?",["Netzwerke miteinander verbinden","Texte korrigieren","RAM austauschen","Dateien verschlüsseln"],0,"Router verbinden verschiedene Netzwerke."],["IT Netzwerk","Was ist eine Subnetzmaske?",["Grenze zwischen Netz- und Hostanteil","Passwortregel","Bildformat","Druckersprache"],0,"Die Subnetzmaske trennt Netzanteil und Hostanteil."],["IT Netzwerk","Welche Portnummer nutzt HTTP typischerweise?",["80","22","25","3389"],0,"HTTP nutzt typischerweise Port 80."],["IT Netzwerk","Welche Portnummer nutzt HTTPS typischerweise?",["443","21","53","110"],0,"HTTPS nutzt typischerweise Port 443."],["IT Netzwerk","Welche Portnummer nutzt DNS typischerweise?",["53","80","443","3389"],0,"DNS nutzt typischerweise Port 53."],["IT Netzwerk","Was prüft der Befehl ping?",["Erreichbarkeit über Netzwerk","Festplattenplatz","Benutzerrechte","Druckerfarbe"],0,"ping prüft Erreichbarkeit."],["IT Hardware","Welche Komponente führt Rechenoperationen aus?",["CPU","SSD","Netzteil","Gehäuse"],0,"Die CPU ist der Prozessor."],["IT Hardware","Was macht RAM?",["flüchtiger Arbeitsspeicher","dauerhafte Archivierung","Netzwerk-Routing","Stromwandlung"],0,"RAM ist flüchtiger Arbeitsspeicher."],["IT Hardware","Was speichert Daten dauerhaft?",["SSD/HDD","RAM","CPU-Cache nur","Netzwerkkabel"],0,"SSD/HDD speichern Daten dauerhaft."],["IT Betriebssystem","Was sind Benutzerrechte?",["Berechtigungen für Aktionen im System","Bildschirmauflösung","Kabelstandard","Prozessorfrequenz"],0,"Benutzerrechte steuern Berechtigungen."],["IT FISI","Was ist Active Directory?",["Verzeichnisdienst für Benutzer und Ressourcen","Grafikkartentreiber","Antivirusprogramm","Browser"],0,"AD verwaltet Benutzer, Gruppen und Ressourcen."],["IT FISI","Was sind GPOs?",["Gruppenrichtlinien","Grafikprozessoren","Datenbanktabellen","Routerports"],0,"GPOs sind Gruppenrichtlinien."],["IT FISI","Was ist ein Ticket-System?",["System zur Bearbeitung von Anfragen/Störungen","Netzwerkkabel","Festplattentyp","Bildschirmmodus"],0,"Tickets dokumentieren Supportfälle."],["IT FISI","Warum dokumentiert man Änderungen?",["Nachvollziehbarkeit","mehr Stromverbrauch","schnelleres WLAN automatisch","weniger Sicherheit"],0,"Dokumentation macht Änderungen nachvollziehbar."],["IT Security","Was ist Phishing?",["Betrugsversuch über gefälschte Nachrichten","Festplattenformatierung","Netzteiltest","Monitorfehler"],0,"Phishing versucht Zugangsdaten zu stehlen."],["IT Security","Was macht eine Firewall?",["Netzwerkverkehr nach Regeln filtern","Bilder sortieren","CPU kühlen","Dateinamen übersetzen"],0,"Eine Firewall filtert Netzwerkverkehr."],["IT Security","Was bedeutet MFA?",["Mehrfaktor-Authentifizierung","Monitor-Farb-Anzeige","Mnboard-Fehleranalyse","Manuelle Freigabe"],0,"MFA nutzt mehrere Faktoren."],["IT Security","Was ist Ransomware?",["Erpressersoftware","Backupsoftware","Netzteilfehler","Bildschirmtreiber"],0,"Ransomware ist Erpressersoftware."],["IT Server","Was bedeutet Backup?",["Datensicherung","Bildvergrößerung","Internetvertrag","Druckauftrag"],0,"Backup = Datensicherung."],["IT Server","Was ist Virtualisierung?",["mehrere virtuelle Systeme auf Hardware betreiben","Kabel doppelt verlegen","Tastatur sperren","Monitor teilen"],0,"Virtualisierung ermöglicht VMs."],["IT Linux","Welcher Befehl listet Dateien?",["ls","cd","ping","mkdir"],0,"ls listet Dateien/Ordner auf."],["IT Linux","Welcher Befehl wechselt den Ordner?",["cd","ls","ipconfig","mkdir"],0,"cd wechselt das Verzeichnis."],["IT Windows","Welcher Befehl zeigt Netzwerkkonfiguration in Windows?",["ipconfig","ls","chmod","grep"],0,"ipconfig zeigt IP-Konfigurationen."]
@@ -1654,6 +1664,8 @@ const MODES = {
   const symbolPatterns = [
     {seq:["○","△","○","△","○","?"],ans:"△",ex:"Kreis und Dreieck wechseln sich ab."},{seq:["▲","▶","▼","◀","▲","?"],ans:"▶",ex:"Die Spitze dreht sich im Uhrzeigersinn."},{seq:["■","□","■","□","■","?"],ans:"□",ex:"Gefüllt und leer wechseln sich ab."},{seq:["●","●","▲","●","●","▲","?"],ans:"●",ex:"Zwei Kreise, ein Dreieck."},{seq:["◇","◆","◇","◆","◇","?"],ans:"◆",ex:"Leer und gefüllt wechseln."},{seq:["|","||","|||","||||","|||||","?"],ans:"||||||",ex:"Es kommt ein Strich dazu."},{seq:["⬆","➡","⬇","⬅","⬆","?"],ans:"➡",ex:"Richtung dreht im Uhrzeigersinn."},{seq:["2","3","5","8","13","?"],ans:"21",ex:"Fibonacci-ähnlich: Summe der zwei vorherigen."},{seq:["S","M","L","S","M","?"],ans:"L",ex:"Größenfolge S-M-L wiederholt sich."},{seq:["+","-","+","-","+","?"],ans:"-",ex:"Plus und Minus wechseln."}
   ];
+
+
 
   const EDV_STORY = `Firma Nova richtet einen kleinen Schulungsraum ein. Es gibt einen Router, einen Switch, einen Server, zwei PCs, einen Drucker, ein Backup-Ziel und ein Ticketsystem. Der Plan soll zeigen, wie Netzwerk, Sicherheit, Benutzerrechte, Backup und Support zusammenhängen. In der dargestellten Seite sind genau 11 Fehler versteckt.`;
   const EDV_SCHEMA = [
@@ -1685,9 +1697,11 @@ const MODES = {
     {id:"D4", text:"Pfeil: Ausgabe → Wareneingang ohne Rückgabegrund", ok:false, nd:"Pfeilfehler", ex:"Der Ablauf springt ohne Grund zurück zum Wareneingang."},
     {id:"D5", text:"Monitor verarbeitet SMTP und löscht E-Mails", ok:false, nd:"Inhaltsfehler", ex:"Ein Monitor verarbeitet kein SMTP."},
     {id:"D6", text:"Router WAN-Port geht zum Internetanschluss", ok:true},
-    {id:"D7", text:"HDMI-Kabel wird als Wasserleitung dokumentiert", ok:false, nd:"Inhaltsfehler", ex:"HDMI ist keine Wasserleitung."}
+    {id:"D7", text:"HDMI-Kabel wird korrekt als Bildschirmverbindung dokumentiert", ok:true}
   ];
   const EDV_ERRORS = EDV_SCHEMA.filter(x=>!x.ok);
+
+
 
   let state = {
     selectedMode:"jogging", quiz:[], current:0, score:0, timer:null, memoryTimer:null,
@@ -1748,7 +1762,11 @@ const MODES = {
     return "medium";
   }
 
+
+
   const Generators = {
+
+
     knowledge(level) {
       if(Math.random()<.30) {
         const c=choice(capitalPool), opts=shuffle([c[1],c[2],c[3],c[4]]);
@@ -1757,6 +1775,8 @@ const MODES = {
       return fromPool(generalPool,level);
     },
     english(level) { return fromPool(englishPool,level); },
+
+
     it(level) {
       if(Math.random()<.25) return Generators.itScenario(level);
       return fromPool(itPool,level);
@@ -1769,6 +1789,8 @@ const MODES = {
         ()=>makeMC("IT Security",30,"Welche Maßnahme ist am sinnvollsten gegen Kontoübernahme?",["MFA aktivieren","Bildschirm heller machen","DNS löschen","Drucker tauschen"],0,"MFA schützt zusätzlich.")
       ])();
     },
+
+
     mul(level) {
       let a,b; if(level==="easy"){a=rand(2,10);b=rand(2,10)} else if(level==="medium"){a=rand(6,16);b=rand(4,14)} else {a=rand(11,25);b=rand(6,19)}
       const res=a*b, opts=optionsFromCorrect(res,level==="hard"?40:18,false);
@@ -1812,6 +1834,8 @@ const MODES = {
       return makeMC("Geometrie",35,`Ein Grundstück ist ${l} m lang und ${w} m breit. Gesucht: ${ask}.`,opts,optIdx(opts,res+unit),ask==="Fläche"?`${l} × ${w} = ${res} m².`:`2 × (${l}+${w}) = ${res} m.`);
     },
     math(level) { return choice([Generators.mul,Generators.div,Generators.percent,Generators.fraction,Generators.arithmetic,Generators.dreisatz,Generators.area])(level); },
+
+
     series(level) {
       let nd=rand(1,8),seq=[],n1,n2,ex="";
       if(nd===1){const s=rand(2,9),start=rand(1,20); for(let i=0;i<7;i++)seq.push(start+i*s); n1=start+7*s; n2=start+8*s; ex=`Immer +${s}.`;}
@@ -1874,6 +1898,8 @@ const MODES = {
       return makeMC("Wortlogik",28,`${d[0]} : ${d[1]} = ${d[2]} : ?`,opts,optIdx(opts,d[3]),`${d[1]} passt zu ${d[0]} wie ${d[3]} zu ${d[2]}.`);
     },
     logic(level) { return choice([Generators.series,Generators.matrix,Generators.symbolSeries,Generators.gear,Generators.belt,Generators.statementLogic,Generators.spatial,Generators.net,Generators.opinionFact,Generators.analogy,Generators.visualIQ])(level); },
+
+
     attention(level) {
       const len=level==="hard"?34:level==="medium"?24:16, chars=["q","p","b","d","g","9"], target=choice(chars); let s=""; for(let i=0;i<len;i++)s+=choice(chars); const count=[...s].filter(x=>x===target).length, opts=shuffle([count,count+1,Math.max(0,count-1),count+2]).map(String);
       return makeMC("Aufmerksamkeit",level==="hard"?16:20,`Wie oft kommt „${target}“ vor? ${s}`,opts,optIdx(opts,String(count)),`„${target}“ kommt ${count}-mal vor.`);
@@ -2049,6 +2075,8 @@ const MODES = {
     },
 
 
+
+
     visualGearsPro(level) {
       const count=level==="hard"?rand(5,7):rand(4,6), labels="ABCDEFG".split("").slice(0,count), first=Math.random()<.5?"↻":"↺";
       const sameAxis = count>=5 && Math.random()<.55 ? rand(1,count-2) : -1;
@@ -2122,11 +2150,15 @@ const MODES = {
       return makeMC("Technisches Verständnis",38,q,opts,optIdx(opts,correct),ex,"visualIQ",{visualIQ:{nd:"technical",scenario}});
     },
     visualIQ(level) { return choice([Generators.visualGearsPro,Generators.visualMirror,Generators.visualCubeRotation,Generators.visualFolding,Generators.visualMatrixIQ,Generators.visualCircuit,Generators.visualMechanicsPro,Generators.visualTechnical])(level); },
+
+
     ctcMathSprint(level) {
       const q=choice([Generators.mul,Generators.div,Generators.percent,Generators.arithmetic,Generators.percentReverse,Generators.dreisatz])(level);
       q.cat="Mathe-Sprint"; q.group="Mathe"; q.time=27; q.ex=(q.ex||"")+" Mathe-Sprint: 9 Aufgaben in 5 Minuten bedeutet schnelle Priorisierung.";
       return q;
     },
+
+
     routeMemory(level) {
       const streetPool=["Bahnhofstraße","Gartenweg","Schulstraße","Lindenallee","Marktstraße","Hafenweg","Rosenweg","Mozartstraße","Berliner Straße","Ulmer Weg","Eselsbergstraße","Donaustraße","Buchenweg","Kirchplatz","Mühlweg","Parkallee","Sonnenstraße","Jahnstraße","Friedrichstraße","Kanalweg","Wiesenweg","Neue Straße"];
       const count=level==="hard"?rand(8,10):level==="easy"?rand(6,7):rand(7,9);
@@ -2141,37 +2173,57 @@ const MODES = {
         -1,
         `Richtige Reihenfolge: ${route.join(" → ")}.`,
         "routeMemory",
-        {routeStreets:route,routeOptions:optionPool,routeDuration:12,routeReady:false,routeSelected:[],routeChecked:false,signatureSeed:route.join("|")}
+        {routeStreets:route,routeOptions:optionPool,routeDuration:20,routeReady:false,routeSelected:[],routeChecked:false,signatureSeed:route.join("|")}
       );
     },
+
+
     bigEDV(errorIndex) {
-      const err=EDV_ERRORS[errorIndex%EDV_ERRORS.length];
-      const options=EDV_SCHEMA.map(x=>`${x.id}: ${x.text}`);
-      const correctIndex=EDV_SCHEMA.findIndex(x=>x.id===err.id);
+      // Legacy-EDV-Einzelfragen werden nicht mehr erzeugt.
+      // Fallback bleibt nur als Kompatibilitätsanker für alte Speicherstände bestehen.
+      return this.bigEDVMulti();
+    },
+    bigEDVMulti() {
+      const correctIds=EDV_ERRORS.map(x=>x.id);
       return makeMC(
         "EDV Diagramm PRO",
-        75,
-        `EDV-Großschema: Finde Fehler <b>${errorIndex+1} von 11</b>. Klicke den fehlerhaften Eintrag im Schema an und wähle danach die Fehlerart.`,
-        options,
-        correctIndex,
-        `${err.nd}: ${err.ex}`,
-        "edvclick",
-        {edvCorrectId:err.id, edvKind:err.nd, edvSelectedId:"", edvSelectedKind:"", block:"5. EDV Kenntnisse", schemaKind:err.nd, signatureSeed:err.id}
+        15*60,
+        `EDV-Großschema: In der dargestellten Seite sind <b>genau ${correctIds.length} Fehler</b> versteckt. Tippe alle fehlerhaften Schema-Einträge an. Erneutes Tippen wählt wieder ab.`,
+        EDV_SCHEMA.map(x=>`${x.id}: ${x.text}`),
+        0,
+        `Richtige Fehler: ${correctIds.join(", ")}.`,
+        "edvmulti",
+        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v512-version-clean"}
+      );
+    },
+    bigEDVCovered(slot) {
+      return makeMC(
+        "EDV Diagramm PRO",
+        1,
+        "EDV-Platzhalter: Dieser Punkt wird durch die Gesamt-EDV-Aufgabe automatisch ausgewertet.",
+        ["EDV-Gesamtaufgabe"],
+        0,
+        "Die EDV-Fehler werden gesammelt über die Multi-Auswahl bewertet.",
+        "edvcovered",
+        {block:"5. EDV Kenntnisse", signatureSeed:"edv-covered-v411-"+slot}
       );
     }
   };
 
 
+
+
   function renderEdvProHTML(q) {
-    const selected = q.edvSelectedId || "";
+    const selectedList = q && Array.isArray(q.edvMultiSelected) ? q.edvMultiSelected : [];
     return `<div class="visualBox edv-pro-wrap">
-      <div class="edv-pro-story"><b>EDV-Großschema:</b> ${EDV_STORY}<br><span class="small">Aufgabe: Klicke im Schema den fehlerhaften Eintrag an. Danach wählst du die Fehlerart.</span></div>
-      <div class="edv-mini-legend"><span>Logikfehler</span><span>Pfeilfehler</span><span>Inhaltsfehler</span><span>11 Fehler versteckt</span></div>
+      <div class="edv-pro-story"><b>EDV-Großschema:</b> ${EDV_STORY}<br><span class="small">Aufgabe: Tippe alle fehlerhaften Einträge an. Erneutes Tippen entfernt die Auswahl.</span></div>
+      <div class="edv-mini-legend"><span>Logikfehler</span><span>Pfeilfehler</span><span>Inhaltsfehler</span><span>${EDV_ERRORS.length} Fehler versteckt</span></div>
       <div class="edv-pro-grid">
         ${EDV_SCHEMA.map(x=>{
-          const cls = selected===x.id ? " selected" : "";
-          return `<div class="edv-node${cls}" id="edvNode_${x.id}" onclick="App.selectEdvNode('${x.id}')">
-            <span class="edv-node-id">${x.id}</span>
+          const n = selectedList.indexOf(x.id);
+          const cls = n >= 0 ? " selected" : "";
+          return `<div class="edv-node${cls}" id="edvNode_${x.id}" onclick="App.toggleEdvMultiNode('${x.id}')">
+            <span class="edv-node-id">${x.id}</span>${n>=0 ? `<span class="edv-node-order">${n+1}</span>` : ""}
             <div class="edv-node-text">${x.text}</div>
           </div>`;
         }).join("")}
@@ -2179,9 +2231,29 @@ const MODES = {
     </div>`;
   }
 
-  function edvErrorKindOptions() {
-    return ["Logikfehler","Pfeilfehler","Inhaltsfehler"];
-  }
+
+
+
+
+/* MultiChoiceModule, Memory, Route-Memory, Profilverwaltung und interaktive Spezialmodule. */
+  const MultiChoiceModule = {
+    init(q, field, maxCount) {
+      if(!q[field] || !Array.isArray(q[field])) q[field] = [];
+      if(maxCount) q[field] = q[field].slice(0, maxCount);
+      return q[field];
+    },
+    toggle(q, field, value, maxCount) {
+      const list=this.init(q, field, maxCount);
+      const pos=list.indexOf(value);
+      if(pos>=0){ list.splice(pos,1); return {ok:true, action:"removed", list}; }
+      if(maxCount && list.length>=maxCount) return {ok:false, action:"max", list};
+      list.push(value); return {ok:true, action:"added", list};
+    },
+    undo(q, field){ const list=this.init(q, field); list.pop(); return list; },
+    clear(q, field){ q[field]=[]; return q[field]; },
+    chips(list, labelFn, onClickFn){ return (list||[]).map((value,i)=>`<span class="route-chip clickable" onclick="${onClickFn(value)}">${i+1}. ${escHTML(labelFn(value))}</span>`).join(""); },
+    sameOrder(selected, correct){ return selected.length===correct.length && correct.every((v,i)=>selected[i]===v); }
+  };
 
 
   function memoryItems() {
@@ -2230,7 +2302,7 @@ const MODES = {
       else if(index<49){ q=Generators.ctcMathSprint(index<44?"easy":"medium"); q.block="2. Mathe"; }
       else if(index<67){ q=choice([Generators.series,Generators.matrix,Generators.opinionFact,Generators.statementLogic,Generators.symbolSeries])("medium"); q.block="3. Logik"; }
       else if(index<82){ q=choice([Generators.pqStrike,Generators.focusScanner,Generators.symbolSearch,Generators.tableScan,Generators.visualJump,Generators.errorSearch,Generators.numberScan,Generators.tableComparePro,Generators.attention,Generators.codeCompare,Generators.fractionRuleEignungstest,Generators.tableCode])("medium"); q.block="4. Konzentration"; }
-      else { q=Generators.bigEDV(index-82); q.block="5. EDV Kenntnisse"; }
+      else { q=(index===82?Generators.bigEDVMulti():Generators.bigEDVCovered(index-82)); q.block="5. EDV Kenntnisse"; }
       q.group=groupFor(q.cat); q.signature=stableSignature(q)+"|ctc|"+(q.signatureSeed||index); return q;
     }
     if(mode==="ctc") return buildAdaptiveQuestion(index,total);
@@ -2281,30 +2353,107 @@ const MODES = {
   }
   function hideAll(){["start","memory","blockIntro","quiz","result","analysis"].forEach(id=>$(id).classList.add("hidden"));}
 
+  function createPlayerId(){
+    try{
+      if(window.crypto && crypto.randomUUID) return "plr_" + crypto.randomUUID();
+    }catch(e){}
+    return "plr_" + Math.random().toString(36).slice(2) + Date.now().toString(36);
+  }
+  function normalizeProfile(profile={}){
+    const base={player_id:createPlayerId(),name:"",createdAt:new Date().toISOString(),settings:{mobileCompact:true},stats:{}};
+    const p = profile && typeof profile === "object" ? profile : {};
+    const migratedName = String(p.name || p.display_name || "").trim().slice(0,32);
+    return {...base,...p,player_id:String(p.player_id || p.profileId || p.id || base.player_id),name:migratedName,display_name:migratedName,settings:{...base.settings,...(p.settings||{})},stats:{...base.stats,...(p.stats||{})}};
+  }
   function readProfile(){
     try{
       let raw=localStorage.getItem(PROFILE_KEY);
       if(!raw){
         for(const legacyKey of PROFILE_LEGACY_KEYS){
           const legacyRaw=localStorage.getItem(legacyKey);
-          if(legacyRaw){ raw=legacyRaw; localStorage.setItem(PROFILE_KEY, legacyRaw); break; }
+          if(legacyRaw){ raw=legacyRaw; break; }
         }
       }
-      if(!raw) return {name:"",createdAt:new Date().toISOString()};
-      const p=JSON.parse(raw);
-      return p && typeof p==="object" ? {...{name:"",createdAt:new Date().toISOString()},...p} : {name:"",createdAt:new Date().toISOString()};
-    } catch(e){ return {name:"",createdAt:new Date().toISOString()}; }
+      const profile = normalizeProfile(raw ? JSON.parse(raw) : {});
+      localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+      return profile;
+    } catch(e){
+      const profile=normalizeProfile({});
+      try{localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));}catch(_e){}
+      return profile;
+    }
   }
   function writeProfile(profile){
-    try{localStorage.setItem(PROFILE_KEY,JSON.stringify({...profile,updatedAt:new Date().toISOString()}));return true;}catch(e){return false;}
+    try{
+      const normalized=normalizeProfile({...readProfile(),...(profile||{}),updatedAt:new Date().toISOString()});
+      localStorage.setItem(PROFILE_KEY,JSON.stringify(normalized));
+      return true;
+    }catch(e){return false;}
   }
-  function saveProfileName(){
-    const input=$("profileNameInput");
-    const name=(input?.value||"").trim().slice(0,32);
-    if(!name){ if(input) input.focus(); return; }
+  function saveProfileName(sourceEl){
+    const active = sourceEl && sourceEl.value !== undefined ? sourceEl : document.activeElement;
+    const profileInput = $("profileEditNameInput");
+    const setupInput = $("profileNameInput");
+    const candidates = [active, profileInput, setupInput].filter(Boolean);
+    const input = candidates.find(el => el && el.value !== undefined && String(el.value || "").trim()) || profileInput || setupInput;
+    const name=(input && input.value ? input.value : "").trim().replace(/\s+/g," ").slice(0,32);
+    if(!name){
+      if(input) { input.focus(); input.classList.add("input-error"); setTimeout(()=>input.classList.remove("input-error"),900); }
+      showProfileSaveState("Bitte Namen eingeben");
+      return false;
+    }
     const p=readProfile();
-    writeProfile({...p,name});
-    renderPremiumDashboard();
+    const ok=writeProfile({...p,name,display_name:name});
+    if(ok){
+      syncLocalResultNames(name, p.player_id);
+      renderModes();
+      requestAnimationFrame(()=>{
+        if($("profileNameInput")) $("profileNameInput").value = name;
+        if($("profileEditNameInput")) $("profileEditNameInput").value = name;
+        showProfileSaveState("Gespeichert ✓");
+      });
+    } else {
+      showProfileSaveState("Speichern fehlgeschlagen");
+    }
+    return ok;
+  }
+  function syncLocalResultNames(name, playerId){
+    try{
+      const results=getResults();
+      if(!Array.isArray(results) || !results.length) return;
+      const updated=results.map(r=>{
+        const belongsToPlayer = playerId && r.player_id && String(r.player_id) === String(playerId);
+        const hasNoPlayer = !r.player_id || r.player_name === "Gast" || r.player_name === "Tablet Test";
+        return (belongsToPlayer || hasNoPlayer) ? {...r,player_id:playerId,player_name:name,display_name:name} : r;
+      });
+      StorageEngine.write(updated);
+    }catch(_e){}
+  }
+  function showProfileSaveState(text){
+    try{
+      let el=$("profileSaveState");
+      if(!el){
+        el=document.createElement("div");
+        el.id="profileSaveState";
+        el.className="profile-save-state floating-profile-state";
+        document.body.appendChild(el);
+      }
+      el.textContent=text;
+      el.classList.add("show");
+      setTimeout(()=>el.classList.remove("show"),1800);
+    }catch(_e){}
+  }
+  function renderProfileManager(){
+    const p=readProfile();
+    const idShort=String(p.player_id||"").replace(/^plr_/,'').slice(0,12) || "lokal";
+    return `<div class="premium-card profile-manager-card">
+      <span class="coach-badge">Profilverwaltung V5.1.2</span>
+      <div class="coach-action">Name ändern</div>
+      <p class="small">Dein sichtbarer Name kann geändert werden. Die interne Spieler-ID bleibt gleich, damit lokale Ergebnisse und spätere Sync-Funktionen stabil bleiben.</p>
+      <div class="profile-edit-row"><input id="profileEditNameInput" data-profile-name-input="1" maxlength="32" value="${escHTML(p.name||"")}" placeholder="Dein Name" autocomplete="name" enterkeyhint="done"><button type="button" data-action="save-profile-name" onclick="App.saveProfileName()">Speichern</button></div><div id="profileSaveState" class="profile-save-state" aria-live="polite"></div>
+      <div class="profile-meta"><span>Spieler-ID</span><code>${escHTML(idShort)}</code></div>
+      <div class="profile-meta"><span>Stand</span><b>${escHTML(APP_VERSION)}</b></div>
+    </div>`;
   }
   function rankForPercent(percent){
     const p=Math.max(0,Math.min(100,Number(percent)||0));
@@ -2359,7 +2508,13 @@ const MODES = {
     const dash=$("premiumDashboard");
     if(!dash) return;
     dash.innerHTML=`
-      <div class="premium-card dark">
+      <div class="mobile-quick-strip">
+        <button onclick="App.quickStartRecommended('${coachRec.mode}')"><b>Start</b><span>${escHTML(coachRec.title)}</span></button>
+        <button onclick="App.setAppSection('practice')"><b>Üben</b><span>Module</span></button>
+        <button onclick="App.setAppSection('simulation')"><b>CTC</b><span>Simulation</span></button>
+        <button onclick="App.setAppSection('profile')"><b>Profil</b><span>Name</span></button>
+      </div>
+      <div class="premium-card dark dashboard-rank-card">
         <div class="profile-grid">
           <div class="rank-ring" style="--p:${rank.progress}"><div class="rank-ring-inner"><span>${rank.name}</span></div></div>
           <div>
@@ -2367,14 +2522,14 @@ const MODES = {
             <div class="rank-name">${rank.name}</div>
             <div class="rank-next">${rank.label}${stats.best && stats.best.mode==="ctcLohr" && stats.best.percent>=70 ? " · CTC Gold freigeschaltet" : ""}</div>
             <div class="kpi-row">
-              <div class="kpi"><b>Letzter Test</b><strong>${stats.last?stats.last.percent+"%":"–"}</strong></div>
+              <div class="kpi"><b>Letzter</b><strong>${stats.last?stats.last.percent+"%":"–"}</strong></div>
               <div class="kpi"><b>Rekord</b><strong>${bestText}</strong></div>
-              <div class="kpi"><b>Ø Quote</b><strong>${stats.avg}%</strong></div>
+              <div class="kpi"><b>Ø</b><strong>${stats.avg}%</strong></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="premium-card coach-card">
+      <div class="premium-card coach-card dashboard-coach-card">
         <span class="coach-badge">Adaptive Coach</span>
         <div class="coach-action">${escHTML(coachRec.title)}</div>
         <div class="small">${escHTML(coachRec.text)}</div>
@@ -2382,8 +2537,12 @@ const MODES = {
         <div class="small"><b>Letzter Lauf:</b> ${escHTML(lastText)}</div>
         <button class="ghost" onclick="App.quickStartRecommended('${coachRec.mode}')">Empfohlen starten</button>
       </div>
-      ${HighscoreEngine.renderDashboard(stats.results)}
-      ${CoachEngine.renderDashboard(coach)}`;
+      <details class="mobile-dashboard-more">
+        <summary>Mehr Dashboard anzeigen</summary>
+        <div class="mobile-more-grid">${HighscoreEngine.renderDashboard(stats.results)}${CoachEngine.renderDashboard(coach)}</div>
+      </details>
+      <div class="desktop-dashboard-extra">${HighscoreEngine.renderDashboard(stats.results)}${CoachEngine.renderDashboard(coach)}</div>`;
+    if($("profileNameInput")) $("profileNameInput").value = profile.name || "";
   }
   function setTrainingFocus(focus){
     TrainingFocusEngine.write(focus);
@@ -2400,6 +2559,11 @@ const MODES = {
     prepareTest();
   }
 
+
+
+
+
+/* UI-Routing, Rendering, Quizablauf, Ergebnislogik, Review, Health Panel und App-Export. */
   const APP_SECTIONS = {
     dashboard:{title:"Dashboard", icon:"⌂", desc:"Start, Empfehlung und schneller Einstieg."},
     practice:{title:"Üben", icon:"✎", desc:"Gezieltes Training ohne Simulationsballast."},
@@ -2421,7 +2585,10 @@ const MODES = {
 
   function renderAppNav(){
     const nav=$("appNav"); if(!nav) return;
-    nav.innerHTML=Object.entries(APP_SECTIONS).map(([key,s])=>`<button class="${state.activeAppSection===key?'active':''}" onclick="App.setAppSection('${key}')"><span>${s.icon}</span> ${s.title}</button>`).join("");
+    if(nav.parentElement !== document.body) document.body.appendChild(nav);
+    nav.setAttribute("role","navigation");
+    nav.setAttribute("aria-label","Hauptnavigation");
+    nav.innerHTML=Object.entries(APP_SECTIONS).map(([key,s])=>`<button type="button" data-nav-section="${key}" class="${state.activeAppSection===key?'active':''}" onclick="App.setAppSection('${key}')" aria-label="${escHTML(s.title)}"><span>${s.icon}</span><em>${s.title}</em></button>`).join("");
   }
 
   function renderModeCard(k, extraClass="compact"){
@@ -2458,18 +2625,21 @@ const MODES = {
 
   function renderSectionIntro(){
     const el=$("sectionIntro"); if(!el) return;
+    el.className = "section-intro section-" + (state.activeAppSection || "dashboard");
     const s=APP_SECTIONS[state.activeAppSection] || APP_SECTIONS.dashboard;
     if(state.activeAppSection==="dashboard"){
       el.innerHTML=`<h2>Mission Control</h2><p>Wähle nur den Bereich, den du wirklich brauchst. Üben und Simulation sind jetzt klar getrennt.</p><div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">✎</span><b>Übungsmodus</b><p>Mathe, Kopfrechnen, Konzentration, Visual IQ und Blocktraining kompakt.</p></div><div class="hub-card" onclick="App.setAppSection('simulation')"><span class="hub-icon">▶</span><b>Simulationsmodus</b><p>CTC, Elite, BPS und Schnelltest prüfungsnah starten.</p></div><div class="hub-card" onclick="App.setAppSection('analysis')"><span class="hub-icon">▣</span><b>Analyse</b><p>KI-Profil, Schwächen und Verlauf separat auswerten.</p></div></div>`;
     } else if(state.activeAppSection==="profile") {
       const qb=QuestionBankEngine.stats();
-      el.innerHTML=`<h2>Profil & Framework</h2><p>Lokaler Speicher, Rangsystem und stabile Framework-Basis.</p><div class="profile-panel"><div class="premium-card"><b>Aufgabenbank</b><p class="small">Schema vorbereitet, aktive Nutzung bewusst geparkt. Aktuell ${qb.total} aktive Zusatzaufgaben.</p><div class="question-bank-panel"><code>QuestionBank: vorbereitet · runtimeImport: aus</code><br><span class="small">Für spätere OCR/Buchaufgaben: erst prüfen, kategorisieren und manuell freigeben. Bis dahin greift die Aufgabenbank nicht in Tests ein.</span></div></div><div class="premium-card"><b>Import-Schema</b><p class="small">Quelle, Seite, Kategorie, Gruppe, Schwierigkeit, Frage, Antworten, Lösung, Erklärung, Tags, Prüfstatus. Status aktuell: vorbereitet.</p></div></div>`;
+      el.innerHTML=`<h2>Profil & Framework</h2><p>Name ändern, lokale Identität prüfen und stabile Framework-Basis verwalten.</p><div class="profile-panel">${renderProfileManager()}<div class="premium-card"><b>Aufgabenbank</b><p class="small">Schema vorbereitet, aktive Nutzung bewusst geparkt. Aktuell ${qb.total} aktive Zusatzaufgaben.</p><div class="question-bank-panel"><code>QuestionBank: vorbereitet · runtimeImport: aus</code><br><span class="small">Für spätere OCR/Buchaufgaben: erst prüfen, kategorisieren und manuell freigeben. Bis dahin greift die Aufgabenbank nicht in Tests ein.</span></div></div><div class="premium-card"><b>Import-Schema</b><p class="small">Quelle, Seite, Kategorie, Gruppe, Schwierigkeit, Frage, Antworten, Lösung, Erklärung, Tags, Prüfstatus. Status aktuell: vorbereitet.</p></div></div>`;
     } else {
       el.innerHTML=`<h2>${s.title}</h2><p>${s.desc}</p>`;
     }
   }
 
   function renderModes() {
+    document.body.dataset.appSection = state.activeAppSection || "dashboard";
+    document.body.classList.toggle("mobile-nav-attached", !!$("appNav"));
     renderPremiumDashboard();
     renderAppNav();
     renderSectionIntro();
@@ -2555,6 +2725,12 @@ const MODES = {
     clearRouteTimers();
     const q=state.quiz[state.current];
     if(!q){showResult(); return;}
+    if(q.type==="edvcovered") {
+      const edvIndex=state.quiz.findIndex(item=>item && item.type==="edvmulti");
+      if(edvIndex>=0 && !state.history[edvIndex]) { state.current=edvIndex; showQuestion(spIntro); return; }
+      if(state.current<state.quiz.length-1) { state.current++; showQuestion(spIntro); return; }
+      showResult(); return;
+    }
     if(state.selectedMode==="ctcLohr" && q.block && !state.shownBlockIntro[q.block] && !spIntro) {
       state.pendingBlock=q.block; hideAll();
       const info=BLOCK_INFO[q.block] || {title:q.block,text:"Starte den nächsten Block.",rules:["Ruhig bleiben","Sichere Aufgaben zuerst","Markieren statt festbeißen"]};
@@ -2601,10 +2777,10 @@ const MODES = {
 
   function renderAnswers(q) {
     $("answers").innerHTML="";
-    if(q.type==="edvclick") { renderEdvAnswers(q); return; }
+    if(q.type==="edvmulti") { renderEdvMultiAnswers(q); return; }
     if(q.type==="routeMemory") {
       if(!q.routeReady && !state.history[state.current]) {
-        $("answers").innerHTML=`<div class="route-answer-wait">Merke dir die Straßen. Nach der kurzen Animation werden die Antwortbuttons freigeschaltet.</div>`;
+        $("answers").innerHTML=`<div class="route-answer-wait">Merke dir die Straßen in der richtigen Reihenfolge. Nach der Animation verschwinden Bus und Straßen.</div>`;
         return;
       }
       renderRouteSequenceAnswers(q);
@@ -2625,115 +2801,138 @@ const MODES = {
   }
 
 
-  function renderEdvAnswers(q) {
-    const selected = q.edvSelectedId ? `Ausgewählt: <b>${q.edvSelectedId}</b>` : "Noch kein Schema-Eintrag ausgewählt.";
-    const kind = q.edvSelectedKind ? `Fehlerart: <b>${q.edvSelectedKind}</b>` : "Fehlerart noch nicht gewählt.";
-    $("answers").innerHTML = `
+
+  function renderEdvMultiAnswers(q) {
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    const selected=MultiChoiceModule.init(q,"edvMultiSelected",need);
+    const chips=selected.length ? MultiChoiceModule.chips(selected, id=>id, id=>`App.toggleEdvMultiNode('${id}')`) : `<span class="small">Noch kein Schema-Eintrag ausgewählt.</span>`;
+    $("answers").innerHTML=`
       <div class="edv-answer-panel">
-        <b>Interaktive EDV-Fehlersuche</b><br>
-        <span class="small">${selected}<br>${kind}</span>
-        <div class="edv-kind-row">
-          ${edvErrorKindOptions().map(k=>`<button class="${q.edvSelectedKind===k?"selected":""}" onclick="App.selectEdvKind('${k}')">${k}</button>`).join("")}
+        <b>EDV-Multi-Choice</b><br>
+        <span class="small">Ausgewählt: ${selected.length}/${need}. Tippe direkt auf die Schema-Karten. Erneutes Tippen wählt ab.</span>
+        <div class="route-selected-list">${chips}</div>
+        <div class="route-action-row">
+          <button class="secondary" onclick="App.undoEdvMultiSelection()">Letzte entfernen</button>
+          <button class="secondary" onclick="App.clearEdvMultiSelection()">Auswahl leeren</button>
+          <button onclick="App.submitEdvMultiAnswer()">Gesamtantwort werten</button>
         </div>
-        <button onclick="App.submitEdvAnswer()">EDV-Fehler prüfen</button>
-      </div>
-    `;
-    const h=state.history[state.current];
-    if(h) {
+      </div>`;
+    if(state.history[state.current]) {
+      const h=state.history[state.current];
       $("feedback").innerHTML=(h.correct?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+h.explanation;
       $("feedback").classList.remove("hidden");
-      markEdvNodes(q, h.correct);
     }
   }
 
-  function selectEdvNode(id) {
+  function toggleEdvMultiNode(id) {
     const q=state.quiz[state.current];
-    if(!q || q.type!=="edvclick" || state.history[state.current]) return;
-    q.edvSelectedId=id;
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    const result=MultiChoiceModule.toggle(q,"edvMultiSelected",id,need);
+    if(!result.ok && result.action==="max"){
+      $("feedback").innerHTML=`<b>Maximal ${need} Einträge.</b> Tippe eine gewählte Karte erneut an, um sie zu entfernen.`;
+      $("feedback").classList.remove("hidden");
+    }
     $("visual").innerHTML=renderEdvProHTML(q);
-    renderEdvAnswers(q);
+    renderEdvMultiAnswers(q);
   }
 
-  function selectEdvKind(kind) {
+  function undoEdvMultiSelection(){
     const q=state.quiz[state.current];
-    if(!q || q.type!=="edvclick" || state.history[state.current]) return;
-    q.edvSelectedKind=kind;
-    renderEdvAnswers(q);
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    MultiChoiceModule.undo(q,"edvMultiSelected");
+    $("visual").innerHTML=renderEdvProHTML(q);
+    renderEdvMultiAnswers(q);
   }
 
-  function markEdvNodes(q, correct) {
-    const selected=q.edvSelectedId;
-    const correctId=q.edvCorrectId;
-    if(selected) {
-      const el=$("edvNode_"+selected);
-      if(el) el.classList.add(correct ? "correct-node" : "wrong-node");
-    }
-    const corr=$("edvNode_"+correctId);
-    if(corr) corr.classList.add("correct-node");
-  }
-
-  function submitEdvAnswer() {
+  function clearEdvMultiSelection(){
     const q=state.quiz[state.current];
-    if(!q || q.type!=="edvclick" || state.history[state.current]) return;
-    if(!q.edvSelectedId || !q.edvSelectedKind) {
-      $("feedback").innerHTML="<b>Noch nicht vollständig.</b> Klicke zuerst einen Schema-Eintrag an und wähle dann die Fehlerart.";
-      $("feedback").classList.add("force-show");
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    MultiChoiceModule.clear(q,"edvMultiSelected");
+    $("visual").innerHTML=renderEdvProHTML(q);
+    renderEdvMultiAnswers(q);
+  }
+
+  function submitEdvMultiAnswer(){
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    const selected=q.edvMultiSelected || [];
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    if(selected.length!==need){
+      $("feedback").innerHTML=`<b>EDV-Auswahl unvollständig.</b> Du hast ${selected.length}/${need} Fehler markiert. Markiere genau ${need} Einträge und werte dann die Gesamtantwort.`;
       $("feedback").classList.remove("hidden");
       return;
     }
     clearInterval(state.timer);
-    const selectedIndex = EDV_SCHEMA.findIndex(x=>x.id===q.edvSelectedId);
-    const ok = q.edvSelectedId===q.edvCorrectId && q.edvSelectedKind===q.edvKind;
-    recordEdvAnswer(selectedIndex, ok);
-    state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":"done";
+    recordEdvMultiAnswers(selected);
+    state.score=state.history.filter(h=>h&&h.correct).length;
+    for(let i=state.current;i<Math.min(state.quiz.length,state.current+need);i++) {
+      state.questionStates[i]=state.markedQuestions[i]?"mark":"done";
+      if(state.quiz[i] && state.quiz[i].type==="edvcovered") state.history[i]=state.history[i] || {q:"EDV-Großschema Platzhalter",cat:"EDV Diagramm PRO",group:"IT/FISI",block:"5. EDV Kenntnisse",answers:["EDV-Gesamtaufgabe"],correctIndex:0,givenIndex:0,correct:true,timeout:false,skipped:false,explanation:"Durch die EDV-Gesamtaufgabe bewertet.",visualType:"edvcovered",duration:0,allowed:state.totalTimeForQuestion,examMode:{...state.exam}};
+    }
     updateQuestionNav();
     $("visual").innerHTML=renderEdvProHTML(q);
-    markEdvNodes(q, ok);
-    $("feedback").innerHTML=(ok?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+(q.ex||"")+`<br>Deine Auswahl: ${q.edvSelectedId}, ${q.edvSelectedKind}.`;
+    const correctSet=new Set(EDV_ERRORS.map(e=>e.id));
+    EDV_SCHEMA.forEach(x=>{
+      const el=$("edvNode_"+x.id); if(!el) return;
+      if(correctSet.has(x.id)) el.classList.add("correct-node");
+      else if(selected.includes(x.id)) el.classList.add("wrong-node");
+    });
+    const found=EDV_ERRORS.filter(e=>selected.includes(e.id)).length;
+    const falsePos=selected.filter(id=>!correctSet.has(id)).length;
+    $("feedback").innerHTML=`<b>EDV ausgewertet.</b> ${found}/${need} Fehler korrekt gefunden${falsePos?`, ${falsePos} falsche Markierung(en)`:""}. Richtige Fehler: ${EDV_ERRORS.map(e=>e.id).join(", ")}.`;
     $("feedback").classList.remove("hidden");
-    setTimeout(()=>{ if(state.current<state.quiz.length-1 || isAdaptiveElite())nextQuestion(); else showResult();},1200);
+    setTimeout(()=>{ state.current=Math.min(state.quiz.length-1,state.current+need-1); if(state.current<state.quiz.length-1) nextQuestion(); else showResult(); },1200);
   }
 
-  function recordEdvAnswer(selectedIndex, correct) {
-    const q=state.quiz[state.current], ended=new Date(), prev=state.history[state.current];
-    const duration=(prev?prev.duration:0)+(state.questionStartedAt?ended-state.questionStartedAt:0);
-    state.history[state.current]={
-      q:q.q, cat:q.cat, group:q.group||groupFor(q.cat), block:q.block||"",
-      answers:q.a, correctIndex:q.correct, givenIndex:selectedIndex>=0?selectedIndex:null,
-      correct, timeout:false, skipped:false,
-      explanation:(q.ex||"")+`<br>Richtiger Eintrag: ${q.edvCorrectId}. Richtige Fehlerart: ${q.edvKind}.`,
-      visualType:q.type||"edvclick", schemaKind:q.edvKind, selectedKind:q.edvSelectedKind,
-      duration, allowed:state.totalTimeForQuestion,
-      examMode:{...state.exam}
-    };
+  function recordEdvMultiAnswers(selected){
+    const startIndex=state.current;
+    const ended=new Date();
+    const totalDuration=(state.questionStartedAt?ended-state.questionStartedAt:0);
+    const perDuration=Math.max(1, Math.round(totalDuration/Math.max(1, EDV_ERRORS.length)));
+    const selectedSet=new Set(selected);
+    EDV_ERRORS.forEach((err,i)=>{
+      const q=state.quiz[startIndex+i] || Generators.bigEDV(i);
+      const found=selectedSet.has(err.id);
+      const selectedId=selected[i] || "";
+      const givenIndex=selectedId ? EDV_SCHEMA.findIndex(x=>x.id===selectedId) : null;
+      state.history[startIndex+i]={
+        q:`EDV-Großschema: Fehler ${i+1} von ${EDV_ERRORS.length}`,
+        cat:"EDV Diagramm PRO", group:"IT/FISI", block:"5. EDV Kenntnisse",
+        answers:EDV_SCHEMA.map(x=>`${x.id}: ${x.text}`),
+        correctIndex:EDV_SCHEMA.findIndex(x=>x.id===err.id),
+        givenIndex:givenIndex>=0?givenIndex:null,
+        correct:found, timeout:false, skipped:!found,
+        explanation:`${err.nd}: ${err.ex}<br>Deine Gesamtauswahl: ${selected.join(", ")}.`,
+        visualType:"edvmulti", schemaKind:err.nd, selectedKind:"Multi-Auswahl",
+        duration:perDuration, allowed:state.totalTimeForQuestion,
+        examMode:{...state.exam}
+      };
+    });
   }
 
   function renderRouteSequenceAnswers(q) {
-    q.routeSelected = q.routeSelected || [];
-    const selectedHtml = q.routeSelected.length
-      ? q.routeSelected.map((s,i)=>`<span class="route-chip">${i+1}. ${escHTML(s)}</span>`).join("")
+    const need=(q.routeStreets||[]).length;
+    const selected=MultiChoiceModule.init(q,"routeSelected",need);
+    const selectedHtml = selected.length
+      ? MultiChoiceModule.chips(selected, s=>s, s=>`App.selectRouteStreet(${jsArg(s)})`)
       : `<span class="small">Noch keine Straße ausgewählt.</span>`;
 
     $("answers").innerHTML = `
       <div class="route-sequence-panel">
         <b>Tippe die Straßen in der gemerkten Reihenfolge an:</b>
+        <span class="small">Ausgewählt: ${selected.length}/${need}. Erneutes Tippen entfernt die Straße wieder.</span>
         <div class="route-selected-list">${selectedHtml}</div>
         <div class="route-option-grid">
-          ${(q.routeOptions||q.a).map(street=>`<button type="button" data-route-street="${escHTML(street)}" class="${q.routeSelected.includes(street)?"used":""}" onclick='App.selectRouteStreet(${jsArg(street)})'>${escHTML(street)}</button>`).join("")}
+          ${(q.routeOptions||q.a).map(street=>`<button class="${selected.includes(street)?"used":""}" onclick="App.selectRouteStreet(${jsArg(street)})">${escHTML(street)}</button>`).join("")}
         </div>
         <div class="route-action-row">
+          <button class="secondary" onclick="App.clearRouteSelection()">Auswahl leeren</button>
           <button class="secondary" onclick="App.undoRouteStreet()">Letzte entfernen</button>
-          <button onclick="App.submitRouteSequence()">Reihenfolge prüfen</button>
+          <button onclick="App.submitRouteSequence()">Gesamtantwort werten</button>
         </div>
       </div>
     `;
-    // V3.5.3 Bugfix: iPad/Safari kann Inline-Handler in dynamischem HTML manchmal zickig behandeln.
-    // Deshalb werden die Straßenbuttons zusätzlich per EventListener gebunden.
-    try {
-      document.querySelectorAll("[data-route-street]").forEach(btn=>{
-        btn.onclick = () => selectRouteStreet(btn.getAttribute("data-route-street"));
-      });
-    } catch(e) {}
 
     if(state.history[state.current]) {
       const h=state.history[state.current];
@@ -2745,17 +2944,26 @@ const MODES = {
   function selectRouteStreet(street) {
     const q=state.quiz[state.current];
     if(!q || q.type!=="routeMemory" || !q.routeReady || state.history[state.current]) return;
-    q.routeSelected=q.routeSelected||[];
-    if(q.routeSelected.includes(street)) return;
-    q.routeSelected.push(street);
+    const need=(q.routeStreets||[]).length;
+    const result=MultiChoiceModule.toggle(q,"routeSelected",street,need);
+    if(!result.ok && result.action==="max"){
+      $("feedback").innerHTML=`<b>Route vollständig.</b> Tippe eine gewählte Straße erneut an, wenn du sie austauschen möchtest.`;
+      $("feedback").classList.remove("hidden");
+    }
     renderRouteSequenceAnswers(q);
   }
 
   function undoRouteStreet() {
     const q=state.quiz[state.current];
     if(!q || q.type!=="routeMemory" || state.history[state.current]) return;
-    q.routeSelected=q.routeSelected||[];
-    q.routeSelected.pop();
+    MultiChoiceModule.undo(q,"routeSelected");
+    renderRouteSequenceAnswers(q);
+  }
+
+  function clearRouteSelection() {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="routeMemory" || state.history[state.current]) return;
+    MultiChoiceModule.clear(q,"routeSelected");
     renderRouteSequenceAnswers(q);
   }
 
@@ -2769,7 +2977,7 @@ const MODES = {
       return;
     }
     clearInterval(state.timer);
-    const ok = q.routeStreets.every((s,i)=>selected[i]===s);
+    const ok = MultiChoiceModule.sameOrder(selected, q.routeStreets);
     recordRouteAnswer(selected, ok);
     state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":"done";
     updateQuestionNav();
@@ -2834,8 +3042,23 @@ const MODES = {
     else showResult();
   }
   function spQuestion(){clearInterval(state.timer); if(!state.history[state.current])recordAnswer(null,false,false); state.questionStates[state.current]="skip"; updateQuestionNav(); nextQuestion();}
-  function skipQuestion(){spQuestion();}
-  function manualNextQuestion(){clearInterval(state.timer); if(!state.history[state.current]){recordAnswer(null,false,false); state.questionStates[state.current]="skip";} if(isAdaptiveElite()&&state.current>=state.quiz.length-1&&state.current<MODES.ctc.amount-1)return nextQuestion(); if(state.current<state.quiz.length-1){state.current++; showQuestion();} else showResult();}
+  function skipQuestion(){
+    const q=state.quiz[state.current];
+    if(q && q.type==="edvmulti") {
+      const fb=$("feedback");
+      if(fb){fb.innerHTML="<b>EDV-Block:</b> Bitte die Gesamt-EDV-Aufgabe werten. Offene Auswahl wird sonst als 0/11 gezählt."; fb.classList.remove("hidden");}
+      return;
+    }
+    spQuestion();
+  }
+  function manualNextQuestion(){
+    const q=state.quiz[state.current];
+    if(q && q.type==="edvmulti") { submitEdvMultiAnswer(); return; }
+    clearInterval(state.timer);
+    if(!state.history[state.current]){recordAnswer(null,false,false); state.questionStates[state.current]="skip";}
+    if(isAdaptiveElite()&&state.current>=state.quiz.length-1&&state.current<MODES.ctc.amount-1)return nextQuestion();
+    if(state.current<state.quiz.length-1){state.current++; showQuestion();} else showResult();
+  }
 
   function showExamLockNotice() {
     const fb = $("feedback");
@@ -2865,7 +3088,7 @@ const MODES = {
     if(q.type==="tablecode")v.innerHTML=`<div class="visualBox"><table class="analysisTable"><tr><th>Name</th><th>Farbe</th><th>Zahl</th><th>Kennung</th></tr>${q.tableRows.map(r=>`<tr><td>${r.name}</td><td>${r.color}</td><td>${r.num}</td><td>${r.code}</td></tr>`).join("")}</table></div>`;
     if(q.type==="pqsheet")v.innerHTML=q.pqHTML||"";
     if(q.type==="bigschema")v.innerHTML=q.bigSchemaHTML||"";
-    if(q.type==="edvclick")v.innerHTML=renderEdvProHTML(q);
+    if(q.type==="edvmulti")v.innerHTML=renderEdvProHTML(q);
     if(q.type==="focusgrid")v.innerHTML=q.focusHTML||"";
     if(q.type==="routeMemory")renderRouteMemory(q);
     if(q.type==="visual")renderMechanicVisual(q.visual);
@@ -2995,109 +3218,22 @@ const MODES = {
       v.innerHTML=`<div class="visual-iq-canvas"><div class="visual-iq-note"><b>Matrix:</b> Pro Zeile verändert sich Form, Füllung oder Rotation. Unten rechts fehlt das Ergebnis.</div><svg class="visual-iq-svg" viewBox="0 0 760 330"><g transform="translate(40,35)">${cell(0,0,tri)}${cell(85,0,cir)}${cell(170,0,sq)}${cell(0,85,cir)}${cell(85,85,sq)}${cell(170,85,tri)}${cell(0,170,sq)}${cell(85,170,tri)}${cell(170,170,'<text x="35" y="46" text-anchor="middle" font-size="34" font-weight="900">?</text>')}</g><g transform="translate(365,35)">${cell(0,0,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">A</text>'+cir)}${cell(95,0,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">B</text>'+tri)}${cell(0,95,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">C</text>'+sq)}${cell(95,95,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">D</text>'+cir.replace('visual-iq-light','visual-iq-dark'))}</g></svg></div>`;
     }
     if(x.nd==="circuit"){
-      const scenario=x.scenario||"openSwitch";
-      const open=scenario==="openSwitch";
-      const short=scenario==="short";
-      const parallel=scenario==="parallel";
-      v.innerHTML=`<div class="visual-iq-canvas visual-logic-fix">
-        <div class="visual-iq-note"><b>Stromlaufplan klar lesen:</b> Batterie links, zwei Lampenzweige in der Mitte. Offene Schalter unterbrechen den Stromkreis. Eine Überbrückung ist ein Kurzschluss.</div>
-        <svg class="visual-iq-svg" viewBox="0 0 760 330" preserveAspectRatio="xMidYMid meet">
-          <text x="35" y="28" class="visual-iq-label">Stromlaufplan</text>
-          <rect x="40" y="122" width="62" height="70" rx="10" class="visual-iq-hot"/>
-          <text x="71" y="152" text-anchor="middle" class="visual-iq-label">+</text>
-          <text x="71" y="178" text-anchor="middle" class="visual-iq-label">−</text>
-          <line x1="102" y1="158" x2="155" y2="158" class="visual-iq-wire"/>
-          <line x1="155" y1="80" x2="155" y2="250" class="visual-iq-wire"/>
-          <line x1="155" y1="80" x2="645" y2="80" class="visual-iq-wire"/>
-          <line x1="155" y1="250" x2="645" y2="250" class="visual-iq-wire"/>
-          <line x1="645" y1="80" x2="645" y2="250" class="visual-iq-wire"/>
-          <line x1="250" y1="80" x2="250" y2="250" class="visual-iq-wire"/>
-          <line x1="470" y1="80" x2="470" y2="250" class="visual-iq-wire"/>
-          <circle cx="250" cy="165" r="34" class="visual-iq-light"/>
-          <text x="250" y="171" text-anchor="middle" class="visual-iq-label">L1</text>
-          <circle cx="470" cy="165" r="34" class="visual-iq-light"/>
-          <text x="470" y="171" text-anchor="middle" class="visual-iq-label">L2</text>
-          ${open?`<line x1="210" y1="112" x2="238" y2="112" class="visual-iq-wire-off"/><line x1="262" y1="112" x2="300" y2="92" class="visual-iq-wire-off"/><text x="255" y="58" text-anchor="middle" class="visual-iq-label">S1 offen</text>`:`<line x1="210" y1="112" x2="300" y2="112" class="visual-iq-wire"/><text x="255" y="58" text-anchor="middle" class="visual-iq-label">S1 zu</text>`}
-          <line x1="430" y1="112" x2="510" y2="112" class="visual-iq-wire"/>
-          <text x="470" y="58" text-anchor="middle" class="visual-iq-label">S2 zu</text>
-          ${short?`<path d="M 214 165 C 236 120 270 120 292 165" class="visual-iq-wire-off"/><text x="252" y="222" text-anchor="middle" class="visual-iq-label">Kurzschluss über L1</text>`:""}
-          ${parallel?`<text x="380" y="300" text-anchor="middle" class="visual-iq-muted">Parallelschaltung: ein defekter Zweig legt den anderen nicht automatisch lahm.</text>`:""}
-        </svg>
-      </div>`;
+      const open=x.scenario==="openSwitch";
+      const short=x.scenario==="short";
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Stromlaufplan</text><line x1="70" y1="70" x2="70" y2="230" class="visual-iq-wire"/><line x1="70" y1="70" x2="660" y2="70" class="visual-iq-wire"/><line x1="70" y1="230" x2="660" y2="230" class="visual-iq-wire"/><line x1="660" y1="70" x2="660" y2="230" class="visual-iq-wire"/><rect x="45" y="125" width="50" height="50" rx="8" class="visual-iq-hot"/><text x="70" y="156" text-anchor="middle" class="visual-iq-label">+</text><line x1="205" y1="70" x2="205" y2="230" class="visual-iq-wire"/><line x1="420" y1="70" x2="420" y2="230" class="visual-iq-wire"/><circle cx="205" cy="150" r="28" class="visual-iq-light"/><text x="205" y="156" text-anchor="middle" class="visual-iq-label">L1</text><circle cx="420" cy="150" r="28" class="visual-iq-light"/><text x="420" y="156" text-anchor="middle" class="visual-iq-label">L2</text><line x1="285" y1="70" x2="335" y2="70" class="${open?'visual-iq-wire-off':'visual-iq-wire'}"/><text x="310" y="50" text-anchor="middle" class="visual-iq-muted">S1</text><line x1="505" y1="70" x2="555" y2="70" class="visual-iq-wire"/><text x="530" y="50" text-anchor="middle" class="visual-iq-muted">S2</text>${short?'<path d="M 175 150 C 190 105 225 105 235 150" class="visual-iq-wire"/><text x="205" y="110" text-anchor="middle" class="visual-iq-muted">Überbrückung</text>':''}</svg></div>`;
     }
     if(x.nd==="mechanics"){
-      const scenario=x.scenario||"lever";
-      const title=scenario==="lever"?"Hebelgesetz":scenario==="pulley"?"Flaschenzug":"Mechanik";
-      v.innerHTML=`<div class="visual-iq-canvas visual-logic-fix">
-        <div class="visual-iq-note"><b>${title}:</b> Die Skizze ist jetzt bewusst vereinfacht. Achte auf Kraft × Abstand, tragende Seile oder Reibung.</div>
-        <svg class="visual-iq-svg" viewBox="0 0 760 330" preserveAspectRatio="xMidYMid meet">
-          <text x="35" y="28" class="visual-iq-label">Mechanik / Physik</text>
-          ${scenario==="lever"?`
-            <line x1="120" y1="170" x2="600" y2="170" stroke="#111827" stroke-width="12" stroke-linecap="round"/>
-            <polygon points="360,184 322,270 398,270" class="visual-iq-hot"/>
-            <rect x="155" y="98" width="56" height="66" rx="8" class="visual-iq-shape"/>
-            <text x="183" y="88" text-anchor="middle" class="visual-iq-label">10 kg</text>
-            <text x="183" y="205" text-anchor="middle" class="visual-iq-muted">kurzer Arm</text>
-            <rect x="520" y="82" width="56" height="82" rx="8" class="visual-iq-shape"/>
-            <text x="548" y="72" text-anchor="middle" class="visual-iq-label">8 kg</text>
-            <text x="548" y="205" text-anchor="middle" class="visual-iq-muted">langer Arm</text>
-            <path d="M548 225 L548 265" stroke="#991b1b" stroke-width="5" marker-end="url(#arrowDown)"/>
-            <defs><marker id="arrowDown" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#991b1b"/></marker></defs>
-            <text x="380" y="302" text-anchor="middle" class="visual-iq-label">Entscheidend ist nicht nur Gewicht, sondern Drehmoment.</text>
-          `:scenario==="pulley"?`
-            <circle cx="230" cy="90" r="35" class="visual-iq-light"/><circle cx="410" cy="90" r="35" class="visual-iq-light"/>
-            <path d="M230 125 L230 235 L410 235 L410 125" class="visual-iq-wire-off"/>
-            <rect x="282" y="230" width="78" height="48" rx="8" class="visual-iq-shape"/>
-            <text x="321" y="260" text-anchor="middle" class="visual-iq-label">Last</text>
-            <text x="320" y="306" text-anchor="middle" class="visual-iq-label">Mehr tragende Seilabschnitte = weniger Zugkraft.</text>
-          `:`
-            <rect x="110" y="235" width="520" height="12" class="visual-iq-dark"/>
-            <circle cx="210" cy="205" r="34" class="visual-iq-light"/><circle cx="390" cy="205" r="34" class="visual-iq-hot"/>
-            <line x1="120" y1="235" x2="620" y2="120" stroke="#111827" stroke-width="7"/>
-            <text x="380" y="300" text-anchor="middle" class="visual-iq-label">Bei gleicher Schräge entscheiden Form und Reibung.</text>
-          `}
-        </svg>
-      </div>`;
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Mechanik</text><line x1="110" y1="160" x2="360" y2="160" stroke="#111827" stroke-width="10" stroke-linecap="round"/><polygon points="235,170 205,240 265,240" class="visual-iq-hot"/><rect x="120" y="90" width="45" height="65" class="visual-iq-shape"/><text x="142" y="82" text-anchor="middle" class="visual-iq-label">10 kg</text><rect x="310" y="70" width="45" height="85" class="visual-iq-shape"/><text x="332" y="62" text-anchor="middle" class="visual-iq-label">8 kg</text><text x="235" y="270" text-anchor="middle" class="visual-iq-muted">Drehmoment beachten</text><g transform="translate(470,45)"><circle cx="60" cy="55" r="32" class="visual-iq-light"/><circle cx="145" cy="55" r="32" class="visual-iq-light"/><path d="M60 87 L60 190 L145 190 L145 87" class="visual-iq-wire-off"/><rect x="86" y="185" width="35" height="40" class="visual-iq-hot"/><text x="103" y="245" text-anchor="middle" class="visual-iq-label">System B</text></g></svg></div>`;
     }
     if(x.nd==="technical"){
-      const scenario=x.scenario||"pressure";
-      v.innerHTML=`<div class="visual-iq-canvas visual-logic-fix">
-        <div class="visual-iq-note"><b>Technisches Verständnis:</b> Die Aufgabe zeigt jetzt eine klare Skizze mit Beschriftung. Erst Prinzip erkennen, dann Antwort wählen.</div>
-        <svg class="visual-iq-svg" viewBox="0 0 760 330" preserveAspectRatio="xMidYMid meet">
-          <text x="35" y="28" class="visual-iq-label">Technisches Verständnis</text>
-          ${scenario==="pressure"?`
-            <rect x="150" y="55" width="230" height="230" fill="#eff6ff" stroke="#111827" stroke-width="4"/>
-            <path d="M150 135 H380 V285 H150 Z" fill="#93c5fd" opacity=".55"/>
-            <circle cx="265" cy="255" r="11" class="visual-iq-dark"/>
-            <circle cx="265" cy="170" r="8" fill="#64748b"/>
-            <text x="500" y="120" class="visual-iq-label">oben: weniger Druck</text>
-            <text x="500" y="255" class="visual-iq-label">unten: mehr Druck</text>
-            <text x="265" y="312" text-anchor="middle" class="visual-iq-muted">Flüssigkeitsdruck steigt mit der Tiefe.</text>
-          `:scenario==="support"?`
-            <rect x="110" y="90" width="180" height="130" fill="none" stroke="#111827" stroke-width="7"/>
-            <text x="200" y="248" text-anchor="middle" class="visual-iq-muted">Rechteck ohne Strebe</text>
-            <rect x="430" y="90" width="180" height="130" fill="none" stroke="#111827" stroke-width="7"/>
-            <line x1="430" y1="220" x2="610" y2="90" stroke="#111827" stroke-width="7"/>
-            <line x1="430" y1="90" x2="610" y2="220" stroke="#111827" stroke-width="7"/>
-            <text x="520" y="248" text-anchor="middle" class="visual-iq-label">Dreiecke versteifen</text>
-          `:scenario==="block"?`
-            <rect x="105" y="150" width="520" height="44" rx="18" fill="#e2e8f0" stroke="#111827" stroke-width="4"/>
-            <rect x="350" y="95" width="58" height="150" rx="8" class="visual-iq-hot"/>
-            <path d="M130 115 L260 115" stroke="#166534" stroke-width="7" marker-end="url(#arrTech)"/>
-            <defs><marker id="arrTech" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#166534"/></marker></defs>
-            <text x="380" y="280" text-anchor="middle" class="visual-iq-label">C blockiert die Bewegungsrichtung.</text>
-          `:`
-            <circle cx="205" cy="165" r="36" class="visual-iq-light"/><circle cx="430" cy="165" r="78" class="visual-iq-light"/>
-            <line x1="205" y1="129" x2="430" y2="87" class="visual-iq-wire-off"/>
-            <line x1="205" y1="201" x2="430" y2="243" class="visual-iq-wire-off"/>
-            <text x="205" y="280" text-anchor="middle" class="visual-iq-label">klein = schneller</text>
-            <text x="430" y="280" text-anchor="middle" class="visual-iq-muted">groß = langsamer</text>
-          `}
-        </svg>
-      </div>`;
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Technisches Verständnis</text><g transform="translate(60,60)"><rect x="0" y="40" width="180" height="150" fill="#eff6ff" stroke="#111827" stroke-width="3"/><path d="M0 115 H180" stroke="#60a5fa" stroke-width="45" opacity=".45"/><circle cx="90" cy="170" r="8" class="visual-iq-dark"/><text x="90" y="220" text-anchor="middle" class="visual-iq-muted">Druck steigt mit Tiefe</text></g><g transform="translate(320,60)"><rect x="0" y="80" width="160" height="100" fill="none" stroke="#111827" stroke-width="6"/><line x1="0" y1="180" x2="160" y2="80" stroke="#111827" stroke-width="6"/><line x1="0" y1="80" x2="160" y2="180" stroke="#111827" stroke-width="6"/><text x="80" y="220" text-anchor="middle" class="visual-iq-muted">Dreieck versteift</text></g><g transform="translate(570,70)"><circle cx="25" cy="90" r="24" class="visual-iq-light"/><circle cx="105" cy="90" r="42" class="visual-iq-light"/><path d="M25 66 C50 20 100 20 105 48" class="visual-iq-wire-off"/><text x="65" y="180" text-anchor="middle" class="visual-iq-muted">Riemenantrieb</text></g></svg></div>`;
     }
+  }
+
+  function renderMechanicVisual(x) {
+    const v=$("visual");
     if(x.nd==="gear"){let h='<div class="visualBox"><svg width="100%" height="170" viewBox="0 0 900 170" preserveAspectRatio="xMidYMid meet">'; const count=x.labels.length,gap=Math.min(125,760/(count-1||1)),startX=80,y=92; function gearPath(cx,cy,r,teeth){let d=''; for(let k=0;k<teeth*2;k++){const ang=(-Math.PI/2)+(k*Math.PI/teeth),rr=k%2===0?r+8:r,px=cx+Math.cos(ang)*rr,py=cy+Math.sin(ang)*rr; d+=(k===0?'M ':' L ')+px.toFixed(1)+' '+py.toFixed(1);} return d+' Z';} x.labels.forEach((lab,i)=>{const cx=startX+i*gap, mark=x.dirs[i]; h+=`<path d="${gearPath(cx,y,31,18)}" fill="#f8fafc" stroke="#111827" stroke-width="3"/><circle cx="${cx}" cy="${y}" r="22" fill="#fff" stroke="#111827" stroke-width="3"/><circle cx="${cx}" cy="${y}" r="6" fill="#111827"/><text x="${cx}" y="28" text-anchor="middle" font-size="20" font-weight="900">${lab}</text><text x="${cx}" y="103" text-anchor="middle" class="spinArrow">${mark}</text>`; if(i<x.labels.length-1){const nx=startX+(i+1)*gap; h+=`<line x1="${cx+43}" y1="${y}" x2="${nx-43}" y2="${y}" stroke="#111827" stroke-width="4" stroke-linecap="round"/>`;}}); v.innerHTML=h+'</svg></div>';}
-    if(x.nd==="belt")v.innerHTML=`<div class="visualBox visual-logic-fix"><div class="visual-iq-note"><b>Riemenantrieb:</b> Bei gleicher Riemengeschwindigkeit dreht die kleinere Scheibe schneller.</div><svg width="100%" height="210" viewBox="0 0 520 210" preserveAspectRatio="xMidYMid meet"><circle cx="155" cy="95" r="${Math.max(28,x.small)}" fill="#f8fafc" stroke="#111827" stroke-width="5"/><circle cx="365" cy="95" r="${Math.min(72,x.big/1.1)}" fill="#fff" stroke="#111827" stroke-width="5"/><line x1="155" y1="${95-Math.max(28,x.small)}" x2="365" y2="${95-Math.min(72,x.big/1.1)}" stroke="#111827" stroke-width="4"/><line x1="155" y1="${95+Math.max(28,x.small)}" x2="365" y2="${95+Math.min(72,x.big/1.1)}" stroke="#111827" stroke-width="4"/><text x="155" y="188" text-anchor="middle" font-weight="900">kleine Scheibe</text><text x="365" y="188" text-anchor="middle" font-weight="900">große Scheibe</text><text x="260" y="32" text-anchor="middle" font-size="15" fill="#64748b">Frage: Welche dreht sich schneller?</text></svg></div>`;
+    if(x.nd==="belt")v.innerHTML=`<div class="visualBox"><svg width="320" height="150" viewBox="0 0 320 150"><circle cx="210" cy="75" r="${Math.min(55,x.big/1.3)}" fill="#fff" stroke="#111827" stroke-width="4"/><circle cx="80" cy="75" r="${Math.max(22,x.small)}" fill="#f8fafc" stroke="#111827" stroke-width="4"/><line x1="80" y1="${75-Math.max(22,x.small)}" x2="210" y2="${75-Math.min(55,x.big/1.3)}" stroke="#111827" stroke-width="3"/><line x1="80" y1="${75+Math.max(22,x.small)}" x2="210" y2="${75+Math.min(55,x.big/1.3)}" stroke="#111827" stroke-width="3"/><text x="75" y="140" font-weight="700">klein</text><text x="190" y="140" font-weight="700">groß</text></svg></div>`;
     if(x.nd==="blocks"){let cells=[]; x.shape.grid.forEach((row,r)=>row.forEach((c,col)=>{if(c)cells.push([col,r])})); v.innerHTML=`<div class="visualBox"><svg width="280" height="210" viewBox="0 0 280 210">${cells.map(p=>{const x0=80+p[0]*42,y0=40+p[1]*42; return `<rect x="${x0}" y="${y0}" width="40" height="40" fill="#e2e8f0" stroke="#111827" stroke-width="2"/><polygon points="${x0},${y0} ${x0+12},${y0-10} ${x0+52},${y0-10} ${x0+40},${y0}" fill="#f8fafc" stroke="#111827" stroke-width="2"/><polygon points="${x0+40},${y0} ${x0+52},${y0-10} ${x0+52},${y0+30} ${x0+40},${y0+40}" fill="#cbd5e1" stroke="#111827" stroke-width="2"/>`;}).join("")}</svg></div>`;}
     if(x.nd==="net")v.innerHTML=`<div class="visualBox"><div style="display:grid;grid-template-columns:repeat(4,46px);gap:2px;justify-content:center"><div></div><div class="cell" style="height:46px"></div><div></div><div></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div></div><div class="cell" style="height:46px"></div><div></div><div></div></div></div>`;
   }
@@ -3160,7 +3296,7 @@ const MODES = {
     if(!wrong.length){$("review").innerHTML='<div class="box">Keine Fehler. Sehr sauber.</div>';return;}
     const groups=[...new Set(wrong.map(h=>h.group||"Sonstiges"))];
     const filterHtml=`<div class="reviewFilter"><button onclick="App.filterReview('all')">Alle Fehler</button><button onclick="App.filterReview('open')">Nur offen/übersprungen</button>${groups.map(g=>`<button onclick="App.filterReview('${String(g).replace(/'/g,"\\'")}')">${g}</button>`).join("")}</div>`;
-    $("review").innerHTML=filterHtml+wrong.map((h,i)=>{const given=h.givenIndex===null?(h.timeout?"Zeit abgelaufen":"Übersprungen/offen"):h.answers[h.givenIndex], corr=h.answers[h.correctIndex]; const givenText=h.visualType==="edvclick"?`${given || "keine Auswahl"} · Fehlerart: ${h.selectedKind || "nicht gewählt"}`:given; const corrText=h.visualType==="edvclick"?`${corr} · Fehlerart: ${h.schemaKind || "unbekannt"}`:corr; return `<div class="reviewItem" data-group="${h.group||"Sonstiges"}" data-miss="${h.givenIndex===null?1:0}"><b>${i+1}. ${h.cat}</b><br><b>Aufgabe:</b> ${h.q}<p>Deine Antwort: <b>${givenText}</b><br>Richtig: <b>${corrText}</b></p><p class="small"><b>Erklärung:</b> ${h.explanation}</p><p class="small">Bearbeitungszeit: ${Math.round(h.duration/100)/10}s</p></div>`;}).join("");
+    $("review").innerHTML=filterHtml+wrong.map((h,i)=>{const given=h.givenIndex===null?(h.timeout?"Zeit abgelaufen":"Übersprungen/offen"):h.answers[h.givenIndex], corr=h.answers[h.correctIndex]; const isEdv=(h.visualType==="edvmulti"); const givenText=isEdv?`${given || "keine Auswahl"} · Fehlerart: ${h.selectedKind || "nicht gewählt"}`:given; const corrText=isEdv?`${corr} · Fehlerart: ${h.schemaKind || "unbekannt"}`:corr; return `<div class="reviewItem" data-group="${h.group||"Sonstiges"}" data-miss="${h.givenIndex===null?1:0}"><b>${i+1}. ${h.cat}</b><br><b>Aufgabe:</b> ${h.q}<p>Deine Antwort: <b>${givenText}</b><br>Richtig: <b>${corrText}</b></p><p class="small"><b>Erklärung:</b> ${h.explanation}</p><p class="small">Bearbeitungszeit: ${Math.round(h.duration/100)/10}s</p></div>`;}).join("");
   }
 
   function filterReview(nd) {
@@ -3179,7 +3315,8 @@ const MODES = {
     const data=getResults(), cats={};
     state.history.filter(Boolean).forEach(h=>{if(!cats[h.group])cats[h.group]={n:0,r:0,t:0}; cats[h.group].n++; if(h.correct)cats[h.group].r++; cats[h.group].t+=h.duration;});
     const aiSession=SessionTracker.buildSession(state.history,state.selectedMode,MODES[state.selectedMode].title);
-    data.push({date:new Date().toISOString(),mode:state.selectedMode,title:MODES[state.selectedMode].title,score:state.score,total:state.history.length,percent,duration:dur,avg,cats,exam:{...state.exam},aiSession,appVersion:APP_VERSION});
+    const profile=readProfile();
+    data.push({date:new Date().toISOString(),player_name:profile.name||"Gast",player_id:profile.player_id,mode:state.selectedMode,title:MODES[state.selectedMode].title,score:state.score,total:state.history.length,percent,duration:dur,avg,cats,exam:{...state.exam},aiSession,appVersion:APP_VERSION});
     StorageEngine.write(data.map(entry=>DatabaseBridge.createResultRecord(entry)).slice(-StorageEngine.maxRecords));
     const latest = data[data.length-1];
     HighscoreEngine.persistFromResults(data).catch(()=>{});
@@ -3217,7 +3354,7 @@ const MODES = {
       <div class="health-row"><span>Aktive Engine</span><strong>${d.engine}</strong></div>
       <div class="health-row"><span>IndexedDB verfügbar</span><strong>${d.indexedDbReady ? "Ja" : "Nein"}</strong></div>
       <div class="health-row"><span>IndexedDB Foundation</span><strong>${d.indexedDb && d.indexedDb.ok ? "OK" : (d.indexedDb && d.indexedDb.supported ? "initialisiert..." : "nicht verfügbar")}</strong></div>
-      <div class="health-row"><span>IndexedDB Stores</span><strong>${d.indexedDb && d.indexedDb.stores ? d.indexedDb.stores.length : 0}/${d.indexedDb && d.indexedDb.expectedStores ? d.indexedDb.expectedStores.length : 0}</strong></div><div class="health-row"><span>Highscore Store</span><strong>${d.indexedDb && d.indexedDb.stores && d.indexedDb.stores.includes("highscores") ? "bereit" : "prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${(window.App && App._test && App._test.CloudHighscoreEngine && App._test.CloudHighscoreEngine.diagnostics().configured) ? "online" : "nicht verbunden"}</strong></div>
+      <div class="health-row"><span>IndexedDB Stores</span><strong>${d.indexedDb && d.indexedDb.stores ? d.indexedDb.stores.length : 0}/${d.indexedDb && d.indexedDb.expectedStores ? d.indexedDb.expectedStores.length : 0}</strong></div><div class="health-row"><span>Highscore Store</span><strong>${d.indexedDb && d.indexedDb.stores && d.indexedDb.stores.includes("highscores") ? "bereit" : "prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore Config</span><strong>${(window.App && App._test && App._test.CloudHighscoreEngine && App._test.CloudHighscoreEngine.diagnostics().configured) ? "geladen" : "nicht vollständig"}</strong></div>
       <div class="health-row"><span>Migration</span><strong>${d.migration && d.migration.ready ? "vorbereitet" : "prüfen"}</strong></div>
       <div class="health-row"><span>Migrationsmodus</span><strong>${d.migration ? d.migration.phase : "-"}</strong></div>
       <div class="health-row"><span>Quellläufe gefunden</span><strong>${d.migration ? d.migration.totalRecords : 0}</strong></div>
@@ -3225,7 +3362,7 @@ const MODES = {
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V3.2: vorbereitet, aber runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V5.1.2: vorbereitet, aber runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -3238,16 +3375,17 @@ const MODES = {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "eignungstest-trainer-backup-v3-2-1-migration-prep.json";
+    a.download = "eignungstest-trainer-backup-v5-1-2.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
   }
 
-  function showFrameworkHealth() {
+  async function showFrameworkHealth() {
     const panel = $("healthPanel");
     if(!panel) return;
     const summary = QualityEngine.summary();
+    const cloudLive = await CloudHighscoreEngine.testConnection();
     panel.classList.toggle("show");
     panel.innerHTML = `
       <b>Framework-Status</b>
@@ -3257,7 +3395,7 @@ const MODES = {
       <div class="health-row"><span>Simulation</span><strong>${summary.simulation.count} Aufgaben</strong></div>
       <div class="health-row"><span>Modus-Verträge</span><strong>${summary.contracts.length ? summary.contracts.length + " Problem(e)" : "OK"}</strong></div>
       <div class="health-row"><span>AI Engine</span><strong>${summary.ai && summary.ai.ok ? "OK" : "Prüfen"}</strong></div>
-      <div class="health-row"><span>IndexedDB</span><strong>${summary.indexedDb && summary.indexedDb.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Highscore Engine</span><strong>${summary.highscore && summary.highscore.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${summary.cloudHighscore && summary.cloudHighscore.configured ? "online" : "nicht verbunden"}</strong></div>
+      <div class="health-row"><span>IndexedDB</span><strong>${summary.indexedDb && summary.indexedDb.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Highscore Engine</span><strong>${summary.highscore && summary.highscore.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${cloudLive.online ? "online" : (cloudLive.configured ? "konfiguriert · Verbindung prüfen" : "nicht verbunden")}</strong></div>
       <div class="health-row"><span>Migration</span><strong>${summary.migration && summary.migration.ok ? "Aktiv · nicht-destruktiv" : "Prüfen"}</strong></div>
       <div class="health-row"><span>Adaptive Engine</span><strong>${summary.ai && summary.ai.adaptive ? summary.ai.adaptive : "Prüfen"}</strong></div>
       <div class="health-row"><span>Dynamic Generator</span><strong>${summary.ai && summary.ai.mix ? summary.ai.mix + " Mix-Einträge" : "Prüfen"}</strong></div>
@@ -3269,6 +3407,7 @@ const MODES = {
       <div class="health-row"><span>Stabile Module</span><strong>${FEATURE_STATUS.stable.length}</strong></div>
       <div class="health-row"><span>Vorbereitet</span><strong>${FEATURE_STATUS.prepared.length}</strong></div>
       <div class="health-row"><span>Ausgeklammert</span><strong>${FEATURE_STATUS.disabled.length}</strong></div>
+      <div class="db-status-card"><b>Supabase Cloud Diagnose:</b><br>Config geladen: <b>${cloudLive.configLoaded ? "Ja" : "Nein"}</b><br>URL: <b>${cloudLive.urlSet ? "Ja" : "Nein"}</b> · Key: <b>${cloudLive.keySet ? "Ja" : "Nein"}</b><br>Provider: <code>${escHTML(cloudLive.provider || "-")}</code> · Tabelle: <code>${escHTML(cloudLive.table || "-")}</code> · Klasse: <code>${escHTML(cloudLive.classCode || "-")}</code><br>Lesetest: <b>${cloudLive.readOk ? "OK" : "Fehler"}</b> · Status: <code>${escHTML(cloudLive.status || "-")}</code>${cloudLive.httpStatus ? " · HTTP "+cloudLive.httpStatus : ""}${cloudLive.error ? `<br><span class="small">${escHTML(cloudLive.error)}</span>` : ""}<br><span class="small">Wenn hier Config Ja, URL Ja und Key Ja steht, aber Lesetest Fehler zeigt, liegt es fast sicher an Supabase Tabelle/RLS/Policies oder Internet/CORS.</span></div>
       ${summary.contracts.length ? `<div class="db-status-card"><b>Vertragsprobleme:</b><br>${summary.contracts.map(escHTML).join("<br>")}</div>` : ""}
       <div class="health-row"><span>Status</span><strong>${summary.ok ? "OK" : "Prüfen"}</strong></div>
     `;
@@ -3278,9 +3417,28 @@ const MODES = {
   function clearProgress(){if(confirm("Wirklich alle gespeicherten Ergebnisse löschen?")){StorageEngine.clear(); showAnalysis();}}
   function restart(){clearInterval(state.timer); clearInterval(state.memoryTimer); clearRouteTimers(); clearExamBodyClass(); state.exam={enabled:false,hardcore:false,lockBack:false,started:false}; hideAll(); $("start").classList.remove("hidden"); renderModes();}
 
+
+  function bindRuntimeEvents(){
+    if(window.__ET_RUNTIME_EVENTS_BOUND__) return;
+    window.__ET_RUNTIME_EVENTS_BOUND__ = true;
+    document.addEventListener("click", function(ev){
+      const saveBtn = ev.target && ev.target.closest ? ev.target.closest('[data-action="save-profile-name"]') : null;
+      if(saveBtn){ ev.preventDefault(); saveProfileName(); }
+    });
+    document.addEventListener("keydown", function(ev){
+      if(ev.key !== "Enter") return;
+      const target = ev.target;
+      if(target && target.matches && target.matches('[data-profile-name-input="1"], #profileNameInput, #profileEditNameInput')){
+        ev.preventDefault();
+        saveProfileName(target);
+      }
+    });
+  }
+
+  bindRuntimeEvents();
   IndexedDBEngine.init().then(()=>StorageEngine.loadFromIndexedDB()).then(()=>{ try { renderModes(); if($("healthPanel") && $("healthPanel").classList.contains("show")) showDatabaseInfo(); } catch(e){} });
   renderModes();
 
-  return {setAppSection,selectMode,setModeTab,setTrainingFocus,saveProfileName,quickStartRecommended,prepareTest,beginQuizAfterMemory,cancelMemoryPhase,startCtcBlockFromIntro,chooseAnswer,selectEdvNode,selectEdvKind,submitEdvAnswer,selectRouteStreet,undoRouteStreet,submitRouteSequence,spQuestion,skipQuestion,prevQuestion,manualNextQuestion,toggleMarkQuestion,jumpToQuestion,endEarly,restart,toggleReview,filterReview,showAnalysis,showFrameworkHealth,showDatabaseInfo,exportBackup,clearProgress,
-    _test:{FRAMEWORK,FEATURE_FLAGS,FEATURE_STATUS,PWA_CONFIG,MODULE_TREE,DATA_MODEL,MigrationPlanner,IndexedDBEngine,DatabaseBridge,StorageEngine,Guard,AnalyticsEngine,SessionTracker,ErrorMemory,DataReadiness,WeaknessProfile,CognitiveProfile,RecommendationEngine,TrainingFocusEngine,AdaptiveDifficultyEngine,DynamicGeneratorEngine,LearningMemoryEngine,FullSimulationEngine,HighscoreEngine,CloudHighscoreEngine,QuestionBankEngine,QUESTION_BANK_SCHEMA,QUESTION_BANK,CoachEngine,QualityEngine,readExamOptions,applyExamBodyClass,showExamLockNotice,MODES,buildQuiz,Generators,stableSignature,state,finalizeOpenAnswers,showResult,selectMode,startQuiz,EDV_ERRORS,CTC_BLOCK_LIMITS}};
+  return {setAppSection,selectMode,setModeTab,setTrainingFocus,saveProfileName,quickStartRecommended,prepareTest,beginQuizAfterMemory,cancelMemoryPhase,startCtcBlockFromIntro,chooseAnswer,toggleEdvMultiNode,undoEdvMultiSelection,clearEdvMultiSelection,submitEdvMultiAnswer,selectRouteStreet,undoRouteStreet,clearRouteSelection,submitRouteSequence,spQuestion,skipQuestion,prevQuestion,manualNextQuestion,toggleMarkQuestion,jumpToQuestion,endEarly,restart,toggleReview,filterReview,showAnalysis,showFrameworkHealth,showDatabaseInfo,exportBackup,clearProgress,
+    _test:{FRAMEWORK,FEATURE_FLAGS,FEATURE_STATUS,PWA_CONFIG,MODULE_TREE,DATA_MODEL,MigrationPlanner,IndexedDBEngine,DatabaseBridge,StorageEngine,Guard,AnalyticsEngine,SessionTracker,ErrorMemory,DataReadiness,WeaknessProfile,CognitiveProfile,RecommendationEngine,TrainingFocusEngine,AdaptiveDifficultyEngine,DynamicGeneratorEngine,LearningMemoryEngine,FullSimulationEngine,HighscoreEngine,CloudHighscoreEngine,QuestionBankEngine,QUESTION_BANK_SCHEMA,QUESTION_BANK,CoachEngine,QualityEngine,readExamOptions,applyExamBodyClass,showExamLockNotice,MODES,buildQuiz,Generators,stableSignature,state,finalizeOpenAnswers,showResult,selectMode,startQuiz,EDV_SCHEMA,EDV_ERRORS,CTC_BLOCK_LIMITS}};
 })();
