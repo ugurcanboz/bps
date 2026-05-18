@@ -1,0 +1,6 @@
+{
+  "version": "7.2.2",
+  "build": "v7220",
+  "message": "Möchtest du die aktuelle Version laden? Alte Caches werden entfernt und die App wird neu geladen.",
+  "mandatory": false
+}
