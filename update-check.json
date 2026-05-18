@@ -1,0 +1,9 @@
+{
+  "version": "7.5.0",
+  "build": "v7500",
+  "message": "Bereinigte Framework-Basis: weniger Altlasten, geschützte UI, Modulstruktur für neue Features.",
+  "mandatory": false,
+  "label": "V7.5.0 Production Feature-Ready Stable",
+  "latestVersion": "7.5.0",
+  "latest": "7.5.0"
+}
