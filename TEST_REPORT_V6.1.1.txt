@@ -1,0 +1,17 @@
+Eignungstest-Trainer V6.1.1 TopNav Sync Stable
+
+Prüfung:
+- JavaScript Syntax: OK
+- Service Worker Syntax: OK
+- Manifest JSON: OK
+- Version: 6.1.1-topnav-sync
+- Cache: v611-topnav-sync
+- Bottom Nav: unverändert synchron über APP_SECTIONS
+- Top Nav: vollständigere Tab-Daten je Bereich
+- Horizontal Swipe: CSS overflow-x + scroll-snap + scrollIntoView aktiv
+- Highscore Tabs: daily/weekly/monthly/all period mapping aktiv
+- Settings Tabs: profile/cloud/audio/data/framework aktiv
+- Doppelte Cloud-Highscore-Karte im Highscore-Bereich entfernt
+
+Hinweis:
+Nach Installation Cache zurücksetzen und PWA komplett schließen/neustarten.

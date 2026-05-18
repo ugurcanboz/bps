@@ -1,4 +1,4 @@
-/* Eignungstest-Trainer V6.1.0 · Mobile Navigation Core
+/* Eignungstest-Trainer V6.1.1 · Mobile Navigation Core
    Ein einziges Mobile-System: Bottom-Hauptnavigation + dynamische Top-Kontextnavigation. */
 .mobile-top-nav{display:none}
 @media(max-width:640px){
@@ -10,10 +10,10 @@
   .premium-title{font-size:28px!important;line-height:1.03!important}.premium-subtitle{font-size:13px!important;max-width:94%!important;opacity:.92!important}
 
   /* Top Kontextnavigation */
-  .mobile-top-nav{display:block;position:sticky;top:calc(6px + env(safe-area-inset-top,0px));z-index:900;margin:8px 0 10px;padding:6px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);box-shadow:0 14px 38px rgba(15,23,42,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:mobileTopIn .22s ease both;}
-  .mobile-top-track{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+  .mobile-top-nav{display:block;position:sticky;top:calc(6px + env(safe-area-inset-top,0px));z-index:900;margin:8px 0 10px;padding:6px;border-radius:999px;background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.9);box-shadow:0 14px 38px rgba(15,23,42,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:mobileTopIn .22s ease both;max-width:100%;box-sizing:border-box;overflow:hidden;}
+  .mobile-top-track{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-width:100%;padding:1px 1px 3px;}
   .mobile-top-track::-webkit-scrollbar{display:none}
-  .mobile-top-track button{flex:0 0 auto;scroll-snap-align:center;margin:0!important;padding:10px 14px!important;border-radius:999px!important;background:rgba(15,23,42,.055)!important;color:#334155!important;box-shadow:none!important;border:1px solid transparent!important;font-size:13px!important;font-weight:900!important;white-space:nowrap;transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;}
+  .mobile-top-track button{flex:0 0 auto;scroll-snap-align:center;margin:0!important;padding:10px 14px!important;border-radius:999px!important;background:rgba(15,23,42,.055)!important;color:#334155!important;box-shadow:none!important;border:1px solid transparent!important;font-size:13px!important;font-weight:900!important;white-space:nowrap;min-width:max-content;transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;}
   .mobile-top-track button.active{background:#0f172a!important;color:#fff!important;box-shadow:0 10px 24px rgba(15,23,42,.22)!important;transform:translateY(-1px) scale(1.02);}
 
   /* Bottom Hauptnavigation: Dashboard | Üben | Start | Highscore | Settings */
