@@ -1,0 +1,8 @@
+V7.0.1 Deep Cleanup Validation
+JS Syntax: OK
+Service Worker Syntax: OK
+Manifest JSON: OK
+Mobile shell source: css/mobile.css
+alte app.css Mobile-Nav-Patchblöcke: CLEAN
+app.css app-nav @media duplicate count: 0
+Version marker V7.0.1: OK
