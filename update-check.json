@@ -1,9 +1,0 @@
-{
-  "version": "7.4.1",
-  "build": "v7410",
-  "message": "Healthcheck + Architecture Guard ist verfügbar. Alte Caches werden beim Update entfernt.",
-  "mandatory": false,
-  "label": "V7.4.1 Architecture Stabilized Framework",
-  "latestVersion": "7.4.1",
-  "latest": "7.4.1"
-}
