@@ -1,0 +1,8 @@
+    knowledge(level) {
+      if(Math.random()<.30) {
+        const c=choice(capitalPool), opts=shuffle([c[1],c[2],c[3],c[4]]);
+        return makeMC("Geografie",20,`Was ist die Hauptstadt von ${c[0]}?`,opts,optIdx(opts,c[1]),`${c[1]} ist die Hauptstadt von ${c[0]}.`);
+      }
+      return fromPool(generalPool,level);
+    },
+    english(level) { return fromPool(englishPool,level); },
