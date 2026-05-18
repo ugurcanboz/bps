@@ -3,7 +3,7 @@
     selectedMode:"jogging", quiz:[], current:0, score:0, timer:null, memoryTimer:null,
     questionStartedAt:null, timeLeft:0, totalTimeForQuestion:0, testStart:null, testEnd:null,
     history:[], questionStates:[], markedQuestions:[], memoryItems:[], adaptiveMemoryPool:[],
-    usedQuestions:new Set(), ctcBlockRemaining:{}, ctcCurrentBlock:null, shownBlockIntro:{}, pendingBlock:null, routeTimers:[], activeModeTab:"basic", activeAppSection:"dashboard", exam:{enabled:false,hardcore:false,lockBack:false,started:false}
+    usedQuestions:new Set(), ctcBlockRemaining:{}, ctcCurrentBlock:null, shownBlockIntro:{}, pendingBlock:null, routeTimers:[], activeModeTab:"basic", activeAppSection:"dashboard", mobileTopContext:{dashboard:"live",practice:"mix",simulation:"ctc",highscore:"today",profile:"profile"}, exam:{enabled:false,hardcore:false,lockBack:false,started:false}
   };
 
   function isAdaptiveElite() {

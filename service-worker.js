@@ -1,15 +1,15 @@
 "use strict";
-const CACHE_NAME = "eignungstest-trainer-v513-cloud-highscore-cache";
-const SW_VERSION = "5.1.3";
+const CACHE_NAME = "eignungstest-trainer-v515-cleanup-stable-cache";
+const SW_VERSION = "5.1.5";
 const CACHE_PREFIX = "eignungstest-trainer-";
 const CORE_ASSETS = [
   "./",
-  "./index.html?v=5.1.3",
-  "./css/app.css?v=5.1.3",
-  "./js/app.js?v=5.1.3",
-  "./data/question-bank.js?v=5.1.3",
-  "./data/cloud-config.js?v=5.1.3",
-  "./manifest.json?v=5.1.3",
+  "./index.html?v=5.1.5",
+  "./css/app.css?v=5.1.5",
+  "./js/app.js?v=5.1.5",
+  "./data/question-bank.js?v=5.1.5",
+  "./data/cloud-config.js?v=5.1.5",
+  "./manifest.json?v=5.1.5",
   "./icons/icon-180.png",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -55,7 +55,7 @@ self.addEventListener("fetch", event => {
         }
         return response;
       } catch (error) {
-        return caches.match(req) || caches.match("./index.html?v=5.1.3") || caches.match("./index.html");
+        return caches.match(req) || caches.match("./index.html?v=5.1.5") || caches.match("./index.html");
       }
     })());
     return;
@@ -72,7 +72,7 @@ self.addEventListener("fetch", event => {
       }
       return response;
     } catch (error) {
-      return caches.match("./index.html?v=5.1.3") || caches.match("./index.html");
+      return caches.match("./index.html?v=5.1.5") || caches.match("./index.html");
     }
   })());
 });
