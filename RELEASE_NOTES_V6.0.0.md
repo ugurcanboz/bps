@@ -7,7 +7,7 @@ Dieser Stand konsolidiert die V5.1.x-Reihe zu einer wartbaren Framework-Basis.
 - Core = App-Stamm: State, Router, Timer, Scoring, Storage, PWA.
 - Module = dicke Äste: Mathe, Allgemeinwissen, IT, EDV, Logik, Konzentration, Route Memory, Visual IQ.
 - Funktionen/Renderer = Blätter: konkrete Generatoren, Auswertungen und UI-Renderings.
-- Mobile Shell = eigene Layout-Schicht: Bottom Navigation, Top Swipe Navigation, mobile Animationen.
+- Dynamic TopNav = eigene Layout-Schicht: Bottom Navigation, Top Swipe Navigation, mobile Animationen.
 
 ## Änderungen
 - Versionsstand auf V6.0.0 vereinheitlicht.

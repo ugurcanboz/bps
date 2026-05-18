@@ -11,7 +11,7 @@ Mobile Navigation sauber zentralisieren, statt alte und neue Navigationslogik pa
 - Neuer Handler `setTopTab(section, tabKey)`
 - Highscore und Settings sind echte Hauptbereiche
 - `simulation` und `profile` bleiben nur noch als Kompatibilitätsalias erhalten
-- Mobile CSS ersetzt die vorherige Mischlogik durch einen klaren Mobile Shell Layer
+- Mobile CSS ersetzt die vorherige Mischlogik durch einen klaren Dynamic TopNav Layer
 - Version/Cache auf V6.1.0 / v610 aktualisiert
 
 ## Nicht geändert

@@ -493,6 +493,6 @@ body.premium-ui{
 /* Mobile-Regeln sind ab V6.0.0 ausgelagert: css/mobile.css */
 
 
-/* === V6.2.1 NOTE ===
+/* === V6.3.0 NOTE ===
    Mobile-Shell-Regeln liegen ausschließlich in css/mobile.css.
    Diese Datei behält nur allgemeine Komponenten; alte mobile section/profile/simulation Overrides werden dort übersteuert. */

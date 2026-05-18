@@ -1,4 +1,4 @@
-# V6.2.1 Mobile Shell Modellierung
+# V6.3.0 Dynamic TopNav Modellierung
 
 Ziel: TopNav und BottomNav sind globale Shell-Layer. Nur MainContent/Section-Inhalte wechseln.
 

@@ -116,7 +116,7 @@
       });
       Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
       return {
-        version:"6.2.1",
+        version:"6.3.0",
         mode,
         title,
         total,
@@ -669,14 +669,14 @@
       const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
       const learning=LearningMemoryEngine.build(normalized,memory);
       const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
-      return {version:"6.2.1",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+      return {version:"6.3.0",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
     },
     renderDashboard(coach) {
       const r=coach.readiness;
       const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
       const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
       return `<div class="premium-card ai-card">
-        <span class="coach-badge">AI Stable Core V6.2.1</span>
+        <span class="coach-badge">AI Stable Core V6.3.0</span>
         <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
         <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
         <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>

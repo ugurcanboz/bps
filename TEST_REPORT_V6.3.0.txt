@@ -1,0 +1,12 @@
+TEST REPORT V6.3.0 Dynamic TopNav Stable
+Datum: 2026-05-18
+ZIP: wird nach Report erzeugt
+Checks:
+- js/app.js Syntax: OK
+- service-worker.js Syntax: OK
+- manifest.json: OK
+- TopNav Sections: home/dashboard/practice/highscore/settings je 4 Buttons
+- Duplicate HTML IDs: keine
+- Version/Cache: 6.3.0 / v630
+- Mobile CSS: neu konsolidiert, TopNav fixed am oberen Bildschirmrand
+- BottomNav: weiterhin sticky/fixed unten

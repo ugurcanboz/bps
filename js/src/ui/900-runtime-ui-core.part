@@ -15,47 +15,34 @@
 
   const TOP_NAV_TABS = {
     home:[
-      {key:"live",label:"Live",action:"home"},
-      {key:"quick",label:"Schnellstart",action:"mode",mode:"jogging",section:"practice"},
-      {key:"ctc",label:"CTC",action:"mode",mode:"ctcLohr",section:"practice"},
-      {key:"elite",label:"Elite",action:"mode",mode:"ctc",section:"practice"},
-      {key:"recommended",label:"Empfohlen",action:"mode",mode:"mathSprint",section:"practice"}
+      {key:"start", icon:"◆", label:"Start", action:"home"},
+      {key:"ctc", icon:"▶", label:"CTC", action:"mode", mode:"ctcLohr", section:"practice"},
+      {key:"elite", icon:"⚡", label:"Elite", action:"mode", mode:"ctc", section:"practice"},
+      {key:"score", icon:"★", label:"Score", action:"section", section:"highscore"}
     ],
     dashboard:[
-      {key:"live",label:"Live",action:"dashboard"},
-      {key:"stats",label:"Statistik",action:"dashboard"},
-      {key:"focus",label:"Fokus",action:"dashboard"},
-      {key:"cloud",label:"Cloud",action:"health"},
-      {key:"activity",label:"Aktivität",action:"analysis"}
+      {key:"live", icon:"◷", label:"Live", action:"dashboard"},
+      {key:"stats", icon:"📈", label:"Stats", action:"dashboard"},
+      {key:"focus", icon:"🎯", label:"Fokus", action:"dashboard"},
+      {key:"cloud", icon:"☁", label:"Cloud", action:"health"}
     ],
     practice:[
-      {key:"mix",label:"Mix",action:"modeTab",tab:"basic"},
-      {key:"mathe",label:"Mathe",action:"mode",mode:"math"},
-      {key:"logik",label:"Logik",action:"mode",mode:"logic"},
-      {key:"edv",label:"EDV",action:"mode",mode:"it"},
-      {key:"it",label:"IT/FISI",action:"mode",mode:"itSprint"},
-      {key:"wissen",label:"Allgemeinwissen",action:"mode",mode:"general"},
-      {key:"englisch",label:"Englisch",action:"mode",mode:"english"},
-      {key:"konzentration",label:"Konzentration",action:"mode",mode:"concentrationPro"},
-      {key:"route",label:"Route",action:"mode",mode:"routeMemoryMode"},
-      {key:"visual",label:"Visual IQ",action:"mode",mode:"visualIQ"},
-      {key:"sprint",label:"Sprint",action:"modeTab",tab:"block"},
-      {key:"jogging",label:"Jogging",action:"mode",mode:"jogging"},
-      {key:"ctc",label:"CTC",action:"mode",mode:"ctcLohr"},
-      {key:"elite",label:"Elite",action:"mode",mode:"ctc"}
+      {key:"mix", icon:"🧠", label:"Mix", action:"modeTab", tab:"basic"},
+      {key:"mathe", icon:"➗", label:"Mathe", action:"mode", mode:"math"},
+      {key:"edv", icon:"💻", label:"EDV", action:"mode", mode:"it"},
+      {key:"logik", icon:"🧩", label:"Logik", action:"mode", mode:"logic"}
     ],
     highscore:[
-      {key:"today",label:"Heute",action:"highscore",period:"daily"},
-      {key:"week",label:"Woche",action:"highscore",period:"weekly"},
-      {key:"month",label:"Monat",action:"highscore",period:"monthly"},
-      {key:"all",label:"Gesamt",action:"highscore",period:"all"}
+      {key:"today", icon:"🔥", label:"Heute", action:"highscore", period:"daily"},
+      {key:"week", icon:"📅", label:"Woche", action:"highscore", period:"weekly"},
+      {key:"month", icon:"🏆", label:"Monat", action:"highscore", period:"monthly"},
+      {key:"all", icon:"🌍", label:"Gesamt", action:"highscore", period:"all"}
     ],
     settings:[
-      {key:"profile",label:"Profil",action:"settings"},
-      {key:"cloud",label:"Cloud",action:"settings"},
-      {key:"audio",label:"Audio",action:"settings"},
-      {key:"data",label:"Daten",action:"settings"},
-      {key:"framework",label:"Framework",action:"settings"}
+      {key:"profile", icon:"👤", label:"Profil", action:"settings"},
+      {key:"cloud", icon:"☁", label:"Cloud", action:"settings"},
+      {key:"data", icon:"🧹", label:"Daten", action:"settings"},
+      {key:"framework", icon:"🛠", label:"System", action:"settings"}
     ]
   };
 
@@ -131,7 +118,7 @@
     const activeKey = state.activeTopTab || defaultTopTab(section);
     nav.dataset.section = section;
     nav.setAttribute("aria-label", "Kontextnavigation: " + section);
-    nav.innerHTML = `<div class="mobile-top-track" role="tablist">${tabs.map(tab=>`<button type="button" role="tab" data-top-tab="${escHTML(tab.key)}" aria-selected="${activeKey===tab.key?'true':'false'}" class="${activeKey===tab.key?'active':''}" onclick="App.setTopTab('${section}','${tab.key}')">${escHTML(tab.label)}</button>`).join("")}</div>`;
+    nav.innerHTML = `<div class="mobile-top-track" role="tablist" data-nav-key="${section}-${activeKey}">${tabs.map(tab=>`<button type="button" role="tab" data-top-tab="${escHTML(tab.key)}" aria-selected="${activeKey===tab.key?'true':'false'}" class="${activeKey===tab.key?'active':''}" onclick="App.setTopTab('${section}','${tab.key}')"><span class="topnav-icon">${escHTML(tab.icon||"•")}</span><span class="topnav-label">${escHTML(tab.label)}</span></button>`).join("")}</div>`;
     requestAnimationFrame(()=>{
       const track = nav.querySelector(".mobile-top-track");
       const active = nav.querySelector(".mobile-top-track button.active");
@@ -172,6 +159,10 @@
         state.activeTopTab = direct ? direct.key : (modeTab==="block" ? "sprint" : "mix");
       }
       renderModes();
+      return;
+    }
+    if(tab.action==="section"){
+      setAppSection(tab.section || "home");
       return;
     }
     if(tab.action==="analysis"){
@@ -233,7 +224,7 @@
     const cloudBlock=`<div class="premium-card"><b>Cloud & Supabase</b><p class="small">Live-Diagnose, Online-Highscore und Cache-Neuladen.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud Diagnose öffnen</button></div>`;
     const audioBlock=`<div class="premium-card"><b>Audio & Feedback</b><p class="small">Platzhalter für Sound, Vibration und Prüfungsfeedback. Die Logik bleibt vorbereitet, ohne die Kernmodule zu berühren.</p></div>`;
     const dataBlock=`<div class="premium-card"><b>Daten & Backup</b><p class="small">Lokale Ergebnisse, IndexedDB, Export und Cache-Verwaltung.</p><div class="settings-button-row"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div></div>`;
-    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Mobile Shell V6.2.1 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
+    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Dynamic TopNav V6.3.0 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
     const blocks={profile:profileBlock,cloud:cloudBlock,audio:audioBlock,data:dataBlock,framework:frameworkBlock};
     return `<h2>Settings</h2><p>Profil, Cloud, Audio, Daten und Framework sind jetzt als Settings-Bereich gebündelt.</p>${blocks[tab] || profileBlock}<div class="settings-secondary-grid">${tab!=="profile"?profileBlock:""}${tab!=="cloud"?cloudBlock:""}${tab!=="audio"?audioBlock:""}${tab!=="data"?dataBlock:""}${tab!=="framework"?frameworkBlock:""}</div>`;
   }
@@ -995,7 +986,7 @@
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V6.2.1: vorbereitet, aber runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V6.3.0: vorbereitet, aber runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;

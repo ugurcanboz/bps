@@ -27,7 +27,7 @@ Eignungstest-Trainer
 ├─ Daten
 │  ├─ question-bank.js
 │  └─ cloud-config.js
-├─ Mobile Shell
+├─ Dynamic TopNav
 │  ├─ css/mobile.css
 │  ├─ Bottom Sticky Navigation
 │  ├─ Top Swipe Context Navigation
