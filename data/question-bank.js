@@ -1,0 +1,2 @@
+// Eignungstest-Trainer V7.0.2 External Question Bank Bridge.
+window.QUESTION_BANK_EXTERNAL = window.QUESTION_BANK_EXTERNAL || [];

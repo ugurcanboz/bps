@@ -1,0 +1,12 @@
+    it(level) {
+      if(Math.random()<.25) return Generators.itScenario(level);
+      return fromPool(itPool,level);
+    },
+    itScenario() {
+      return choice([
+        ()=>makeMC("IT Fehleranalyse",35,"Ein PC hat IP 192.168.1.50, Gateway 192.168.1.1, DNS leer. Internet per IP geht, Webseiten-Namen gehen nicht. Was ist wahrscheinlich falsch?",["DNS fehlt","RAM defekt","Monitor defekt","Tastatur defekt"],0,"Wenn IP geht, aber Namen nicht, ist DNS wahrscheinlich das Problem."),
+        ()=>makeMC("IT Netzwerk",35,"Ein Client bekommt 169.254.x.x als IP-Adresse. Was ist wahrscheinlich passiert?",["DHCP nicht erreichbar","DNS ist zu schnell","CPU überhitzt","Passwort falsch"],0,"169.254.x.x ist meist APIPA, wenn DHCP nicht klappt."),
+        ()=>makeMC("IT FISI",35,"Ein neuer Benutzer soll dieselben Rechte wie alle Azubis bekommen. Was ist sinnvoll?",["in passende Gruppe aufnehmen","lokal Admin machen","Passwort öffentlich teilen","Firewall abschalten"],0,"Rechte werden sinnvoll über Gruppen vergeben."),
+        ()=>makeMC("IT Security",30,"Welche Maßnahme ist am sinnvollsten gegen Kontoübernahme?",["MFA aktivieren","Bildschirm heller machen","DNS löschen","Drucker tauschen"],0,"MFA schützt zusätzlich.")
+      ])();
+    },
