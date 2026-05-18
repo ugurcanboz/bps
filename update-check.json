@@ -1,0 +1,7 @@
+{
+  "version": "7.2.5",
+  "build": "v7250",
+  "message": "Möchtest du die aktuelle Version laden? Alte Caches werden entfernt und die App wird neu geladen.",
+  "mandatory": false,
+  "label": "V7.2.5 Mobile Sticky Body Nav Stable"
+}
