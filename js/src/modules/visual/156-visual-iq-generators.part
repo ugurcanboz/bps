@@ -1,0 +1,73 @@
+    visualGearsPro(level) {
+      const count=level==="hard"?rand(5,7):rand(4,6), labels="ABCDEFG".split("").slice(0,count), first=Math.random()<.5?"↻":"↺";
+      const sameAxis = count>=5 && Math.random()<.55 ? rand(1,count-2) : -1;
+      const beltAt = count>=5 && Math.random()<.45 ? rand(2,count-2) : -1;
+      const dirs=[];
+      for(let i=0;i<count;i++){
+        if(i===0) dirs[i]=first;
+        else if(i===sameAxis) dirs[i]=dirs[i-1];
+        else if(i===beltAt) dirs[i]=dirs[i-1];
+        else dirs[i]=dirs[i-1]==="↻"?"↺":"↻";
+      }
+      const target=count-1, correct=dirs[target]==="↻"?"↻ Uhrzeigersinn":"↺ Gegenuhrzeigersinn";
+      const opts=shuffle(["↻ Uhrzeigersinn","↺ Gegenuhrzeigersinn","blockiert","nicht bestimmbar"]);
+      return makeMC("Visual IQ Zahnräder",32,`Zahnrad A dreht ${first==="↻"?"im Uhrzeigersinn":"gegen den Uhrzeigersinn"}. In welche Richtung dreht sich Zahnrad ${labels[target]}?`,opts,optIdx(opts,correct),`Greifende Zahnräder wechseln die Richtung. Gleiche Achse und offener Riemen behalten die Richtung. Ergebnis: ${correct}.`,"visualIQ",{visualIQ:{nd:"gearsPro",labels,dirs,shown:dirs.map((d,i)=>i===0?d:"?"),sameAxis,beltAt}});
+    },
+    visualMirror(level) {
+      const axis=choice(["vertical","horizontal","point"]);
+      const shapes=["triangle","arrow","lshape","dotbar"], shape=choice(shapes);
+      const map={vertical:"vertikal",horizontal:"horizontal",point:"punktgespiegelt"};
+      const correct=axis==="vertical"?"Bild B":axis==="horizontal"?"Bild C":"Bild D";
+      const opts=shuffle(["Bild A","Bild B","Bild C","Bild D"]);
+      return makeMC("Visual IQ Spiegelung",30,`Welche Antwort zeigt die Figur korrekt ${map[axis]} gespiegelt?`,opts,optIdx(opts,correct),`Die korrekte ${map[axis]}e Spiegelung ist ${correct}.`,"visualIQ",{visualIQ:{nd:"mirror",axis,shape}});
+    },
+    visualCubeRotation(level) {
+      const variant=choice(["same","opposite","impossible"]);
+      const correct=variant==="same"?"Würfel B":variant==="opposite"?"Würfel C":"Würfel D";
+      const opts=shuffle(["Würfel A","Würfel B","Würfel C","Würfel D"]);
+      return makeMC("Visual IQ Würfelrotation",38,"Welcher Würfel kann durch Drehen des Ausgangswürfels entstehen?",opts,optIdx(opts,correct),`Bei Würfelrotation bleiben Nachbarschaften der Symbole erhalten. Richtig ist ${correct}.`,"visualIQ",{visualIQ:{nd:"cube",variant}});
+    },
+    visualFolding(level) {
+      const pattern=choice(["corner","diagonal","double"]);
+      const correct=pattern==="corner"?"Muster A":pattern==="diagonal"?"Muster C":"Muster D";
+      const opts=shuffle(["Muster A","Muster B","Muster C","Muster D"]);
+      return makeMC("Visual IQ Faltfiguren",36,"Ein Blatt wird gefaltet und gelocht. Welches Muster entsteht nach dem Aufklappen?",opts,optIdx(opts,correct),`Beim Aufklappen spiegeln sich die Löcher an den Faltachsen. Richtig ist ${correct}.`,"visualIQ",{visualIQ:{nd:"fold",pattern}});
+    },
+    visualMatrixIQ(level) {
+      const rule=choice(["addShape","rotate","fill"]);
+      let correct="Option C";
+      if(rule==="rotate") correct="Option B";
+      if(rule==="fill") correct="Option D";
+      const opts=shuffle(["Option A","Option B","Option C","Option D"]);
+      return makeMC("Visual IQ Matrizen",40,"Welche Option ergänzt die Matrix logisch?",opts,optIdx(opts,correct),`Die Matrix kombiniert eine feste Regel pro Zeile und Spalte. Richtig ist ${correct}.`,"visualIQ",{visualIQ:{nd:"matrixIQ",rule}});
+    },
+    visualCircuit(level) {
+      const scenario=choice(["openSwitch","parallel","short"]);
+      let correct, q, ex;
+      if(scenario==="openSwitch"){q="Welche Lampe leuchtet, wenn Schalter S1 offen und S2 geschlossen ist?"; correct="nur Lampe 2"; ex="Der offene Schalter S1 unterbricht den linken Zweig. Der rechte Zweig ist geschlossen.";}
+      else if(scenario==="parallel"){q="Was passiert, wenn Lampe 1 im Parallelzweig defekt ist?"; correct="Lampe 2 leuchtet weiter"; ex="Bei Parallelschaltung bleibt der andere Zweig funktionsfähig.";}
+      else {q="Wo liegt der Fehler im Stromlaufplan?"; correct="Kurzschluss über Lampe 1"; ex="Die Leitung überbrückt Lampe 1. Strom nimmt den direkten Weg.";}
+      const opts=shuffle([correct,"beide Lampen aus","beide Lampen leuchten","nicht bestimmbar"]);
+      return makeMC("Visual IQ Stromlaufplan",42,q,opts,optIdx(opts,correct),ex,"visualIQ",{visualIQ:{nd:"circuit",scenario}});
+    },
+    visualMechanicsPro(level) {
+      const scenario=choice(["lever","pulley","water","slope"]);
+      let q, correct, ex;
+      if(scenario==="lever"){q="Welche Seite des Hebels sinkt nach unten?"; correct="rechts"; ex="Drehmoment = Kraft × Abstand. Rechts wirkt das größere Drehmoment.";}
+      else if(scenario==="pulley"){q="Welche Last ist leichter zu heben?"; correct="System B"; ex="Mehr tragende Seilabschnitte verringern die benötigte Zugkraft.";}
+      else if(scenario==="water"){q="Welcher Behälter füllt sich zuerst?"; correct="Behälter 2"; ex="Der offene, tiefere Kanal wird zuerst erreicht.";}
+      else {q="Welcher Körper rollt schneller nach unten?"; correct="der glatte Zylinder"; ex="Weniger Reibung und günstige Form bedeuten schnelleres Rollen.";}
+      const opts=shuffle([correct,"links","beide gleich","nicht bestimmbar"]);
+      return makeMC("Visual IQ Mechanik",40,q,opts,optIdx(opts,correct),ex,"visualIQ",{visualIQ:{nd:"mechanics",scenario}});
+    },
+    visualTechnical(level) {
+      const scenario=choice(["pressure","support","block","drive"]);
+      let q, correct, ex;
+      if(scenario==="pressure"){q="Wo ist der Druck am größten?"; correct="unten am tiefsten Punkt"; ex="Flüssigkeitsdruck steigt mit der Tiefe.";}
+      else if(scenario==="support"){q="Welche Konstruktion ist am stabilsten?"; correct="Dreieckskonstruktion"; ex="Dreiecke versteifen Konstruktionen besser als offene Rechtecke.";}
+      else if(scenario==="block"){q="Welches Bauteil blockiert die Bewegung?"; correct="Bauteil C"; ex="C liegt quer zur Bewegungsrichtung und verhindert den Lauf.";}
+      else {q="Welche Scheibe dreht sich am schnellsten?"; correct="die kleinste Scheibe"; ex="Bei gleicher Riemengeschwindigkeit dreht die kleinste Scheibe am schnellsten.";}
+      const opts=shuffle([correct,"Bauteil A","Bauteil B","nicht bestimmbar"]);
+      return makeMC("Technisches Verständnis",38,q,opts,optIdx(opts,correct),ex,"visualIQ",{visualIQ:{nd:"technical",scenario}});
+    },
+    visualIQ(level) { return choice([Generators.visualGearsPro,Generators.visualMirror,Generators.visualCubeRotation,Generators.visualFolding,Generators.visualMatrixIQ,Generators.visualCircuit,Generators.visualMechanicsPro,Generators.visualTechnical])(level); },

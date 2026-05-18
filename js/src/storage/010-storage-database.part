@@ -1,0 +1,383 @@
+/* StorageEngine, IndexedDBEngine, DatabaseBridge und Datenmigration. */
+
+  const StorageEngine = {
+    key: STORE_KEY,
+    maxRecords:300,
+    memory:null,
+    mode:"indexedDB-primary",
+    fallback:false,
+    lastSync:"nicht gestartet",
+    bootstrapFromLocalStorage(defaultValue=[]) {
+      try {
+        let raw = localStorage.getItem(this.key);
+        if(!raw) {
+          for(const legacyKey of LEGACY_STORE_KEYS) {
+            const legacyRaw = localStorage.getItem(legacyKey);
+            if(legacyRaw) { raw = legacyRaw; break; }
+          }
+        }
+        if(!raw) return defaultValue;
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : defaultValue;
+      } catch(error) {
+        this.quarantine(error);
+        return defaultValue;
+      }
+    },
+    read(defaultValue=[]) {
+      if(Array.isArray(this.memory)) return this.memory;
+      this.memory = this.bootstrapFromLocalStorage(defaultValue).map(entry=>({ ...entry }));
+      return this.memory;
+    },
+    write(value) {
+      try {
+        const normalized = Array.isArray(value) ? value.slice(-this.maxRecords) : [];
+        this.memory = normalized;
+        if(IndexedDBEngine.status.supported) {
+          IndexedDBEngine.replaceAll("sessions", normalized).then(()=>{
+            this.lastSync = new Date().toISOString();
+            this.fallback = false;
+          }).catch(error=>{
+            this.fallback = true;
+            this.quarantine(error);
+            try { localStorage.setItem(this.key + "_fallback", JSON.stringify(normalized)); } catch(e) {}
+          });
+        } else {
+          this.fallback = true;
+          localStorage.setItem(this.key + "_fallback", JSON.stringify(normalized));
+        }
+        return true;
+      } catch(error) {
+        this.fallback = true;
+        this.quarantine(error);
+        return false;
+      }
+    },
+    async loadFromIndexedDB() {
+      try {
+        if(!IndexedDBEngine.status.supported) throw new Error("IndexedDB nicht verfügbar");
+        const records = await IndexedDBEngine.getAll("sessions");
+        if(records && records.length) {
+          this.memory = records.map(entry=>Guard.normalizeResult(entry)).slice(-this.maxRecords);
+          this.lastSync = new Date().toISOString();
+          return {ok:true, source:"IndexedDB", records:this.memory.length};
+        }
+        const legacy = this.bootstrapFromLocalStorage([]).map(entry=>DatabaseBridge.createResultRecord(entry)).slice(-this.maxRecords);
+        this.memory = legacy;
+        if(legacy.length) await IndexedDBEngine.replaceAll("sessions", legacy);
+        this.lastSync = new Date().toISOString();
+        return {ok:true, source:legacy.length?"localStorage-migrated":"empty", records:legacy.length};
+      } catch(error) {
+        this.fallback = true;
+        this.memory = this.bootstrapFromLocalStorage([]);
+        this.quarantine(error);
+        return {ok:false, source:"fallback", records:this.memory.length, error:String(error && error.message ? error.message : error)};
+      }
+    },
+    clear() {
+      try {
+        this.memory = [];
+        if(IndexedDBEngine.status.supported) IndexedDBEngine.clearStore("sessions").catch(error=>this.quarantine(error));
+        try { localStorage.removeItem(this.key + "_fallback"); } catch(e) {}
+        return true;
+      } catch(error) { this.quarantine(error); return false; }
+    },
+    quarantine(error) {
+      try {
+        localStorage.setItem(this.key + "_last_error", JSON.stringify({
+          time:new Date().toISOString(),
+          message:String(error && error.message ? error.message : error)
+        }));
+      } catch(e) {}
+    },
+    health() {
+      const data = this.read([]);
+      return {ok:Array.isArray(data), records:Array.isArray(data)?data.length:0, key:"IndexedDB:sessions", fallbackKey:this.key + "_fallback", legacyKeys:LEGACY_STORE_KEYS, engine:this.mode, fallback:this.fallback, lastSync:this.lastSync, maxRecords:this.maxRecords, schemaVersion:DATA_MODEL.version};
+    }
+  };
+
+
+  const DATA_MODEL = {
+    version:"7.0.10",
+    stores:{
+      results:{
+        id:"auto",
+        fields:["date","mode","title","score","total","percent","duration","avg","cats","exam","meta"]
+      },
+      attempts:{
+        id:"auto",
+        fields:["resultId","question","category","group","correct","time","answer","expected","errorType"]
+      },
+      profiles:{
+        id:"profileId",
+        fields:["name","createdAt","settings","stats"]
+      },
+      settings:{
+        id:"key",
+        fields:["value","updatedAt"]
+      },
+      analysis:{
+        id:"auto",
+        fields:["date","mode","profile","recommendations","stress","timeProfile"]
+      },
+      aiSignals:{
+        id:"auto",
+        fields:["date","mode","category","errorType","duration","pressure","correct"]
+      },
+      coachProfile:{
+        id:"profileId",
+        fields:["dataReadiness","weaknesses","recommendations","cognitiveProfile","updatedAt"]
+      },
+      adaptiveState:{
+        id:"profileId",
+        fields:["difficulty","mix","weaknessWeights","lastAdaptation","updatedAt"]
+      },
+      generatorMemory:{
+        id:"auto",
+        fields:["mode","group","difficulty","source","weight","createdAt"]
+      },
+      learningMemory:{
+        id:"profileId",
+        fields:["repeatErrors","openTasks","paceProfile","stability","updatedAt"]
+      },
+      simulationFramework:{
+        id:"profileId",
+        fields:["readiness","coverage","risk","nextSimulation","updatedAt"]
+      },
+      focusPreference:{
+        id:"profileId",
+        fields:["focus","group","mode","updatedAt"]
+      },
+      pwaSettings:{
+        id:"profileId",
+        fields:["installed","standalone","lastLaunch","cacheVersion","updateAvailable","updatedAt"]
+      },
+      importedQuestions:{
+        id:"questionId",
+        fields:["source","sourcePage","category","group","subtype","difficulty","question","answers","correct","explanation","tags","verified","createdAt"]
+      },
+      questionBankAudit:{
+        id:"auto",
+        fields:["source","imported","duplicates","invalid","reviewNeeded","createdAt"]
+      }
+    },
+    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.0.1","5.0.2","5.1.0","5.1.1","5.1.2","5.1.3","5.1.4","6.0.0","6.1.0","6.1.1","7.0.0","7.0.10"],
+    futureEngine:"active",
+    currentEngine:"IndexedDB-primary",
+    migrationPolicy:{active:true,mode:"full-activation",source:"localStorage",target:"IndexedDB",requiresManualCleanup:false,noDataDeletion:true},
+    indexedDbName:"EignungstestTrainerDB",
+    indexedDbVersion:1
+  };
+
+  const MigrationPlanner = {
+    phase:"full-activation",
+    active:true,
+    source:"localStorage",
+    target:"IndexedDB",
+    version:"7.0.10",
+    rules:[
+      "Keine automatische Datenlöschung",
+      "IndexedDB ist Hauptspeicher",
+      "localStorage dient nur als Fallback",
+      "Migration läuft beim Start nicht-destruktiv",
+      "Backup vor jeder echten Migration erforderlich"
+    ],
+    sourceKeys(){ return [STORE_KEY, ...LEGACY_STORE_KEYS].filter((v,i,a)=>a.indexOf(v)===i); },
+    inspect(){
+      const keys=this.sourceKeys();
+      let found=[];
+      try {
+        found = keys.map(key=>{
+          const raw=localStorage.getItem(key);
+          let records=0, valid=false;
+          if(raw){
+            try { const parsed=JSON.parse(raw); valid=Array.isArray(parsed); records=valid?parsed.length:0; } catch(e){}
+          }
+          return {key, exists:!!raw, valid, records};
+        }).filter(x=>x.exists);
+      } catch(error) { found=[{key:"localStorage", exists:false, valid:false, records:0, error:String(error && error.message ? error.message : error)}]; }
+      const totalRecords=found.reduce((s,x)=>s+(x.records||0),0);
+      return {phase:this.phase, active:this.active, source:this.source, target:this.target, sourceKeys:keys, found, totalRecords, ready:IndexedDBEngine.status.ok && StorageEngine.health().ok, blockers:[]};
+    },
+    summary(){
+      const status=this.inspect();
+      const blockers=[];
+      if(!IndexedDBEngine.status.supported) blockers.push("IndexedDB nicht verfügbar");
+      if(!StorageEngine.health().ok) blockers.push("localStorage nicht stabil lesbar");
+      if(!this.active) blockers.push("Migration sollte aktiv sein");
+      status.blockers=blockers;
+      status.ready=blockers.length===0;
+      status.rules=this.rules;
+      return status;
+    }
+  };
+
+  const IndexedDBEngine = {
+    name:"EignungstestTrainerDB",
+    version:2,
+    status:{supported:typeof indexedDB !== "undefined", initialized:false, ok:false, error:"", stores:[], lastTest:"nicht gestartet", mode:"primary"},
+    storeNames:["profiles","sessions","highscores","analytics","questionBank","settings","aiSignals","backups","migrationLog"],
+    open() {
+      return new Promise((resolve,reject)=>{
+        if(typeof indexedDB === "undefined") return reject(new Error("IndexedDB wird in dieser Umgebung nicht unterstützt."));
+        const request = indexedDB.open(this.name, this.version);
+        request.onupgradeneeded = event => {
+          const db = event.target.result;
+          this.storeNames.forEach(name=>{
+            if(!db.objectStoreNames.contains(name)) {
+              if(name === "settings") db.createObjectStore(name, {keyPath:"key"});
+              else if(name === "profiles") db.createObjectStore(name, {keyPath:"profileId"});
+              else if(name === "questionBank") db.createObjectStore(name, {keyPath:"questionId"});
+              else db.createObjectStore(name, {keyPath:"id", autoIncrement:true});
+            }
+          });
+        };
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error("IndexedDB konnte nicht geöffnet werden."));
+      });
+    },
+    async init() {
+      this.status.supported = typeof indexedDB !== "undefined";
+      if(!this.status.supported) {
+        this.status.initialized=false; this.status.ok=false; this.status.error="IndexedDB nicht unterstützt"; return this.status;
+      }
+      try {
+        const db = await this.open();
+        this.status.stores = Array.from(db.objectStoreNames || []);
+        db.close();
+        await this.selfTest();
+        this.status.initialized=true; this.status.ok=true; this.status.error="";
+      } catch(error) {
+        this.status.initialized=false; this.status.ok=false; this.status.error=String(error && error.message ? error.message : error);
+      }
+      return this.status;
+    },
+    async put(storeName, value) {
+      const db = await this.open();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(storeName,"readwrite");
+        tx.objectStore(storeName).put(value);
+        tx.oncomplete = () => { db.close(); resolve(true); };
+        tx.onerror = () => { const err=tx.error; db.close(); reject(err); };
+      });
+    },
+    async get(storeName, key) {
+      const db = await this.open();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(storeName,"readonly");
+        const req = tx.objectStore(storeName).get(key);
+        req.onsuccess = () => { db.close(); resolve(req.result || null); };
+        req.onerror = () => { const err=req.error; db.close(); reject(err); };
+      });
+    },
+    async getAll(storeName) {
+      const db = await this.open();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(storeName,"readonly");
+        const req = tx.objectStore(storeName).getAll();
+        req.onsuccess = () => { db.close(); resolve(Array.isArray(req.result) ? req.result : []); };
+        req.onerror = () => { const err=req.error; db.close(); reject(err); };
+      });
+    },
+    async clearStore(storeName) {
+      const db = await this.open();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(storeName,"readwrite");
+        tx.objectStore(storeName).clear();
+        tx.oncomplete = () => { db.close(); resolve(true); };
+        tx.onerror = () => { const err=tx.error; db.close(); reject(err); };
+      });
+    },
+    async replaceAll(storeName, records=[]) {
+      const db = await this.open();
+      return new Promise((resolve,reject)=>{
+        const tx = db.transaction(storeName,"readwrite");
+        const store = tx.objectStore(storeName);
+        store.clear();
+        (records || []).forEach(record=>store.put(record));
+        tx.oncomplete = () => { db.close(); resolve(true); };
+        tx.onerror = () => { const err=tx.error; db.close(); reject(err); };
+      });
+    },
+    async selfTest() {
+      const testRecord={key:"indexeddb-foundation-selftest", value:"ok", updatedAt:new Date().toISOString(), appVersion:APP_VERSION};
+      await this.put("settings", testRecord);
+      const readBack=await this.get("settings", testRecord.key);
+      const ok=!!readBack && readBack.value === "ok";
+      this.status.lastTest = ok ? "OK" : "Lesetest fehlgeschlagen";
+      if(!ok) throw new Error("IndexedDB Schreib-/Lesetest fehlgeschlagen.");
+      return ok;
+    },
+    diagnostics() {
+      return {...this.status, name:this.name, version:this.version, expectedStores:this.storeNames};
+    }
+  };
+
+  const DatabaseBridge = {
+    engine:"IndexedDB-primary",
+    indexedDbReady:typeof indexedDB !== "undefined",
+    indexedDb:IndexedDBEngine,
+    schema:DATA_MODEL,
+    createResultRecord(entry) {
+      const normalized = Guard.normalizeResult(entry);
+      return {
+        ...normalized,
+        schemaVersion:DATA_MODEL.version,
+        id:entry?.id || "run_" + Date.now() + "_" + Math.random().toString(36).slice(2,8),
+        meta:{
+          createdBy:FRAMEWORK.name,
+          storageEngine:this.engine,
+          indexedDbPrimary:IndexedDBEngine.status.ok,
+          appVersion:APP_VERSION
+        }
+      };
+    },
+    exportPayload() {
+      const results = StorageEngine.read([]).map(entry=>Guard.normalizeResult(entry));
+      return {
+        app:FRAMEWORK.name,
+        version:FRAMEWORK.version,
+        exportedAt:new Date().toISOString(),
+        dataModel:DATA_MODEL,
+        profile:typeof readProfile === "function" ? readProfile() : null,
+        results,
+        indexedDb:IndexedDBEngine.diagnostics(),
+        migration:MigrationPlanner.summary()
+      };
+    },
+    importPayload(payload) {
+      try {
+        if(!payload || !Array.isArray(payload.results)) return {ok:false,message:"Keine gültigen Ergebnisdaten gefunden."};
+        const existing = StorageEngine.read([]);
+        const merged = [...existing, ...payload.results.map(r=>this.createResultRecord(r))].slice(-StorageEngine.maxRecords);
+        StorageEngine.write(merged);
+        if(payload.profile && typeof writeProfile === "function") writeProfile(payload.profile);
+        return {ok:true,message:`${payload.results.length} Einträge importiert.`};
+      } catch(error) {
+        StorageEngine.quarantine(error);
+        return {ok:false,message:String(error && error.message ? error.message : error)};
+      }
+    },
+    diagnostics() {
+      const health = StorageEngine.health();
+      const payload = this.exportPayload();
+      const approxSize = JSON.stringify(payload).length;
+      return {
+        engine:this.engine,
+        indexedDbReady:this.indexedDbReady,
+        schemaVersion:DATA_MODEL.version,
+        records:health.records,
+        key:health.key,
+        approxSizeBytes:approxSize,
+        approxSizeKb:Math.round(approxSize/1024*10)/10,
+        maxRecords:StorageEngine.maxRecords,
+        ok:health.ok,
+        indexedDb:IndexedDBEngine.diagnostics(),
+        migration:MigrationPlanner.summary()
+      };
+    }
+  };
+
+
+
+

@@ -1,0 +1,17 @@
+    routeMemory(level) {
+      const streetPool=["Bahnhofstraße","Gartenweg","Schulstraße","Lindenallee","Marktstraße","Hafenweg","Rosenweg","Mozartstraße","Berliner Straße","Ulmer Weg","Eselsbergstraße","Donaustraße","Buchenweg","Kirchplatz","Mühlweg","Parkallee","Sonnenstraße","Jahnstraße","Friedrichstraße","Kanalweg","Wiesenweg","Neue Straße"];
+      const count=level==="hard"?rand(8,10):level==="easy"?rand(6,7):rand(7,9);
+      const route=shuffle(streetPool).slice(0,count);
+      const distractors=shuffle(streetPool.filter(x=>!route.includes(x))).slice(0,Math.max(2,10-count));
+      const optionPool=shuffle([...route,...distractors]);
+      return makeMC(
+        "Gedächtnisroute",
+        90,
+        "Merke dir die Busroute. Nach der Animation tippe die Straßen <b>in der richtigen Reihenfolge</b> an.",
+        optionPool,
+        -1,
+        `Richtige Reihenfolge: ${route.join(" → ")}.`,
+        "routeMemory",
+        {routeStreets:route,routeOptions:optionPool,routeDuration:20,routeReady:false,routeSelected:[],routeChecked:false,signatureSeed:route.join("|")}
+      );
+    },
