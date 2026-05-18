@@ -1,0 +1,36 @@
+/* Question Factory, Group Mapping, EDV-Schema, Generatoren, Route- und EDV-Fragenaufbau. */
+  function makeMC(cat,time,q,a,correct,ex,type="mc",extra={}) {
+    return {cat,time,type,q,a,correct,ex,group:groupFor(cat),signature:"",...extra};
+  }
+  function shuffleWithCorrect(arr, idx) {
+    const correct = arr[idx], opts = shuffle(arr);
+    return {opts, correct: opts.indexOf(correct)};
+  }
+  function optionsFromCorrect(correct,spread=10,decimals=false,unit="") {
+    const c=norm(correct), num=Number(String(correct).replace(",","."));
+    const vals=new Set([c+unit]); let tries=0;
+    while(vals.size<4 && tries<500) {
+      tries++;
+      let off=rand(1,spread)*(Math.random()<.5?-1:1);
+      let v=num+off; if(decimals) v=Math.round(v*10)/10;
+      if(v>=0 && String(v)!==String(num)) vals.add(norm(v)+unit);
+    }
+    return shuffle([...vals]);
+  }
+  function groupFor(cat) {
+    cat=String(cat||"");
+    if(cat.includes("Englisch") || cat.includes("Berufsenglisch") || cat.includes("IT-Englisch")) return "Englisch";
+    if(cat.includes("IT") || cat.includes("FISI") || cat.includes("Server") || cat.includes("Linux") || cat.includes("Windows") || cat.includes("Security") || cat.includes("Netzwerk") || cat.includes("Hardware") || cat.includes("Betriebssystem") || cat.includes("EDV")) return "IT/FISI";
+    if(cat.includes("Gedächtnis") || cat.includes("Route")) return "Gedächtnis";
+    if(["Allgemeinwissen","Politik","Geografie","Europa","Wissenschaft","Technik","Geschichte","Natur","Wirtschaft","Alltag","Deutschland"].includes(cat)) return "Allgemeinwissen";
+    if(cat.includes("Visual IQ") || cat.includes("Spiegel") || cat.includes("Würfel") || cat.includes("Falt") || cat.includes("Stromlauf") || cat.includes("Technisches Verständnis")) return "Visual IQ";
+    if(cat.includes("Mechanik")) return "Mechanik";
+    if(cat.includes("Tabellen") || cat.includes("Aufmerksamkeit") || cat.includes("Konzentration") || cat.includes("Code")) return "Konzentration";
+    if(cat.includes("Räum")) return "Raumdenken";
+    if(cat.includes("Mathe") || cat.includes("Rechnen") || cat.includes("Prozent") || cat.includes("Bruch") || cat.includes("Dreisatz") || cat.includes("Geometrie") || cat.includes("Textrechnen") || cat.includes("Grundrechnen") || cat.includes("Dezimal") || cat.includes("Division")) return "Mathe";
+    return "Logik";
+  }
+  function stableSignature(q) {
+    return [q.cat,q.q,q.type,JSON.stringify(q.grid||q.series||q.symbols||q.visual||q.tableRows||q.schemaRows||q.fraction||q.fractionRule||q.routeStreets||q.signatureSeed||{}),String(q.correct),JSON.stringify(q.a)].join("|");
+  }
+

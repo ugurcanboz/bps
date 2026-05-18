@@ -1,0 +1,21 @@
+
+
+  function renderEdvProHTML(q) {
+    const selectedList = q && Array.isArray(q.edvMultiSelected) ? q.edvMultiSelected : [];
+    return `<div class="visualBox edv-pro-wrap">
+      <div class="edv-pro-story"><b>EDV-Großschema:</b> ${EDV_STORY}<br><span class="small">Aufgabe: Tippe alle fehlerhaften Einträge an. Erneutes Tippen entfernt die Auswahl.</span></div>
+      <div class="edv-mini-legend"><span>Logikfehler</span><span>Pfeilfehler</span><span>Inhaltsfehler</span><span>${EDV_ERRORS.length} Fehler versteckt</span></div>
+      <div class="edv-pro-grid">
+        ${EDV_SCHEMA.map(x=>{
+          const n = selectedList.indexOf(x.id);
+          const cls = n >= 0 ? " selected" : "";
+          return `<div class="edv-node${cls}" id="edvNode_${x.id}" onclick="App.toggleEdvMultiNode('${x.id}')">
+            <span class="edv-node-id">${x.id}</span>${n>=0 ? `<span class="edv-node-order">${n+1}</span>` : ""}
+            <div class="edv-node-text">${x.text}</div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }
+
+

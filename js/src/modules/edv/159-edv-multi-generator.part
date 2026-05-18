@@ -1,0 +1,31 @@
+    bigEDV(errorIndex) {
+      // Legacy-EDV-Einzelfragen werden nicht mehr erzeugt.
+      // Fallback bleibt nur als Kompatibilitätsanker für alte Speicherstände bestehen.
+      return this.bigEDVMulti();
+    },
+    bigEDVMulti() {
+      const correctIds=EDV_ERRORS.map(x=>x.id);
+      return makeMC(
+        "EDV Diagramm PRO",
+        15*60,
+        `EDV-Großschema: In der dargestellten Seite sind <b>genau ${correctIds.length} Fehler</b> versteckt. Tippe alle fehlerhaften Schema-Einträge an. Erneutes Tippen wählt wieder ab.`,
+        EDV_SCHEMA.map(x=>`${x.id}: ${x.text}`),
+        0,
+        `Richtige Fehler: ${correctIds.join(", ")}.`,
+        "edvmulti",
+        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v703-cloud-highscore"}
+      );
+    },
+    bigEDVCovered(slot) {
+      return makeMC(
+        "EDV Diagramm PRO",
+        1,
+        "EDV-Platzhalter: Dieser Punkt wird durch die Gesamt-EDV-Aufgabe automatisch ausgewertet.",
+        ["EDV-Gesamtaufgabe"],
+        0,
+        "Die EDV-Fehler werden gesammelt über die Multi-Auswahl bewertet.",
+        "edvcovered",
+        {block:"5. EDV Kenntnisse", signatureSeed:"edv-covered-v703-"+slot}
+      );
+    }
+  };
