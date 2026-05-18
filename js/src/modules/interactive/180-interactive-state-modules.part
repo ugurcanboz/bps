@@ -211,7 +211,7 @@
     const p=readProfile();
     const idShort=String(p.player_id||"").replace(/^plr_/,'').slice(0,12) || "lokal";
     return `<div class="premium-card profile-manager-card">
-      <span class="coach-badge">Profilverwaltung V7.0.2</span>
+      <span class="coach-badge">Profilverwaltung V7.0.3</span>
       <div class="coach-action">Name ändern</div>
       <p class="small">Dein sichtbarer Name kann geändert werden. Die interne Spieler-ID bleibt gleich, damit lokale Ergebnisse und spätere Sync-Funktionen stabil bleiben.</p>
       <div class="profile-edit-row"><input id="profileEditNameInput" data-profile-name-input="1" maxlength="32" value="${escHTML(p.name||"")}" placeholder="Dein Name" autocomplete="name" enterkeyhint="done"><button type="button" data-action="save-profile-name" onclick="App.saveProfileName()">Speichern</button></div><div id="profileSaveState" class="profile-save-state" aria-live="polite"></div>

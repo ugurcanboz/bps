@@ -13,7 +13,7 @@
         0,
         `Richtige Fehler: ${correctIds.join(", ")}.`,
         "edvmulti",
-        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v702-cloud-highscore"}
+        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v703-cloud-highscore"}
       );
     },
     bigEDVCovered(slot) {
@@ -25,7 +25,7 @@
         0,
         "Die EDV-Fehler werden gesammelt über die Multi-Auswahl bewertet.",
         "edvcovered",
-        {block:"5. EDV Kenntnisse", signatureSeed:"edv-covered-v702-"+slot}
+        {block:"5. EDV Kenntnisse", signatureSeed:"edv-covered-v703-"+slot}
       );
     }
   };

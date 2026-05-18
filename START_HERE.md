@@ -7,4 +7,4 @@ Für Weiterentwicklung:
 2. Danach ausführen: `node js/build/build-app-bundle.js`
 3. Danach testen: `node --check js/app.js`
 
-Aktuelle stabile Version: V7.0.2 Clean Stable.
+Aktuelle stabile Version: V7.0.3 Clean Stable.

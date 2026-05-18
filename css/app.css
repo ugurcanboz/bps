@@ -235,7 +235,6 @@ body.premium-ui{
 .modeCard{background:linear-gradient(180deg,rgba(255,255,255,.90),rgba(255,255,255,.62));border-color:rgba(255,255,255,.75)}.modeCard.selected{transform:translateY(-2px)}.modeCard .modeTitle::first-letter{font-size:120%}
 .quick-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:10px 0}.quick-actions button{margin:0}
 .premium-mini-label{font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-bottom:4px}
-}
 
 /* === SHARED MOBILE HELPER CLASSES === */
 .mobile-quick-strip{display:none}
@@ -261,6 +260,90 @@ body.premium-ui{
 .cloud-rank-main{display:grid;line-height:1.08}.cloud-rank-main small{color:#64748b;margin-top:2px}.cloud-rank-score{font-weight:950;text-align:right;display:grid;line-height:1.05}.cloud-rank-score small{font-weight:800;color:#64748b}
 @media(max-width:520px){.mobile-dashboard-more .cloud-highscore-card{display:block!important}.cloud-board-grid{grid-template-columns:1fr}.cloud-rank-row{font-size:13px}.cloud-rank-main small,.cloud-rank-score small{font-size:11px}}
 
-/* === V7.0.2 NOTE ===
+/* === V7.0.3 NOTE ===
    Mobile-Shell-Regeln liegen ausschließlich in css/mobile.css.
    app.css enthält nur Desktop/shared Komponenten und fachliche Module. */
+
+
+/* === V7.0.3 RESPONSIVE STABLE PATCH ===
+   Desktop und Mobile sind bewusst getrennt. Mobile-Dock-Regeln liegen in mobile.css,
+   Desktop bekommt hier eigene Navigation und feste Content-Breiten. */
+.app-nav.is-hidden{display:none!important;pointer-events:none!important}
+.mobile-top-nav.is-hidden{display:none!important;pointer-events:none!important}
+
+@media (min-width:901px){
+  html{overflow-x:hidden;scroll-padding-top:18px}
+  body{
+    padding:28px 24px 42px;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  body.mobile-shell-active{padding:28px 24px 42px!important}
+  .app{
+    width:min(1180px, calc(100vw - 48px));
+    max-width:1180px;
+    margin:0 auto;
+    padding:24px;
+    border-radius:34px;
+    overflow:visible;
+  }
+  body.premium-ui .app{background:linear-gradient(180deg,rgba(255,255,255,.86),rgba(255,255,255,.66))}
+  #mobileTopNav.mobile-top-nav{display:none!important;pointer-events:none!important}
+  #appNav.app-nav.is-desktop-tabs{
+    position:static!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:8px;
+    margin:10px 0 14px;
+    padding:7px;
+    border-radius:24px;
+    background:rgba(255,255,255,.70);
+    border:1px solid rgba(148,163,184,.24);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 12px 28px rgba(15,23,42,.05);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+  }
+  #appNav.app-nav.is-desktop-tabs button{
+    margin:0;
+    width:100%;
+    min-height:52px;
+    padding:10px 12px;
+    border-radius:18px;
+    background:transparent;
+    color:#334155;
+    border:0;
+    box-shadow:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:900;
+  }
+  #appNav.app-nav.is-desktop-tabs button span{font-size:20px;line-height:1}
+  #appNav.app-nav.is-desktop-tabs button em{font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #appNav.app-nav.is-desktop-tabs button:hover{background:rgba(15,23,42,.06);transform:translateY(-1px)}
+  #appNav.app-nav.is-desktop-tabs button.active{
+    background:linear-gradient(180deg,#111827,#1f2937);
+    color:#fff;
+    box-shadow:0 12px 30px rgba(15,23,42,.18);
+  }
+  .premium-hero{min-height:188px;padding:28px;border-radius:34px}
+  .premium-dashboard{grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:14px;align-items:stretch}
+  .desktop-dashboard-extra{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;grid-column:1/-1}
+  .mobile-dashboard-more,.mobile-quick-strip{display:none!important}
+  .hub-grid,.dashboard-section-grid,.highscore-section-grid,.settings-secondary-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .section-intro{padding:18px;border-radius:26px;background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.78);box-shadow:0 14px 34px rgba(15,23,42,.06);margin:12px 0}
+  .modeGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .modeTabs{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:7px}
+  .quick-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .row{grid-template-columns:1fr 1fr}
+  .visualBox{max-width:100%;overflow:auto}
+  .task-nav{grid-template-columns:repeat(4,1fr)}
+  button{max-width:100%}
+}
+
+@media (min-width:1200px){
+  .modeGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .premium-dashboard{grid-template-columns:1.15fr .85fr}
+}

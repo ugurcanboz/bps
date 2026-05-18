@@ -1,4 +1,4 @@
-# App Architecture V7.0.2 Clean Stable
+# App Architecture V7.0.3 Clean Stable
 
 ## Laufzeitstruktur
 - `index.html` lädt CSS, Cloud-Konfiguration, externe Question-Bank-Brücke und das gebündelte App-Script.

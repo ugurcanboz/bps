@@ -226,7 +226,7 @@
     const cloudBlock=`<div class="premium-card"><b>Cloud & Supabase</b><p class="small">Live-Diagnose, Online-Highscore und Cache-Neuladen.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud Diagnose öffnen</button></div>`;
     const audioBlock=`<div class="premium-card"><b>Audio & Feedback</b><p class="small">Platzhalter für Sound, Vibration und Prüfungsfeedback. Die Logik bleibt vorbereitet, ohne die Kernmodule zu berühren.</p></div>`;
     const dataBlock=`<div class="premium-card"><b>Daten & Backup</b><p class="small">Lokale Ergebnisse, IndexedDB, Export und Cache-Verwaltung.</p><div class="settings-button-row"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div></div>`;
-    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Core Cleanup V7.0.2 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
+    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Core Cleanup V7.0.3 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
     const blocks={profile:profileBlock,cloud:cloudBlock,audio:audioBlock,data:dataBlock,framework:frameworkBlock};
     return `<h2>Settings</h2><p>Profil, Cloud, Audio, Daten und Framework sind jetzt als Settings-Bereich gebündelt.</p>${blocks[tab] || profileBlock}<div class="settings-secondary-grid">${tab!=="profile"?profileBlock:""}${tab!=="cloud"?cloudBlock:""}${tab!=="audio"?audioBlock:""}${tab!=="data"?dataBlock:""}${tab!=="framework"?frameworkBlock:""}</div>`;
   }
@@ -994,7 +994,7 @@
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V7.0.2: vorbereitet, runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V7.0.3: vorbereitet, runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -1007,7 +1007,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "eignungstest-trainer-backup-v7-0-2.json";
+    a.download = "eignungstest-trainer-backup-v7-0-3.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
