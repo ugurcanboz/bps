@@ -1,5 +1,0 @@
-    ctcMathSprint(level) {
-      const q=choice([Generators.mul,Generators.div,Generators.percent,Generators.arithmetic,Generators.percentReverse,Generators.dreisatz])(level);
-      q.cat="Mathe-Sprint"; q.group="Mathe"; q.time=27; q.ex=(q.ex||"")+" Mathe-Sprint: 9 Aufgaben in 5 Minuten bedeutet schnelle Priorisierung.";
-      return q;
-    },
