@@ -1,0 +1,723 @@
+/* Guard, Analytics, SessionTracker, ErrorMemory, Coach/Adaptive/Dynamic/Learning/Highscore Engines. */
+  const Guard = {
+    safeNumber(value, fallback=0) { return Number.isFinite(Number(value)) ? Number(value) : fallback; },
+    validQuestion(q) {
+      if(!q || typeof q !== "object") return false;
+      if(typeof q.q !== "string") return false;
+      if(!Array.isArray(q.a) || q.a.length < 1) return false;
+      if(q.type === "routeMemory") return Array.isArray(q.routeStreets) && q.routeStreets.length >= 6;
+      if(q.type === "edvmulti") return Array.isArray(q.edvCorrectIds) && q.edvCorrectIds.length > 0;
+      if(q.type === "edvcovered") return true;
+      return typeof q.correct === "number" && q.correct >= 0 && q.correct < q.a.length;
+    },
+    repairQuestion(q) {
+      if(this.validQuestion(q)) return q;
+      return makeMC("System",20,"Diese Aufgabe konnte nicht geladen werden. Fahre mit „Weiter“ fort.",["Weiter"],0,"Die Aufgabe wurde durch einen sicheren Platzhalter ersetzt.");
+    },
+    normalizeResult(entry) {
+      return {
+        date:entry?.date || new Date().toISOString(),
+        mode:entry?.mode || "unknown",
+        title:entry?.title || "Unbekannter Modus",
+        score:this.safeNumber(entry?.score,0),
+        total:Math.max(1,this.safeNumber(entry?.total,1)),
+        percent:Math.max(0,Math.min(100,this.safeNumber(entry?.percent,0))),
+        duration:entry?.duration || "nicht erfasst",
+        avg:this.safeNumber(entry?.avg,0),
+        cats:entry?.cats && typeof entry.cats === "object" ? entry.cats : {},
+        exam:entry?.exam && typeof entry.exam === "object" ? entry.exam : {},
+        aiSession:entry?.aiSession && typeof entry.aiSession === "object" ? entry.aiSession : null,
+        schemaVersion:entry?.schemaVersion || DATA_MODEL.version,
+        id:entry?.id || null,
+        meta:entry?.meta && typeof entry.meta === "object" ? entry.meta : {},
+        appVersion:entry?.appVersion || APP_VERSION
+      };
+    }
+  };
+
+
+  const AnalyticsEngine = {
+    buildFromHistory(history, modeTitle="Aktueller Test") {
+      const items=(history||[]).filter(Boolean);
+      const total=items.length||1;
+      const wrong=items.filter(x=>!x.correct);
+      const correct=items.filter(x=>x.correct);
+      const open=items.filter(x=>x.givenIndex===null || x.skipped || x.timeout);
+      const avg=items.reduce((s,x)=>s+(x.duration||0),0)/total;
+      const fastWrong=wrong.filter(x=>(x.duration||0)<2500).length;
+      const timeoutWrong=wrong.filter(x=>x.timeout || x.givenIndex===null).length;
+      const cats={};
+      items.forEach(x=>{
+        const key=x.group||x.cat||"Sonstiges";
+        cats[key] ||= {total:0,correct:0,wrong:0,time:0,open:0};
+        cats[key].total++;
+        cats[key].time += x.duration||0;
+        if(x.correct) cats[key].correct++; else cats[key].wrong++;
+        if(x.givenIndex===null || x.skipped || x.timeout) cats[key].open++;
+      });
+      Object.values(cats).forEach(c=>{c.percent=Math.round((c.correct/Math.max(1,c.total))*100); c.avgMs=Math.round(c.time/Math.max(1,c.total));});
+      const timeProfile=items.map((x,i)=>({i:i+1,ms:x.duration||0,correct:!!x.correct,cat:x.group||x.cat||"Sonstiges"}));
+      const stress={fastWrong,timeoutWrong,openCount:open.length,avgMs:Math.round(avg),risk:(fastWrong>=3||timeoutWrong>=3||open.length>=3)?"hoch":(fastWrong>=1||timeoutWrong>=1)?"mittel":"niedrig"};
+      return {modeTitle,total,correct:correct.length,wrong:wrong.length,percent:Math.round((correct.length/total)*100),cats,stress,timeProfile,recommendations:this.recommend(cats,stress)};
+    },
+    recommend(cats,stress) {
+      const rec=[];
+      const sorted=Object.entries(cats).sort((a,b)=>a[1].percent-b[1].percent || b[1].wrong-a[1].wrong);
+      if(sorted.length && sorted[0][1].percent<75) rec.push({title:`Schwerpunkt: ${sorted[0][0]}`,text:`Trefferquote ${sorted[0][1].percent}%. Trainiere diesen Bereich gezielt.`});
+      const slow=Object.entries(cats).sort((a,b)=>b[1].avgMs-a[1].avgMs)[0];
+      if(slow && slow[1].avgMs>12000) rec.push({title:`Zeitfresser: ${slow[0]}`,text:`Ø ${Math.round(slow[1].avgMs/1000)} Sekunden. Setze Zeitlimit und überspringe Blockierer schneller.`});
+      if(stress.fastWrong>=2) rec.push({title:"Schnellklick-Risiko",text:"Mehrere Fehler entstanden sehr schnell. Regel komplett lesen, dann klicken."});
+      if(stress.timeoutWrong>=2) rec.push({title:"Zeitmanagement",text:"Mehrere Aufgaben blieben offen oder liefen ab. Schwierige Aufgaben markieren und weitergehen."});
+      if(stress.risk==="niedrig" && (!sorted.length || sorted[0][1].percent>=80)) rec.push({title:"Stabiler Lauf",text:"Leistung wirkt kontrolliert. Erhöhe Prüfungsmodus oder Schwierigkeit."});
+      if(!rec.length) rec.push({title:"Solide Basis",text:"Wiederhole den Modus und achte auf konstante Bearbeitungszeiten."});
+      return rec.slice(0,4);
+    },
+    buildFromResults(results) {
+      const data=(results||[]).filter(Boolean);
+      if(!data.length) return {empty:true};
+      const avg=Math.round(data.reduce((s,r)=>s+(r.percent||0),0)/data.length);
+      const best=data.reduce((a,b)=>(b.percent||0)>(a.percent||0)?b:a,data[0]);
+      const modes={};
+      data.forEach(r=>{const k=r.title||r.mode; modes[k] ||= {runs:0,avg:0,sum:0,best:0}; modes[k].runs++; modes[k].sum+=r.percent||0; modes[k].best=Math.max(modes[k].best,r.percent||0);});
+      Object.values(modes).forEach(m=>m.avg=Math.round(m.sum/Math.max(1,m.runs)));
+      return {empty:false,runs:data.length,avg,best,modes,recent:data.slice(-10)};
+    }
+  };
+
+  const SessionTracker = {
+    classifyAttempt(h) {
+      if(!h) return "unknown";
+      if(h.correct) return "correct";
+      if(h.timeout) return "timeout";
+      if(h.givenIndex === null || h.skipped) return "open";
+      const allowedMs = Math.max(1, Number(h.allowed || 0)) * 1000;
+      if((h.duration || 0) < 2500) return "fastWrong";
+      if(allowedMs > 1000 && (h.duration || 0) > allowedMs * 0.85) return "pressureWrong";
+      if(String(h.group||"").includes("Konzentration")) return "attentionError";
+      if(String(h.group||"").includes("Visual")) return "patternError";
+      if(String(h.group||"").includes("Mathe")) return "calculationError";
+      return "wrong";
+    },
+    buildSession(history, mode, title) {
+      const items=(history||[]).filter(Boolean);
+      const total=Math.max(1,items.length);
+      const errors={};
+      const groups={};
+      items.forEach(h=>{
+        const group=h.group||groupFor(h.cat)||"Sonstiges";
+        const err=this.classifyAttempt(h);
+        groups[group] ||= {total:0,correct:0,wrong:0,time:0,open:0,pressure:0};
+        groups[group].total++;
+        if(h.correct) groups[group].correct++; else groups[group].wrong++;
+        groups[group].time += h.duration||0;
+        if(h.givenIndex===null || h.skipped || h.timeout) groups[group].open++;
+        if(["timeout","pressureWrong"].includes(err)) groups[group].pressure++;
+        if(err!=="correct") errors[err]=(errors[err]||0)+1;
+      });
+      Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
+      return {
+        version:"7.0.2",
+        mode,
+        title,
+        total,
+        correct:items.filter(h=>h.correct).length,
+        percent:Math.round(items.filter(h=>h.correct).length/total*100),
+        groups,
+        errors,
+        pressureErrors:(errors.timeout||0)+(errors.pressureWrong||0),
+        openCount:(errors.open||0),
+        fastWrong:errors.fastWrong||0,
+        createdAt:new Date().toISOString()
+      };
+    }
+  };
+
+  const ErrorMemory = {
+    aggregate(results) {
+      const memory={byGroup:{}, byError:{}, totalAttempts:0, totalWrong:0};
+      (results||[]).forEach(r=>{
+        const session=r.aiSession;
+        if(session && session.groups) {
+          memory.totalAttempts += session.total||0;
+          memory.totalWrong += Math.max(0,(session.total||0)-(session.correct||0));
+          Object.entries(session.groups).forEach(([group,g])=>{
+            memory.byGroup[group] ||= {total:0,correct:0,wrong:0,time:0,pressure:0,open:0};
+            memory.byGroup[group].total += g.total||0;
+            memory.byGroup[group].correct += g.correct||0;
+            memory.byGroup[group].wrong += g.wrong||0;
+            memory.byGroup[group].time += (g.avgMs||0) * (g.total||0);
+            memory.byGroup[group].pressure += g.pressure||0;
+            memory.byGroup[group].open += g.open||0;
+          });
+          Object.entries(session.errors||{}).forEach(([k,v])=>memory.byError[k]=(memory.byError[k]||0)+v);
+        } else {
+          Object.entries(r.cats||{}).forEach(([group,g])=>{
+            memory.byGroup[group] ||= {total:0,correct:0,wrong:0,time:0,pressure:0,open:0};
+            memory.byGroup[group].total += g.n||0;
+            memory.byGroup[group].correct += g.r||0;
+            memory.byGroup[group].wrong += Math.max(0,(g.n||0)-(g.r||0));
+            memory.byGroup[group].time += g.t||0;
+            memory.totalAttempts += g.n||0;
+            memory.totalWrong += Math.max(0,(g.n||0)-(g.r||0));
+          });
+        }
+      });
+      Object.values(memory.byGroup).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
+      return memory;
+    }
+  };
+
+  const DataReadiness = {
+    requiredSimulations:3,
+    evaluate(results) {
+      const sims=(results||[]).filter(r=>r.mode==="ctcLohr" && (r.total||0)>=90);
+      const simulationCount=sims.length;
+      const percent=Math.min(100, Math.round(simulationCount/this.requiredSimulations*100));
+      const remaining=Math.max(0,this.requiredSimulations-simulationCount);
+      const status=percent>=100?"aktiv":"sammelt";
+      return {percent,simulationCount,required:this.requiredSimulations,remaining,status,ready:percent>=100};
+    }
+  };
+
+  const WeaknessProfile = {
+    build(memory) {
+      return Object.entries(memory.byGroup||{}).map(([group,g])=>{
+        const wrongRate=1-(g.correct/Math.max(1,g.total));
+        const pressureRate=(g.pressure||0)/Math.max(1,g.total);
+        const openRate=(g.open||0)/Math.max(1,g.total);
+        const score=Math.round((wrongRate*70 + pressureRate*20 + openRate*10)*100)/100;
+        return {group,total:g.total,percent:g.percent,wrong:g.wrong,avgMs:g.avgMs,pressure:g.pressure||0,score};
+      }).filter(x=>x.total>0).sort((a,b)=>b.score-a.score || a.percent-b.percent).slice(0,5);
+    }
+  };
+
+  const CognitiveProfile = {
+    build(memory, readiness) {
+      const g=memory.byGroup||{};
+      const scoreFor=(names)=>{
+        const items=Object.entries(g).filter(([k])=>names.some(n=>k.includes(n)));
+        const total=items.reduce((s,[,v])=>s+(v.total||0),0);
+        if(!total) return readiness.ready ? 50 : 0;
+        return Math.round(items.reduce((s,[,v])=>s+(v.correct||0),0)/total*100);
+      };
+      const precision=memory.totalAttempts?Math.round((1-memory.totalWrong/Math.max(1,memory.totalAttempts))*100):0;
+      const pressureErrors=(memory.byError.timeout||0)+(memory.byError.pressureWrong||0)+(Object.values(g).reduce((s,v)=>s+(v.pressure||0),0));
+      const pressure=Math.max(0, Math.min(100, 100-Math.round(pressureErrors/Math.max(1,memory.totalAttempts)*220)));
+      const profile={
+        "Rechengeschwindigkeit":scoreFor(["Mathe"]),
+        "Mustererkennung":scoreFor(["Logik","Visual"]),
+        "Technisches Denken":scoreFor(["Mechanik","IT/FISI","Visual"]),
+        "Konzentration":scoreFor(["Konzentration"]),
+        "Präzision":precision,
+        "Druckstabilität":memory.totalAttempts?pressure:0
+      };
+      return Object.entries(profile).map(([name,score])=>({name,score,label:this.label(score,readiness)}));
+    },
+    label(score,readiness){ if(!readiness.ready && score===0) return "sammelt"; if(score>=85) return "sehr hoch"; if(score>=70) return "hoch"; if(score>=55) return "mittel"; if(score>=40) return "aufbauen"; return "kritisch"; }
+  };
+
+  const TrainingFocusEngine = {
+    options:{
+      auto:{key:"auto",label:"KI Auto",group:null,mode:"ctc",hint:"KI darf den Schwerpunkt frei empfehlen."},
+      math:{key:"math",label:"Mathe",group:"Mathe",mode:"mathSprint",hint:"Manueller Schwerpunkt: Kopfrechnen, Prozent, Bruch und Dreisatz."},
+      mental:{key:"mental",label:"Kopfrechnen",group:"Mathe",mode:"math",hint:"Fokus auf Mathe-Grundtraining und schnelles Rechnen."},
+      concentration:{key:"concentration",label:"Konzentration",group:"Konzentration",mode:"concentrationSprint",hint:"Fokus auf Aufmerksamkeit und Scanneraufgaben."},
+      visual:{key:"visual",label:"Visual IQ",group:"Visual IQ",mode:"visualIQSprint",hint:"Fokus auf Würfel, Matrizen, Zahnräder und Technikbilder."},
+      it:{key:"it",label:"IT/FISI",group:"IT/FISI",mode:"itSprint",hint:"Fokus auf Netzwerk, Hardware, Security und FISI."}
+    },
+    read(){
+      try{ const key=localStorage.getItem(FOCUS_KEY)||"auto"; return this.options[key]?key:"auto"; }
+      catch(e){ return "auto"; }
+    },
+    write(key){
+      const safe=this.options[key]?key:"auto";
+      try{ localStorage.setItem(FOCUS_KEY,safe); }catch(e){}
+      return safe;
+    },
+    current(){ return this.options[this.read()] || this.options.auto; },
+    isManual(){ return this.current().key !== "auto"; },
+    render(){
+      const el=$("focusControls"); if(!el) return;
+      const active=this.read();
+      const buttons=Object.values(this.options).map(o=>`<button class="${active===o.key?"active":""}" onclick="App.setTrainingFocus('${o.key}')">${escHTML(o.label)}</button>`).join("");
+      const cur=this.current();
+      el.innerHTML=`${buttons}<div class="focus-note"><b>KI-Fokus:</b> ${escHTML(cur.hint)} Normale Trainingsmodi bleiben strikt bei ihrem gewählten Bereich. Die KI darf nur innerhalb dieses Rahmens justieren.</div>`;
+    }
+  };
+
+  const RecommendationEngine = {
+    modeForGroup(group) {
+      if(!group) return "ctcLohr";
+      if(group.includes("Mathe")) return "mathSprint";
+      if(group.includes("Konzentration")) return "concentrationSprint";
+      if(group.includes("Visual") || group.includes("Mechanik") || group.includes("Raum")) return "visualIQSprint";
+      if(group.includes("IT")) return "itSprint";
+      if(group.includes("Allgemein")) return "knowledgeSprint";
+      if(group.includes("Logik")) return "logicSprint";
+      return "errorTrainingPrep";
+    },
+    build(readiness, weaknesses, memory) {
+      const focus = TrainingFocusEngine.current();
+      if(focus.key !== "auto") {
+        const suffix = readiness.ready ? "Die KI wertet Schwächen weiter im Hintergrund aus." : `Datenbasis wird weiter gesammelt: noch ${readiness.remaining} Simulation${readiness.remaining===1?"":"en"}.`;
+        return {title:`Fokus: ${focus.label}`,text:`Manueller Trainingsfokus aktiv. ${suffix}`,mode:focus.mode,manualFocus:true,focusGroup:focus.group};
+      }
+      if(!readiness.ready) return {title:"KI sammelt Daten",text:`Noch ${readiness.remaining} vollständige Simulation${readiness.remaining===1?"":"en"} nötig. Blocktraining zählt als Zusatzdaten, ersetzt aber die Diagnose nicht.`,mode:"ctcLohr"};
+      const top=weaknesses[0];
+      if(top) return {title:`Fokus: ${top.group}`,text:`Aktuelle Trefferquote ${top.percent}%. Empfehlung basiert auf ${top.total} Aufgaben und globalem Fehlerprofil.`,mode:this.modeForGroup(top.group)};
+      if((memory.byError.fastWrong||0)>=3) return {title:"Tempo kontrollieren",text:"Mehrere schnelle Fehler erkannt. Starte Konzentration Sprint mit ruhigerem Vorgehen.",mode:"concentrationSprint"};
+      return {title:"Stabilisierung",text:"Datenbasis ist aktiv. Nächster sinnvoller Lauf: Simulation unter Prüfungsbedingungen.",mode:"ctcLohr"};
+    }
+  };
+
+  const AdaptiveDifficultyEngine = {
+    levelFromPercent(percent) {
+      const p = Number(percent)||0;
+      if(p >= 85) return "hard";
+      if(p >= 65) return "medium";
+      return "easy";
+    },
+    build(readiness, weaknesses, memory) {
+      const total = Math.max(1, memory.totalAttempts || 0);
+      const precision = Math.round((1 - (memory.totalWrong || 0) / total) * 100);
+      const pressureErrors = (memory.byError.timeout || 0) + (memory.byError.pressureWrong || 0) + Object.values(memory.byGroup||{}).reduce((s,g)=>s+(g.pressure||0),0);
+      const pressureRate = pressureErrors / total;
+      const topWeak = weaknesses[0] || null;
+      let globalLevel = this.levelFromPercent(precision);
+      if(!readiness.ready) globalLevel = "medium";
+      if(topWeak && topWeak.percent < 45) globalLevel = "easy";
+      if(precision >= 82 && pressureRate < .12 && readiness.ready) globalLevel = "hard";
+      const timeFactor = pressureRate > .22 ? 1.15 : pressureRate < .08 && precision >= 75 ? .90 : 1;
+      const focusGroup = topWeak ? topWeak.group : null;
+      return {
+        globalLevel,
+        precision,
+        pressureRate:Math.round(pressureRate*100),
+        timeFactor,
+        focusGroup,
+        active:readiness.ready,
+        label:readiness.ready ? (globalLevel==="hard"?"fordernd":globalLevel==="easy"?"stabilisierend":"realistisch") : "sammelt Daten"
+      };
+    },
+    levelForGroup(group, baseLevel, coach) {
+      if(!coach || !coach.adaptive || !coach.adaptive.active) return baseLevel;
+      const weak = (coach.weaknesses||[]).find(w=>w.group===group);
+      if(weak && weak.percent < 50) return "easy";
+      if(weak && weak.percent < 70) return "medium";
+      return coach.adaptive.globalLevel || baseLevel;
+    },
+    timeFor(q, coach) {
+      if(!q || !coach || !coach.adaptive || !coach.adaptive.active) return q?.time || 25;
+      const factor = coach.adaptive.timeFactor || 1;
+      return Math.max(10, Math.round((q.time || 25) * factor));
+    }
+  };
+
+  const DynamicGeneratorEngine = {
+    allGroups:["Mathe","Logik","Allgemeinwissen","Englisch","IT/FISI","Konzentration","Mechanik","Raumdenken","Visual IQ","Gedächtnis"],
+    buildMix(coach, mode="ctc") {
+      const mix=[];
+      const focus=TrainingFocusEngine.current();
+      if(focus.key !== "auto" && focus.group) mix.push({group:focus.group,weight:160,source:"manualFocus"});
+      const weaknessGroups=(coach?.weaknesses||[]).slice(0,4).map(w=>w.group);
+      weaknessGroups.forEach((group,i)=>{
+        if(focus.key !== "auto" && group === focus.group) return;
+        mix.push({group,weight:focus.key !== "auto" ? Math.max(8,18-i*4) : Math.max(18,34-i*6),source:"weakness"});
+      });
+      if((coach?.memory?.byError?.fastWrong||0)>=3 && !(focus.key!=="auto" && focus.group!=="Konzentration")) mix.push({group:"Konzentration",weight:focus.key!=="auto"?10:24,source:"fastWrong"});
+      if((coach?.memory?.byError?.patternError||0)>=3 && !(focus.key!=="auto" && focus.group!=="Visual IQ")) mix.push({group:"Visual IQ",weight:focus.key!=="auto"?10:24,source:"pattern"});
+      if((coach?.memory?.byError?.calculationError||0)>=3) mix.push({group:"Mathe",weight:focus.group==="Mathe"?32:24,source:"calculation"});
+      this.allGroups.forEach(group=>{ if(!mix.some(x=>x.group===group)) mix.push({group,weight:focus.key !== "auto" ? 2 : 8,source:"coverage"}); });
+      return mix.filter(x=>x.group).slice(0,12);
+    },
+    weightedPick(mix) {
+      const list=(mix&&mix.length?mix:this.allGroups.map(group=>({group,weight:1,source:"fallback"})));
+      const total=list.reduce((s,x)=>s+(x.weight||1),0);
+      let r=Math.random()*total;
+      for(const item of list){ r -= item.weight||1; if(r<=0) return item; }
+      return list[list.length-1];
+    },
+    buildQuestion(index,total,coach) {
+      const warmup = index < Math.min(12,total*.18);
+      const focus=TrainingFocusEngine.current();
+      const mix=this.buildMix(coach,"ctc");
+      const picked = focus.key !== "auto" && focus.group
+        ? (warmup ? {group:focus.group, source:"manualFocusWarmup", weight:160} : this.weightedPick(mix))
+        : (warmup ? {group:this.allGroups[index % this.allGroups.length], source:"coverage", weight:10} : this.weightedPick(mix));
+      const baseLevel = warmup ? "medium" : (coach?.adaptive?.globalLevel || "medium");
+      const level = AdaptiveDifficultyEngine.levelForGroup(picked.group, baseLevel, coach);
+      const gen=generatorByCat(picked.group);
+      const q=gen(level);
+      q.group=picked.group;
+      q.aiSource=picked.source;
+      q.aiLevel=level;
+      q.aiAdaptive=true;
+      q.time=AdaptiveDifficultyEngine.timeFor(q, coach);
+      q.signature=stableSignature(q)+"|ai|"+picked.group+"|"+picked.source+"|"+index;
+      return Guard.repairQuestion(q);
+    },
+    explainMix(mix) {
+      return (mix||[]).slice(0,5).map(x=>`${x.group}: ${x.weight}`).join(" · ");
+    }
+  };
+
+  const LearningMemoryEngine = {
+    build(results, memory) {
+      const repeatErrors = Object.entries(memory.byGroup||{}).map(([group,g])=>({
+        group,
+        wrong:g.wrong||0,
+        open:g.open||0,
+        pressure:g.pressure||0,
+        percent:g.percent||0,
+        avgMs:g.avgMs||0,
+        priority:Math.round(((g.wrong||0)*2 + (g.open||0)*1.4 + (g.pressure||0)*1.2) * 10) / 10
+      })).filter(x=>x.wrong || x.open || x.pressure).sort((a,b)=>b.priority-a.priority).slice(0,6);
+      const recent=(results||[]).slice(-6);
+      const trend=recent.length ? Math.round(recent.reduce((s,r)=>s+(r.percent||0),0)/recent.length) : 0;
+      const last=recent[recent.length-1]||null;
+      const previous=recent.length>1 ? recent[recent.length-2] : null;
+      const direction=last&&previous ? (last.percent>previous.percent?"steigend":last.percent<previous.percent?"fallend":"stabil") : "sammelt";
+      const openTasks=repeatErrors.reduce((s,x)=>s+(x.open||0),0);
+      const paceRisk=Object.values(memory.byGroup||{}).some(g=>(g.avgMs||0)>15000) ? "hoch" : Object.values(memory.byGroup||{}).some(g=>(g.avgMs||0)>10000) ? "mittel" : "niedrig";
+      return {repeatErrors,trend,direction,openTasks,paceRisk,totalRuns:(results||[]).length};
+    },
+    summary(learning) {
+      if(!learning || !learning.repeatErrors || !learning.repeatErrors.length) return "Keine wiederkehrenden Fehler erkannt.";
+      const top=learning.repeatErrors[0];
+      return `${top.group}: ${top.wrong} Fehler, ${top.open} offen, Priorität ${top.priority}`;
+    }
+  };
+
+  const FullSimulationEngine = {
+    build(results, coach, learning) {
+      const sims=(results||[]).filter(r=>r.mode==="ctcLohr" && (r.total||0)>=90);
+      const lastSim=sims[sims.length-1]||null;
+      const bestSim=sims.length ? sims.reduce((a,b)=>(b.percent||0)>(a.percent||0)?b:a,sims[0]) : null;
+      const groups=["Allgemeinwissen","Mathe","Logik","Konzentration","IT/FISI","Visual IQ","Mechanik","Gedächtnis"];
+      const covered=groups.filter(g=>coach.memory.byGroup && coach.memory.byGroup[g] && coach.memory.byGroup[g].total>0);
+      const coverage=Math.round(covered.length/groups.length*100);
+      const riskScore=(coach.weaknesses||[]).slice(0,3).reduce((s,w)=>s+(100-(w.percent||0)),0);
+      const risk=riskScore>130 || learning.paceRisk==="hoch" ? "hoch" : riskScore>75 || learning.paceRisk==="mittel" ? "mittel" : "niedrig";
+      const ready=coach.readiness.ready && coverage>=60 && risk!=="hoch";
+      const next=ready ? "Simulation unter Prüfungsbedingungen wiederholen" : (coach.recommendation?.title || "gezieltes Blocktraining");
+      return {simulationCount:sims.length,lastSim,bestSim,coverage,covered,missing:groups.filter(g=>!covered.includes(g)),risk,ready,next};
+    },
+    label(sim) {
+      if(!sim) return "sammelt Daten";
+      if(sim.ready) return "prüfungsnah bereit";
+      if(sim.risk==="hoch") return "noch stabilisieren";
+      return "im Aufbau";
+    }
+  };
+
+
+
+  const CloudHighscoreEngine = {
+    periods:[
+      {key:"daily", label:"Heute"},
+      {key:"weekly", label:"Woche"},
+      {key:"monthly", label:"Monat"},
+      {key:"all", label:"Gesamt"}
+    ],
+    config() {
+      const defaults = {
+        enabled:true,
+        provider:"supabase",
+        supabaseUrl:"",
+        anonKey:"",
+        table:"highscores",
+        limit:20,
+        allowAnonymous:true,
+        classCode:"default"
+      };
+      const cfg = (typeof window !== "undefined" && window.CLOUD_HIGHSCORE_CONFIG && typeof window.CLOUD_HIGHSCORE_CONFIG === "object") ? window.CLOUD_HIGHSCORE_CONFIG : {};
+      const merged = {...defaults, ...cfg};
+      merged.limit = Math.max(3, Math.min(100, Number(merged.limit || defaults.limit)));
+      merged.supabaseUrl = String(merged.supabaseUrl || "").trim().replace(/\/$/, "");
+      merged.anonKey = String(merged.anonKey || "").trim();
+      merged.table = String(merged.table || "highscores").trim();
+      merged.classCode = String(merged.classCode || "default").trim() || "default";
+      return merged;
+    },
+    missingFields() {
+      const c=this.config();
+      const miss=[];
+      if(!c.enabled) miss.push("enabled=false");
+      if(c.provider !== "supabase") miss.push("provider");
+      if(!/^https:\/\/[^\s]+\.supabase\.co$/i.test(c.supabaseUrl)) miss.push("supabaseUrl");
+      if(!c.anonKey || c.anonKey.length < 30) miss.push("anonKey");
+      if(!c.table) miss.push("table");
+      return miss;
+    },
+    isConfigured() {
+      return this.missingFields().length === 0;
+    },
+    endpoint(path="") {
+      const c=this.config();
+      return c.supabaseUrl + "/rest/v1/" + encodeURIComponent(c.table) + path;
+    },
+    headers(extra={}) {
+      const c=this.config();
+      const base = {"apikey":c.anonKey,"Authorization":"Bearer "+c.anonKey,"Content-Type":"application/json"};
+      return {...base, ...extra};
+    },
+    deviceId() {
+      const key="eignungstest_trainer_device_id_v1";
+      try {
+        let id=localStorage.getItem(key);
+        if(!id){ id="dev_"+Math.random().toString(36).slice(2)+Date.now().toString(36); localStorage.setItem(key,id); }
+        return id;
+      } catch(e) { return "dev_session"; }
+    },
+    playerName() {
+      const p = typeof readProfile === "function" ? readProfile() : {};
+      const raw = String(p.name || "").trim().slice(0,32);
+      if(raw) return raw;
+      return this.config().allowAnonymous ? "Gast" : "Unbenannt";
+    },
+    rankLabel(percent) {
+      return HighscoreEngine.rankLabel(percent);
+    },
+    periodStart(period) {
+      const now=new Date();
+      if(period==="daily") return new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+      if(period==="weekly") {
+        const d=new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const day=(d.getDay()+6)%7;
+        d.setDate(d.getDate()-day);
+        return d.toISOString();
+      }
+      if(period==="monthly") return new Date(now.getFullYear(), now.getMonth(), 1).toISOString();
+      return "";
+    },
+    cleanRecord(result) {
+      const r=Guard.normalizeResult(result||{});
+      const c=this.config();
+      return {
+        player_name:this.playerName(),
+        class_code:c.classCode.slice(0,40),
+        device_id:this.deviceId(),
+        mode:String(r.mode || "unknown").slice(0,60),
+        title:String(r.title || "Unbekannter Test").slice(0,120),
+        percent:Math.max(0,Math.min(100,Number(r.percent)||0)),
+        score:Number(r.score)||0,
+        total:Number(r.total)||0,
+        duration:String(r.duration || "").slice(0,60),
+        rank:this.rankLabel(r.percent),
+        app_version:APP_VERSION
+      };
+    },
+    async submit(result) {
+      if(!this.isConfigured()) return {ok:false,reason:"Cloud Highscore nicht verbunden",missing:this.missingFields()};
+      const payload=this.cleanRecord(result);
+      if(!payload.total || !Number.isFinite(payload.percent)) return {ok:false,reason:"Ungültiger Highscore-Datensatz"};
+      const response=await fetch(this.endpoint(), {method:"POST", headers:this.headers({"Prefer":"return=minimal"}), body:JSON.stringify(payload)});
+      if(!response.ok) {
+        const text = await response.text().catch(()=>"");
+        throw new Error("Cloud Highscore Upload fehlgeschlagen: "+response.status+(text?" · "+text.slice(0,180):""));
+      }
+      return {ok:true,record:payload};
+    },
+    async fetchTop(period="all") {
+      if(!this.isConfigured()) return {ok:false,reason:"Cloud Highscore nicht verbunden",missing:this.missingFields(),items:[]};
+      const c=this.config();
+      const filters=[
+        "select=player_name,mode,title,percent,score,total,duration,rank,created_at,app_version",
+        "class_code=eq."+encodeURIComponent(c.classCode),
+        "order=percent.desc,score.desc,created_at.asc",
+        "limit="+encodeURIComponent(c.limit)
+      ];
+      const start=this.periodStart(period);
+      if(start) filters.push("created_at=gte."+encodeURIComponent(start));
+      const response=await fetch(this.endpoint("?"+filters.join("&")), {method:"GET", headers:this.headers({"Cache-Control":"no-cache"})});
+      if(!response.ok) {
+        const text = await response.text().catch(()=>"");
+        throw new Error("Cloud Highscore Abruf fehlgeschlagen: "+response.status+(text?" · "+text.slice(0,180):""));
+      }
+      const items=await response.json();
+      return {ok:true,period,items:Array.isArray(items)?items:[]};
+    },
+    async fetchBoards() {
+      if(!this.isConfigured()) return {ok:false,boards:{},reason:"Cloud Highscore nicht verbunden",missing:this.missingFields()};
+      const boards={};
+      for(const p of this.periods) {
+        try { boards[p.key]=(await this.fetchTop(p.key)).items || []; }
+        catch(error) { boards[p.key]={error:String(error && error.message ? error.message : error)}; }
+      }
+      return {ok:true,boards};
+    },
+    renderRows(rows, limit=5) {
+      if(rows && rows.error) return `<div class="small">${escHTML(rows.error)}</div>`;
+      const list=Array.isArray(rows) ? rows.slice(0,limit) : [];
+      if(!list.length) return `<div class="small">Noch keine Einträge in diesem Zeitraum.</div>`;
+      return `<div class="cloud-rank-list">${list.map((r,i)=>`<div class="cloud-rank-row"><span class="cloud-rank-pos">#${i+1}</span><span class="cloud-rank-main"><b>${escHTML(r.player_name||"Gast")}</b><small>${escHTML(r.title||r.mode||"Test")}</small></span><span class="cloud-rank-score">${Number(r.percent)||0}%<small>${escHTML(r.rank||this.rankLabel(r.percent))}</small></span></div>`).join("")}</div>`;
+    },
+    renderShell() {
+      const configured=this.isConfigured();
+      const miss=this.missingFields();
+      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div></div>`;
+    },
+    async refreshDashboard() {
+      const el=$("cloudHighscoreCard");
+      if(!el) return;
+      if(!this.isConfigured()) {
+        const miss=this.missingFields();
+        el.innerHTML=`<span class="coach-badge">Cloud Highscore · aktivierbar</span><div class="coach-action">Cloud nicht verbunden</div><div class="small">Keine Fake-Rangliste. Trage echte Supabase URL und anon key in <code>data/cloud-config.js</code> ein. Fehlend: ${escHTML(miss.join(", "))}.</div>`;
+        return;
+      }
+      el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking wird geladen...</div><div class="small">Supabase wird live abgefragt.</div>`;
+      try {
+        const res=await this.fetchBoards();
+        const boards=res.boards||{};
+        const total=Object.values(boards).reduce((s,rows)=>s+(Array.isArray(rows)?rows.length:0),0);
+        el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking aktiv</div><div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="small">${total?"Live aus Supabase geladen":"Noch keine Cloud-Highscores gespeichert"} · Klasse: ${escHTML(this.config().classCode)} · Tabelle: ${escHTML(this.config().table)}</div>`;
+      } catch(error) {
+        el.innerHTML=`<span class="coach-badge">Cloud Highscore · Fehler</span><div class="coach-action">Verbindung fehlgeschlagen</div><div class="small">${escHTML(error && error.message ? error.message : error)}</div>`;
+      }
+    },
+    diagnostics() {
+      const c=this.config();
+      const missing=this.missingFields();
+      return {
+        enabled:!!c.enabled,
+        configured:missing.length===0,
+        missing,
+        provider:c.provider,
+        table:c.table,
+        classCode:c.classCode || "default",
+        urlSet:!!c.supabaseUrl,
+        keySet:!!c.anonKey,
+        urlHost:c.supabaseUrl ? c.supabaseUrl.replace(/^https?:\/\//,"") : "",
+        configLoaded:!!(typeof window !== "undefined" && window.CLOUD_HIGHSCORE_CONFIG),
+        source:"data/cloud-config.js",
+        periods:this.periods.map(p=>p.key)
+      };
+    },
+    async testConnection() {
+      const d=this.diagnostics();
+      if(!d.configured) return {...d, online:false, readOk:false, writeReady:false, status:"config-missing", error:"Fehlende Konfiguration: "+d.missing.join(", ")};
+      try {
+        const c=this.config();
+        const qs=`?select=player_name,percent,created_at&class_code=eq.${encodeURIComponent(c.classCode)}&order=created_at.desc&limit=1`;
+        const response=await fetch(this.endpoint(qs), {method:"GET", headers:this.headers({"Cache-Control":"no-cache"})});
+        const text=await response.text().catch(()=>"");
+        if(!response.ok) {
+          return {...d, online:false, readOk:false, writeReady:false, status:"supabase-error", httpStatus:response.status, error:text.slice(0,240) || response.statusText};
+        }
+        let items=[];
+        try { items=JSON.parse(text || "[]"); } catch(_) { items=[]; }
+        return {...d, online:true, readOk:true, writeReady:true, status:"online", httpStatus:response.status, sampleCount:Array.isArray(items)?items.length:0, error:""};
+      } catch(error) {
+        return {...d, online:false, readOk:false, writeReady:false, status:"network-error", error:String(error && error.message ? error.message : error)};
+      }
+    }
+  };
+
+  const HighscoreEngine = {
+    maxItems:10,
+    build(results=[]) {
+      const list=(results||[]).map(r=>Guard.normalizeResult(r)).filter(r=>Number.isFinite(Number(r.percent))).sort((a,b)=>(b.percent||0)-(a.percent||0) || (b.score||0)-(a.score||0));
+      const bestOverall=list[0]||null;
+      const bestSimulation=list.filter(r=>r.mode==="ctcLohr")[0]||null;
+      const byMode={};
+      list.forEach(r=>{ const key=r.mode||r.title||"unknown"; if(!byMode[key]) byMode[key]=r; });
+      return {total:list.length,bestOverall,bestSimulation,top:list.slice(0,this.maxItems),byMode,updatedAt:new Date().toISOString(),source:"local"};
+    },
+    rankLabel(percent) {
+      const p=Number(percent)||0;
+      if(p>=85) return "Diamond";
+      if(p>=70) return "Platin";
+      if(p>=55) return "Gold";
+      if(p>=40) return "Silber";
+      return "Bronze";
+    },
+    toRecord(result) {
+      const r=Guard.normalizeResult(result||{});
+      const p=readProfile(); return {date:r.date,mode:r.mode,title:r.title,percent:r.percent,score:r.score,total:r.total,duration:r.duration,rank:this.rankLabel(r.percent),player_name:p.name||"Gast",player_id:p.player_id,source:"session",createdAt:new Date().toISOString()};
+    },
+    async persistFromResults(results=[]) {
+      if(!IndexedDBEngine.status.supported) return {ok:false,reason:"IndexedDB nicht verfügbar"};
+      try {
+        const hs=this.build(results).top.map(r=>this.toRecord(r));
+        await IndexedDBEngine.replaceAll("highscores", hs);
+        return {ok:true,count:hs.length};
+      } catch(error) {
+        return {ok:false,reason:String(error && error.message ? error.message : error)};
+      }
+    },
+    renderDashboard(results=[]) {
+      const hs=this.build(results);
+      const top=hs.top.slice(0,3);
+      const local = !top.length
+        ? `<div class="premium-card"><span class="coach-badge">Lokaler Highscore</span><div class="coach-action">Noch kein Rekord</div><div class="small">Starte einen Test. Danach erscheint hier deine lokale Bestenliste live im Dashboard.</div></div>`
+        : `<div class="premium-card"><span class="coach-badge">Lokaler Highscore</span><div class="coach-action">Bestwert: ${hs.bestOverall.percent}%</div><div class="ai-list">${top.map((r,i)=>`<div>${i+1}. <b>${escHTML(r.title||r.mode)}</b> · ${r.percent}% · ${escHTML(this.rankLabel(r.percent))}</div>`).join("")}</div><div class="small">Lokale Sicherheits-Bestenliste auf diesem Gerät.</div></div>`;
+      setTimeout(()=>CloudHighscoreEngine.refreshDashboard(),0);
+      return CloudHighscoreEngine.renderShell() + local;
+    }
+  };
+
+  const CoachEngine = {
+    build(results) {
+      const normalized=(results||[]).map(r=>Guard.normalizeResult(r));
+      const readiness=DataReadiness.evaluate(normalized);
+      const memory=ErrorMemory.aggregate(normalized);
+      const weaknesses=WeaknessProfile.build(memory);
+      const cognitive=CognitiveProfile.build(memory,readiness);
+      const recommendation=RecommendationEngine.build(readiness,weaknesses,memory);
+      const adaptive=AdaptiveDifficultyEngine.build(readiness,weaknesses,memory);
+      const baseCoach={readiness,memory,weaknesses,cognitive,recommendation,adaptive};
+      const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
+      const learning=LearningMemoryEngine.build(normalized,memory);
+      const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
+      return {version:"7.0.2",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+    },
+    renderDashboard(coach) {
+      const r=coach.readiness;
+      const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
+      const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
+      return `<div class="premium-card ai-card">
+        <span class="coach-badge">AI Stable Core V7.0.2</span>
+        <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
+        <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
+        <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>
+        <div class="ai-grid"><div class="ai-chip"><b>Simulationen</b>${r.simulationCount}/${r.required}</div><div class="ai-chip"><b>Versuche</b>${coach.memory.totalAttempts}</div><div class="ai-chip"><b>Fehler</b>${coach.memory.totalWrong}</div></div>
+        <div class="ai-list"><b>Schwächenprofil</b>${weak}</div>
+      </div>
+      <div class="premium-card ai-card">
+        <span class="coach-badge">Cognitive Profile</span>
+        <div class="coach-action">Denkprofil</div>
+        <div class="small">${r.ready?"Aus Simulationen und Trainingsläufen berechnet.":"Vorläufig, bis 3 Simulationen abgeschlossen sind."}</div>
+        ${cog}
+      </div>
+      <div class="premium-card ai-card ai-adaptive-card">
+        <span class="coach-badge">Adaptive Engine</span>
+        <div class="coach-action">Schwierigkeit: ${coach.adaptive.label}</div>
+        <span class="ai-difficulty-pill">Level ${coach.adaptive.globalLevel}</span>
+        <div class="ai-grid"><div class="ai-chip"><b>Präzision</b>${coach.adaptive.precision}%</div><div class="ai-chip"><b>Druckfehler</b>${coach.adaptive.pressureRate}%</div><div class="ai-chip"><b>Fokus</b>${escHTML(coach.adaptive.focusGroup || "ausgeglichen")}</div></div>
+        <div class="ai-engine-note">V2.4 passt Schwierigkeit und Zeitfenster datenbasiert an, sobald die KI-Datenbasis aktiv ist.</div>
+      </div>
+      <div class="premium-card ai-card ai-adaptive-card">
+        <span class="coach-badge">Dynamic Generator PRO</span>
+        <div class="coach-action">Aufgabenmix</div>
+        ${(coach.dynamicMix||[]).slice(0,5).map(x=>`<div class="ai-mix-row"><span>${escHTML(x.group)}</span><i style="width:${Math.max(8,Math.min(100,x.weight*2))}%"></i><b>${x.weight}</b></div>`).join("")}
+        <div class="ai-engine-note">V2.5 gewichtet neue Aufgaben nach Schwächen, Fehlerarten und Grundabdeckung.</div>
+      </div>
+      <div class="premium-card ai-card ai-final-card">
+        <span class="coach-badge">Learning Memory V2.6</span>
+        <div class="coach-action">Wiederholungsmuster</div>
+        <div class="ai-final-grid"><div class="ai-chip"><b>Trend</b>${escHTML(coach.learning.direction)}</div><div class="ai-chip"><b>Offene Aufgaben</b>${coach.learning.openTasks}</div><div class="ai-chip"><b>Tempo-Risiko</b>${escHTML(coach.learning.paceRisk)}</div></div>
+        <div class="ai-list"><div>${escHTML(LearningMemoryEngine.summary(coach.learning))}</div></div>
+      </div>
+      <div class="premium-card ai-card ai-final-card">
+        <span class="coach-badge">Full Simulation V2.7</span>
+        <div class="coach-action">${escHTML(FullSimulationEngine.label(coach.simulation))}</div>
+        <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${coach.simulation.coverage}%"></div></div>
+        <div class="ai-final-grid"><div class="ai-chip"><b>Abdeckung</b>${coach.simulation.coverage}%</div><div class="ai-chip"><b>Risiko</b><span class="${coach.simulation.risk==='hoch'?'ai-risk-high':coach.simulation.risk==='mittel'?'ai-risk-mid':'ai-risk-low'}">${escHTML(coach.simulation.risk)}</span></div><div class="ai-chip"><b>Simulationen</b>${coach.simulation.simulationCount}</div></div>
+        <div class="ai-engine-note">Nächster sinnvoller Schritt: ${escHTML(coach.simulation.next)}</div>
+      </div>`;
+    }
+  };
+
+
+
+
