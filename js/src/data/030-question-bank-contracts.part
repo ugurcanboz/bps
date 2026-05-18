@@ -1,0 +1,321 @@
+/* Question Bank Schema, Quality Engine, Modusverträge, Blocklimits und Blockinfo. */
+  const QUESTION_BANK_SCHEMA = {
+    version:"1.0",
+    required:["id","source","category","group","question","answers","correct","explanation","tags"],
+    groups:["Mathe","Logik","Konzentration","Visual IQ","Mechanik","Raumdenken","IT/FISI","Allgemeinwissen","Englisch","Gedächtnis"],
+    importStatuses:["raw","needsReview","verified","disabled"],
+    note:"V2.8 vorbereitet für spätere OCR/Buchaufgaben. Die App kann später aus einer zentralen Aufgabenliste filtern, statt Generatoren hart zu verdrahten."
+  };
+
+  const QUESTION_BANK = {
+    items:[],
+    sources:[],
+    lastImport:null
+  };
+
+  const QuestionBankEngine = {
+    normalize(raw={}, source="manual") {
+      const id = raw.id || ("qb_" + String(source).replace(/[^a-z0-9]/gi,"_").toLowerCase() + "_" + Date.now() + "_" + Math.random().toString(36).slice(2,7));
+      const group = raw.group || groupFor(raw.category || raw.cat || "");
+      const answers = Array.isArray(raw.answers) ? raw.answers : Array.isArray(raw.a) ? raw.a : [];
+      const correct = Number.isInteger(raw.correct) ? raw.correct : Number.isInteger(raw.correctIndex) ? raw.correctIndex : 0;
+      return {
+        id,
+        source,
+        sourcePage:raw.sourcePage || raw.page || "",
+        category:raw.category || raw.cat || group,
+        group,
+        subtype:raw.subtype || raw.type || "mc",
+        difficulty:raw.difficulty || "medium",
+        question:raw.question || raw.q || "",
+        answers,
+        correct,
+        explanation:raw.explanation || raw.ex || "",
+        tags:Array.isArray(raw.tags) ? raw.tags : [],
+        verified:!!raw.verified,
+        status:raw.status || "needsReview",
+        createdAt:raw.createdAt || new Date().toISOString()
+      };
+    },
+    validate(item) {
+      const q=this.normalize(item,item?.source||"audit");
+      const issues=[];
+      if(!q.question || q.question.length<3) issues.push("question missing");
+      if(!Array.isArray(q.answers) || q.answers.length<2) issues.push("answers missing");
+      if(q.correct<0 || q.correct>=q.answers.length) issues.push("correct index invalid");
+      if(!QUESTION_BANK_SCHEMA.groups.includes(q.group)) issues.push("unknown group: "+q.group);
+      return {ok:issues.length===0, issues, item:q};
+    },
+    filter({group,category,difficulty,tag,verifiedOnly=false}={}) {
+      return QUESTION_BANK.items.filter(item=>{
+        if(group && item.group!==group) return false;
+        if(category && item.category!==category) return false;
+        if(difficulty && item.difficulty!==difficulty) return false;
+        if(tag && !(item.tags||[]).includes(tag)) return false;
+        if(verifiedOnly && !item.verified) return false;
+        return true;
+      });
+    },
+    stats() {
+      const byGroup={};
+      QUESTION_BANK.items.forEach(item=>{byGroup[item.group]=(byGroup[item.group]||0)+1;});
+      return {total:QUESTION_BANK.items.length, byGroup, schema:QUESTION_BANK_SCHEMA.version, ready:true};
+    },
+    importBatch(rawItems=[], source="ocr-import") {
+      if(!FEATURE_FLAGS.questionBankRuntimeImport) {
+        const validation = rawItems.map(x=>this.validate(this.normalize(x,source)));
+        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V7.0.7 bewusst deaktiviert.", createdAt:new Date().toISOString()};
+        return QUESTION_BANK.lastImport;
+      }
+      const normalized=rawItems.map(x=>this.normalize(x,source));
+      const valid=normalized.map(x=>this.validate(x));
+      const accepted=valid.filter(v=>v.ok).map(v=>v.item);
+      QUESTION_BANK.items.push(...accepted);
+      QUESTION_BANK.lastImport={source, imported:accepted.length, invalid:valid.length-accepted.length, blocked:false, createdAt:new Date().toISOString()};
+      return QUESTION_BANK.lastImport;
+    },
+    blueprint() {
+      return {
+        schema:QUESTION_BANK_SCHEMA,
+        example:{
+          source:"Buch OCR Seite 12",
+          sourcePage:"12",
+          category:"Prozentrechnung",
+          group:"Mathe",
+          subtype:"mc",
+          difficulty:"medium",
+          question:"25% von 240 sind?",
+          answers:["40","50","60","80"],
+          correct:2,
+          explanation:"240 · 0,25 = 60",
+          tags:["mathe","prozent","kopfrechnen"],
+          verified:false
+        }
+      };
+    }
+  };
+
+  const QualityEngine = {
+    sampleMemory() {
+      return [
+        {time:"08:00",task:"A",place:"P1"},{time:"09:00",task:"B",place:"P2"},
+        {time:"10:00",task:"C",place:"P3"},{time:"11:00",task:"D",place:"P4"},
+        {time:"12:00",task:"E",place:"P5"},{time:"13:00",task:"F",place:"P6"},
+        {time:"14:00",task:"G",place:"P7"},{time:"15:00",task:"H",place:"P8"}
+      ];
+    },
+    validateModes() {
+      const oldMode = state.selectedMode;
+      const oldMemory = state.memoryItems;
+      const results = [];
+      Object.keys(MODES).forEach(mode=>{
+        try {
+          state.selectedMode = mode;
+          state.memoryItems = this.sampleMemory();
+          const quiz = buildQuiz();
+          const invalid = quiz.filter(q=>!Guard.validQuestion(q)).length;
+          results.push({mode,count:quiz.length,invalid});
+        } catch(error) {
+          results.push({mode,count:0,invalid:1,error:String(error && error.message ? error.message : error)});
+        }
+      });
+      state.selectedMode = oldMode;
+      state.memoryItems = oldMemory;
+      return results;
+    },
+    validateSimulation() {
+      const oldMode = state.selectedMode;
+      state.selectedMode = "ctcLohr";
+      const quiz = buildQuiz();
+      state.selectedMode = oldMode;
+      const blocks = {};
+      quiz.forEach(q=>{ blocks[q.block || "none"] = (blocks[q.block || "none"] || 0) + 1; });
+      return {count:quiz.length, blocks};
+    },
+    validateModeContracts() {
+      const oldMode = state.selectedMode;
+      const oldMemory = state.memoryItems;
+      const issues = [];
+      Object.keys(MODE_CONTRACTS || {}).forEach(mode=>{
+        const contract = MODE_CONTRACTS[mode];
+        if(!MODES[mode]) return;
+        try {
+          state.selectedMode = mode;
+          state.memoryItems = this.sampleMemory();
+          const quiz = buildQuiz();
+          if(contract.adaptive && quiz.length < 1) issues.push(`${mode}: adaptiver Modus erzeugt keine Startaufgabe`);
+          if(contract.requiredCount && quiz.length !== contract.requiredCount) issues.push(`${mode}: erwartet ${contract.requiredCount}, erhalten ${quiz.length}`);
+          if(contract.allowedTypes) {
+            const badTypes = [...new Set(quiz.filter(q=>!contract.allowedTypes.includes(q.type)).map(q=>q.type))];
+            if(badTypes.length) issues.push(`${mode}: unerlaubte Typen ${badTypes.join(", ")}`);
+          }
+          if(contract.allowedGroups) {
+            const badGroups = [...new Set(quiz.filter(q=>!contract.allowedGroups.includes(q.group||groupFor(q.cat))).map(q=>q.group||groupFor(q.cat)))];
+            if(badGroups.length) issues.push(`${mode}: unerlaubte Gruppen ${badGroups.join(", ")}`);
+          }
+        } catch(error) {
+          issues.push(`${mode}: Vertragsprüfung fehlgeschlagen ${String(error && error.message ? error.message : error)}`);
+        }
+      });
+      state.selectedMode = oldMode;
+      state.memoryItems = oldMemory;
+      return issues;
+    },
+    validateQuestionBank() {
+      try {
+        const sample=QuestionBankEngine.normalize(QuestionBankEngine.blueprint().example,"selftest");
+        const validation=QuestionBankEngine.validate(sample);
+        const blocked=QuestionBankEngine.importBatch([QuestionBankEngine.blueprint().example],"selftest-blocked");
+        const stats=QuestionBankEngine.stats();
+        return {ok:validation.ok && stats.ready && blocked.blocked===true && stats.total===0, schema:QUESTION_BANK_SCHEMA.version, total:stats.total, sampleGroup:sample.group, runtimeImport:"disabled"};
+      } catch(error) {
+        return {ok:false,error:String(error && error.message ? error.message : error)};
+      }
+    },
+    validatePWA() {
+      try {
+        const ok = !!PWA_CONFIG.appName && !!PWA_CONFIG.shortName && PWA_CONFIG.display === "standalone" && !!PWA_CONFIG.manifestFile && FEATURE_FLAGS.pwaManifestTemplate === true && FEATURE_FLAGS.pwaServiceWorkerRuntime === true;
+        return {ok, manifest:PWA_CONFIG.manifestFile, serviceWorker:PWA_CONFIG.serviceWorkerFile, cacheRuntime:FEATURE_FLAGS.pwaOfflineCache, install:FEATURE_FLAGS.pwaInstall, status:PWA_CONFIG.status};
+      } catch(error) {
+        return {ok:false,error:String(error && error.message ? error.message : error)};
+      }
+    },
+    validateIndexedDB() {
+      try {
+        const diag = IndexedDBEngine.diagnostics();
+        const expected = IndexedDBEngine.storeNames.length;
+        const storeCount = Array.isArray(diag.stores) ? diag.stores.length : 0;
+        const prepared = FEATURE_FLAGS.indexedDbMigration === true && DATA_MODEL.indexedDbName === IndexedDBEngine.name;
+        const ok = prepared && (diag.supported ? (diag.ok && storeCount >= expected) : true);
+        return {ok, supported:diag.supported, initialized:diag.initialized, storeCount, expectedStores:expected, lastTest:diag.lastTest, mode:diag.mode, error:diag.error || ""};
+      } catch(error) {
+        return {ok:false,error:String(error && error.message ? error.message : error)};
+      }
+    },
+    validateMigrationPrep() {
+      try {
+        const plan = typeof MigrationPlanner !== "undefined" && MigrationPlanner.summary ? MigrationPlanner.summary() : null;
+        const ok = !!plan && plan.active === true && DATA_MODEL.migrationPolicy && DATA_MODEL.migrationPolicy.active === true;
+        return {
+          ok,
+          phase: plan ? plan.phase : "unknown",
+          active: plan ? plan.active : false,
+          source: plan ? plan.source : "localStorage",
+          target: plan ? plan.target : "IndexedDB",
+          totalRecords: plan ? plan.totalRecords : 0,
+          ready: plan ? plan.ready : false,
+          blockers: plan ? plan.blockers : ["MigrationPlanner fehlt"]
+        };
+      } catch(error) {
+        return {ok:false,error:String(error && error.message ? error.message : error)};
+      }
+    },
+    validateHighscore() {
+      try {
+        const sample=[{mode:"math",title:"Mathe",score:18,total:20,percent:90,duration:"1 Min.",cats:{}},{mode:"ctcLohr",title:"Simulation",score:70,total:93,percent:75,duration:"10 Min.",cats:{}}];
+        const hs=HighscoreEngine.build(sample);
+        return {ok:hs.total===2 && hs.bestOverall.percent===90 && hs.bestSimulation.percent===75, total:hs.total, best:hs.bestOverall.percent};
+      } catch(error) { return {ok:false,error:String(error && error.message ? error.message : error)}; }
+    },
+    validateCloudHighscore() {
+      try {
+        const d = CloudHighscoreEngine.diagnostics();
+        return {ok:d.configured, configured:d.configured, enabled:d.enabled, provider:d.provider, table:d.table, classCode:d.classCode, urlSet:d.urlSet, keySet:d.keySet, configLoaded:d.configLoaded, missing:d.missing};
+      } catch(error) {
+        return {ok:false, configured:false, error:String(error && error.message ? error.message : error)};
+      }
+    },
+    validateAIEngines() {
+      try {
+        const fakeResults=[
+          {mode:"ctcLohr",title:"Simulation",total:93,score:60,percent:65,cats:{Mathe:{n:9,r:5,t:1000}},aiSession:{total:93,correct:60,groups:{Mathe:{total:9,correct:5,wrong:4,avgMs:10000,pressure:2,open:1}},errors:{pressureWrong:2}}},
+          {mode:"ctcLohr",title:"Simulation",total:93,score:70,percent:75,cats:{"Visual IQ":{n:10,r:4,t:1000}},aiSession:{total:93,correct:70,groups:{"Visual IQ":{total:10,correct:4,wrong:6,avgMs:12000,pressure:3,open:0}},errors:{patternError:6}}},
+          {mode:"ctcLohr",title:"Simulation",total:93,score:75,percent:81,cats:{Konzentration:{n:15,r:8,t:1000}},aiSession:{total:93,correct:75,groups:{Konzentration:{total:15,correct:8,wrong:7,avgMs:13000,pressure:4,open:2}},errors:{timeout:2,pressureWrong:4}}}
+        ];
+        const coach=CoachEngine.build(fakeResults);
+        const aiQuestion = DynamicGeneratorEngine.buildQuestion(5,100,coach);
+        const oldFocus=TrainingFocusEngine.read();
+        TrainingFocusEngine.write("math");
+        const focusCoach=CoachEngine.build(fakeResults);
+        const focusQuestions=Array.from({length:20},(_,i)=>DynamicGeneratorEngine.buildQuestion(i,100,focusCoach));
+        const mathCount=focusQuestions.filter(q=>(q.group||groupFor(q.cat))==="Mathe").length;
+        TrainingFocusEngine.write(oldFocus);
+        const ok=!!coach && coach.readiness.ready && coach.readiness.percent===100 && coach.weaknesses.length>0 && coach.cognitive.length>=4 && !!coach.recommendation.mode && !!coach.adaptive && Array.isArray(coach.dynamicMix) && coach.dynamicMix.length>0 && Guard.validQuestion(aiQuestion) && mathCount>=14;
+        return {ok, readiness:coach.readiness.percent, weaknesses:coach.weaknesses.length, cognitive:coach.cognitive.length, adaptive:coach.adaptive.globalLevel, mix:coach.dynamicMix.length, focusGuard:`Mathe ${mathCount}/20`, learning:coach.learning.repeatErrors.length, simulation:coach.simulation.coverage};
+      } catch(error) {
+        return {ok:false,error:String(error && error.message ? error.message : error)};
+      }
+    },
+    summary() {
+      const modes = this.validateModes();
+      const storage = StorageEngine.health();
+      const simulation = this.validateSimulation();
+      const contracts = this.validateModeContracts();
+      const ai = this.validateAIEngines();
+      const questionBank = this.validateQuestionBank();
+      const pwa = this.validatePWA();
+      const highscore = this.validateHighscore();
+      const cloudHighscore = this.validateCloudHighscore();
+      const indexedDb = this.validateIndexedDB();
+      const migration = this.validateMigrationPrep();
+      return {framework:FRAMEWORK.name + " " + FRAMEWORK.version, modes, storage, simulation, contracts, ai, questionBank, pwa, highscore, cloudHighscore, indexedDb, migration, ok:modes.every(m=>m.invalid===0) && simulation.count===93 && contracts.length===0 && ai.ok && questionBank.ok && pwa.ok && indexedDb.ok && migration.ok};
+    }
+  };
+
+
+const MODES = {
+    math:{title:"1. Mathe 1x1 Training",amount:40,memory:false,instant:true,desc:"Kopfrechnen, Division, Prozent, Brüche, Dreisatz und Grundrechnen.",tags:["Kopfrechnen","Brüche","Prozent"]},
+    logic:{title:"2. Logik Übungen",amount:20,memory:false,instant:true,desc:"Zahlenreihen, Matrizen, Symbolfolgen, Mechanik und Aussagenlogik.",tags:["20 Aufgaben","Matrizen","Zahnräder"]},
+    jogging:{title:"3. Eignungstest Jogging",amount:20,memory:false,instant:true,desc:"Kurzer gemischter Warm-up-Test für jeden Tag.",tags:["20 Aufgaben","gemischt","warm"]},
+    bps:{title:"4. Basisprofil+ Niveau",amount:100,memory:true,instant:false,desc:"Berufspsychologischer-Service-Stil, aber schwerer als reine Beispielaufgaben.",tags:["100 Aufgaben","Gedächtnis","Basisprofil+"]},
+    ctc:{title:"5. Eignungstest Elite",amount:100,memory:true,instant:false,desc:"Harter Elite-Modus mit Zeitdruck, Gedächtnis, IT, Logik, Mathematik, Konzentration und angepasster Trainingssteuerung.",tags:["Elite","Zeitdruck","Leistungsprofil"]},
+    general:{title:"6. Allgemeinwissen",amount:40,memory:false,instant:true,desc:"Politik, Geschichte, Geografie, Wissenschaft, Technik, Alltag und Wirtschaft.",tags:["Wissen","Welt","Deutschland"]},
+    english:{title:"7. Englisch",amount:40,memory:false,instant:true,desc:"Vokabeln, Übersetzen, Grammatik, Lückensätze und Berufsenglisch.",tags:["Vokabeln","Grammatik","Schule"]},
+    it:{title:"8. IT & FISI Grundlagen",amount:50,memory:false,instant:true,desc:"Netzwerk, Hardware, Betriebssysteme, Server, Security und FISI-Logik.",tags:["FISI","Netzwerk","Server"]},
+    concentrationPro:{title:"9. Konzentration PRO 2.0",amount:45,memory:false,instant:true,desc:"Scanner, Blicksprung, Tabellenvergleich, Zeichenfehler, Zahlenscan und visuelle Genauigkeit unter Zeitdruck.",tags:["Scanner","Blicksprung","Zeitdruck"]},
+    routeMemoryMode:{title:"10. Route Memory Spezial",amount:8,memory:false,instant:true,desc:"Busroute ansehen, Straßen merken und danach die Straßen in der richtigen Reihenfolge antippen.",tags:["Gedächtnisroute","Animation","Reihenfolge"]},
+    visualIQ:{title:"11. Visual IQ System",amount:36,memory:false,instant:true,desc:"Zahnräder, Spiegelungen, Würfelrotation, Faltfiguren, Matrizen, Stromlaufpläne, Mechanik und technisches Verständnis.",tags:["Visual IQ","SVG","Technik"]},
+    mathSprint:{title:"12. Blocktraining · Mathe Sprint",amount:20,memory:false,instant:true,desc:"Kurze, schnelle Mathe-Einheit mit Kopfrechnen, Prozent, Dreisatz, Bruch und Textaufgaben.",tags:["Blocktraining","Mathe","Sprint"]},
+    logicSprint:{title:"13. Blocktraining · Logik Sprint",amount:20,memory:false,instant:true,desc:"Zahlenreihen, Matrizen, Aussagenlogik, Symbolfolgen und Wortlogik als kompakter Sprint.",tags:["Blocktraining","Logik","Muster"]},
+    concentrationSprint:{title:"14. Blocktraining · Konzentration Sprint",amount:25,memory:false,instant:true,desc:"Scanner, Tabellenvergleich, Zeichenfehler, Zahlenscan und Blicksprung unter Zeitdruck.",tags:["Blocktraining","Konzentration","Tempo"]},
+    visualIQSprint:{title:"15. Blocktraining · Visual IQ Sprint",amount:20,memory:false,instant:true,desc:"Gezielte Visual-IQ-Einheit mit Zahnrädern, Spiegelung, Würfel, Faltung, Strom und Mechanik.",tags:["Blocktraining","Visual IQ","Technik"]},
+    itSprint:{title:"16. Blocktraining · IT/FISI Sprint",amount:20,memory:false,instant:true,desc:"Netzwerk, Hardware, Security, Server, Windows, Linux und FISI-Grundlagen kompakt.",tags:["Blocktraining","IT/FISI","Netzwerk"]},
+    knowledgeSprint:{title:"17. Blocktraining · Allgemeinwissen Sprint",amount:25,memory:false,instant:true,desc:"Kurzer Wissensblock mit Politik, Geografie, Geschichte, Alltag, Technik und Wirtschaft.",tags:["Blocktraining","Wissen","Zeitdruck"]},
+    techniqueSprint:{title:"18. Blocktraining · Technik Sprint",amount:20,memory:false,instant:true,desc:"Technisches Verständnis, Mechanik, Hebel, Rollen, Stromlaufpläne, Zahnräder und räumliches Denken.",tags:["Blocktraining","Technik","Mechanik"]},
+    errorTrainingPrep:{title:"19. Fehlertraining · Vorbereitung",amount:20,memory:false,instant:true,desc:"Gemischter Trainingsmodus als Vorbereitung für späteres echtes Schwächenlernen und Fehlertraining.",tags:["Fehlertraining","Vorbereitung","V1.9"]},
+    ctcLohr:{title:"20. Eignungstest-Simulation",amount:93,memory:false,instant:false,desc:"5 Blöcke mit Startseiten, Blocktimern, fairer Wertung und EDV-Großschema mit 11 Fehlern.",tags:["Simulation","5 Blöcke","EDV 11 Fehler"]}
+  };
+
+  const MODE_CONTRACTS = {
+    routeMemoryMode:{allowedTypes:["routeMemory"], allowedGroups:["Gedächtnis"]},
+    visualIQ:{allowedTypes:["visualIQ"], allowedGroups:["Visual IQ","Mechanik"]},
+    mathSprint:{requiredCount:20, allowedGroups:["Mathe"]},
+    logicSprint:{requiredCount:20, allowedGroups:["Logik"]},
+    concentrationSprint:{requiredCount:25, allowedGroups:["Konzentration"]},
+    visualIQSprint:{requiredCount:20, allowedTypes:["visualIQ"], allowedGroups:["Visual IQ","Mechanik"]},
+    itSprint:{requiredCount:20, allowedGroups:["IT/FISI"]},
+    knowledgeSprint:{requiredCount:25, allowedGroups:["Allgemeinwissen"]},
+    techniqueSprint:{requiredCount:20, allowedGroups:["Visual IQ","Mechanik","Raumdenken"]},
+    errorTrainingPrep:{requiredCount:20},
+    ctcLohr:{requiredCount:93},
+    ctc:{adaptive:true}
+  };
+
+  const CTC_BLOCK_LIMITS = {
+    "1. Allgemeinwissen": 8*60,
+    "2. Mathe": 5*60,
+    "3. Logik": 9*60,
+    "4. Konzentration": 8*60,
+    "5. EDV Kenntnisse": 15*60
+  };
+
+  const BLOCK_INFO = {
+    "1. Allgemeinwissen": {title:"Block 1: Allgemeinwissen", text:"40 kurze Wissensfragen. Nicht extrem schwer, aber unter Zeitdruck.", rules:["Politik, Geografie, Geschichte, Alltag, Technik","Sichere Antworten sofort holen","Unsichere Fragen markieren und weitergehen"]},
+    "2. Mathe": {title:"Block 2: Mathe-Sprint", text:"9 Kopf- und Textaufgaben mit sehr knapper Blockzeit.", rules:["Leichte Aufgaben zuerst sicher lösen","Zeitfallen überspringen","Nicht zu lange rechnen"]},
+    "3. Logik": {title:"Block 3: Logik", text:"Zahlenreihen, Matrizen, Formen, Aussagenlogik und Meinung/Tatsache.", rules:["Muster suchen","Nur sichere Folgerungen wählen","Bei Formen die Reihenfolge prüfen"]},
+    "4. Konzentration": {title:"Block 4: Konzentration", text:"Aufmerksamkeit unter Druck. Nicht vorne festbeißen.", rules:["p/q/b-Aufgaben systematisch scannen","Von leicht zu schwer arbeiten","Markieren statt mental festfahren"]},
+    "5. EDV Kenntnisse": {title:"Block 5: EDV-Kenntnisse / Logikdiagramm", text:"Großes EDV-Schema mit 11 Fehlern.", rules:["Geschichte lesen","Schemaeinträge gegen die Story prüfen","Fehlerart beachten: Logik, Pfeilrichtung oder Inhalt"]}
+  };
+
+
+

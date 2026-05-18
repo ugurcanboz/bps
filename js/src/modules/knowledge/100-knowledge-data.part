@@ -1,0 +1,47 @@
+  const generalPool = [
+    ["Allgemeinwissen","Wie viele Bundesländer hat Deutschland?",["14","15","16","17"],2,"Deutschland hat 16 Bundesländer."],
+    ["Geografie","Was ist die Hauptstadt von Australien?",["Sydney","Melbourne","Canberra","Perth"],2,"Canberra ist die Hauptstadt Australiens."],
+    ["Geografie","Wie heißt das frühere Persien heute?",["Iran","Irak","Syrien","Jordanien"],0,"Das frühere Persien heißt heute Iran."],
+    ["Politik","Wie heißt die Staatsform Deutschlands?",["parlamentarische Demokratie","absolute Monarchie","Militärdiktatur","Einparteienstaat"],0,"Deutschland ist eine parlamentarische Demokratie."],
+    ["Politik","Was bedeutet Demokratie?",["Herrschaft des Volkes","Herrschaft einer Firma","Herrschaft des Militärs","Herrschaft einer Person"],0,"Demokratie bedeutet Herrschaft des Volkes."],
+    ["Politik","Was bedeutet Gewaltenteilung?",["Aufteilung in Legislative, Exekutive, Judikative","Aufteilung der Polizei","Aufteilung von Steuern","Aufteilung von Bundesländern"],0,"Gewaltenteilung trennt Gesetzgebung, Ausführung und Rechtsprechung."],
+    ["Geschichte","In welchem Jahr fiel die Berliner Mauer?",["1987","1988","1989","1990"],2,"Die Berliner Mauer fiel 1989."],
+    ["Geschichte","Wann wurde die BRD gegründet?",["1945","1949","1961","1990"],1,"Die Bundesrepublik Deutschland wurde 1949 gegründet."],
+    ["Geschichte","Wann begann der Zweite Weltkrieg?",["1939","1914","1945","1961"],0,"Der Zweite Weltkrieg begann 1939."],
+    ["Geschichte","Wann war die deutsche Wiedervereinigung?",["1990","1989","1949","1961"],0,"Die Wiedervereinigung war 1990."],
+    ["Deutschland","Was ist der 3. Oktober in Deutschland?",["Tag der Deutschen Einheit","Tag der Arbeit","Volkstrauertag","Reformationstag"],0,"Am 3. Oktober ist Tag der Deutschen Einheit."],
+    ["Deutschland","Welche Stadt ist Landeshauptstadt von Baden-Württemberg?",["Stuttgart","Ulm","Karlsruhe","Freiburg"],0,"Stuttgart ist Landeshauptstadt von Baden-Württemberg."],
+    ["Deutschland","Wie viele Nachbarländer hat Deutschland?",["9","6","7","12"],0,"Deutschland hat 9 Nachbarländer."],
+    ["Europa","Welche Währung nutzt die Schweiz?",["Euro","Franken","Krone","Pfund"],1,"Die Schweiz nutzt den Schweizer Franken."],
+    ["Europa","Welches Land gehört nicht zur EU?",["Schweiz","Frankreich","Italien","Spanien"],0,"Die Schweiz ist nicht Mitglied der EU."],
+    ["Wissenschaft","Welche Einheit misst elektrische Spannung?",["Volt","Watt","Ampere","Ohm"],0,"Spannung wird in Volt gemessen."],
+    ["Wissenschaft","Welche Einheit misst elektrische Stromstärke?",["Ampere","Volt","Watt","Ohm"],0,"Stromstärke misst man in Ampere."],
+    ["Wissenschaft","Welche Einheit misst Leistung?",["Watt","Volt","Ampere","Ohm"],0,"Leistung wird in Watt gemessen."],
+    ["Wissenschaft","Was ist H2O?",["Wasser","Sauerstoff","Kohlendioxid","Salz"],0,"H2O ist Wasser."],
+    ["Wissenschaft","Was ist CO2?",["Kohlendioxid","Sauerstoff","Wasserstoff","Stickstoff"],0,"CO2 ist Kohlendioxid."],
+    ["Technik","Welche Aufgabe hat eine Sicherung?",["Stromkreis bei Überlast unterbrechen","Internet beschleunigen","Bildschirm heller machen","Daten sortieren"],0,"Eine Sicherung schützt vor Überlast und Kurzschluss."],
+    ["Technik","Was macht ein Transformator?",["Spannung ändern","Daten drucken","Bilder speichern","Wasser filtern"],0,"Ein Transformator kann Wechselspannung ändern."],
+    ["Wirtschaft","Was ist Brutto?",["Betrag vor Abzügen","Betrag nach Abzügen","nur Gewinn","nur Steuer"],0,"Brutto ist vor Abzügen."],
+    ["Wirtschaft","Was beschreibt Inflation?",["allgemeiner Preisanstieg","sinkende Preise immer","mehr Urlaubstage","höhere Internetgeschwindigkeit"],0,"Inflation bedeutet allgemeiner Preisanstieg."],
+    ["Alltag","Wie viele Minuten hat eine Stunde?",["60","100","24","90"],0,"Eine Stunde hat 60 Minuten."],
+    ["Alltag","Wie viele Gramm sind ein Kilogramm?",["1000","100","10","60"],0,"Ein Kilogramm hat 1000 Gramm."],
+    ["Natur","Welches Organ pumpt Blut?",["Herz","Lunge","Magen","Leber"],0,"Das Herz pumpt Blut."],
+    ["Natur","Welches Organ ist hauptsächlich für Atmung zuständig?",["Lunge","Herz","Magen","Niere"],0,"Die Lunge ist für die Atmung zuständig."],
+    ["Geografie","Welche Hauptstadt gehört zu Frankreich?",["Paris","Madrid","Rom","Wien"],0,"Paris ist die Hauptstadt Frankreichs."],
+    ["Geografie","Welche Hauptstadt gehört zu Spanien?",["Madrid","Lissabon","Rom","Athen"],0,"Madrid ist die Hauptstadt Spaniens."],
+    ["Geografie","Welche Hauptstadt gehört zu Italien?",["Rom","Mailand","Neapel","Turin"],0,"Rom ist die Hauptstadt Italiens."],
+    ["Geografie","Welche Hauptstadt gehört zu Österreich?",["Wien","Bern","Prag","Budapest"],0,"Wien ist die Hauptstadt Österreichs."],
+    ["Geografie","Welche Hauptstadt gehört zu Polen?",["Warschau","Krakau","Danzig","Breslau"],0,"Warschau ist die Hauptstadt Polens."],
+    ["Geografie","Welcher Ozean ist der größte?",["Pazifik","Atlantik","Indischer Ozean","Arktischer Ozean"],0,"Der Pazifik ist der größte Ozean."],
+    ["Deutschland","Welche Stadt ist Hauptstadt von Bayern?",["München","Nürnberg","Augsburg","Regensburg"],0,"München ist die Hauptstadt Bayerns."],
+    ["Deutschland","Welche Stadt ist Hauptstadt von Hessen?",["Wiesbaden","Frankfurt","Kassel","Darmstadt"],0,"Wiesbaden ist die Hauptstadt Hessens."],
+    ["Deutschland","Welche Stadt ist Hauptstadt von NRW?",["Düsseldorf","Köln","Dortmund","Bonn"],0,"Düsseldorf ist die Hauptstadt von Nordrhein-Westfalen."],
+    ["Alltag","Wie viele Zentimeter hat ein Meter?",["100","10","1000","60"],0,"Ein Meter hat 100 Zentimeter."],
+    ["Natur","Welches Tier ist ein Säugetier?",["Wal","Hai","Karpfen","Forelle"],0,"Wale sind Säugetiere."],
+    ["Politik","Wer ist das Staatsoberhaupt Deutschlands?",["Bundespräsident","Bundeskanzler","Bundestagspräsident","Innenminister"],0,"Das Staatsoberhaupt ist der Bundespräsident."]
+  ];
+
+  const capitalPool = [
+    ["Australien","Canberra","Sydney","Melbourne","Perth"],["Kanada","Ottawa","Toronto","Vancouver","Montreal"],["USA","Washington, D.C.","New York","Los Angeles","Chicago"],["Türkei","Ankara","Istanbul","Izmir","Bursa"],["Griechenland","Athen","Thessaloniki","Patras","Kreta"],["Portugal","Lissabon","Porto","Faro","Coimbra"],["Niederlande","Amsterdam","Rotterdam","Den Haag","Utrecht"],["Belgien","Brüssel","Antwerpen","Gent","Brügge"],["Schweden","Stockholm","Göteborg","Malmö","Uppsala"],["Norwegen","Oslo","Bergen","Trondheim","Stavanger"],["Dänemark","Kopenhagen","Aarhus","Odense","Aalborg"],["Tschechien","Prag","Brünn","Pilsen","Ostrava"],["Ungarn","Budapest","Debrecen","Szeged","Pécs"],["Rumänien","Bukarest","Cluj","Timișoara","Iași"]
+  ];
+

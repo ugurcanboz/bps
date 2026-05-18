@@ -1,0 +1,1076 @@
+/* UI-Routing, Rendering, Quizablauf, Ergebnislogik, Review, Health Panel und App-Export. */
+  const APP_SECTIONS = {
+    dashboard:{title:"Dashboard", icon:"◷", desc:"Live-Status, Lernkurve und Analyse-Kurzblick."},
+    practice:{title:"Üben", icon:"✎", desc:"Gezieltes Training ohne Simulationsballast."},
+    home:{title:"Start", icon:"◆", desc:"Zentrale Startseite mit Empfehlung und Schnellzugriff.", home:true},
+    highscore:{title:"Highscore", icon:"★", desc:"Lokale und Cloud-Ranglisten nach Zeitraum."},
+    settings:{title:"Settings", icon:"⚙", desc:"Profil, Cloud, Datenbank und Framework verwalten."}
+  };
+
+  const MODE_TABS = {
+    basic:{title:"Freies Üben", desc:"Einzelne Bereiche gezielt trainieren.", modes:["math","logic","general","english","it","concentrationPro","routeMemoryMode","visualIQ"]},
+    block:{title:"Blocktraining", desc:"Kurze Sprintblöcke für Schwächen und Zeitdruck.", modes:["mathSprint","logicSprint","concentrationSprint","visualIQSprint","itSprint","knowledgeSprint","techniqueSprint","errorTrainingPrep"]}
+  };
+  const SIMULATION_MODES = ["ctcLohr","ctc","bps","jogging"];
+
+  const TOP_NAV_TABS = {
+    home:[
+      {key:"start", icon:"🏠", label:"Start", action:"home"},
+      {key:"ctc", icon:"▶️", label:"CTC", action:"mode", mode:"ctcLohr", section:"practice"},
+      {key:"elite", icon:"⚡", label:"Elite", action:"mode", mode:"ctc", section:"practice"},
+      {key:"score", icon:"🏆", label:"Score", action:"section", section:"highscore"}
+    ],
+    dashboard:[
+      {key:"live", icon:"📊", label:"Live", action:"dashboard"},
+      {key:"stats", icon:"📈", label:"Stats", action:"dashboard"},
+      {key:"focus", icon:"🎯", label:"Fokus", action:"dashboard"},
+      {key:"cloud", icon:"☁️", label:"Cloud", action:"dashboard"}
+    ],
+    practice:[
+      {key:"mix", icon:"🧠", label:"Mix", action:"modeTab", tab:"basic"},
+      {key:"mathe", icon:"➗", label:"Mathe", action:"mode", mode:"math"},
+      {key:"edv", icon:"💻", label:"EDV", action:"mode", mode:"it"},
+      {key:"logik", icon:"🧩", label:"Logik", action:"mode", mode:"logic"}
+    ],
+    highscore:[
+      {key:"today", icon:"🔥", label:"Heute", action:"highscore", period:"daily"},
+      {key:"week", icon:"📅", label:"Woche", action:"highscore", period:"weekly"},
+      {key:"month", icon:"🏆", label:"Monat", action:"highscore", period:"monthly"},
+      {key:"all", icon:"🌍", label:"Global", action:"highscore", period:"all"}
+    ],
+    settings:[
+      {key:"profile", icon:"👤", label:"Profil", action:"settings"},
+      {key:"cloud", icon:"☁️", label:"Cloud", action:"settings"},
+      {key:"data", icon:"🧹", label:"Daten", action:"settings"},
+      {key:"framework", icon:"🛠️", label:"System", action:"settings"}
+    ]
+  };
+
+  function setVisible(selector, visible, display="") {
+    const el = typeof selector === "string" ? document.querySelector(selector) : selector;
+    if(el) el.style.display = visible ? display : "none";
+  }
+
+  function isMobileShellContext(){
+    const activeRoot = !( $("start") && $("start").classList.contains("hidden") );
+    const isMobile = window.matchMedia ? window.matchMedia("(max-width: 900px)").matches : window.innerWidth <= 900;
+    return isMobile && activeRoot && !state.exam.started;
+  }
+
+  function bindTopNavSwipe(track){
+    if(!track || track.dataset.swipeBound === "1") return;
+    track.dataset.swipeBound = "1";
+    let startX=0,startY=0,startLeft=0,dragging=false,moved=false;
+    const begin=(x,y)=>{startX=x;startY=y;startLeft=track.scrollLeft;dragging=true;moved=false;track.classList.add("is-dragging");};
+    const move=(x,y,ev)=>{
+      if(!dragging) return;
+      const dx=x-startX, dy=y-startY;
+      if(Math.abs(dx)>6) moved=true;
+      if(Math.abs(dx)>Math.abs(dy)){
+        if(ev && ev.cancelable) ev.preventDefault();
+        track.scrollLeft=startLeft-dx;
+      }
+    };
+    const end=()=>{
+      if(!dragging) return;
+      dragging=false;
+      track.classList.remove("is-dragging");
+      if(moved){
+        track.dataset.swiped="1";
+        setTimeout(()=>{track.dataset.swiped="0";},180);
+      }
+    };
+    track.addEventListener("touchstart",e=>{const t=e.touches&&e.touches[0]; if(t) begin(t.clientX,t.clientY);},{passive:true});
+    track.addEventListener("touchmove",e=>{const t=e.touches&&e.touches[0]; if(t) move(t.clientX,t.clientY,e);},{passive:false});
+    track.addEventListener("touchend",end,{passive:true});
+    track.addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse") begin(e.clientX,e.clientY); });
+    track.addEventListener("pointermove",e=>{ if(dragging) move(e.clientX,e.clientY,e); });
+    track.addEventListener("pointerup",end);
+    track.addEventListener("pointercancel",end);
+    track.addEventListener("click",e=>{ if(track.dataset.swiped==="1"){ e.preventDefault(); e.stopPropagation(); } }, true);
+  }
+
+  function renderAppNav(){
+    const nav=$("appNav"); if(!nav) return;
+    if(nav.parentElement !== document.body) document.body.appendChild(nav);
+    nav.setAttribute("role","navigation");
+    nav.setAttribute("aria-label","Hauptnavigation");
+    nav.classList.toggle("is-hidden", !isMobileShellContext());
+    nav.innerHTML=Object.entries(APP_SECTIONS).map(([key,s])=>{
+      const active = (state.activeAppSection || "home") === key;
+      const home = s.home ? " nav-home" : "";
+      return `<button type="button" data-nav-section="${key}" class="${active?'active':''}${home}" onclick="App.setAppSection('${key}')" aria-label="${escHTML(s.title)}"><span>${s.icon}</span><em>${s.title}</em></button>`;
+    }).join("");
+  }
+
+  function defaultTopTab(section){
+    const tabs=TOP_NAV_TABS[section] || TOP_NAV_TABS.home;
+    return tabs[0] ? tabs[0].key : "live";
+  }
+
+  function renderMobileTopNav(){
+    const nav=$("mobileTopNav"); if(!nav) return;
+    if(nav.parentElement !== document.body) document.body.insertBefore(nav, document.body.firstChild);
+    const section=state.activeAppSection || "home";
+    const tabs=TOP_NAV_TABS[section] || TOP_NAV_TABS.home;
+    const visible = isMobileShellContext();
+    nav.classList.toggle("is-hidden", !visible);
+    document.body.classList.toggle("mobile-shell-active", visible);
+    if(!tabs.length){ nav.innerHTML=""; return; }
+    const activeKey = state.activeTopTab || defaultTopTab(section);
+    nav.dataset.section = section;
+    nav.setAttribute("aria-label", "Kontextnavigation: " + section);
+    nav.innerHTML = `<div class="mobile-top-track" role="tablist" data-nav-key="${section}-${activeKey}">${tabs.map(tab=>`<button type="button" role="tab" data-top-tab="${escHTML(tab.key)}" aria-selected="${activeKey===tab.key?'true':'false'}" class="${activeKey===tab.key?'active':''}" title="${escHTML(tab.label)}" onclick="App.setTopTab('${section}','${tab.key}')"><span class="topnav-icon">${escHTML(tab.icon||"•")}</span><span class="topnav-label">${escHTML(tab.label)}</span></button>`).join("")}</div>`;
+    requestAnimationFrame(()=>{
+      const track = nav.querySelector(".mobile-top-track");
+      const active = nav.querySelector(".mobile-top-track button.active");
+      if(track){
+        bindTopNavSwipe(track);
+        const overflow = track.scrollWidth > track.clientWidth + 4;
+        nav.classList.toggle("is-scrollable", overflow);
+        if(active){
+          const target = active.offsetLeft - (track.clientWidth - active.offsetWidth) / 2;
+          track.scrollTo({left:Math.max(0,target), behavior:"smooth"});
+        }
+      }
+    });
+  }
+
+  function setTopTab(section, tabKey){
+    if(!TOP_NAV_TABS[section]) section = state.activeAppSection || "home";
+    const tabs=TOP_NAV_TABS[section] || [];
+    const tab=tabs.find(x=>x.key===tabKey) || tabs[0];
+    if(!tab) return;
+    state.activeAppSection = section;
+    state.activeTopTab = tab.key;
+    if(tab.action==="modeTab"){
+      state.activeAppSection="practice";
+      state.activeModeTab=tab.tab || "basic";
+      const modes=(MODE_TABS[state.activeModeTab]||MODE_TABS.basic).modes;
+      if(!modes.includes(state.selectedMode)) state.selectedMode=modes[0];
+      renderModes();
+      return;
+    }
+    if(tab.action==="mode" && MODES[tab.mode]){
+      state.selectedMode=tab.mode;
+      state.activeAppSection=tab.section || "practice";
+      const modeTab=Object.keys(MODE_TABS).find(t=>MODE_TABS[t].modes.includes(tab.mode));
+      if(modeTab) state.activeModeTab=modeTab;
+      if(state.activeAppSection==="practice"){
+        const direct=(TOP_NAV_TABS.practice||[]).find(t=>t.mode===tab.mode);
+        state.activeTopTab = direct ? direct.key : (modeTab==="block" ? "sprint" : "mix");
+      }
+      renderModes();
+      return;
+    }
+    if(tab.action==="section"){
+      setAppSection(tab.section || "home");
+      return;
+    }
+    if(tab.action==="analysis"){
+      showAnalysis();
+      return;
+    }
+    if(tab.action==="health"){
+      renderModes();
+      showFrameworkHealth();
+      return;
+    }
+    renderModes();
+  }
+
+  function renderModeCard(k, extraClass="compact"){
+    const m=MODES[k];
+    if(!m) return "";
+    return `<div class="modeCard ${extraClass} ${k===state.selectedMode?'selected':''}" onclick="App.selectMode('${k}')"><div class="modeTitle">${m.title}</div><div class="small">${m.desc}</div><div>${m.tags.map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>`;
+  }
+
+  function renderModeTabs() {
+    const tabsEl=$("modeTabs"), titleEl=$("modeSectionTitle");
+    if(!tabsEl || !titleEl) return;
+    if(state.activeAppSection!=="practice") { tabsEl.innerHTML=""; titleEl.innerHTML=""; return; }
+    tabsEl.innerHTML = Object.entries(MODE_TABS).map(([key,tab]) => `<button class="modeTab ${state.activeModeTab===key?'active':''}" onclick="App.setModeTab('${key}')">${tab.title}</button>`).join("");
+    const active = MODE_TABS[state.activeModeTab] || MODE_TABS.basic;
+    titleEl.innerHTML = `<div><b>${active.title}</b><br><span>${active.desc}</span></div><span>${active.modes.length} Modi</span>`;
+  }
+
+  function renderSectionActions() {
+    const el=$("sectionActions");
+    if(!el) return;
+    const section=state.activeAppSection || "home";
+    el.classList.remove("show");
+    el.innerHTML="";
+    if(section==="practice") {
+      const m=MODES[state.selectedMode];
+      el.classList.add("show");
+      el.innerHTML=`<button class="section-start-primary" onclick="App.prepareTest()">${escHTML(m ? m.title.replace(/^\d+\.\s*/,"") : "Training")} starten</button><button class="section-start-secondary" onclick="App.setAppSection('settings')">Settings</button>`;
+    }
+  }
+
+  function renderHighscoreSection(){
+    const results=getResults();
+    const map={today:"daily",week:"weekly",month:"monthly",all:"all"};
+    const period=map[state.activeTopTab] || "daily";
+    const label=(TOP_NAV_TABS.highscore.find(t=>t.key===state.activeTopTab)||TOP_NAV_TABS.highscore[0]).label;
+    const hs=HighscoreEngine.build(results);
+    const localTop=hs.top.slice(0,5);
+    const localCard = !localTop.length
+      ? `<div class="premium-card"><span class="coach-badge">Lokaler Highscore</span><div class="coach-action">Noch kein Rekord</div><div class="small">Starte einen Test. Danach erscheint hier deine lokale Bestenliste.</div></div>`
+      : `<div class="premium-card"><span class="coach-badge">Lokaler Highscore</span><div class="coach-action">Bestwert: ${hs.bestOverall.percent}%</div><div class="ai-list">${localTop.map((r,i)=>`<div>${i+1}. <b>${escHTML(r.title||r.mode)}</b> · ${r.percent}% · ${escHTML(HighscoreEngine.rankLabel(r.percent))}</div>`).join("")}</div><div class="small">Lokale Sicherheits-Bestenliste auf diesem Gerät.</div></div>`;
+    return `<h2>Highscore · ${escHTML(label)}</h2><p>Cloud- und lokale Ranglisten sind nach Zeitraum getrennt. Oben kannst du horizontal zwischen Heute, Woche, Monat und Gesamt wischen.</p><div class="highscore-section-grid">${CloudHighscoreEngine.renderShell(period)}${localCard}</div>`;
+  }
+
+  function renderSettingsSection(){
+    const tab=state.activeTopTab || "profile";
+    const profileBlock=`<div class="profile-panel">${renderProfileManager()}</div>`;
+    const cloudBlock=`<div class="premium-card"><b>Cloud & Supabase</b><p class="small">Live-Diagnose, Online-Highscore und Cache-Neuladen.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud Diagnose öffnen</button></div>`;
+    const audioBlock=`<div class="premium-card"><b>Audio & Feedback</b><p class="small">Platzhalter für Sound, Vibration und Prüfungsfeedback. Die Logik bleibt vorbereitet, ohne die Kernmodule zu berühren.</p></div>`;
+    const dataBlock=`<div class="premium-card"><b>Daten & Backup</b><p class="small">Lokale Ergebnisse, IndexedDB, Export und Cache-Verwaltung.</p><div class="settings-button-row"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div></div>`;
+    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Core Cleanup V7.0.7 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
+    const blocks={profile:profileBlock,cloud:cloudBlock,audio:audioBlock,data:dataBlock,framework:frameworkBlock};
+    return `<h2>Settings</h2><p>Profil, Cloud, Audio, Daten und Framework sind jetzt als Settings-Bereich gebündelt.</p>${blocks[tab] || profileBlock}<div class="settings-secondary-grid">${tab!=="profile"?profileBlock:""}${tab!=="cloud"?cloudBlock:""}${tab!=="audio"?audioBlock:""}${tab!=="data"?dataBlock:""}${tab!=="framework"?frameworkBlock:""}</div>`;
+  }
+
+  function renderDashboardSection(){
+    const stats=dashboardStats();
+    const coach=CoachEngine.build(stats.results);
+    const tab=state.activeTopTab || "live";
+    const liveCard=`<div class="premium-card"><b>Live Dashboard</b><p class="small">Läufe: ${stats.results.length} · Durchschnitt: ${stats.avg}% · Rekord: ${stats.best?stats.best.percent+"%":"–"}</p><button class="ghost" onclick="App.setAppSection('practice')">Training öffnen</button></div>`;
+    const statsCard=`<div class="premium-card"><b>Statistik</b><p class="small">Deine lokale Lernkurve, Kategorien und Fehleranalyse liegen in der Analyseansicht.</p><button class="ghost" onclick="App.showAnalysis()">Analyse öffnen</button></div>`;
+    const focusCard=`<div class="premium-card"><b>Fokus</b><p class="small">Der Coach priorisiert Schwächen und empfiehlt dir den nächsten Trainingsblock.</p>${CoachEngine.renderDashboard(coach)}</div>`;
+    const cloudCard=`<div class="premium-card"><b>Cloud</b><p class="small">Supabase Highscore und Diagnose sind hier angebunden.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud prüfen</button></div>`;
+    const blocks={live:liveCard,stats:statsCard,focus:focusCard,cloud:cloudCard};
+    return `<h2>Dashboard</h2><p>Oben steuerst du die Dashboard-Ansicht. Unten wechselst du den Hauptbereich.</p><div class="dashboard-section-grid">${blocks[tab] || liveCard}</div>`;
+  }
+
+  function renderSectionIntro(){
+    const el=$("sectionIntro"); if(!el) return;
+    const section=state.activeAppSection || "home";
+    el.className = "section-intro section-" + section;
+    const s=APP_SECTIONS[section] || APP_SECTIONS.home;
+    if(section==="home"){
+      el.innerHTML=`<h2>Startseite</h2><p>Dein zentraler Hub. Unten wechselst du Hauptbereiche, oben steuerst du den Kontext.</p><div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">✎</span><b>Üben</b><p>Mathe, Logik, EDV, Konzentration und Route gezielt trainieren.</p></div><div class="hub-card" onclick="App.selectMode('ctcLohr')"><span class="hub-icon">▶</span><b>CTC Simulation</b><p>93 Aufgaben mit Blocklogik und Zeitdruck starten.</p></div><div class="hub-card" onclick="App.setAppSection('highscore')"><span class="hub-icon">★</span><b>Highscore</b><p>Tägliche, wöchentliche, monatliche und gesamte Rangliste öffnen.</p></div></div>`;
+    } else if(section==="dashboard") {
+      el.innerHTML=renderDashboardSection();
+    } else if(section==="highscore") {
+      el.innerHTML=renderHighscoreSection();
+    } else if(section==="settings") {
+      el.innerHTML=renderSettingsSection();
+    } else if(section==="practice") {
+      el.innerHTML=`<h2>${s.title}</h2><p>${s.desc}</p>`;
+    } else {
+      el.innerHTML=`<h2>${s.title}</h2><p>${s.desc}</p>`;
+    }
+  }
+
+  function renderModes() {
+    const section=state.activeAppSection || "home";
+    if(!state.activeTopTab || !(TOP_NAV_TABS[section]||[]).some(t=>t.key===state.activeTopTab)) state.activeTopTab=defaultTopTab(section);
+    document.body.dataset.appSection = section;
+    document.body.classList.toggle("mobile-nav-attached", !!$("appNav"));
+    renderPremiumDashboard();
+    renderAppNav();
+    renderMobileTopNav();
+    renderSectionIntro();
+    renderModeTabs();
+    renderSectionActions();
+    TrainingFocusEngine.render();
+    setVisible($("premiumDashboard"), section==="home", "grid");
+    setVisible(".quick-actions", section==="home", "grid");
+    setVisible($("focusControls"), section==="practice");
+    setVisible(".exam-options", false);
+    setVisible(".db-actions", false);
+    const grid=$("modeGrid"); if(!grid) return;
+    if(section==="practice"){
+      const active = MODE_TABS[state.activeModeTab] || MODE_TABS.basic;
+      grid.innerHTML = active.modes.filter(k=>MODES[k]).map(k=>renderModeCard(k)).join("");
+    } else {
+      grid.innerHTML="";
+      if($("modeTabs")) $("modeTabs").innerHTML="";
+      if($("modeSectionTitle")) $("modeSectionTitle").innerHTML="";
+    }
+    if(section==="highscore") setTimeout(()=>CloudHighscoreEngine.refreshDashboard(),0);
+  }
+
+  function setAppSection(section){
+    if(section==="analysis") { showAnalysis(); return; }
+    if(section==="simulation") { section="practice"; state.selectedMode="ctcLohr"; }
+    if(section==="profile") section="settings";
+    if(section==="start") section="home";
+    if(!APP_SECTIONS[section]) section="home";
+    state.activeAppSection=section;
+    state.activeTopTab=defaultTopTab(section);
+    hideAll();
+    $("start").classList.remove("hidden");
+    if(section==="practice" && !Object.values(MODE_TABS).some(t=>t.modes.includes(state.selectedMode))) state.selectedMode="math";
+    renderModes();
+  }
+
+  function setModeTab(tab){
+    if(!MODE_TABS[tab]) return;
+    state.activeAppSection="practice";
+    state.activeTopTab = tab==="block" ? "sprint" : "mix";
+    state.activeModeTab=tab;
+    if(!MODE_TABS[tab].modes.includes(state.selectedMode)) state.selectedMode=MODE_TABS[tab].modes[0];
+    renderModes();
+  }
+  function selectMode(k){
+    if(!MODES[k]) return;
+    state.selectedMode=k;
+    state.activeAppSection="practice";
+    const tab=Object.keys(MODE_TABS).find(t=>MODE_TABS[t].modes.includes(k));
+    if(tab) state.activeModeTab=tab;
+    const practiceTabs=TOP_NAV_TABS.practice || [];
+    const direct=practiceTabs.find(t=>t.mode===k);
+    state.activeTopTab = direct ? direct.key : (tab==="block" ? "sprint" : "mix");
+    hideAll();
+    $("start").classList.remove("hidden");
+    renderModes();
+  }
+  function prepareTest() {
+    readExamOptions();
+    applyExamBodyClass();
+    const m=MODES[state.selectedMode];
+    if(m.memory){state.memoryItems=memoryItems(); $("memoryTable").innerHTML=memoryHtml(); showMemoryPhase();}
+    else startQuiz();
+  }
+  function showMemoryPhase() {
+    clearInterval(state.memoryTimer); hideAll(); $("memory").classList.remove("hidden");
+    let t=240; $("memoryTimer").textContent="Einprägezeit: "+t+" s"; $("memoryTimer").classList.remove("low");
+    state.memoryTimer=setInterval(()=>{t--; $("memoryTimer").textContent="Einprägezeit: "+t+" s"; if(t<=25)$("memoryTimer").classList.add("low"); if(t<=0){clearInterval(state.memoryTimer); beginQuizAfterMemory();}},1000);
+  }
+  function beginQuizAfterMemory(){clearInterval(state.memoryTimer); startQuiz();}
+  function cancelMemoryPhase(){clearInterval(state.memoryTimer); restart();}
+  function startQuiz() {
+    clearRouteTimers();
+    state.adaptiveMemoryPool=[]; state.quiz=buildQuiz(); state.current=0; state.score=0; state.history=[]; state.questionStates=[]; state.markedQuestions=[];
+    state.testStart=new Date(); state.testEnd=null; state.exam.started=true; applyExamBodyClass(); state.ctcBlockRemaining={...CTC_BLOCK_LIMITS}; state.ctcCurrentBlock=null; state.shownBlockIntro={}; state.pendingBlock=null;
+    hideAll(); $("quiz").classList.remove("hidden"); showQuestion();
+  }
+  function startCtcBlockFromIntro() {
+    if(state.pendingBlock) state.shownBlockIntro[state.pendingBlock]=true;
+    state.pendingBlock=null; hideAll(); $("quiz").classList.remove("hidden"); showQuestion(true);
+  }
+
+  function showQuestion(spIntro=false) {
+    clearInterval(state.timer);
+    clearRouteTimers();
+    const q=state.quiz[state.current];
+    if(!q){showResult(); return;}
+    if(q.type==="edvcovered") {
+      const edvIndex=state.quiz.findIndex(item=>item && item.type==="edvmulti");
+      if(edvIndex>=0 && !state.history[edvIndex]) { state.current=edvIndex; showQuestion(spIntro); return; }
+      if(state.current<state.quiz.length-1) { state.current++; showQuestion(spIntro); return; }
+      showResult(); return;
+    }
+    if(state.selectedMode==="ctcLohr" && q.block && !state.shownBlockIntro[q.block] && !spIntro) {
+      state.pendingBlock=q.block; hideAll();
+      const info=BLOCK_INFO[q.block] || {title:q.block,text:"Starte den nächsten Block.",rules:["Ruhig bleiben","Sichere Aufgaben zuerst","Markieren statt festbeißen"]};
+      $("blockIntroTitle").textContent=info.title;
+      $("blockIntroText").innerHTML=`<p>${info.text}</p><div class="blockRules"><b>Strategie:</b><ul>${info.rules.map(r=>`<li>${r}</li>`).join("")}</ul></div>`;
+      $("blockIntro").classList.remove("hidden");
+      return;
+    }
+    hideAll(); $("quiz").classList.remove("hidden");
+    state.questionStartedAt=new Date();
+    let totalDisplay=isAdaptiveElite()?MODES.ctc.amount:state.quiz.length;
+    if(state.selectedMode==="ctcLohr") {
+      if(state.ctcCurrentBlock!==q.block){state.ctcCurrentBlock=q.block; if(typeof state.ctcBlockRemaining[q.block]!="number")state.ctcBlockRemaining[q.block]=q.time||60;}
+      state.timeLeft=state.ctcBlockRemaining[q.block]; state.totalTimeForQuestion=Math.max(1,state.timeLeft);
+      $("timer").textContent=fmtClock(state.timeLeft); $("timer").classList.toggle("warn",state.timeLeft<=60); $("timer").classList.toggle("low",state.timeLeft<=30); $("timer").classList.toggle("critical",state.timeLeft<=30);
+      const limit=CTC_BLOCK_LIMITS[q.block]||state.totalTimeForQuestion;
+      $("meta").innerHTML=`<span class="badge">${MODES[state.selectedMode].title}</span><span class="badge">${q.block}</span><span class="badge">${q.cat}</span><span class="badge">Frage ${state.current+1}/${totalDisplay}</span><div class="block-timer-label">Blockzeit: ${fmtClock(state.timeLeft)} von ${fmtClock(limit)}</div>${examStatusHtml()}`;
+    } else {
+      state.timeLeft=state.selectedMode==="ctc"?Math.max(12,Math.floor((q.time||25)*.8)):(q.time||25); state.totalTimeForQuestion=state.timeLeft;
+      $("timer").textContent=state.timeLeft; $("timer").classList.remove("low","warn","critical");
+      $("meta").innerHTML=`<span class="badge ${state.selectedMode==="ctc"?"hardcore-badge":""}">${MODES[state.selectedMode].title}</span><span class="badge">${q.cat}</span><span class="badge">Frage ${state.current+1}/${totalDisplay}</span>${examStatusHtml()}`;
+    }
+    $("progressfill").style.width=`${state.current/totalDisplay*100}%`;
+    $("question").innerHTML=q.q; $("feedback").classList.add("hidden"); $("feedback").innerHTML="";
+    renderVisual(q); renderAnswers(q); updateQuestionNav();
+    state.timer=setInterval(()=>tickTimer(),1000);
+  }
+  function tickTimer() {
+    const q=state.quiz[state.current]; if(!q)return;
+    if(state.selectedMode==="ctcLohr") {
+      state.ctcBlockRemaining[q.block]=Math.max(0,(state.ctcBlockRemaining[q.block]||0)-1);
+      state.timeLeft=state.ctcBlockRemaining[q.block]; $("timer").textContent=fmtClock(state.timeLeft); $("timer").classList.toggle("warn",state.timeLeft<=60); $("timer").classList.toggle("low",state.timeLeft<=30); $("timer").classList.toggle("critical",state.timeLeft<=30);
+      if(state.timeLeft<=0){ clearInterval(state.timer); if(!state.history[state.current])recordAnswer(null,false,true); state.current=nextBlockIndex(state.current); if(state.current<state.quiz.length)showQuestion(); else showResult(); }
+    } else {
+      state.timeLeft--; $("timer").textContent=state.timeLeft; if(state.timeLeft<=10)$("timer").classList.add("warn"); if(state.timeLeft<=5)$("timer").classList.add("low","critical");
+      if(state.timeLeft<=0){clearInterval(state.timer); recordAnswer(null,false,true); if(MODES[state.selectedMode].instant){$("feedback").textContent="Zeit abgelaufen."; $("feedback").classList.remove("hidden"); setTimeout(nextQuestion,650);} else nextQuestion();}
+    }
+  }
+  function nextBlockIndex(from) {
+    const curBlock=state.quiz[from]?.block;
+    for(let i=from+1;i<state.quiz.length;i++){if(state.quiz[i]?.block!==curBlock)return i;}
+    return state.quiz.length;
+  }
+
+  function renderAnswers(q) {
+    $("answers").innerHTML="";
+    if(q.type==="edvmulti") { renderEdvMultiAnswers(q); return; }
+    if(q.type==="routeMemory") {
+      if(!q.routeReady && !state.history[state.current]) {
+        $("answers").innerHTML=`<div class="route-answer-wait">Merke dir die Straßen in der richtigen Reihenfolge. Nach der Animation verschwinden Bus und Straßen.</div>`;
+        return;
+      }
+      renderRouteSequenceAnswers(q);
+      return;
+    }
+    q.a.forEach((ans,idx)=>{
+      const b=document.createElement("button"); b.innerHTML=ans; b.onclick=()=>chooseAnswer(idx,b);
+      if(state.history[state.current]?.givenIndex===idx)b.classList.add("selected");
+      $("answers").appendChild(b);
+    });
+    const h=state.history[state.current];
+    if(isInstantFeedbackAllowed() && h) {
+      const bs=document.querySelectorAll(".answers button");
+      if(h.givenIndex!==null && bs[h.givenIndex])bs[h.givenIndex].classList.add(h.correct?"correct":"wrong");
+      if(!h.correct && h.correctIndex!==undefined && bs[h.correctIndex])bs[h.correctIndex].classList.add("correct");
+      if(h.explanation){$("feedback").innerHTML=(h.correct?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+h.explanation; $("feedback").classList.remove("hidden");}
+    }
+  }
+
+
+
+  function renderEdvMultiAnswers(q) {
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    const selected=MultiChoiceModule.init(q,"edvMultiSelected",need);
+    const chips=selected.length ? MultiChoiceModule.chips(selected, id=>id, id=>`App.toggleEdvMultiNode('${id}')`) : `<span class="small">Noch kein Schema-Eintrag ausgewählt.</span>`;
+    $("answers").innerHTML=`
+      <div class="edv-answer-panel">
+        <b>EDV-Multi-Choice</b><br>
+        <span class="small">Ausgewählt: ${selected.length}/${need}. Tippe direkt auf die Schema-Karten. Erneutes Tippen wählt ab.</span>
+        <div class="route-selected-list">${chips}</div>
+        <div class="route-action-row">
+          <button class="secondary" onclick="App.undoEdvMultiSelection()">Letzte entfernen</button>
+          <button class="secondary" onclick="App.clearEdvMultiSelection()">Auswahl leeren</button>
+          <button onclick="App.submitEdvMultiAnswer()">Gesamtantwort werten</button>
+        </div>
+      </div>`;
+    if(state.history[state.current]) {
+      const h=state.history[state.current];
+      $("feedback").innerHTML=(h.correct?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+h.explanation;
+      $("feedback").classList.remove("hidden");
+    }
+  }
+
+  function toggleEdvMultiNode(id) {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    const result=MultiChoiceModule.toggle(q,"edvMultiSelected",id,need);
+    if(!result.ok && result.action==="max"){
+      $("feedback").innerHTML=`<b>Maximal ${need} Einträge.</b> Tippe eine gewählte Karte erneut an, um sie zu entfernen.`;
+      $("feedback").classList.remove("hidden");
+    }
+    $("visual").innerHTML=renderEdvProHTML(q);
+    renderEdvMultiAnswers(q);
+  }
+
+  function undoEdvMultiSelection(){
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    MultiChoiceModule.undo(q,"edvMultiSelected");
+    $("visual").innerHTML=renderEdvProHTML(q);
+    renderEdvMultiAnswers(q);
+  }
+
+  function clearEdvMultiSelection(){
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    MultiChoiceModule.clear(q,"edvMultiSelected");
+    $("visual").innerHTML=renderEdvProHTML(q);
+    renderEdvMultiAnswers(q);
+  }
+
+  function submitEdvMultiAnswer(){
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="edvmulti" || state.history[state.current]) return;
+    const selected=q.edvMultiSelected || [];
+    const need=q.edvRequiredCount || EDV_ERRORS.length;
+    if(selected.length!==need){
+      $("feedback").innerHTML=`<b>EDV-Auswahl unvollständig.</b> Du hast ${selected.length}/${need} Fehler markiert. Markiere genau ${need} Einträge und werte dann die Gesamtantwort.`;
+      $("feedback").classList.remove("hidden");
+      return;
+    }
+    clearInterval(state.timer);
+    recordEdvMultiAnswers(selected);
+    state.score=state.history.filter(h=>h&&h.correct).length;
+    for(let i=state.current;i<Math.min(state.quiz.length,state.current+need);i++) {
+      state.questionStates[i]=state.markedQuestions[i]?"mark":"done";
+      if(state.quiz[i] && state.quiz[i].type==="edvcovered") state.history[i]=state.history[i] || {q:"EDV-Großschema Platzhalter",cat:"EDV Diagramm PRO",group:"IT/FISI",block:"5. EDV Kenntnisse",answers:["EDV-Gesamtaufgabe"],correctIndex:0,givenIndex:0,correct:true,timeout:false,skipped:false,explanation:"Durch die EDV-Gesamtaufgabe bewertet.",visualType:"edvcovered",duration:0,allowed:state.totalTimeForQuestion,examMode:{...state.exam}};
+    }
+    updateQuestionNav();
+    $("visual").innerHTML=renderEdvProHTML(q);
+    const correctSet=new Set(EDV_ERRORS.map(e=>e.id));
+    EDV_SCHEMA.forEach(x=>{
+      const el=$("edvNode_"+x.id); if(!el) return;
+      if(correctSet.has(x.id)) el.classList.add("correct-node");
+      else if(selected.includes(x.id)) el.classList.add("wrong-node");
+    });
+    const found=EDV_ERRORS.filter(e=>selected.includes(e.id)).length;
+    const falsePos=selected.filter(id=>!correctSet.has(id)).length;
+    $("feedback").innerHTML=`<b>EDV ausgewertet.</b> ${found}/${need} Fehler korrekt gefunden${falsePos?`, ${falsePos} falsche Markierung(en)`:""}. Richtige Fehler: ${EDV_ERRORS.map(e=>e.id).join(", ")}.`;
+    $("feedback").classList.remove("hidden");
+    setTimeout(()=>{ state.current=Math.min(state.quiz.length-1,state.current+need-1); if(state.current<state.quiz.length-1) nextQuestion(); else showResult(); },1200);
+  }
+
+  function recordEdvMultiAnswers(selected){
+    const startIndex=state.current;
+    const ended=new Date();
+    const totalDuration=(state.questionStartedAt?ended-state.questionStartedAt:0);
+    const perDuration=Math.max(1, Math.round(totalDuration/Math.max(1, EDV_ERRORS.length)));
+    const selectedSet=new Set(selected);
+    EDV_ERRORS.forEach((err,i)=>{
+      const q=state.quiz[startIndex+i] || Generators.bigEDV(i);
+      const found=selectedSet.has(err.id);
+      const selectedId=selected[i] || "";
+      const givenIndex=selectedId ? EDV_SCHEMA.findIndex(x=>x.id===selectedId) : null;
+      state.history[startIndex+i]={
+        q:`EDV-Großschema: Fehler ${i+1} von ${EDV_ERRORS.length}`,
+        cat:"EDV Diagramm PRO", group:"IT/FISI", block:"5. EDV Kenntnisse",
+        answers:EDV_SCHEMA.map(x=>`${x.id}: ${x.text}`),
+        correctIndex:EDV_SCHEMA.findIndex(x=>x.id===err.id),
+        givenIndex:givenIndex>=0?givenIndex:null,
+        correct:found, timeout:false, skipped:!found,
+        explanation:`${err.nd}: ${err.ex}<br>Deine Gesamtauswahl: ${selected.join(", ")}.`,
+        visualType:"edvmulti", schemaKind:err.nd, selectedKind:"Multi-Auswahl",
+        duration:perDuration, allowed:state.totalTimeForQuestion,
+        examMode:{...state.exam}
+      };
+    });
+  }
+
+  function renderRouteSequenceAnswers(q) {
+    const need=(q.routeStreets||[]).length;
+    const selected=MultiChoiceModule.init(q,"routeSelected",need);
+    const selectedHtml = selected.length
+      ? MultiChoiceModule.chips(selected, s=>s, s=>`App.selectRouteStreet(${jsArg(s)})`)
+      : `<span class="small">Noch keine Straße ausgewählt.</span>`;
+
+    $("answers").innerHTML = `
+      <div class="route-sequence-panel">
+        <b>Tippe die Straßen in der gemerkten Reihenfolge an:</b>
+        <span class="small">Ausgewählt: ${selected.length}/${need}. Erneutes Tippen entfernt die Straße wieder.</span>
+        <div class="route-selected-list">${selectedHtml}</div>
+        <div class="route-option-grid">
+          ${(q.routeOptions||q.a).map(street=>`<button class="${selected.includes(street)?"used":""}" onclick="App.selectRouteStreet(${jsArg(street)})">${escHTML(street)}</button>`).join("")}
+        </div>
+        <div class="route-action-row">
+          <button class="secondary" onclick="App.clearRouteSelection()">Auswahl leeren</button>
+          <button class="secondary" onclick="App.undoRouteStreet()">Letzte entfernen</button>
+          <button onclick="App.submitRouteSequence()">Gesamtantwort werten</button>
+        </div>
+      </div>
+    `;
+
+    if(state.history[state.current]) {
+      const h=state.history[state.current];
+      $("feedback").innerHTML=(h.correct?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+h.explanation;
+      $("feedback").classList.remove("hidden");
+    }
+  }
+
+  function selectRouteStreet(street) {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="routeMemory" || !q.routeReady || state.history[state.current]) return;
+    const need=(q.routeStreets||[]).length;
+    const result=MultiChoiceModule.toggle(q,"routeSelected",street,need);
+    if(!result.ok && result.action==="max"){
+      $("feedback").innerHTML=`<b>Route vollständig.</b> Tippe eine gewählte Straße erneut an, wenn du sie austauschen möchtest.`;
+      $("feedback").classList.remove("hidden");
+    }
+    renderRouteSequenceAnswers(q);
+  }
+
+  function undoRouteStreet() {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="routeMemory" || state.history[state.current]) return;
+    MultiChoiceModule.undo(q,"routeSelected");
+    renderRouteSequenceAnswers(q);
+  }
+
+  function clearRouteSelection() {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="routeMemory" || state.history[state.current]) return;
+    MultiChoiceModule.clear(q,"routeSelected");
+    renderRouteSequenceAnswers(q);
+  }
+
+  function submitRouteSequence() {
+    const q=state.quiz[state.current];
+    if(!q || q.type!=="routeMemory" || state.history[state.current]) return;
+    const selected=q.routeSelected||[];
+    if(selected.length < q.routeStreets.length) {
+      $("feedback").innerHTML=`<b>Noch nicht vollständig.</b> Du hast ${selected.length}/${q.routeStreets.length} Straßen ausgewählt.`;
+      $("feedback").classList.remove("hidden");
+      return;
+    }
+    clearInterval(state.timer);
+    const ok = MultiChoiceModule.sameOrder(selected, q.routeStreets);
+    recordRouteAnswer(selected, ok);
+    state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":"done";
+    updateQuestionNav();
+    $("feedback").innerHTML=(ok?"<b>Richtig.</b> ":"<b>Falsch.</b> ")+(q.ex||"");
+    $("feedback").classList.remove("hidden");
+    setTimeout(()=>{ if(state.current<state.quiz.length-1 || isAdaptiveElite())nextQuestion(); else showResult();},1100);
+  }
+
+  function recordRouteAnswer(selected, correct) {
+    const q=state.quiz[state.current], ended=new Date(), prev=state.history[state.current];
+    const duration=(prev?prev.duration:0)+(state.questionStartedAt?ended-state.questionStartedAt:0);
+    state.history[state.current]={
+      q:q.q,
+      cat:q.cat,
+      group:q.group||groupFor(q.cat),
+      block:q.block||"",
+      answers:[selected.join(" → ")],
+      correctIndex:0,
+      givenIndex:0,
+      correct,
+      timeout:false,
+      skipped:false,
+      explanation:(q.ex||"")+`<br>Deine Reihenfolge: ${selected.join(" → ")}.`,
+      visualType:q.type||"routeMemory",
+      duration,
+      allowed:state.totalTimeForQuestion,
+      examMode:{...state.exam}
+    };
+  }
+
+  function chooseAnswer(idx,btn) {
+    clearInterval(state.timer);
+    const q=state.quiz[state.current], ok=idx===q.correct, wasCorrect=state.history[state.current]?.correct===true;
+    recordAnswer(idx,ok,false);
+    if(ok && !wasCorrect)state.score++; if(!ok && wasCorrect)state.score=Math.max(0,state.score-1);
+    state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":"done";
+    updateQuestionNav();
+    if(isInstantFeedbackAllowed()) {
+      const bs=document.querySelectorAll(".answers button"); bs.forEach(b=>b.classList.remove("correct","wrong","selected"));
+      if(ok){btn.classList.add("correct"); $("feedback").innerHTML="<b>Richtig.</b> "+(q.ex||"");}
+      else {btn.classList.add("wrong"); if(bs[q.correct])bs[q.correct].classList.add("correct"); $("feedback").innerHTML="<b>Falsch.</b> "+(q.ex||"");}
+      $("feedback").classList.remove("hidden");
+      setTimeout(()=>{ if(state.current<state.quiz.length-1 || isAdaptiveElite())nextQuestion(); else showResult();},900);
+    } else nextQuestion();
+  }
+  function recordAnswer(given, correct, timeout) {
+    const q=state.quiz[state.current], ended=new Date(), prev=state.history[state.current];
+    const duration=(prev?prev.duration:0)+(state.questionStartedAt?ended-state.questionStartedAt:0);
+    state.history[state.current]={q:q.q,cat:q.cat,group:q.group||groupFor(q.cat),block:q.block||"",answers:q.a,correctIndex:q.correct,givenIndex:given,correct,timeout,skipped:given===null&&!timeout,explanation:q.ex||"",visualType:q.type||"mc",duration,allowed:state.totalTimeForQuestion,
+      examMode:{...state.exam}};
+    state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":(given===null?"skip":"done");
+  }
+  function nextQuestion() {
+    clearInterval(state.timer);
+    const targetTotal=isAdaptiveElite()?MODES.ctc.amount:state.quiz.length;
+    if(isAdaptiveElite()) {
+      if(state.current<targetTotal-1){state.current++; if(!state.quiz[state.current])state.quiz[state.current]=buildAdaptiveQuestion(state.current,targetTotal); showQuestion();}
+      else showResult();
+      return;
+    }
+    if(state.current<state.quiz.length-1){state.current++; showQuestion();}
+    else showResult();
+  }
+  function spQuestion(){clearInterval(state.timer); if(!state.history[state.current])recordAnswer(null,false,false); state.questionStates[state.current]="skip"; updateQuestionNav(); nextQuestion();}
+  function skipQuestion(){
+    const q=state.quiz[state.current];
+    if(q && q.type==="edvmulti") {
+      const fb=$("feedback");
+      if(fb){fb.innerHTML="<b>EDV-Block:</b> Bitte die Gesamt-EDV-Aufgabe werten. Offene Auswahl wird sonst als 0/11 gezählt."; fb.classList.remove("hidden");}
+      return;
+    }
+    spQuestion();
+  }
+  function manualNextQuestion(){
+    const q=state.quiz[state.current];
+    if(q && q.type==="edvmulti") { submitEdvMultiAnswer(); return; }
+    clearInterval(state.timer);
+    if(!state.history[state.current]){recordAnswer(null,false,false); state.questionStates[state.current]="skip";}
+    if(isAdaptiveElite()&&state.current>=state.quiz.length-1&&state.current<MODES.ctc.amount-1)return nextQuestion();
+    if(state.current<state.quiz.length-1){state.current++; showQuestion();} else showResult();
+  }
+
+  function showExamLockNotice() {
+    const fb = $("feedback");
+    if(!fb) return;
+    fb.innerHTML = '<div class="exam-locked-note">Zurückspringen ist in diesem Prüfungsmodus gesperrt.</div>';
+    fb.classList.add("force-show");
+    fb.classList.remove("hidden");
+    setTimeout(()=>{ fb.classList.remove("force-show"); if(state.exam.hardcore) fb.classList.add("hidden"); }, 1200);
+  }
+
+  function prevQuestion(){if(state.exam.lockBack){showExamLockNotice();return;} if(state.current>0){clearInterval(state.timer); state.current--; showQuestion();}}
+  function jumpToQuestion(i){if(state.exam.lockBack && i<state.current){showExamLockNotice();return;} if(i<0||i>=state.quiz.length)return; clearInterval(state.timer); if(i!==state.current&&!state.history[state.current]){recordAnswer(null,false,false); state.questionStates[state.current]="skip";} state.current=i; showQuestion();}
+  function toggleMarkQuestion(){state.markedQuestions[state.current]=!state.markedQuestions[state.current]; state.questionStates[state.current]=state.markedQuestions[state.current]?"mark":(state.history[state.current]?"done":"open"); updateQuestionNav();}
+  function updateQuestionNav() {
+    const total=isAdaptiveElite()?MODES.ctc.amount:state.quiz.length;
+    $("questionNav").innerHTML="";
+    for(let i=0;i<total;i++){const d=document.createElement("div"); let st=state.questionStates[i]||(state.history[i]?"done":"open"); if(state.markedQuestions[i])st="mark"; d.className="progress-dot "+st+(i===state.current?" current":""); d.textContent=i+1; d.title=`Aufgabe ${i+1}: ${st}`; if(i<state.quiz.length)d.onclick=()=>jumpToQuestion(i); $("questionNav").appendChild(d);}
+  }
+
+  function renderVisual(q) {
+    const v=$("visual"); v.innerHTML="";
+    if(q.type==="matrix")v.innerHTML=`<div class="matrix">${q.grid.flat().map(x=>`<div class="cell">${x}</div>`).join("")}</div>`;
+    if(q.type==="series")v.innerHTML=`<div class="visualBox"><div class="series">${q.series.map(x=>`<span>${x}</span>`).join("")}</div></div>`;
+    if(q.type==="symbols")v.innerHTML=`<div class="visualBox"><div class="shapeRow">${q.symbols.map(x=>`<span class="shape">${x}</span>`).join("")}</div></div>`;
+    if(q.type==="fraction"){const f=q.fraction; v.innerHTML=`<div class="visualBox"><div class="barRow"><div>${fracHTML(f.a,f.den1)}</div><b>+</b><div>${fracHTML(f.b,f.den2)}</div></div></div>`;}
+    if(q.type==="fractionRule"){const f=q.fractionRule; v.innerHTML=`<div class="visualBox"><div>${f.a} + ${f.b}</div><hr><div>${f.c} + ${f.d}</div></div>`;}
+    if(q.type==="tablecode")v.innerHTML=`<div class="visualBox"><table class="analysisTable"><tr><th>Name</th><th>Farbe</th><th>Zahl</th><th>Kennung</th></tr>${q.tableRows.map(r=>`<tr><td>${r.name}</td><td>${r.color}</td><td>${r.num}</td><td>${r.code}</td></tr>`).join("")}</table></div>`;
+    if(q.type==="pqsheet")v.innerHTML=q.pqHTML||"";
+    if(q.type==="bigschema")v.innerHTML=q.bigSchemaHTML||"";
+    if(q.type==="edvmulti")v.innerHTML=renderEdvProHTML(q);
+    if(q.type==="focusgrid")v.innerHTML=q.focusHTML||"";
+    if(q.type==="routeMemory")renderRouteMemory(q);
+    if(q.type==="visual")renderMechanicVisual(q.visual);
+    if(q.type==="visualIQ")renderVisualIQ(q.visualIQ);
+  }
+
+  function renderRouteMemory(q) {
+    const v=$("visual"), route=q.routeStreets||[];
+    const total=q.routeDuration||20;
+
+    // Feste SVG-Punkte: alles bleibt garantiert im sichtbaren Bereich.
+    const basePoints=[
+      [70,80],[190,80],[310,80],[430,80],[550,80],
+      [670,80],[670,170],[550,170],[430,170],[310,170],
+      [190,170],[70,170],[70,260],[190,260],[310,260],
+      [430,260],[550,260],[670,260]
+    ];
+    const points=basePoints.slice(0, Math.max(1, route.length));
+    const pathD=points.map((p,i)=>(i===0?`M ${p[0]} ${p[1]}`:`L ${p[0]} ${p[1]}`)).join(" ");
+
+    const labelY = (i,p) => {
+      if(p[1] <= 95) return p[1] + 38;
+      if(p[1] >= 240) return p[1] - 26;
+      return (i % 2 === 0) ? p[1] - 24 : p[1] + 34;
+    };
+
+    v.innerHTML=`<div class="route-scene" id="routeScene">
+      <svg class="route-svg" viewBox="0 0 740 330" preserveAspectRatio="xMidYMid meet">
+        <path class="route-path" d="${pathD}"></path>
+        <path class="route-dash" d="${pathD}"></path>
+        ${route.map((s,i)=>{
+          const p=points[i];
+          return `<circle class="route-stop-dot" id="routeDot${i}" cx="${p[0]}" cy="${p[1]}" r="8"></circle>
+                  <text class="route-stop-label" id="routeLabel${i}" x="${p[0]}" y="${labelY(i,p)}" text-anchor="middle">${i+1}. ${escHTML(s)}</text>`;
+        }).join("")}
+        <text class="route-bus-svg" id="routeBusSvg" x="${points[0]?.[0]||70}" y="${points[0]?.[1]||80}">🚌</text>
+      </svg>
+      <div class="route-status" id="routeStatus">Der Bus startet gleich. Merke dir die Straßennamen in Reihenfolge. <span class="route-countdown">${total}s</span></div>
+    </div>`;
+
+    // Wenn die Aufgabe schon gezeigt wurde, bei Rückkehr NICHT nochmal die Straßen anzeigen.
+    if(q.routePlayed || state.history[state.current]) {
+      q.routeReady=true;
+      const scene=$("routeScene");
+      if(scene) scene.innerHTML=`<div class="route-memory-ready" style="margin:90px 16px">Animation beendet. Wähle jetzt unten die Straßen in der richtigen Reihenfolge.</div>`;
+      return;
+    }
+
+    q.routePlayed=true;
+    q.routeReady=false;
+    let elapsed=0;
+    const bus=$("routeBusSvg"), status=$("routeStatus");
+    const per=Math.max(1, Math.floor(total/Math.max(1, route.length)));
+
+    route.forEach((_,i)=>{
+      const tid=setTimeout(()=>{
+        const p=points[i];
+        const dot=$("routeDot"+i), lab=$("routeLabel"+i);
+        if(dot)dot.classList.add("show");
+        if(lab)lab.classList.add("show");
+        if(i>0){
+          const prev=$("routeDot"+(i-1));
+          if(prev)prev.classList.add("past");
+        }
+        if(bus && p){
+          bus.setAttribute("x", p[0]);
+          bus.setAttribute("y", p[1]);
+        }
+      }, i*per*1000);
+      state.routeTimers.push({kind:"timeout",id:tid});
+    });
+
+    const intv=setInterval(()=>{
+      elapsed++;
+      if(status)status.innerHTML=`Merke dir die Reihenfolge. Antwortmöglichkeiten erscheinen gleich. <span class="route-countdown">${Math.max(0,total-elapsed)}s</span>`;
+      if(elapsed>=total){
+        clearInterval(intv);
+        state.routeTimers=state.routeTimers.filter(t=>t.id!==intv);
+
+        // Nach der Animation müssen Straße + Punkte verschwinden.
+        route.forEach((_,i)=>{
+          const dot=$("routeDot"+i), lab=$("routeLabel"+i);
+          if(dot){dot.classList.remove("show","past"); dot.style.display="none";}
+          if(lab){lab.classList.remove("show"); lab.style.display="none";}
+        });
+
+        q.routeReady=true;
+        const scene=$("routeScene");
+        if(scene) scene.innerHTML=`<div class="route-memory-ready" style="margin:90px 16px">Animation beendet. Wähle jetzt unten die Straßen in der richtigen Reihenfolge.</div>`;
+        renderAnswers(q);
+      }
+    },1000);
+    state.routeTimers.push({kind:"interval",id:intv});
+  }
+
+
+  function renderVisualIQ(x) {
+    const v=$("visual");
+    if(!x){v.innerHTML="";return;}
+    const gearPath=(cx,cy,r,teeth=18)=>{let d=""; for(let k=0;k<teeth*2;k++){const ang=(-Math.PI/2)+(k*Math.PI/teeth),rr=k%2===0?r+7:r,px=cx+Math.cos(ang)*rr,py=cy+Math.sin(ang)*rr; d+=(k===0?"M ":" L ")+px.toFixed(1)+" "+py.toFixed(1);} return d+" Z";};
+    if(x.nd==="gearsPro"){
+      const count=x.labels.length,gap=Math.min(112,700/(count-1||1)),startX=70,y=95;
+      let h='<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 780 180" preserveAspectRatio="xMidYMid meet">';
+      x.labels.forEach((lab,i)=>{const cx=startX+i*gap; h+=`<path d="${gearPath(cx,y,28)}" class="visual-iq-light"/><circle cx="${cx}" cy="${y}" r="18" fill="#fff" stroke="#111827" stroke-width="3"/><text x="${cx}" y="32" text-anchor="middle" class="visual-iq-label">${lab}</text><text x="${cx}" y="104" text-anchor="middle" font-size="27" font-weight="900">${x.shown[i]}</text>`; if(i<x.labels.length-1){const nx=startX+(i+1)*gap; h+=`<line x1="${cx+38}" y1="${y}" x2="${nx-38}" y2="${y}" stroke="#111827" stroke-width="4" stroke-linecap="round"/>`;}});
+      if(x.sameAxis>0){const cx=startX+x.sameAxis*gap; h+=`<text x="${cx}" y="154" text-anchor="middle" class="visual-iq-muted">gleiche Achse</text>`;}
+      if(x.beltAt>0){const cx=startX+(x.beltAt-1)*gap,nx=startX+x.beltAt*gap; h+=`<path d="M ${cx} 54 C ${cx+35} 20 ${nx-35} 20 ${nx} 54" class="visual-iq-wire-off"/><text x="${(cx+nx)/2}" y="20" text-anchor="middle" class="visual-iq-muted">Riemen</text>`;}
+      v.innerHTML=h+'</svg></div>';
+    }
+    if(x.nd==="mirror"){
+      const axisText=x.axis==="vertical"?"vertikale Achse":x.axis==="horizontal"?"horizontale Achse":"Punktspiegelung";
+      v.innerHTML=`<div class="visual-iq-canvas"><div class="visual-iq-note"><b>Spiegelaufgabe:</b> Ausgangsfigur links. Gesucht ist die korrekte Spiegelung über ${axisText}.</div><svg class="visual-iq-svg" viewBox="0 0 760 260"><line x1="160" y1="35" x2="160" y2="225" stroke="#64748b" stroke-width="3" stroke-dasharray="7 7"/><text x="160" y="28" text-anchor="middle" class="visual-iq-muted">Spiegelachse</text><polygon points="80,70 125,130 80,190" class="visual-iq-shape"/><circle cx="105" cy="100" r="8" class="visual-iq-dark"/><g transform="translate(260,0)"><text x="40" y="28" class="visual-iq-label">A</text><polygon points="80,70 125,130 80,190" class="visual-iq-shape"/><circle cx="105" cy="100" r="8" class="visual-iq-dark"/></g><g transform="translate(390,0)"><text x="40" y="28" class="visual-iq-label">B</text><polygon points="125,70 80,130 125,190" class="visual-iq-shape"/><circle cx="100" cy="100" r="8" class="visual-iq-dark"/></g><g transform="translate(520,0)"><text x="40" y="28" class="visual-iq-label">C</text><polygon points="80,190 125,130 80,70" class="visual-iq-shape"/><circle cx="105" cy="160" r="8" class="visual-iq-dark"/></g><g transform="translate(640,0)"><text x="40" y="28" class="visual-iq-label">D</text><polygon points="125,190 80,130 125,70" class="visual-iq-shape"/><circle cx="100" cy="160" r="8" class="visual-iq-dark"/></g></svg></div>`;
+    }
+    if(x.nd==="cube"){
+      const cube=(x0,label,front,top,right)=>`<g transform="translate(${x0},45)"><text x="55" y="-18" text-anchor="middle" class="visual-iq-label">${label}</text><polygon points="40,0 95,25 55,50 0,25" fill="#f8fafc" stroke="#111827" stroke-width="3"/><polygon points="0,25 55,50 55,115 0,88" fill="#e2e8f0" stroke="#111827" stroke-width="3"/><polygon points="55,50 95,25 95,90 55,115" fill="#cbd5e1" stroke="#111827" stroke-width="3"/><text x="48" y="32" text-anchor="middle" font-size="22">${top}</text><text x="28" y="82" text-anchor="middle" font-size="22">${front}</text><text x="75" y="82" text-anchor="middle" font-size="22">${right}</text></g>`;
+      v.innerHTML=`<div class="visual-iq-canvas"><div class="visual-iq-note"><b>Würfelrotation:</b> Symbole dürfen durch Drehen ihre Position ändern, aber Nachbarschaften bleiben erhalten.</div><svg class="visual-iq-svg" viewBox="0 0 760 220">${cube(25,"Start","●","▲","■")}${cube(170,"A","■","●","◆")}${cube(315,"B","▲","■","●")}${cube(460,"C","●","◆","▲")}${cube(605,"D","◆","■","●")}</svg></div>`;
+    }
+    if(x.nd==="fold"){
+      const holes=x.pattern==="corner"?[[45,45],[155,45],[45,155],[155,155]]:x.pattern==="diagonal"?[[55,55],[145,145],[55,145],[145,55]]:[[60,100],[140,100],[100,60],[100,140]];
+      const answer=(x0,label,pts)=>`<g transform="translate(${x0},45)"><text x="50" y="-15" text-anchor="middle" class="visual-iq-label">${label}</text><rect x="0" y="0" width="100" height="100" fill="#fff" stroke="#111827" stroke-width="3"/>${pts.map(p=>`<circle cx="${p[0]/2}" cy="${p[1]/2}" r="5" class="visual-iq-dark"/>`).join("")}</g>`;
+      v.innerHTML=`<div class="visual-iq-canvas"><div class="visual-iq-note"><b>Faltfigur:</b> Die gestrichelten Linien sind Faltachsen. Ein Loch wird im gefalteten Zustand gesetzt.</div><svg class="visual-iq-svg" viewBox="0 0 760 230"><g transform="translate(35,25)"><rect x="0" y="0" width="160" height="160" fill="#fff" stroke="#111827" stroke-width="3"/><line x1="80" y1="0" x2="80" y2="160" stroke="#64748b" stroke-dasharray="8 7" stroke-width="3"/><line x1="0" y1="80" x2="160" y2="80" stroke="#64748b" stroke-dasharray="8 7" stroke-width="3"/><circle cx="40" cy="40" r="7" class="visual-iq-dark"/><text x="80" y="185" text-anchor="middle" class="visual-iq-muted">gefaltet + gelocht</text></g>${answer(245,"A",[[45,45],[155,45],[45,155],[155,155]])}${answer(370,"B",[[45,45],[45,155]])}${answer(495,"C",[[55,55],[145,145],[55,145],[145,55]])}${answer(620,"D",[[60,100],[140,100],[100,60],[100,140]])}</svg></div>`;
+    }
+    if(x.nd==="matrixIQ"){
+      const cell=(x0,y0,content)=>`<g transform="translate(${x0},${y0})"><rect width="70" height="70" rx="10" fill="#fff" stroke="#111827" stroke-width="3"/>${content}</g>`;
+      const tri='<polygon points="35,13 58,55 12,55" class="visual-iq-shape"/>';
+      const cir='<circle cx="35" cy="35" r="22" class="visual-iq-light"/>';
+      const sq='<rect x="16" y="16" width="38" height="38" class="visual-iq-shape"/>';
+      v.innerHTML=`<div class="visual-iq-canvas"><div class="visual-iq-note"><b>Matrix:</b> Pro Zeile verändert sich Form, Füllung oder Rotation. Unten rechts fehlt das Ergebnis.</div><svg class="visual-iq-svg" viewBox="0 0 760 330"><g transform="translate(40,35)">${cell(0,0,tri)}${cell(85,0,cir)}${cell(170,0,sq)}${cell(0,85,cir)}${cell(85,85,sq)}${cell(170,85,tri)}${cell(0,170,sq)}${cell(85,170,tri)}${cell(170,170,'<text x="35" y="46" text-anchor="middle" font-size="34" font-weight="900">?</text>')}</g><g transform="translate(365,35)">${cell(0,0,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">A</text>'+cir)}${cell(95,0,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">B</text>'+tri)}${cell(0,95,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">C</text>'+sq)}${cell(95,95,'<text x="35" y="46" text-anchor="middle" class="visual-iq-label">D</text>'+cir.replace('visual-iq-light','visual-iq-dark'))}</g></svg></div>`;
+    }
+    if(x.nd==="circuit"){
+      const open=x.scenario==="openSwitch";
+      const short=x.scenario==="short";
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Stromlaufplan</text><line x1="70" y1="70" x2="70" y2="230" class="visual-iq-wire"/><line x1="70" y1="70" x2="660" y2="70" class="visual-iq-wire"/><line x1="70" y1="230" x2="660" y2="230" class="visual-iq-wire"/><line x1="660" y1="70" x2="660" y2="230" class="visual-iq-wire"/><rect x="45" y="125" width="50" height="50" rx="8" class="visual-iq-hot"/><text x="70" y="156" text-anchor="middle" class="visual-iq-label">+</text><line x1="205" y1="70" x2="205" y2="230" class="visual-iq-wire"/><line x1="420" y1="70" x2="420" y2="230" class="visual-iq-wire"/><circle cx="205" cy="150" r="28" class="visual-iq-light"/><text x="205" y="156" text-anchor="middle" class="visual-iq-label">L1</text><circle cx="420" cy="150" r="28" class="visual-iq-light"/><text x="420" y="156" text-anchor="middle" class="visual-iq-label">L2</text><line x1="285" y1="70" x2="335" y2="70" class="${open?'visual-iq-wire-off':'visual-iq-wire'}"/><text x="310" y="50" text-anchor="middle" class="visual-iq-muted">S1</text><line x1="505" y1="70" x2="555" y2="70" class="visual-iq-wire"/><text x="530" y="50" text-anchor="middle" class="visual-iq-muted">S2</text>${short?'<path d="M 175 150 C 190 105 225 105 235 150" class="visual-iq-wire"/><text x="205" y="110" text-anchor="middle" class="visual-iq-muted">Überbrückung</text>':''}</svg></div>`;
+    }
+    if(x.nd==="mechanics"){
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Mechanik</text><line x1="110" y1="160" x2="360" y2="160" stroke="#111827" stroke-width="10" stroke-linecap="round"/><polygon points="235,170 205,240 265,240" class="visual-iq-hot"/><rect x="120" y="90" width="45" height="65" class="visual-iq-shape"/><text x="142" y="82" text-anchor="middle" class="visual-iq-label">10 kg</text><rect x="310" y="70" width="45" height="85" class="visual-iq-shape"/><text x="332" y="62" text-anchor="middle" class="visual-iq-label">8 kg</text><text x="235" y="270" text-anchor="middle" class="visual-iq-muted">Drehmoment beachten</text><g transform="translate(470,45)"><circle cx="60" cy="55" r="32" class="visual-iq-light"/><circle cx="145" cy="55" r="32" class="visual-iq-light"/><path d="M60 87 L60 190 L145 190 L145 87" class="visual-iq-wire-off"/><rect x="86" y="185" width="35" height="40" class="visual-iq-hot"/><text x="103" y="245" text-anchor="middle" class="visual-iq-label">System B</text></g></svg></div>`;
+    }
+    if(x.nd==="technical"){
+      v.innerHTML=`<div class="visual-iq-canvas"><svg class="visual-iq-svg" viewBox="0 0 760 300"><text x="35" y="28" class="visual-iq-label">Technisches Verständnis</text><g transform="translate(60,60)"><rect x="0" y="40" width="180" height="150" fill="#eff6ff" stroke="#111827" stroke-width="3"/><path d="M0 115 H180" stroke="#60a5fa" stroke-width="45" opacity=".45"/><circle cx="90" cy="170" r="8" class="visual-iq-dark"/><text x="90" y="220" text-anchor="middle" class="visual-iq-muted">Druck steigt mit Tiefe</text></g><g transform="translate(320,60)"><rect x="0" y="80" width="160" height="100" fill="none" stroke="#111827" stroke-width="6"/><line x1="0" y1="180" x2="160" y2="80" stroke="#111827" stroke-width="6"/><line x1="0" y1="80" x2="160" y2="180" stroke="#111827" stroke-width="6"/><text x="80" y="220" text-anchor="middle" class="visual-iq-muted">Dreieck versteift</text></g><g transform="translate(570,70)"><circle cx="25" cy="90" r="24" class="visual-iq-light"/><circle cx="105" cy="90" r="42" class="visual-iq-light"/><path d="M25 66 C50 20 100 20 105 48" class="visual-iq-wire-off"/><text x="65" y="180" text-anchor="middle" class="visual-iq-muted">Riemenantrieb</text></g></svg></div>`;
+    }
+  }
+
+  function renderMechanicVisual(x) {
+    const v=$("visual");
+    if(x.nd==="gear"){let h='<div class="visualBox"><svg width="100%" height="170" viewBox="0 0 900 170" preserveAspectRatio="xMidYMid meet">'; const count=x.labels.length,gap=Math.min(125,760/(count-1||1)),startX=80,y=92; function gearPath(cx,cy,r,teeth){let d=''; for(let k=0;k<teeth*2;k++){const ang=(-Math.PI/2)+(k*Math.PI/teeth),rr=k%2===0?r+8:r,px=cx+Math.cos(ang)*rr,py=cy+Math.sin(ang)*rr; d+=(k===0?'M ':' L ')+px.toFixed(1)+' '+py.toFixed(1);} return d+' Z';} x.labels.forEach((lab,i)=>{const cx=startX+i*gap, mark=x.dirs[i]; h+=`<path d="${gearPath(cx,y,31,18)}" fill="#f8fafc" stroke="#111827" stroke-width="3"/><circle cx="${cx}" cy="${y}" r="22" fill="#fff" stroke="#111827" stroke-width="3"/><circle cx="${cx}" cy="${y}" r="6" fill="#111827"/><text x="${cx}" y="28" text-anchor="middle" font-size="20" font-weight="900">${lab}</text><text x="${cx}" y="103" text-anchor="middle" class="spinArrow">${mark}</text>`; if(i<x.labels.length-1){const nx=startX+(i+1)*gap; h+=`<line x1="${cx+43}" y1="${y}" x2="${nx-43}" y2="${y}" stroke="#111827" stroke-width="4" stroke-linecap="round"/>`;}}); v.innerHTML=h+'</svg></div>';}
+    if(x.nd==="belt")v.innerHTML=`<div class="visualBox"><svg width="320" height="150" viewBox="0 0 320 150"><circle cx="210" cy="75" r="${Math.min(55,x.big/1.3)}" fill="#fff" stroke="#111827" stroke-width="4"/><circle cx="80" cy="75" r="${Math.max(22,x.small)}" fill="#f8fafc" stroke="#111827" stroke-width="4"/><line x1="80" y1="${75-Math.max(22,x.small)}" x2="210" y2="${75-Math.min(55,x.big/1.3)}" stroke="#111827" stroke-width="3"/><line x1="80" y1="${75+Math.max(22,x.small)}" x2="210" y2="${75+Math.min(55,x.big/1.3)}" stroke="#111827" stroke-width="3"/><text x="75" y="140" font-weight="700">klein</text><text x="190" y="140" font-weight="700">groß</text></svg></div>`;
+    if(x.nd==="blocks"){let cells=[]; x.shape.grid.forEach((row,r)=>row.forEach((c,col)=>{if(c)cells.push([col,r])})); v.innerHTML=`<div class="visualBox"><svg width="280" height="210" viewBox="0 0 280 210">${cells.map(p=>{const x0=80+p[0]*42,y0=40+p[1]*42; return `<rect x="${x0}" y="${y0}" width="40" height="40" fill="#e2e8f0" stroke="#111827" stroke-width="2"/><polygon points="${x0},${y0} ${x0+12},${y0-10} ${x0+52},${y0-10} ${x0+40},${y0}" fill="#f8fafc" stroke="#111827" stroke-width="2"/><polygon points="${x0+40},${y0} ${x0+52},${y0-10} ${x0+52},${y0+30} ${x0+40},${y0+40}" fill="#cbd5e1" stroke="#111827" stroke-width="2"/>`;}).join("")}</svg></div>`;}
+    if(x.nd==="net")v.innerHTML=`<div class="visualBox"><div style="display:grid;grid-template-columns:repeat(4,46px);gap:2px;justify-content:center"><div></div><div class="cell" style="height:46px"></div><div></div><div></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div class="cell" style="height:46px"></div><div></div><div class="cell" style="height:46px"></div><div></div><div></div></div></div>`;
+  }
+
+  function targetTotal() {return isAdaptiveElite()?MODES.ctc.amount:state.quiz.length;}
+  function placeholderHistory(i, reason) {
+    const q=state.quiz[i];
+    return {q:q?.q || (reason==="notGenerated"?"Adaptive Aufgabe wurde nicht mehr erzeugt.":"Aufgabe wurde nicht bearbeitet."),cat:q?.cat||"Nicht bearbeitet",group:q?.group||(q?groupFor(q.cat):"Nicht bearbeitet"),block:q?.block||(state.selectedMode==="ctcLohr"?"Nicht bearbeitet":""),answers:q?.a||["Nicht bearbeitet"],correctIndex:typeof q?.correct==="number"?q.correct:0,givenIndex:null,correct:false,timeout:reason==="timeout",skipped:true,explanation:q?.ex||(reason==="notGenerated"?"Diese Aufgabe wurde nicht erreicht und zählt deshalb als falsch.":"Diese Aufgabe wurde offen gelassen und zählt deshalb als falsch."),visualType:q?.type||"mc",duration:0,allowed:q?.time||0};
+  }
+  function finalizeOpenAnswers(reason="open") {
+    const total=targetTotal();
+    for(let i=0;i<total;i++){ if(!state.history[i]){state.history[i]=i<state.quiz.length?placeholderHistory(i,reason):placeholderHistory(i,"notGenerated"); if(!state.questionStates[i])state.questionStates[i]="skip";} if(typeof state.history[i].correct!=="boolean")state.history[i].correct=false; }
+  }
+  function endEarly() {
+    if(state.exam.enabled && !confirm("Prüfungsmodus wirklich beenden? Offene Aufgaben werden als falsch gezählt.")) return;
+    clearInterval(state.timer);
+    clearRouteTimers();
+    finalizeOpenAnswers("manualEnd");
+    showResult();
+  }
+  function showResult() {
+    clearInterval(state.timer); clearRouteTimers(); finalizeOpenAnswers();
+    state.testEnd=new Date(); hideAll(); $("result").classList.remove("hidden");
+    state.score=state.history.filter(h=>h&&h.correct).length;
+    const total=state.history.filter(Boolean).length||1, percent=Math.round(state.score/total*100), dur=state.testStart?formatDuration(state.testEnd-state.testStart):"nicht erfasst", target=state.selectedMode==="ctc"?70:state.selectedMode==="bps"?75:80, verdict=percent>=target?"Stark für diesen Modus.":percent>=target-10?"Knapp dran, aber noch instabil unter Druck.":"Noch zu fehleranfällig für einen sicheren Lauf.", avg=Math.round(state.history.reduce((s,h)=>s+(h?.duration||0),0)/total/100)/10;
+    const trainingModes=["mathSprint","logicSprint","concentrationSprint","visualIQSprint","itSprint","knowledgeSprint","techniqueSprint","errorTrainingPrep"];
+    const trainingNote=trainingModes.includes(state.selectedMode)?'<div class="training-note"><b>Blocktraining PRO:</b> Dieser Lauf zählt als gezielte Trainingseinheit. Nutze die Kategorieauswertung direkt für den nächsten Sprint.</div>':'';
+    $("resultText").innerHTML=`${state.exam.enabled?'<div class="exam-banner">Prüfungsmodus abgeschlossen. Offene Aufgaben wurden streng gewertet.</div>':""}${trainingNote}<div class="bigScore">${state.score}/${total}</div><div class="statsgrid"><div class="stat"><b>Quote</b><br><strong>${percent}%</strong></div><div class="stat"><b>Beginn</b><br><strong>${formatTime(state.testStart)}</strong></div><div class="stat"><b>Ende</b><br><strong>${formatTime(state.testEnd)}</strong></div><div class="stat"><b>Dauer</b><br><strong>${dur}</strong></div><div class="stat"><b>Ø pro Aufgabe</b><br><strong>${avg}s</strong></div></div><div class="tipBox"><b>${verdict}</b></div>`;
+    renderCategoryStats(); renderTips(percent); renderReview(); saveResult(percent,dur,avg);
+  }
+  function renderCategoryStats() {
+    const answered=state.history.filter(Boolean), cats=[...new Set(answered.map(h=>h.group))];
+    $("categoryStats").innerHTML=cats.map(cat=>{const items=answered.filter(h=>h.group===cat), r=items.filter(h=>h.correct).length, p=Math.round(r/items.length*100), avg=Math.round(items.reduce((s,h)=>s+h.duration,0)/items.length/100)/10; return `<div class="stat"><b>${cat}</b><br>${r}/${items.length} richtig<br><strong>${p}%</strong><br><span class="small">Ø ${avg}s</span></div>`;}).join("");
+    if(state.selectedMode==="ctcLohr") {
+      const blocks=["1. Allgemeinwissen","2. Mathe","3. Logik","4. Konzentration","5. EDV Kenntnisse","Nicht bearbeitet"];
+      const rows=blocks.map(block=>{const items=answered.filter(h=>h.block===block); if(!items.length)return ""; const r=items.filter(h=>h.correct).length, p=Math.round(r/items.length*100), open=items.filter(h=>h.givenIndex===null).length; return `<div class="stat"><b>${block}</b><br>${r}/${items.length} richtig<br><strong>${p}%</strong><br><span class="small">offen/übersprungen: ${open}</span></div>`;}).join("");
+      $("categoryStats").innerHTML+=`<div class="box" style="grid-column:1/-1"><h3>Blockauswertung</h3><div class="statsgrid">${rows}</div></div>`;
+    }
+  }
+  function renderTips(percent) {
+    const answered=state.history.filter(Boolean), cats=[...new Set(answered.map(h=>h.group))].map(cat=>{const items=answered.filter(h=>h.group===cat); return {cat,p:Math.round(items.filter(h=>h.correct).length/items.length*100),avg:items.reduce((s,h)=>s+h.duration,0)/items.length};}).sort((a,b)=>a.p-b.p);
+    const weakest=cats[0], slow=[...cats].sort((a,b)=>b.avg-a.avg)[0], timeouts=answered.filter(h=>h.timeout).length, open=answered.filter(h=>h.givenIndex===null).length;
+    const tips=[];
+    if(state.selectedMode==="ctcLohr")tips.push("Prüfungsstrategie: Im Konzentrationsblock nicht vorne festbeißen. Erst sichere Aufgaben holen, dann schwere markieren und später prüfen.");
+    if(weakest)tips.push(`Schwächste Kategorie: <b>${weakest.cat}</b>. Nächster Lauf: gezielt 15 Minuten diesen Bereich.`);
+    if(slow)tips.push(`Langsamste Kategorie: <b>${slow.cat}</b>. Dort mit Stoppuhr üben.`);
+    if(timeouts)tips.push(`Zeitabläufe: <b>${timeouts}</b>. Leichte Aufgaben zuerst sicher holen, schwere schneller überspringen.`);
+    if(open)tips.push(`${open} offene oder übersprungene Aufgaben wurden als falsch gezählt.`);
+    if(!isAdaptiveElite())tips.push("Für gezieltes Nachtrainieren nutze den Eignungstest-Elite-Modus."); else tips.push("Elite-Runde beendet: Wiederhole den Modus direkt, damit deine Schwächen erneut unter Druck trainiert werden.");
+    $("tips").innerHTML=`<div class="box"><h3>Tipps zum Besserwerden</h3><ul>${tips.map(t=>`<li>${t}</li>`).join("")}</ul></div>`;
+    if(state.selectedMode==="ctcLohr") {
+      const blocks=["1. Allgemeinwissen","2. Mathe","3. Logik","4. Konzentration","5. EDV Kenntnisse"]; let weakestBlock=null;
+      blocks.forEach(block=>{const items=answered.filter(h=>h.block===block); if(items.length){const p=Math.round(items.filter(h=>h.correct).length/items.length*100); if(!weakestBlock||p<weakestBlock.p)weakestBlock={block,p};}});
+      if(weakestBlock)$("tips").innerHTML+=`<div class="tipBox"><b>Simulationsempfehlung:</b> Schwächster Block ist <b>${weakestBlock.block}</b> mit ${weakestBlock.p}%. Genau diesen Block gezielt trainieren.</div>`;
+      const edv=answered.filter(h=>h.block==="5. EDV Kenntnisse"); if(edv.length){const byKind={}; edv.forEach(h=>{const nd=h.schemaKind||h.selectedKind||"EDV-Fehler"; if(!byKind[nd])byKind[nd]={n:0,r:0}; byKind[nd].n++; if(h.correct)byKind[nd].r++;}); const rows=Object.keys(byKind).map(k=>`${k}: ${byKind[k].r}/${byKind[k].n}`).join(" · "); $("tips").innerHTML+=`<div class="tipBox"><b>EDV-Diagramm Auswertung:</b> ${rows}. Trainiere das genaue Abgleichen von Geschichte, Pfeilrichtung und Inhalt.</div>`;}
+    }
+  }
+  function renderReview() {
+    const wrong=state.history.filter(h=>h&&!h.correct);
+    if(!wrong.length){$("review").innerHTML='<div class="box">Keine Fehler. Sehr sauber.</div>';return;}
+    const groups=[...new Set(wrong.map(h=>h.group||"Sonstiges"))];
+    const filterHtml=`<div class="reviewFilter"><button onclick="App.filterReview('all')">Alle Fehler</button><button onclick="App.filterReview('open')">Nur offen/übersprungen</button>${groups.map(g=>`<button onclick="App.filterReview('${String(g).replace(/'/g,"\\'")}')">${g}</button>`).join("")}</div>`;
+    $("review").innerHTML=filterHtml+wrong.map((h,i)=>{const given=h.givenIndex===null?(h.timeout?"Zeit abgelaufen":"Übersprungen/offen"):h.answers[h.givenIndex], corr=h.answers[h.correctIndex]; const isEdv=(h.visualType==="edvmulti"); const givenText=isEdv?`${given || "keine Auswahl"} · Fehlerart: ${h.selectedKind || "nicht gewählt"}`:given; const corrText=isEdv?`${corr} · Fehlerart: ${h.schemaKind || "unbekannt"}`:corr; return `<div class="reviewItem" data-group="${h.group||"Sonstiges"}" data-miss="${h.givenIndex===null?1:0}"><b>${i+1}. ${h.cat}</b><br><b>Aufgabe:</b> ${h.q}<p>Deine Antwort: <b>${givenText}</b><br>Richtig: <b>${corrText}</b></p><p class="small"><b>Erklärung:</b> ${h.explanation}</p><p class="small">Bearbeitungszeit: ${Math.round(h.duration/100)/10}s</p></div>`;}).join("");
+  }
+
+  function filterReview(nd) {
+    const items=document.querySelectorAll("#review .reviewItem");
+    items.forEach(el=>{
+      if(nd==="all") {el.style.display="block"; return;}
+      const type=el.getAttribute("data-group")||"";
+      const miss=el.getAttribute("data-miss")||"";
+      if(nd==="open") el.style.display=miss==="1"?"block":"none";
+      else el.style.display=type===nd?"block":"none";
+    });
+  }
+
+  function toggleReview(){$("review").classList.toggle("hidden");}
+  function saveResult(percent,dur,avg) {
+    const data=getResults(), cats={};
+    state.history.filter(Boolean).forEach(h=>{if(!cats[h.group])cats[h.group]={n:0,r:0,t:0}; cats[h.group].n++; if(h.correct)cats[h.group].r++; cats[h.group].t+=h.duration;});
+    const aiSession=SessionTracker.buildSession(state.history,state.selectedMode,MODES[state.selectedMode].title);
+    const profile=readProfile();
+    data.push({date:new Date().toISOString(),player_name:profile.name||"Gast",player_id:profile.player_id,mode:state.selectedMode,title:MODES[state.selectedMode].title,score:state.score,total:state.history.length,percent,duration:dur,avg,cats,exam:{...state.exam},aiSession,appVersion:APP_VERSION});
+    StorageEngine.write(data.map(entry=>DatabaseBridge.createResultRecord(entry)).slice(-StorageEngine.maxRecords));
+    const latest = data[data.length-1];
+    HighscoreEngine.persistFromResults(data).catch(()=>{});
+    CloudHighscoreEngine.submit(latest).then(()=>CloudHighscoreEngine.refreshDashboard()).catch(err=>{console.warn("Cloud Highscore Sync", err); CloudHighscoreEngine.refreshDashboard();});
+  }
+  function getResults(){return StorageEngine.read([]).map(entry=>Guard.normalizeResult(entry));}
+
+  function renderCurrentRunAnalysis() {
+    const profile=AnalyticsEngine.buildFromHistory(state.history, MODES[state.selectedMode]?.title||"Aktueller Test");
+    const cells=Object.entries(profile.cats).map(([name,c])=>{const cls=c.percent>=80?"good":c.percent>=60?"mid":"bad"; return `<div class="heatcell ${cls}"><b>${name}</b>${c.percent}%<br><span class="small">${c.correct}/${c.total} richtig · Ø ${Math.round(c.avgMs/1000)}s</span></div>`;}).join("");
+    const bars=profile.timeProfile.map(x=>`<div class="timebar" title="Aufgabe ${x.i}: ${Math.round(x.ms/1000)}s" style="height:${Math.max(8,Math.min(110,Math.round((x.ms||0)/250)))}px;background:${x.correct?"#111827":"#991b1b"}"></div>`).join("");
+    const rec=profile.recommendations.map(r=>`<div class="reco-item"><strong>${r.title}</strong>${r.text}</div>`).join("");
+    return `<h2>Visual IQ System</h2><div class="analysis-pro-grid"><div class="analysis-card"><b>Trefferquote</b><div class="analysis-score">${profile.percent}%</div></div><div class="analysis-card"><b>Stressrisiko</b><div class="analysis-score">${profile.stress.risk}</div></div><div class="analysis-card"><b>Ø Zeit</b><div class="analysis-score">${Math.round(profile.stress.avgMs/1000)}s</div></div></div><h3>Kategorieprofil</h3><div class="heatmap">${cells}</div><h3>Zeitprofil</h3><div class="timeline">${bars}</div><h3>Empfehlungen</h3><div class="reco-list">${rec}</div>`;
+  }
+
+  function showAnalysis() {
+    hideAll(); $("analysis").classList.remove("hidden"); const data=getResults();
+    if(!data.length){$("analysisContent").innerHTML='<div class="box">Noch keine gespeicherten Testläufe. Starte zuerst einen Test.</div>';return;}
+    const coach=CoachEngine.build(data);
+    const aiPanel=`<div class="box"><h3>AI Coach Engine</h3><div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${coach.readiness.percent}%"></div></div><p><b>Datenbasis:</b> ${coach.readiness.percent}% · Simulationen ${coach.readiness.simulationCount}/${coach.readiness.required}</p><p><b>Empfehlung:</b> ${escHTML(coach.recommendation.title)} — ${escHTML(coach.recommendation.text)}</p><p><b>Adaptive Engine:</b> ${coach.adaptive.label} · Level ${coach.adaptive.globalLevel} · Fokus ${escHTML(coach.adaptive.focusGroup || "ausgeglichen")}</p><p><b>Dynamic Generator:</b> ${escHTML(DynamicGeneratorEngine.explainMix(coach.dynamicMix))}</p><p><b>Learning Memory:</b> ${escHTML(LearningMemoryEngine.summary(coach.learning))}</p><p><b>Full Simulation:</b> ${escHTML(FullSimulationEngine.label(coach.simulation))} · Abdeckung ${coach.simulation.coverage}% · Risiko ${escHTML(coach.simulation.risk)}</p><div class="ai-list">${coach.weaknesses.slice(0,4).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || "<div>Noch keine Schwächen berechnet.</div>"}</div></div>`;
+    const best=data.reduce((a,b)=>b.percent>a.percent?b:a,data[0]), last=data[data.length-1], avg=Math.round(data.reduce((s,x)=>s+x.percent,0)/data.length), recent=data.slice(-12), chart=`<div class="chart">${recent.map(x=>`<div class="barChart" style="height:${Math.max(8,x.percent*1.35)}px" title="${x.percent}%">${x.percent}</div>`).join("")}</div>`;
+    const catAgg={}; data.forEach(r=>Object.keys(r.cats||{}).forEach(c=>{const o=r.cats[c]; if(!catAgg[c])catAgg[c]={n:0,r:0}; catAgg[c].n+=o.n; catAgg[c].r+=o.r;}));
+    const catRows=Object.keys(catAgg).map(c=>({c,p:Math.round(catAgg[c].r/catAgg[c].n*100),n:catAgg[c].n})).sort((a,b)=>a.p-b.p), weak=catRows[0], strong=catRows[catRows.length-1];
+    $("analysisContent").innerHTML=`${aiPanel}<div class="statsgrid"><div class="stat"><b>Tests gesamt</b><br><strong>${data.length}</strong></div><div class="stat"><b>Durchschnitt</b><br><strong>${avg}%</strong></div><div class="stat"><b>Beste Leistung</b><br><strong>${best.percent}%</strong><br><span class="small">${best.title}</span></div><div class="stat"><b>Letzter Test</b><br><strong>${last.percent}%</strong><br><span class="small">${formatDate(new Date(last.date))}</span></div></div><div class="box"><h3>Fortschritt letzte Läufe</h3>${chart}</div><div class="box"><h3>Kategorieanalyse</h3>${catRows.map(x=>`<div><b>${x.c}</b> ${x.p}% (${x.n} Aufgaben)<div class="hbar" style="width:${Math.max(35,x.p)}%">${x.p}%</div></div>`).join("")}</div><div class="tipBox"><b>Empfehlung:</b> ${weak?`Arbeite als Nächstes an <b>${weak.c}</b>. Deine stärkste Kategorie ist aktuell <b>${strong.c}</b>.`:"Noch zu wenig Daten."}</div><div class="box"><h3>Letzte Testläufe</h3><table class="analysisTable"><tr><th>Datum</th><th>Modus</th><th>Ergebnis</th></tr>${data.slice(-10).reverse().map(r=>`<tr><td>${formatDate(new Date(r.date))}</td><td>${r.title}</td><td>${r.score}/${r.total} · ${r.percent}%</td></tr>`).join("")}</table></div>`;
+  }
+
+
+  function showDatabaseInfo() {
+    const panel = $("healthPanel");
+    if(!panel) return;
+    const d = DatabaseBridge.diagnostics();
+    panel.classList.add("show");
+    panel.innerHTML = `
+      <b>Datenbankstatus</b>
+      <div class="health-row"><span>Aktive Engine</span><strong>${d.engine}</strong></div>
+      <div class="health-row"><span>IndexedDB verfügbar</span><strong>${d.indexedDbReady ? "Ja" : "Nein"}</strong></div>
+      <div class="health-row"><span>IndexedDB Foundation</span><strong>${d.indexedDb && d.indexedDb.ok ? "OK" : (d.indexedDb && d.indexedDb.supported ? "initialisiert..." : "nicht verfügbar")}</strong></div>
+      <div class="health-row"><span>IndexedDB Stores</span><strong>${d.indexedDb && d.indexedDb.stores ? d.indexedDb.stores.length : 0}/${d.indexedDb && d.indexedDb.expectedStores ? d.indexedDb.expectedStores.length : 0}</strong></div><div class="health-row"><span>Highscore Store</span><strong>${d.indexedDb && d.indexedDb.stores && d.indexedDb.stores.includes("highscores") ? "bereit" : "prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore Config</span><strong>${(window.App && App._test && App._test.CloudHighscoreEngine && App._test.CloudHighscoreEngine.diagnostics().configured) ? "geladen" : "nicht vollständig"}</strong></div>
+      <div class="health-row"><span>Migration</span><strong>${d.migration && d.migration.ready ? "vorbereitet" : "prüfen"}</strong></div>
+      <div class="health-row"><span>Migrationsmodus</span><strong>${d.migration ? d.migration.phase : "-"}</strong></div>
+      <div class="health-row"><span>Quellläufe gefunden</span><strong>${d.migration ? d.migration.totalRecords : 0}</strong></div>
+      <div class="health-row"><span>Schema</span><strong>${d.schemaVersion}</strong></div>
+      <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
+      <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
+      <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V7.0.7: vorbereitet, runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
+      <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
+    `;
+  }
+
+  function exportBackup() {
+    const payload = DatabaseBridge.exportPayload();
+    const text = JSON.stringify(payload, null, 2);
+    const blob = new Blob([text], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "eignungstest-trainer-backup-v7-0-2.json";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
+  }
+
+  async function showFrameworkHealth() {
+    const panel = $("healthPanel");
+    if(!panel) return;
+    const summary = QualityEngine.summary();
+    const cloudLive = await CloudHighscoreEngine.testConnection();
+    panel.classList.toggle("show");
+    panel.innerHTML = `
+      <b>Framework-Status</b>
+      <div class="health-row"><span>Version</span><strong>${summary.framework}</strong></div>
+      <div class="health-row"><span>Speicher</span><strong>${summary.storage.engine} · ${summary.storage.records} Läufe</strong></div><div class="health-row"><span>Schema</span><strong>${DATA_MODEL.version}</strong></div>
+      <div class="health-row"><span>Modi</span><strong>${summary.modes.length}</strong></div>
+      <div class="health-row"><span>Simulation</span><strong>${summary.simulation.count} Aufgaben</strong></div>
+      <div class="health-row"><span>Modus-Verträge</span><strong>${summary.contracts.length ? summary.contracts.length + " Problem(e)" : "OK"}</strong></div>
+      <div class="health-row"><span>AI Engine</span><strong>${summary.ai && summary.ai.ok ? "OK" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>IndexedDB</span><strong>${summary.indexedDb && summary.indexedDb.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Highscore Engine</span><strong>${summary.highscore && summary.highscore.ok ? "OK" : "Prüfen"}</strong></div><div class="health-row"><span>Cloud Highscore</span><strong>${cloudLive.online ? "online" : (cloudLive.configured ? "konfiguriert · Verbindung prüfen" : "nicht verbunden")}</strong></div>
+      <div class="health-row"><span>Migration</span><strong>${summary.migration && summary.migration.ok ? "Aktiv · nicht-destruktiv" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Adaptive Engine</span><strong>${summary.ai && summary.ai.adaptive ? summary.ai.adaptive : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Dynamic Generator</span><strong>${summary.ai && summary.ai.mix ? summary.ai.mix + " Mix-Einträge" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Focus Guard</span><strong>${summary.ai && summary.ai.focusGuard ? summary.ai.focusGuard : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Learning Memory</span><strong>${summary.ai && typeof summary.ai.learning === "number" ? summary.ai.learning + " Muster" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Full Simulation</span><strong>${summary.ai && typeof summary.ai.simulation === "number" ? summary.ai.simulation + "% Abdeckung" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Question Bank</span><strong>${summary.questionBank && summary.questionBank.ok ? "Schema OK · Runtime geparkt" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>PWA Ready</span><strong>${summary.pwa && summary.pwa.ok ? "Manifest aktiv · Cache an" : "Prüfen"}</strong></div>
+      <div class="health-row"><span>Stabile Module</span><strong>${FEATURE_STATUS.stable.length}</strong></div>
+      <div class="health-row"><span>Vorbereitet</span><strong>${FEATURE_STATUS.prepared.length}</strong></div>
+      <div class="health-row"><span>Ausgeklammert</span><strong>${FEATURE_STATUS.disabled.length}</strong></div>
+      <div class="db-status-card"><b>Supabase Cloud Diagnose:</b><br>Config geladen: <b>${cloudLive.configLoaded ? "Ja" : "Nein"}</b><br>URL: <b>${cloudLive.urlSet ? "Ja" : "Nein"}</b> · Key: <b>${cloudLive.keySet ? "Ja" : "Nein"}</b><br>Provider: <code>${escHTML(cloudLive.provider || "-")}</code> · Tabelle: <code>${escHTML(cloudLive.table || "-")}</code> · Klasse: <code>${escHTML(cloudLive.classCode || "-")}</code><br>Lesetest: <b>${cloudLive.readOk ? "OK" : "Fehler"}</b> · Status: <code>${escHTML(cloudLive.status || "-")}</code>${cloudLive.httpStatus ? " · HTTP "+cloudLive.httpStatus : ""}${cloudLive.error ? `<br><span class="small">${escHTML(cloudLive.error)}</span>` : ""}<br><span class="small">Wenn hier Config Ja, URL Ja und Key Ja steht, aber Lesetest Fehler zeigt, liegt es fast sicher an Supabase Tabelle/RLS/Policies oder Internet/CORS.</span></div>
+      ${summary.contracts.length ? `<div class="db-status-card"><b>Vertragsprobleme:</b><br>${summary.contracts.map(escHTML).join("<br>")}</div>` : ""}
+      <div class="health-row"><span>Status</span><strong>${summary.ok ? "OK" : "Prüfen"}</strong></div>
+    `;
+  }
+
+
+  function clearProgress(){if(confirm("Wirklich alle gespeicherten Ergebnisse löschen?")){StorageEngine.clear(); showAnalysis();}}
+  function restart(){clearInterval(state.timer); clearInterval(state.memoryTimer); clearRouteTimers(); clearExamBodyClass(); state.exam={enabled:false,hardcore:false,lockBack:false,started:false}; hideAll(); $("start").classList.remove("hidden"); renderModes();}
+
+
+  function bindRuntimeEvents(){
+    if(window.__ET_RUNTIME_EVENTS_BOUND__) return;
+    window.__ET_RUNTIME_EVENTS_BOUND__ = true;
+    document.addEventListener("click", function(ev){
+      const saveBtn = ev.target && ev.target.closest ? ev.target.closest('[data-action="save-profile-name"]') : null;
+      if(saveBtn){ ev.preventDefault(); saveProfileName(); }
+    });
+    document.addEventListener("keydown", function(ev){
+      if(ev.key !== "Enter") return;
+      const target = ev.target;
+      if(target && target.matches && target.matches('[data-profile-name-input="1"], #profileNameInput, #profileEditNameInput')){
+        ev.preventDefault();
+        saveProfileName(target);
+      }
+    });
+  }
+
+  bindRuntimeEvents();
+  IndexedDBEngine.init().then(()=>StorageEngine.loadFromIndexedDB()).then(()=>{ try { renderModes(); if($("healthPanel") && $("healthPanel").classList.contains("show")) showDatabaseInfo(); } catch(e){} });
+  renderModes();
+
+  return {setAppSection,setTopTab,selectMode,setModeTab,setTrainingFocus,saveProfileName,quickStartRecommended,prepareTest,beginQuizAfterMemory,cancelMemoryPhase,startCtcBlockFromIntro,chooseAnswer,toggleEdvMultiNode,undoEdvMultiSelection,clearEdvMultiSelection,submitEdvMultiAnswer,selectRouteStreet,undoRouteStreet,clearRouteSelection,submitRouteSequence,spQuestion,skipQuestion,prevQuestion,manualNextQuestion,toggleMarkQuestion,jumpToQuestion,endEarly,restart,toggleReview,filterReview,showAnalysis,showFrameworkHealth,showDatabaseInfo,exportBackup,clearProgress,
+    _test:{FRAMEWORK,FEATURE_FLAGS,FEATURE_STATUS,PWA_CONFIG,MODULE_TREE,DATA_MODEL,MigrationPlanner,IndexedDBEngine,DatabaseBridge,StorageEngine,Guard,AnalyticsEngine,SessionTracker,ErrorMemory,DataReadiness,WeaknessProfile,CognitiveProfile,RecommendationEngine,TrainingFocusEngine,AdaptiveDifficultyEngine,DynamicGeneratorEngine,LearningMemoryEngine,FullSimulationEngine,HighscoreEngine,CloudHighscoreEngine,QuestionBankEngine,QUESTION_BANK_SCHEMA,QUESTION_BANK,CoachEngine,QualityEngine,readExamOptions,applyExamBodyClass,showExamLockNotice,MODES,buildQuiz,Generators,stableSignature,state,finalizeOpenAnswers,showResult,selectMode,startQuiz,EDV_SCHEMA,EDV_ERRORS,CTC_BLOCK_LIMITS}};
+})();
