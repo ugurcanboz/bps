@@ -64,7 +64,7 @@
     importBatch(rawItems=[], source="ocr-import") {
       if(!FEATURE_FLAGS.questionBankRuntimeImport) {
         const validation = rawItems.map(x=>this.validate(this.normalize(x,source)));
-        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V6.0.0 bewusst deaktiviert.", createdAt:new Date().toISOString()};
+        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V6.2.1 bewusst deaktiviert.", createdAt:new Date().toISOString()};
         return QUESTION_BANK.lastImport;
       }
       const normalized=rawItems.map(x=>this.normalize(x,source));

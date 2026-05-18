@@ -491,3 +491,8 @@ body.premium-ui{
 @media(max-width:520px){.mobile-dashboard-more .cloud-highscore-card{display:block!important}.cloud-board-grid{grid-template-columns:1fr}.cloud-rank-row{font-size:13px}.cloud-rank-main small,.cloud-rank-score small{font-size:11px}}
 
 /* Mobile-Regeln sind ab V6.0.0 ausgelagert: css/mobile.css */
+
+
+/* === V6.2.1 NOTE ===
+   Mobile-Shell-Regeln liegen ausschließlich in css/mobile.css.
+   Diese Datei behält nur allgemeine Komponenten; alte mobile section/profile/simulation Overrides werden dort übersteuert. */

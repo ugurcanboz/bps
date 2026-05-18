@@ -5,7 +5,7 @@
 
 /*
 ===============================================================================
-Eignungstest-Trainer V6.1.1 · Navigation TopNav Stable
+Eignungstest-Trainer V6.2.1 · Mobile Shell Stable
 ===============================================================================
 Struktur:
 - Core: Modi, Quiz-Ablauf, Timer, Navigation, Wertung
@@ -15,23 +15,23 @@ Struktur:
 - PWA: Manifest, Service Worker, Cache-Bereinigung
 - Qualität: Guard, Framework-Health, Simulation-Checks
 
-Framework Refactor V6.1.1:
+Framework Refactor V6.2.1:
 - Versions- und Cache-Bezeichnungen vereinheitlicht
 - Legacy-EDV-Einzelfrage aus Export und Runtime entfernt
 - EDV-Modul auf Multi-Choice-Gesamtauswertung stabilisiert
-- MigrationPath auf V6.1.1 aktualisiert
+- MigrationPath auf V6.2.1 aktualisiert
 - alte V3/V4-Kommentarblöcke bereinigt
 ===============================================================================
 */
 
 
 window.App = (() => {
-  const STORE_KEY = "eignungstest_trainer_v611_results";
-  const LEGACY_STORE_KEYS = ["eignungstest_trainer_v600_results","eignungstest_trainer_v514_results","eignungstest_trainer_v512_results","eignungstest_trainer_v501_results","eignungstest_trainer_v42_results","eignungstest_trainer_v36_results","eignungstest_trainer_v355_results","eignungstest_trainer_v354_results","eignungstest_trainer_v353_results","eignungstest_trainer_v35_results","eignungstest_trainer_v341_results","eignungstest_trainer_v34_results","eignungstest_trainer_v332_results","eignungstest_trainer_v33_results","eignungstest_trainer_v331_results","eignungstest_trainer_v321_results","eignungstest_trainer_v32_results","eignungstest_trainer_v311_results","eignungstest_trainer_v31_results","eignungstest_trainer_v292_results","eignungstest_trainer_v291_results","eignungstest_trainer_v29_results","eignungstest_trainer_v281_results","eignungstest_trainer_v28_results","eignungstest_trainer_v231_results","eignungstest_trainer_v251_results","eignungstest_trainer_v23_results","eignungstest_trainer_v19_results","eignungstest_trainer_v18_results","eignungstest_trainer_v17_results","eignungstest_trainer_v16_results"];
-  const APP_VERSION = "6.1.1-topnav-sync";
-  const PROFILE_KEY = "eignungstest_trainer_profile_v611";
-  const PROFILE_LEGACY_KEYS = ["eignungstest_trainer_profile_v600","eignungstest_trainer_profile_v514","eignungstest_trainer_profile_v512","eignungstest_trainer_profile_v501","eignungstest_trainer_profile_v42","eignungstest_trainer_profile_v36","eignungstest_trainer_profile_v355","eignungstest_trainer_profile_v354","eignungstest_trainer_profile_v353","eignungstest_trainer_profile_v35","eignungstest_trainer_profile_v341","eignungstest_trainer_profile_v34","eignungstest_trainer_profile_v332","eignungstest_trainer_profile_v33","eignungstest_trainer_profile_v331","eignungstest_trainer_profile_v321","eignungstest_trainer_profile_v32","eignungstest_trainer_profile_v311","eignungstest_trainer_profile_v31","eignungstest_trainer_profile_v292","eignungstest_trainer_profile_v291","eignungstest_trainer_profile_v29","eignungstest_trainer_profile_v281","eignungstest_trainer_profile_v27","eignungstest_trainer_profile_v251","eignungstest_trainer_profile_v23","eignungstest_trainer_profile_v19"];
-  const FOCUS_KEY = "eignungstest_trainer_focus_v611";
+  const STORE_KEY = "eignungstest_trainer_v621_results";
+  const LEGACY_STORE_KEYS = ["eignungstest_trainer_v514_results","eignungstest_trainer_v512_results","eignungstest_trainer_v501_results","eignungstest_trainer_v42_results","eignungstest_trainer_v36_results","eignungstest_trainer_v355_results","eignungstest_trainer_v354_results","eignungstest_trainer_v353_results","eignungstest_trainer_v35_results","eignungstest_trainer_v341_results","eignungstest_trainer_v34_results","eignungstest_trainer_v332_results","eignungstest_trainer_v33_results","eignungstest_trainer_v331_results","eignungstest_trainer_v321_results","eignungstest_trainer_v32_results","eignungstest_trainer_v311_results","eignungstest_trainer_v31_results","eignungstest_trainer_v292_results","eignungstest_trainer_v291_results","eignungstest_trainer_v29_results","eignungstest_trainer_v281_results","eignungstest_trainer_v28_results","eignungstest_trainer_v231_results","eignungstest_trainer_v251_results","eignungstest_trainer_v23_results","eignungstest_trainer_v19_results","eignungstest_trainer_v18_results","eignungstest_trainer_v17_results","eignungstest_trainer_v16_results"];
+  const APP_VERSION = "6.2.1-mobile-shell";
+  const PROFILE_KEY = "eignungstest_trainer_profile_v621";
+  const PROFILE_LEGACY_KEYS = ["eignungstest_trainer_profile_v514","eignungstest_trainer_profile_v512","eignungstest_trainer_profile_v501","eignungstest_trainer_profile_v42","eignungstest_trainer_profile_v36","eignungstest_trainer_profile_v355","eignungstest_trainer_profile_v354","eignungstest_trainer_profile_v353","eignungstest_trainer_profile_v35","eignungstest_trainer_profile_v341","eignungstest_trainer_profile_v34","eignungstest_trainer_profile_v332","eignungstest_trainer_profile_v33","eignungstest_trainer_profile_v331","eignungstest_trainer_profile_v321","eignungstest_trainer_profile_v32","eignungstest_trainer_profile_v311","eignungstest_trainer_profile_v31","eignungstest_trainer_profile_v292","eignungstest_trainer_profile_v291","eignungstest_trainer_profile_v29","eignungstest_trainer_profile_v281","eignungstest_trainer_profile_v27","eignungstest_trainer_profile_v251","eignungstest_trainer_profile_v23","eignungstest_trainer_profile_v19"];
+  const FOCUS_KEY = "eignungstest_trainer_focus_v621";
   const $ = id => document.getElementById(id);
   const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
   const choice = arr => arr[rand(0, arr.length-1)];
@@ -91,10 +91,10 @@ window.App = (() => {
     backgroundColor:"#eef3f9",
     manifestFile:"manifest.json",
     serviceWorkerFile:"service-worker.js",
-    cacheName:"eignungstest-trainer-v611-core-refactor-cache",
+    cacheName:"eignungstest-trainer-v621-mobile-shell-cache",
     icons:["icons/icon-180.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"],
     status:"indexeddb-primary-active",
-    note:"V6.1.1 Cloud Diagnostics Stable: EDV-Multi-Choice, Route-Memory und Visual-Fixes stabil zusammengeführt, Legacy-Reste bereinigt und Cache/Version vereinheitlicht."
+    note:"V6.2.1 Mobile Shell Stable: EDV-Multi-Choice, Route-Memory und Visual-Fixes stabil zusammengeführt, Legacy-Reste bereinigt und Cache/Version vereinheitlicht."
   });
 
   
@@ -105,12 +105,12 @@ window.App = (() => {
     duplicateProtection:true,
     cloudRetryQueue:true,
     offlineFirst:true,
-    syncMode:"safe-sync-v611"
+    syncMode:"safe-sync-v621"
   });
 
 const FRAMEWORK = {
     name:"Eignungstest-Trainer",
-    version:"6.1.1",
+    version:"6.2.1",
     storageVersion:"2",
     offline:true,
     database:"IndexedDB primary + localStorage fallback",
@@ -158,7 +158,7 @@ const FRAMEWORK = {
       "Manifest Template",
       "Service Worker aktiv mit sicherem Runtime Cache",
       "IndexedDB Full Activation",
-      "Production Stable V6.1.1",
+      "Production Stable V6.2.1",
       "Highscore Engine vorbereitet",
       "Active Cloud Highscore Board",
       "Geräteübergreifende Bestenliste vorbereitet",
@@ -273,7 +273,7 @@ const FRAMEWORK = {
 
 
   const DATA_MODEL = {
-    version:"6.1.1",
+    version:"6.2.1",
     stores:{
       results:{
         id:"auto",
@@ -336,7 +336,7 @@ const FRAMEWORK = {
         fields:["source","imported","duplicates","invalid","reviewNeeded","createdAt"]
       }
     },
-    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.0.1","5.0.2","5.1.0","5.1.1","5.1.2","5.1.3","5.1.4","6.1.0","6.1.1"],
+    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.0.1","5.0.2","5.1.0","5.1.1","5.1.2","5.1.3","5.1.4","6.0.0","6.1.0","6.1.1","6.2.1"],
     futureEngine:"active",
     currentEngine:"IndexedDB-primary",
     migrationPolicy:{active:true,mode:"full-activation",source:"localStorage",target:"IndexedDB",requiresManualCleanup:false,noDataDeletion:true},
@@ -349,7 +349,7 @@ const FRAMEWORK = {
     active:true,
     source:"localStorage",
     target:"IndexedDB",
-    version:"6.1.1",
+    version:"6.2.1",
     rules:[
       "Keine automatische Datenlöschung",
       "IndexedDB ist Hauptspeicher",
@@ -676,7 +676,7 @@ const FRAMEWORK = {
       });
       Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
       return {
-        version:"6.1.1",
+        version:"6.2.1",
         mode,
         title,
         total,
@@ -1112,10 +1112,10 @@ const FRAMEWORK = {
       if(!list.length) return `<div class="small">Noch keine Einträge in diesem Zeitraum.</div>`;
       return `<div class="cloud-rank-list">${list.map((r,i)=>`<div class="cloud-rank-row"><span class="cloud-rank-pos">#${i+1}</span><span class="cloud-rank-main"><b>${escHTML(r.player_name||"Gast")}</b><small>${escHTML(r.title||r.mode||"Test")}</small></span><span class="cloud-rank-score">${Number(r.percent)||0}%<small>${escHTML(r.rank||this.rankLabel(r.percent))}</small></span></div>`).join("")}</div>`;
     },
-    renderShell(period="overview") {
+    renderShell() {
       const configured=this.isConfigured();
       const miss=this.missingFields();
-      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard" data-cloud-period="${escHTML(period)}"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div></div>`;
+      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div></div>`;
     },
     async refreshDashboard() {
       const el=$("cloudHighscoreCard");
@@ -1127,14 +1127,6 @@ const FRAMEWORK = {
       }
       el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking wird geladen...</div><div class="small">Supabase wird live abgefragt.</div>`;
       try {
-        const requestedPeriod = el.dataset.cloudPeriod || "overview";
-        if(requestedPeriod && requestedPeriod !== "overview") {
-          const periodMeta = this.periods.find(p=>p.key===requestedPeriod) || this.periods[this.periods.length-1];
-          const single = await this.fetchTop(periodMeta.key);
-          const rows = single.items || [];
-          el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking ${escHTML(periodMeta.label)}</div><div class="cloud-board-grid"><section class="cloud-board"><h4>${escHTML(periodMeta.label)}</h4>${this.renderRows(rows, periodMeta.key==="all"?12:8)}</section></div><div class="small">${rows.length?"Live aus Supabase geladen":"Noch keine Cloud-Highscores in diesem Zeitraum"} · Klasse: ${escHTML(this.config().classCode)} · Tabelle: ${escHTML(this.config().table)}</div>`;
-          return;
-        }
         const res=await this.fetchBoards();
         const boards=res.boards||{};
         const total=Object.values(boards).reduce((s,rows)=>s+(Array.isArray(rows)?rows.length:0),0);
@@ -1237,14 +1229,14 @@ const FRAMEWORK = {
       const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
       const learning=LearningMemoryEngine.build(normalized,memory);
       const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
-      return {version:"6.1.1",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+      return {version:"6.2.1",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
     },
     renderDashboard(coach) {
       const r=coach.readiness;
       const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
       const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
       return `<div class="premium-card ai-card">
-        <span class="coach-badge">AI Stable Core V6.1.1</span>
+        <span class="coach-badge">AI Stable Core V6.2.1</span>
         <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
         <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
         <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>
@@ -1357,7 +1349,7 @@ const FRAMEWORK = {
     importBatch(rawItems=[], source="ocr-import") {
       if(!FEATURE_FLAGS.questionBankRuntimeImport) {
         const validation = rawItems.map(x=>this.validate(this.normalize(x,source)));
-        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V6.1.1 bewusst deaktiviert.", createdAt:new Date().toISOString()};
+        QUESTION_BANK.lastImport={source, imported:0, invalid:validation.filter(v=>!v.ok).length, reviewed:validation.length, blocked:true, reason:"Question Bank Runtime Import ist in V6.2.1 bewusst deaktiviert.", createdAt:new Date().toISOString()};
         return QUESTION_BANK.lastImport;
       }
       const normalized=rawItems.map(x=>this.normalize(x,source));
@@ -1761,7 +1753,7 @@ const MODES = {
     selectedMode:"jogging", quiz:[], current:0, score:0, timer:null, memoryTimer:null,
     questionStartedAt:null, timeLeft:0, totalTimeForQuestion:0, testStart:null, testEnd:null,
     history:[], questionStates:[], markedQuestions:[], memoryItems:[], adaptiveMemoryPool:[],
-    usedQuestions:new Set(), ctcBlockRemaining:{}, ctcCurrentBlock:null, shownBlockIntro:{}, pendingBlock:null, routeTimers:[], activeModeTab:"basic", activeAppSection:"home", activeTopTab:"live", exam:{enabled:false,hardcore:false,lockBack:false,started:false}
+    usedQuestions:new Set(), ctcBlockRemaining:{}, ctcCurrentBlock:null, shownBlockIntro:{}, pendingBlock:null, routeTimers:[], activeModeTab:"basic", activeAppSection:"dashboard", exam:{enabled:false,hardcore:false,lockBack:false,started:false}
   };
 
   function isAdaptiveElite() {
@@ -2247,7 +2239,7 @@ const MODES = {
         0,
         `Richtige Fehler: ${correctIds.join(", ")}.`,
         "edvmulti",
-        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v611-cloud-highscore"}
+        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v621-cloud-highscore"}
       );
     },
     bigEDVCovered(slot) {
@@ -2501,7 +2493,7 @@ const MODES = {
     const p=readProfile();
     const idShort=String(p.player_id||"").replace(/^plr_/,'').slice(0,12) || "lokal";
     return `<div class="premium-card profile-manager-card">
-      <span class="coach-badge">Profilverwaltung V6.1.1</span>
+      <span class="coach-badge">Profilverwaltung V6.2.1</span>
       <div class="coach-action">Name ändern</div>
       <p class="small">Dein sichtbarer Name kann geändert werden. Die interne Spieler-ID bleibt gleich, damit lokale Ergebnisse und spätere Sync-Funktionen stabil bleiben.</p>
       <div class="profile-edit-row"><input id="profileEditNameInput" data-profile-name-input="1" maxlength="32" value="${escHTML(p.name||"")}" placeholder="Dein Name" autocomplete="name" enterkeyhint="done"><button type="button" data-action="save-profile-name" onclick="App.saveProfileName()">Speichern</button></div><div id="profileSaveState" class="profile-save-state" aria-live="polite"></div>
@@ -2565,8 +2557,8 @@ const MODES = {
       <div class="mobile-quick-strip">
         <button onclick="App.quickStartRecommended('${coachRec.mode}')"><b>Start</b><span>${escHTML(coachRec.title)}</span></button>
         <button onclick="App.setAppSection('practice')"><b>Üben</b><span>Module</span></button>
-        <button onclick="App.selectMode('ctcLohr')"><b>CTC</b><span>Simulation</span></button>
-        <button onclick="App.setAppSection('settings')"><b>Settings</b><span>Profil</span></button>
+        <button onclick="App.setAppSection('simulation')"><b>CTC</b><span>Simulation</span></button>
+        <button onclick="App.setAppSection('profile')"><b>Profil</b><span>Name</span></button>
       </div>
       <div class="premium-card dark dashboard-rank-card">
         <div class="profile-grid">
@@ -2683,11 +2675,51 @@ const MODES = {
     if(el) el.style.display = visible ? display : "none";
   }
 
+  function isMobileShellContext(){
+    const activeRoot = !( $("start") && $("start").classList.contains("hidden") );
+    const isMobile = window.matchMedia ? window.matchMedia("(max-width: 640px)").matches : window.innerWidth <= 640;
+    return isMobile && activeRoot && !state.exam.started;
+  }
+
+  function bindTopNavSwipe(track){
+    if(!track || track.dataset.swipeBound === "1") return;
+    track.dataset.swipeBound = "1";
+    let startX=0,startY=0,startLeft=0,dragging=false,moved=false;
+    const begin=(x,y)=>{startX=x;startY=y;startLeft=track.scrollLeft;dragging=true;moved=false;track.classList.add("is-dragging");};
+    const move=(x,y,ev)=>{
+      if(!dragging) return;
+      const dx=x-startX, dy=y-startY;
+      if(Math.abs(dx)>6) moved=true;
+      if(Math.abs(dx)>Math.abs(dy)){
+        if(ev && ev.cancelable) ev.preventDefault();
+        track.scrollLeft=startLeft-dx;
+      }
+    };
+    const end=()=>{
+      if(!dragging) return;
+      dragging=false;
+      track.classList.remove("is-dragging");
+      if(moved){
+        track.dataset.swiped="1";
+        setTimeout(()=>{track.dataset.swiped="0";},180);
+      }
+    };
+    track.addEventListener("touchstart",e=>{const t=e.touches&&e.touches[0]; if(t) begin(t.clientX,t.clientY);},{passive:true});
+    track.addEventListener("touchmove",e=>{const t=e.touches&&e.touches[0]; if(t) move(t.clientX,t.clientY,e);},{passive:false});
+    track.addEventListener("touchend",end,{passive:true});
+    track.addEventListener("pointerdown",e=>{ if(e.pointerType==="mouse") begin(e.clientX,e.clientY); });
+    track.addEventListener("pointermove",e=>{ if(dragging) move(e.clientX,e.clientY,e); });
+    track.addEventListener("pointerup",end);
+    track.addEventListener("pointercancel",end);
+    track.addEventListener("click",e=>{ if(track.dataset.swiped==="1"){ e.preventDefault(); e.stopPropagation(); } }, true);
+  }
+
   function renderAppNav(){
     const nav=$("appNav"); if(!nav) return;
     if(nav.parentElement !== document.body) document.body.appendChild(nav);
     nav.setAttribute("role","navigation");
     nav.setAttribute("aria-label","Hauptnavigation");
+    nav.classList.toggle("is-hidden", !isMobileShellContext());
     nav.innerHTML=Object.entries(APP_SECTIONS).map(([key,s])=>{
       const active = (state.activeAppSection || "home") === key;
       const home = s.home ? " nav-home" : "";
@@ -2702,16 +2734,28 @@ const MODES = {
 
   function renderMobileTopNav(){
     const nav=$("mobileTopNav"); if(!nav) return;
+    if(nav.parentElement !== document.body) document.body.insertBefore(nav, document.body.firstChild);
     const section=state.activeAppSection || "home";
     const tabs=TOP_NAV_TABS[section] || TOP_NAV_TABS.home;
+    nav.classList.toggle("is-hidden", !isMobileShellContext());
     if(!tabs.length){ nav.innerHTML=""; return; }
     const activeKey = state.activeTopTab || defaultTopTab(section);
     nav.dataset.section = section;
-    nav.innerHTML = `<div class="mobile-top-track">${tabs.map(tab=>`<button type="button" data-top-tab="${escHTML(tab.key)}" class="${activeKey===tab.key?'active':''}" onclick="App.setTopTab('${section}','${tab.key}')">${escHTML(tab.label)}</button>`).join("")}</div>`;
-    setTimeout(()=>{
+    nav.setAttribute("aria-label", "Kontextnavigation: " + section);
+    nav.innerHTML = `<div class="mobile-top-track" role="tablist">${tabs.map(tab=>`<button type="button" role="tab" data-top-tab="${escHTML(tab.key)}" aria-selected="${activeKey===tab.key?'true':'false'}" class="${activeKey===tab.key?'active':''}" onclick="App.setTopTab('${section}','${tab.key}')">${escHTML(tab.label)}</button>`).join("")}</div>`;
+    requestAnimationFrame(()=>{
+      const track = nav.querySelector(".mobile-top-track");
       const active = nav.querySelector(".mobile-top-track button.active");
-      if(active && typeof active.scrollIntoView === "function") active.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
-    }, 0);
+      if(track){
+        bindTopNavSwipe(track);
+        const overflow = track.scrollWidth > track.clientWidth + 4;
+        nav.classList.toggle("is-scrollable", overflow);
+        if(active){
+          const target = active.offsetLeft - (track.clientWidth - active.offsetWidth) / 2;
+          track.scrollTo({left:Math.max(0,target), behavior:"smooth"});
+        }
+      }
+    });
   }
 
   function setTopTab(section, tabKey){
@@ -2800,7 +2844,7 @@ const MODES = {
     const cloudBlock=`<div class="premium-card"><b>Cloud & Supabase</b><p class="small">Live-Diagnose, Online-Highscore und Cache-Neuladen.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud Diagnose öffnen</button></div>`;
     const audioBlock=`<div class="premium-card"><b>Audio & Feedback</b><p class="small">Platzhalter für Sound, Vibration und Prüfungsfeedback. Die Logik bleibt vorbereitet, ohne die Kernmodule zu berühren.</p></div>`;
     const dataBlock=`<div class="premium-card"><b>Daten & Backup</b><p class="small">Lokale Ergebnisse, IndexedDB, Export und Cache-Verwaltung.</p><div class="settings-button-row"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div></div>`;
-    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Navigation Core V6.1.1 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
+    const frameworkBlock=`<div class="premium-card"><b>Framework</b><p class="small">Mobile Shell V6.2.1 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
     const blocks={profile:profileBlock,cloud:cloudBlock,audio:audioBlock,data:dataBlock,framework:frameworkBlock};
     return `<h2>Settings</h2><p>Profil, Cloud, Audio, Daten und Framework sind jetzt als Settings-Bereich gebündelt.</p>${blocks[tab] || profileBlock}<div class="settings-secondary-grid">${tab!=="profile"?profileBlock:""}${tab!=="cloud"?cloudBlock:""}${tab!=="audio"?audioBlock:""}${tab!=="data"?dataBlock:""}${tab!=="framework"?frameworkBlock:""}</div>`;
   }
@@ -3562,7 +3606,7 @@ const MODES = {
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V6.1.1: vorbereitet, aber runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V6.2.1: vorbereitet, aber runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -3575,7 +3619,7 @@ const MODES = {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "eignungstest-trainer-backup-v6-1-1.json";
+    a.download = "eignungstest-trainer-backup-v6-2-0.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
