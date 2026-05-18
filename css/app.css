@@ -479,7 +479,7 @@ body.premium-ui{
 .edv-answer-panel .route-action-row{grid-template-columns:1fr 1fr 1.2fr}
 @media(max-width:640px){.edv-answer-panel .route-action-row{grid-template-columns:1fr}.route-option-grid{grid-template-columns:1fr 1fr}.edv-pro-grid{grid-template-columns:1fr}}
 
-/* === V5.1.5 CLOUD HIGHSCORE DASHBOARD === */
+/* === V6.0.0 CLOUD HIGHSCORE DASHBOARD === */
 .cloud-highscore-card{display:block!important}
 .cloud-board-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:9px;margin-top:10px}
 .cloud-board{border-radius:16px;background:rgba(255,255,255,.64);border:1px solid rgba(14,165,233,.16);padding:9px}
@@ -490,39 +490,4 @@ body.premium-ui{
 .cloud-rank-main{display:grid;line-height:1.08}.cloud-rank-main small{color:#64748b;margin-top:2px}.cloud-rank-score{font-weight:950;text-align:right;display:grid;line-height:1.05}.cloud-rank-score small{font-weight:800;color:#64748b}
 @media(max-width:520px){.mobile-dashboard-more .cloud-highscore-card{display:block!important}.cloud-board-grid{grid-template-columns:1fr}.cloud-rank-row{font-size:13px}.cloud-rank-main small,.cloud-rank-score small{font-size:11px}}
 
-
-/* === V5.1.5 MOBILE INTERACTIVE UX LAYER === */
-.mobile-top-nav{display:none}
-@media(max-width:640px){
-  body{background:linear-gradient(180deg,#eef4fb 0%,#f8fafc 55%,#eef2ff 100%)!important;}
-  .app{border-radius:26px!important;overflow:visible!important;}
-  .premium-hero{background:linear-gradient(145deg,#0f172a,#1d4ed8 56%,#06b6d4)!important;min-height:118px!important;display:grid!important;align-content:end!important;}
-  .premium-subtitle{max-width:92%;opacity:.9!important}
-  .mobile-top-nav{display:block;position:sticky;top:calc(6px + env(safe-area-inset-top,0px));z-index:90;margin:6px 0 10px;padding:6px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);box-shadow:0 14px 38px rgba(15,23,42,.14);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:mobileTopIn .22s ease both;}
-  .mobile-top-track{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-  .mobile-top-track::-webkit-scrollbar{display:none}
-  .mobile-top-track button{flex:0 0 auto;scroll-snap-align:center;margin:0!important;padding:10px 14px!important;border-radius:999px!important;background:rgba(15,23,42,.055)!important;color:#334155!important;box-shadow:none!important;border:1px solid transparent!important;font-size:13px!important;font-weight:900!important;transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease;}
-  .mobile-top-track button.active{background:#0f172a!important;color:#fff!important;box-shadow:0 10px 24px rgba(15,23,42,.22)!important;transform:translateY(-1px) scale(1.02);}
-  .premium-dashboard{animation:mobileCardRise .24s ease both;}
-  .section-intro{animation:mobileCardRise .22s ease both;background:rgba(255,255,255,.78)!important;border:1px solid rgba(255,255,255,.88)!important;box-shadow:0 12px 34px rgba(15,23,42,.08)!important;}
-  .hub-grid{grid-template-columns:1fr!important;}
-  .hub-card{position:relative;overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;}
-  .hub-card:active{transform:scale(.985)}
-  .app-nav{grid-template-columns:1fr 1fr 1.22fr 1fr 1fr!important;align-items:end!important;padding:6px!important;background:rgba(255,255,255,.90)!important;}
-  .app-nav button{transition:transform .18s ease,background .18s ease,color .18s ease,box-shadow .18s ease!important;}
-  .app-nav button.nav-home{min-height:62px!important;margin-top:-16px!important;border-radius:24px!important;background:linear-gradient(180deg,#2563eb,#1d4ed8)!important;color:#fff!important;box-shadow:0 16px 38px rgba(37,99,235,.35)!important;}
-  .app-nav button.nav-home span{font-size:24px!important;}
-  .app-nav button.active:not(.nav-home){background:#0f172a!important;color:#fff!important;box-shadow:0 10px 24px rgba(15,23,42,.20)!important;transform:translateY(-2px);}
-  .app-nav button:active{transform:scale(.96)!important;}
-  body[data-app-section="highscore"] .premium-dashboard{display:grid!important;}
-  body[data-app-section="highscore"] .premium-dashboard .dashboard-rank-card,
-  body[data-app-section="highscore"] .premium-dashboard .dashboard-coach-card{display:none!important;}
-  body[data-app-section="highscore"] .mobile-dashboard-more{display:block!important;}
-  body[data-app-section="highscore"] .mobile-dashboard-more summary{display:none!important;}
-  body[data-app-section="highscore"] .mobile-more-grid{padding:0!important;}
-  body[data-app-section="profile"] .mobile-top-nav{margin-bottom:8px;}
-  .exam-options,.db-actions,.modeGrid,.modeTabs,.modeSectionTitle{animation:mobileCardRise .20s ease both;}
-}
-@keyframes mobileTopIn{from{opacity:0;transform:translateY(-8px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes mobileCardRise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(prefers-reduced-motion:reduce){.mobile-top-nav,.premium-dashboard,.section-intro,.exam-options,.db-actions,.modeGrid,.modeTabs,.modeSectionTitle{animation:none!important}.app-nav button,.mobile-top-track button,.hub-card{transition:none!important}}
+/* Mobile-Regeln sind ab V6.0.0 ausgelagert: css/mobile.css */

@@ -13,7 +13,7 @@
         0,
         `Richtige Fehler: ${correctIds.join(", ")}.`,
         "edvmulti",
-        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v515-cloud-highscore"}
+        {edvCorrectIds:correctIds, edvMultiSelected:[], edvRequiredCount:correctIds.length, block:"5. EDV Kenntnisse", signatureSeed:"edv-multi-v600-cloud-highscore"}
       );
     },
     bigEDVCovered(slot) {

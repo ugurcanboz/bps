@@ -1,0 +1,19 @@
+Eignungstest-Trainer V6.1.0 Navigation Core Stable
+
+Prüfstand: statische Code-/Strukturprüfung im Container.
+
+Geprüft:
+- JavaScript Syntax: OK (node --check js/app.js)
+- Service Worker Syntax: OK (node --check service-worker.js)
+- Version/Cache: V6.1.0 / v610
+- Mobile Navigation Core: vorhanden
+- Bottom Navigation: Dashboard | Üben | Start | Highscore | Settings
+- Mittlerer Startbutton: nav-home Klasse wird vom JS gesetzt und im CSS gestylt
+- Top Navigation: renderMobileTopNav() vorhanden und an activeAppSection/activeTopTab gekoppelt
+- Top Tabs je Bereich: Home, Dashboard, Üben, Highscore, Settings
+- Alte Section-Namen simulation/profile bleiben als Kompatibilitätsalias erhalten
+- Cloud Highscore: bestehendes Modul bleibt unverändert, Dashboard wird im Highscore-Bereich gerendert
+- EDV/Route/Simulation: keine Logikänderung durchgeführt
+
+Standpunkt:
+V6.1.0 behebt den Hauptfehler aus V6.0.0: Die Mobile-Navigation besteht nicht mehr aus zwei halb-parallelen Systemen, sondern aus einem zentralen Section-State mit dynamischer Top-Kontextleiste.

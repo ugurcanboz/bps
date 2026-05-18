@@ -1,0 +1,16 @@
+V6.0.0 Qualitätskontrolle
+
+Geprüft:
+- JavaScript Syntax: OK
+- Service Worker Syntax: OK
+- Manifest JSON: OK
+- Build Script: OK
+- Versionen/Cache: V6.0.0 einheitlich
+- Cloud Config: eingebunden
+- Cloud Highscore Engine: submit(), fetchTop(), fetchBoards(), renderDashboard() vorhanden
+- Ranking Perioden: daily, weekly, monthly, all vorhanden
+- Mobile CSS: Cloud Highscore Dashboard sichtbar
+- Legacy Migration: V5.1.2 Storage/Profile als Legacy eingebunden
+
+Hinweis:
+Live-Schreiben in Supabase hängt von RLS/Insert-Policy ab. Lesetest war bereits HTTP 200 laut Nutzer-Screenshot; bei Insert-Fehler zeigt die App den Fehler im Cloud-Dashboard/Systemstatus.

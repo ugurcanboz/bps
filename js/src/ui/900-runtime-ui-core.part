@@ -1,10 +1,10 @@
 /* UI-Routing, Rendering, Quizablauf, Ergebnislogik, Review, Health Panel und App-Export. */
   const APP_SECTIONS = {
-    dashboard:{title:"Live", icon:"⌂", desc:"Startseite, Live-Dashboard und schneller Überblick."},
+    dashboard:{title:"Dashboard", icon:"⌂", desc:"Start, Empfehlung und schneller Einstieg."},
     practice:{title:"Üben", icon:"✎", desc:"Gezieltes Training ohne Simulationsballast."},
-    start:{title:"Start", icon:"●", desc:"Zur cleanen Startseite zurückspringen."},
-    highscore:{title:"Ranking", icon:"★", desc:"Cloud Highscore nach Tag, Woche, Monat und Gesamt."},
-    profile:{title:"Settings", icon:"⚙", desc:"Profil, Cloud, Daten, Audio und Framework."}
+    simulation:{title:"Simulation", icon:"▶", desc:"Prüfungsnahe Läufe mit Zeitdruck."},
+    analysis:{title:"Analyse", icon:"▣", desc:"Fortschritt, KI-Profil und Schwächen."},
+    profile:{title:"Profil", icon:"◎", desc:"Rang, Speicherstatus und Aufgabenbank."}
   };
 
   const MODE_TABS = {
@@ -12,27 +12,6 @@
     block:{title:"Blocktraining", desc:"Kurze Sprintblöcke für Schwächen und Zeitdruck.", modes:["mathSprint","logicSprint","concentrationSprint","visualIQSprint","itSprint","knowledgeSprint","techniqueSprint","errorTrainingPrep"]}
   };
   const SIMULATION_MODES = ["ctcLohr","ctc","bps","jogging"];
-
-  const MOBILE_TOP_CONTEXTS = {
-    dashboard:[
-      {key:"live",title:"Live"},{key:"stats",title:"Stats"},{key:"cloud",title:"Cloud"},{key:"focus",title:"Focus"}
-    ],
-    practice:[
-      {key:"mix",title:"Mix",tab:"basic"},{key:"math",title:"Mathe",mode:"math"},{key:"logic",title:"Logik",mode:"logic"},{key:"edv",title:"IT",mode:"it"},{key:"sprint",title:"Sprint",tab:"block"}
-    ],
-    simulation:[
-      {key:"ctc",title:"CTC",mode:"ctcLohr"},{key:"elite",title:"Elite",mode:"ctc"},{key:"bps",title:"BPS",mode:"bps"},{key:"quick",title:"Schnell",mode:"jogging"}
-    ],
-    highscore:[
-      {key:"today",title:"Heute"},{key:"week",title:"Woche"},{key:"month",title:"Monat"},{key:"all",title:"Gesamt"}
-    ],
-    profile:[
-      {key:"profile",title:"Profil"},{key:"cloud",title:"Cloud"},{key:"data",title:"Daten"},{key:"system",title:"System"}
-    ]
-  };
-
-  function normalizeSection(section){ return section === "start" ? "dashboard" : section; }
-
 
   function setVisible(selector, visible, display="") {
     const el = typeof selector === "string" ? document.querySelector(selector) : selector;
@@ -44,41 +23,7 @@
     if(nav.parentElement !== document.body) document.body.appendChild(nav);
     nav.setAttribute("role","navigation");
     nav.setAttribute("aria-label","Hauptnavigation");
-    const order=["dashboard","practice","start","highscore","profile"];
-    nav.innerHTML=order.map(key=>{
-      const s=APP_SECTIONS[key];
-      const active = key==="start" ? normalizeSection(state.activeAppSection)==="dashboard" : state.activeAppSection===key;
-      return `<button type="button" data-nav-section="${key}" class="${active?'active':''} ${key==='start'?'nav-home':''}" onclick="App.setAppSection('${key}')" aria-label="${escHTML(s.title)}"><span>${s.icon}</span><em>${s.title}</em></button>`;
-    }).join("");
-  }
-
-  function renderMobileTopNav(){
-    const el=$("mobileTopNav"); if(!el) return;
-    const section=normalizeSection(state.activeAppSection || "dashboard");
-    const tabs=MOBILE_TOP_CONTEXTS[section] || MOBILE_TOP_CONTEXTS.dashboard;
-    const active=(state.mobileTopContext && state.mobileTopContext[section]) || tabs[0].key;
-    el.dataset.context=section;
-    el.innerHTML=`<div class="mobile-top-track">${tabs.map(t=>`<button type="button" class="${active===t.key?'active':''}" onclick="App.setMobileTopContext('${section}','${t.key}')">${escHTML(t.title)}</button>`).join("")}</div>`;
-  }
-
-  function setMobileTopContext(section,key){
-    section=normalizeSection(section);
-    const tabs=MOBILE_TOP_CONTEXTS[section] || [];
-    const tab=tabs.find(t=>t.key===key);
-    if(!tab) return;
-    state.mobileTopContext = state.mobileTopContext || {};
-    state.mobileTopContext[section]=key;
-    if(section==="practice"){
-      state.activeAppSection="practice";
-      if(tab.tab) state.activeModeTab=tab.tab;
-      if(tab.mode) selectMode(tab.mode); else renderModes();
-      return;
-    }
-    if(section==="simulation"){
-      state.activeAppSection="simulation";
-      if(tab.mode) state.selectedMode=tab.mode;
-    }
-    renderModes();
+    nav.innerHTML=Object.entries(APP_SECTIONS).map(([key,s])=>`<button type="button" data-nav-section="${key}" class="${state.activeAppSection===key?'active':''}" onclick="App.setAppSection('${key}')" aria-label="${escHTML(s.title)}"><span>${s.icon}</span><em>${s.title}</em></button>`).join("");
   }
 
   function renderModeCard(k, extraClass="compact"){
@@ -117,13 +62,8 @@
     const el=$("sectionIntro"); if(!el) return;
     el.className = "section-intro section-" + (state.activeAppSection || "dashboard");
     const s=APP_SECTIONS[state.activeAppSection] || APP_SECTIONS.dashboard;
-    if(normalizeSection(state.activeAppSection)==="dashboard"){
-      const ctx=(state.mobileTopContext && state.mobileTopContext.dashboard) || "live";
-      const content = ctx==="stats" ? `<div class="hub-grid"><div class="hub-card" onclick="App.showAnalysis()"><span class="hub-icon">▣</span><b>Analyse öffnen</b><p>Schwächen, Verlauf und Empfehlungen prüfen.</p></div><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">✎</span><b>Training</b><p>Gezielt an schwachen Bereichen arbeiten.</p></div></div>` : ctx==="cloud" ? `<div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('highscore')"><span class="hub-icon">★</span><b>Cloud Ranking</b><p>Tägliche, wöchentliche und monatliche Rangliste öffnen.</p></div><div class="hub-card" onclick="App.showFrameworkHealth()"><span class="hub-icon">☁</span><b>Cloud Diagnose</b><p>Supabase Verbindung und Status prüfen.</p></div></div>` : ctx==="focus" ? `<div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">◇</span><b>Fokus setzen</b><p>Mathe, Logik, IT oder Konzentration gezielt wählen.</p></div><div class="hub-card" onclick="App.quickStartRecommended(state.selectedMode)"><span class="hub-icon">▶</span><b>Sofort starten</b><p>Empfohlenes Training direkt starten.</p></div></div>` : `<div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">✎</span><b>Übungsmodus</b><p>Mathe, Logik, EDV, Visual IQ und Blocktraining.</p></div><div class="hub-card" onclick="App.setAppSection('simulation')"><span class="hub-icon">▶</span><b>Simulation</b><p>CTC, Elite, BPS und Schnelltest prüfungsnah starten.</p></div><div class="hub-card" onclick="App.setAppSection('highscore')"><span class="hub-icon">★</span><b>Highscore</b><p>Cloud Ranking und lokale Ergebnisse ansehen.</p></div></div>`;
-      el.innerHTML=`<h2>Mobile Mission Control</h2><p>Cleanes Startzentrum mit Live-Dashboard, Highscore und schnellem Einstieg.</p>${content}`;
-    } else if(state.activeAppSection==="highscore") {
-      const ctx=(state.mobileTopContext && state.mobileTopContext.highscore) || "today";
-      el.innerHTML=`<h2>Cloud Ranking</h2><p>Aktiver Filter: ${ctx==="today"?"Heute":ctx==="week"?"Woche":ctx==="month"?"Monat":"Gesamt"}. Das Dashboard lädt Tages-, Wochen-, Monats- und Gesamtwertung aus Supabase.</p><div class="hub-grid"><div class="hub-card" onclick="App.setMobileTopContext('highscore','today')"><span class="hub-icon">1</span><b>Heute</b><p>Tagesranking prüfen.</p></div><div class="hub-card" onclick="App.setMobileTopContext('highscore','week')"><span class="hub-icon">7</span><b>Woche</b><p>Wochenranking prüfen.</p></div><div class="hub-card" onclick="App.setMobileTopContext('highscore','month')"><span class="hub-icon">30</span><b>Monat</b><p>Monatsranking prüfen.</p></div></div>`;
+    if(state.activeAppSection==="dashboard"){
+      el.innerHTML=`<h2>Mission Control</h2><p>Wähle nur den Bereich, den du wirklich brauchst. Üben und Simulation sind jetzt klar getrennt.</p><div class="hub-grid"><div class="hub-card" onclick="App.setAppSection('practice')"><span class="hub-icon">✎</span><b>Übungsmodus</b><p>Mathe, Kopfrechnen, Konzentration, Visual IQ und Blocktraining kompakt.</p></div><div class="hub-card" onclick="App.setAppSection('simulation')"><span class="hub-icon">▶</span><b>Simulationsmodus</b><p>CTC, Elite, BPS und Schnelltest prüfungsnah starten.</p></div><div class="hub-card" onclick="App.setAppSection('analysis')"><span class="hub-icon">▣</span><b>Analyse</b><p>KI-Profil, Schwächen und Verlauf separat auswerten.</p></div></div>`;
     } else if(state.activeAppSection==="profile") {
       const qb=QuestionBankEngine.stats();
       el.innerHTML=`<h2>Profil & Framework</h2><p>Name ändern, lokale Identität prüfen und stabile Framework-Basis verwalten.</p><div class="profile-panel">${renderProfileManager()}<div class="premium-card"><b>Aufgabenbank</b><p class="small">Schema vorbereitet, aktive Nutzung bewusst geparkt. Aktuell ${qb.total} aktive Zusatzaufgaben.</p><div class="question-bank-panel"><code>QuestionBank: vorbereitet · runtimeImport: aus</code><br><span class="small">Für spätere OCR/Buchaufgaben: erst prüfen, kategorisieren und manuell freigeben. Bis dahin greift die Aufgabenbank nicht in Tests ein.</span></div></div><div class="premium-card"><b>Import-Schema</b><p class="small">Quelle, Seite, Kategorie, Gruppe, Schwierigkeit, Frage, Antworten, Lösung, Erklärung, Tags, Prüfstatus. Status aktuell: vorbereitet.</p></div></div>`;
@@ -137,14 +77,13 @@
     document.body.classList.toggle("mobile-nav-attached", !!$("appNav"));
     renderPremiumDashboard();
     renderAppNav();
-    renderMobileTopNav();
     renderSectionIntro();
     renderModeTabs();
     renderSectionActions();
     TrainingFocusEngine.render();
     const section=state.activeAppSection || "dashboard";
-    setVisible($("premiumDashboard"), normalizeSection(section)==="dashboard" || section==="highscore", "grid");
-    setVisible(".quick-actions", normalizeSection(section)==="dashboard", "grid");
+    setVisible($("premiumDashboard"), section==="dashboard", "grid");
+    setVisible(".quick-actions", section==="dashboard", "grid");
     setVisible($("focusControls"), section==="practice");
     setVisible(".exam-options", section==="simulation", "grid");
     setVisible(".db-actions", section==="profile", "grid");
@@ -156,10 +95,6 @@
       if(!SIMULATION_MODES.includes(state.selectedMode)) state.selectedMode="ctcLohr";
       grid.innerHTML = SIMULATION_MODES.filter(k=>MODES[k]).map(k=>renderModeCard(k)).join("");
       $("modeSectionTitle").innerHTML = `<div><b>Prüfungsnahe Simulationen</b><br><span>Hier zählt Zeitdruck, Blocklogik und realistische Testführung.</span></div><span>${SIMULATION_MODES.length} Modi</span>`;
-    } else if(section==="highscore"){
-      grid.innerHTML="";
-      if($("modeTabs")) $("modeTabs").innerHTML="";
-      if($("modeSectionTitle")) $("modeSectionTitle").innerHTML=`<div><b>Cloud Highscore</b><br><span>Ranking wird im Dashboard kompakt angezeigt. Top-Leiste filtert die Ansicht.</span></div><span>online</span>`;
     } else {
       grid.innerHTML="";
       if($("modeTabs")) $("modeTabs").innerHTML="";
@@ -170,7 +105,7 @@
   function setAppSection(section){
     if(section==="analysis") { state.activeAppSection="analysis"; showAnalysis(); return; }
     if(!APP_SECTIONS[section]) return;
-    state.activeAppSection=normalizeSection(section);
+    state.activeAppSection=section;
     hideAll();
     $("start").classList.remove("hidden");
     if(section==="practice" && !Object.values(MODE_TABS).some(t=>t.modes.includes(state.selectedMode))) state.selectedMode="math";
@@ -862,7 +797,7 @@
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V5.1.5: vorbereitet, aber runtime-deaktiviert.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V6.0.0: vorbereitet, aber runtime-deaktiviert.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Vorbereitung:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -875,7 +810,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "eignungstest-trainer-backup-v5-1-5.json";
+    a.download = "eignungstest-trainer-backup-v6-0-0.json";
     document.body.appendChild(a);
     a.click();
     setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 250);
@@ -939,6 +874,6 @@
   IndexedDBEngine.init().then(()=>StorageEngine.loadFromIndexedDB()).then(()=>{ try { renderModes(); if($("healthPanel") && $("healthPanel").classList.contains("show")) showDatabaseInfo(); } catch(e){} });
   renderModes();
 
-  return {setAppSection,setMobileTopContext,selectMode,setModeTab,setTrainingFocus,saveProfileName,quickStartRecommended,prepareTest,beginQuizAfterMemory,cancelMemoryPhase,startCtcBlockFromIntro,chooseAnswer,toggleEdvMultiNode,undoEdvMultiSelection,clearEdvMultiSelection,submitEdvMultiAnswer,selectRouteStreet,undoRouteStreet,clearRouteSelection,submitRouteSequence,spQuestion,skipQuestion,prevQuestion,manualNextQuestion,toggleMarkQuestion,jumpToQuestion,endEarly,restart,toggleReview,filterReview,showAnalysis,showFrameworkHealth,showDatabaseInfo,exportBackup,clearProgress,
+  return {setAppSection,selectMode,setModeTab,setTrainingFocus,saveProfileName,quickStartRecommended,prepareTest,beginQuizAfterMemory,cancelMemoryPhase,startCtcBlockFromIntro,chooseAnswer,toggleEdvMultiNode,undoEdvMultiSelection,clearEdvMultiSelection,submitEdvMultiAnswer,selectRouteStreet,undoRouteStreet,clearRouteSelection,submitRouteSequence,spQuestion,skipQuestion,prevQuestion,manualNextQuestion,toggleMarkQuestion,jumpToQuestion,endEarly,restart,toggleReview,filterReview,showAnalysis,showFrameworkHealth,showDatabaseInfo,exportBackup,clearProgress,
     _test:{FRAMEWORK,FEATURE_FLAGS,FEATURE_STATUS,PWA_CONFIG,MODULE_TREE,DATA_MODEL,MigrationPlanner,IndexedDBEngine,DatabaseBridge,StorageEngine,Guard,AnalyticsEngine,SessionTracker,ErrorMemory,DataReadiness,WeaknessProfile,CognitiveProfile,RecommendationEngine,TrainingFocusEngine,AdaptiveDifficultyEngine,DynamicGeneratorEngine,LearningMemoryEngine,FullSimulationEngine,HighscoreEngine,CloudHighscoreEngine,QuestionBankEngine,QUESTION_BANK_SCHEMA,QUESTION_BANK,CoachEngine,QualityEngine,readExamOptions,applyExamBodyClass,showExamLockNotice,MODES,buildQuiz,Generators,stableSignature,state,finalizeOpenAnswers,showResult,selectMode,startQuiz,EDV_SCHEMA,EDV_ERRORS,CTC_BLOCK_LIMITS}};
 })();

@@ -1,8 +1,8 @@
 {
   "name": "Eignungstest-Trainer",
   "short_name": "Trainer",
-  "description": "Offlinefähiger Eignungstest-Trainer V5.1.5 mit sauberem Versionsstand, PWA-Cache, Cloud-Highscore-Diagnose und modularer Framework-Struktur.",
-  "start_url": "./index.html?v=5.1.5",
+  "description": "Offlinefähiger Eignungstest-Trainer V6.1.0 mit zentralem Mobile-Navigation-Core, PWA-Cache, Cloud-Highscore-Diagnose und modularer Framework-Struktur.",
+  "start_url": "./index.html?v=6.1.0",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
