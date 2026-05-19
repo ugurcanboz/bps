@@ -1,0 +1,9 @@
+{
+  "version": "7.5.8",
+  "build": "v7580",
+  "message": "BPS-Trainer: Aufgabenbank, Übungsblöcke, Simulation und Diagnose geprüft.",
+  "mandatory": false,
+  "label": "BPS-Trainer",
+  "latestVersion": "7.5.8",
+  "latest": "7.5.8"
+}
