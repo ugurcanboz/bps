@@ -1,0 +1,9 @@
+{
+  "version": "7.5.7",
+  "build": "v7560",
+  "message": "Stabilitäts-Audit: alle Modi validiert, Matrixblock enthält alle 8 PDF-Matrizen, Satzergänzungsblock aktiv, Modus-Verträge bereinigt.",
+  "mandatory": false,
+  "label": "V7.5.7 Mobile Matrix Fit",
+  "latestVersion": "7.5.7",
+  "latest": "7.5.7"
+}
