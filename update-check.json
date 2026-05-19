@@ -1,0 +1,9 @@
+{
+  "version": "7.6.0",
+  "build": "v7600",
+  "message": "Cloud Highscore Audit: Ranking-Refresh, Supabase-Timeout, lokale Fallback-Anzeige, Copyright und Framework-Kontrolle stabilisiert.",
+  "mandatory": false,
+  "label": "V7.6.0 Cloud Highscore Audit Stable",
+  "latestVersion": "7.6.0",
+  "latest": "7.6.0"
+}

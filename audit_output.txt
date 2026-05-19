@@ -1,0 +1,36 @@
+version 7.6.0
+summary ok false contracts 0 modes 22 sim 93
+MODE math 40 invalid 0 groups Mathe
+MODE logic 20 invalid 0 groups Logik|Mechanik|Raumdenken|Visual IQ
+MODE jogging 20 invalid 0 groups Mathe|Visual IQ|Konzentration|Englisch|Allgemeinwissen
+MODE bps 100 invalid 0 groups Konzentration|Mathe|Allgemeinwissen|Mechanik|Raumdenken|IT/FISI
+MODE ctc 1 invalid 0 groups Mathe
+MODE general 40 invalid 0 groups Allgemeinwissen
+MODE english 40 invalid 0 groups Englisch
+MODE it 50 invalid 0 groups IT/FISI
+MODE concentrationPro 45 invalid 0 groups Konzentration
+MODE routeMemoryMode 8 invalid 0 groups Gedächtnis
+MODE visualIQ 36 invalid 0 groups Visual IQ
+MODE mathSprint 20 invalid 0 groups Mathe
+MODE logicSprint 20 invalid 0 groups Logik
+MODE concentrationSprint 25 invalid 0 groups Konzentration
+MODE visualIQSprint 20 invalid 0 groups Visual IQ|Logik
+MODE itSprint 20 invalid 0 groups IT/FISI
+MODE knowledgeSprint 35 invalid 0 groups Allgemeinwissen
+MODE matrixOnlySprint 24 invalid 0 groups Logik|Visual IQ
+MODE sentenceSprint 30 invalid 0 groups Allgemeinwissen
+MODE techniqueSprint 25 invalid 0 groups Raumdenken|Visual IQ|Mechanik
+MODE errorTrainingPrep 25 invalid 0 groups Logik|Konzentration|IT/FISI|Gedächtnis|Visual IQ|Mathe
+MODE ctcLohr 93 invalid 0 groups Allgemeinwissen|Mathe|Logik|Konzentration|IT/FISI
+section start ok
+section practice ok
+section simulation ok
+section dashboard ok
+section settings ok
+section profile ok
+tab basic ok
+tab block ok
+prepare matrixOnlySprint ok blockIntroHidden false
+prepare sentenceSprint ok blockIntroHidden false
+prepare knowledgeSprint ok blockIntroHidden false
+prepare ctcLohr ok blockIntroHidden false
