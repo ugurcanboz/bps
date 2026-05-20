@@ -1,0 +1,9 @@
+{
+  "version": "8.2.5",
+  "date": "2026-05-19",
+  "message": "V8.2.5: Responsive Deep Sheet Engine: ein zentrales Modul für Desktop, Tablet, Mobile, Hoch-/Querformat, eigenen Scrollbereich und saubere Animationen.",
+  "download": "./",
+  "label": "V8.2.5 Responsive Sheet Engine",
+  "latestVersion": "8.2.5",
+  "forceReload": true
+}
