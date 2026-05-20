@@ -1,9 +1,0 @@
-{
-  "version": "8.2.9",
-  "date": "2026-05-20",
-  "message": "V8.2.9: Aufgabenbank bereinigt, schwache Symbolarithmetik entfernt, digitale Aufgabenvielfalt stark erweitert, IT/FISI in Aufgabenbank eingebunden.",
-  "download": "./",
-  "label": "V8.2.9 Data Quality Rebuild",
-  "latestVersion": "8.2.9",
-  "forceReload": true
-}
