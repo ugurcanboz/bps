@@ -1,9 +1,0 @@
-V8.0.7 Deep Sheet Runtime Audit
-Modi gefunden: 22
-Onclick-Funktionen: 34 / fehlend: 0
-Fehlende Onclicks: keine
-simulation: 4 Modi, fehlend: 0
-basic: 8 Modi, fehlend: 0
-block: 10 Modi, fehlend: 0
-Matrix-Dateien: 8
-Satzergänzung-Datei enthält se_ IDs: 60
