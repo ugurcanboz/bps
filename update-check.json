@@ -1,0 +1,9 @@
+{
+  "version": "8.3.3",
+  "date": "2026-05-20",
+  "message": "V8.3.3: Bus Route Memory und EDV-11-Fehler mit delegierter Multi-/Sequenz-Auswahl hart repariert.",
+  "download": "./",
+  "label": "V8.3.3 Answer Engine Hard Fix",
+  "latestVersion": "8.3.3",
+  "forceReload": true
+}
