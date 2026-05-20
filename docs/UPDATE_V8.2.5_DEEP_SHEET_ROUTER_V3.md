@@ -1,4 +1,4 @@
-# V8.3.5 Deep Sheet Router V3
+# V8.3.6 Deep Sheet Router V3
 
 - Oberes Kategorieband im Deep Sheet ist jetzt echte Navigation.
 - Kategorien sind klickbar und horizontal swipebar.

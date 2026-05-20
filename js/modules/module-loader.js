@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.3.5 · Module Loader
+/* Eignungstest-Trainer V8.3.6 · Module Loader
    Module docken künftig hier an, statt direkt Core/UI zu verändern. */
 (function(){
   "use strict";
-  if(window.AppModuleLoader && window.AppModuleLoader.__version === "8.3.5") return;
+  if(window.AppModuleLoader && window.AppModuleLoader.__version === "8.3.6") return;
   const modules = new Map();
   function register(definition){
     if(!definition || !definition.id) return false;
@@ -26,5 +26,5 @@
     });
   }
   function list(){ return [...modules.values()].map(m => ({id:m.id, version:m.version, enabled:m.enabled !== false, initialized:!!m.__initialized})); }
-  window.AppModuleLoader = Object.freeze({__version:"8.3.5", register, initAll, list});
+  window.AppModuleLoader = Object.freeze({__version:"8.3.6", register, initAll, list});
 })();

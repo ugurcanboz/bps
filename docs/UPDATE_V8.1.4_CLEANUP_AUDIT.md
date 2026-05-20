@@ -1,4 +1,4 @@
-# V8.3.5 Cleanup Audit
+# V8.3.6 Cleanup Audit
 
 - Deep Sheet Engine bleibt Single Source of Truth.
 - Alter Training-Sheet/Accordion-DOM wird zur Laufzeit entfernt statt nur versteckt.

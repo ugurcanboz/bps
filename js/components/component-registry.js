@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.3.5 · Component Registry
+/* Eignungstest-Trainer V8.3.6 · Component Registry
    Zentrale UI-Bausteine für künftige Features. Bestehende HTML-Struktur bleibt geschützt. */
 (function(){
   "use strict";
-  if(window.AppComponents && window.AppComponents.__version === "8.3.5") return;
+  if(window.AppComponents && window.AppComponents.__version === "8.3.6") return;
   const registry = new Map();
   const esc = value => String(value == null ? "" : value).replace(/[&<>\"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
   function register(name, factory){
@@ -20,5 +20,5 @@
   register("section", (props, h) => `<section class="app-section ${h.esc(props.className||"")}">${props.title ? `<h2>${h.esc(props.title)}</h2>` : ""}${props.body || ""}</section>`);
   register("button", (props, h) => `<button class="${h.esc(props.variant||"primary")}" ${props.action ? `data-action="${h.esc(props.action)}"` : ""}>${h.esc(props.label||"OK")}</button>`);
   register("modal", (props, h) => `<div class="modal-backdrop"><div class="modal-card"><h3>${h.esc(props.title||"")}</h3><p>${h.esc(props.text||"")}</p>${props.actions||""}</div></div>`);
-  window.AppComponents = Object.freeze({__version:"8.3.5", register, render, names});
+  window.AppComponents = Object.freeze({__version:"8.3.6", register, render, names});
 })();

@@ -1,4 +1,4 @@
-/* STABLE SINGLE-FILE BUNDLE V8.3.5 · js/src wurde bewusst entfernt, damit GitHub Pages nur diese Runtime lädt. */
+/* STABLE SINGLE-FILE BUNDLE V8.3.6 · js/src wurde bewusst entfernt, damit GitHub Pages nur diese Runtime lädt. */
 /* Bootstrap, Version, Feature Flags, PWA Config, Hilfsfunktionen und Framework-Metadaten. */
 "use strict";
 
@@ -14,11 +14,11 @@ Struktur:
 - PWA: Manifest, Service Worker, Cache-Bereinigung
 - Qualität: Guard, Framework-Health, Simulation-Checks
 
-Framework Refactor V8.3.5:
+Framework Refactor V8.3.6:
 - Versions- und Cache-Bezeichnungen vereinheitlicht
 - Legacy-EDV-Einzelfrage aus Export und Runtime entfernt
 - EDV-Modul auf Multi-Choice-Gesamtauswertung stabilisiert
-- MigrationPath auf V8.3.5 aktualisiert
+- MigrationPath auf V8.3.6 aktualisiert
 - alte V3/V4-Kommentarblöcke bereinigt
 ===============================================================================
 */
@@ -27,7 +27,7 @@ Framework Refactor V8.3.5:
 window.App = (() => {
   const STORE_KEY = "eignungstest_trainer_v8012_results";
   const LEGACY_STORE_KEYS = ["eignungstest_trainer_v700_results","eignungstest_trainer_v514_results","eignungstest_trainer_v512_results","eignungstest_trainer_v501_results","eignungstest_trainer_v42_results","eignungstest_trainer_v36_results","eignungstest_trainer_v355_results","eignungstest_trainer_v354_results","eignungstest_trainer_v353_results","eignungstest_trainer_v35_results","eignungstest_trainer_v341_results","eignungstest_trainer_v34_results","eignungstest_trainer_v332_results","eignungstest_trainer_v33_results","eignungstest_trainer_v331_results","eignungstest_trainer_v321_results","eignungstest_trainer_v32_results","eignungstest_trainer_v311_results","eignungstest_trainer_v31_results","eignungstest_trainer_v292_results","eignungstest_trainer_v291_results","eignungstest_trainer_v29_results","eignungstest_trainer_v281_results","eignungstest_trainer_v28_results","eignungstest_trainer_v231_results","eignungstest_trainer_v251_results","eignungstest_trainer_v23_results","eignungstest_trainer_v19_results","eignungstest_trainer_v18_results","eignungstest_trainer_v17_results","eignungstest_trainer_v16_results"];
-  const APP_VERSION = "8.3.5-answer-engine-hardfix";
+  const APP_VERSION = "8.3.6-answer-engine-hardfix";
   const PROFILE_KEY = "eignungstest_trainer_profile_v8012";
   const PROFILE_LEGACY_KEYS = ["eignungstest_trainer_profile_v700","eignungstest_trainer_profile_v514","eignungstest_trainer_profile_v512","eignungstest_trainer_profile_v501","eignungstest_trainer_profile_v42","eignungstest_trainer_profile_v36","eignungstest_trainer_profile_v355","eignungstest_trainer_profile_v354","eignungstest_trainer_profile_v353","eignungstest_trainer_profile_v35","eignungstest_trainer_profile_v341","eignungstest_trainer_profile_v34","eignungstest_trainer_profile_v332","eignungstest_trainer_profile_v33","eignungstest_trainer_profile_v331","eignungstest_trainer_profile_v321","eignungstest_trainer_profile_v32","eignungstest_trainer_profile_v311","eignungstest_trainer_profile_v31","eignungstest_trainer_profile_v292","eignungstest_trainer_profile_v291","eignungstest_trainer_profile_v29","eignungstest_trainer_profile_v281","eignungstest_trainer_profile_v27","eignungstest_trainer_profile_v251","eignungstest_trainer_profile_v23","eignungstest_trainer_profile_v19"];
   const FOCUS_KEY = "eignungstest_trainer_focus_v8012";
@@ -93,7 +93,7 @@ window.App = (() => {
     cacheName:"cache-kill-switch-v8012-no-runtime-cache",
     icons:["icons/icon-180.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png"],
     status:"indexeddb-primary-active-cache-diagnose",
-    note:"V8.3.5 Local File Guard Stable: GitHub-Pages-Fallback, Desktop/Mobile getrennt, relative Pfade, Update-Prompt und temporäre Cache-Diagnose stabilisiert."
+    note:"V8.3.6 Local File Guard Stable: GitHub-Pages-Fallback, Desktop/Mobile getrennt, relative Pfade, Update-Prompt und temporäre Cache-Diagnose stabilisiert."
   });
 
   
@@ -109,7 +109,7 @@ window.App = (() => {
 
 const FRAMEWORK = {
     name:"BPS-Trainer",
-    version:"8.3.5",
+    version:"8.3.6",
     storageVersion:"2",
     offline:false,
     database:"IndexedDB primary + localStorage fallback",
@@ -157,7 +157,7 @@ const FRAMEWORK = {
       "Manifest Template",
       "Service Worker temporär deaktiviert bis Layout/Deploy stabil ist",
       "IndexedDB Full Activation",
-      "Production Stable V8.3.5",
+      "Production Stable V8.3.6",
       "Highscore Engine vorbereitet",
       "Active Cloud Highscore Board",
       "Geräteübergreifende Bestenliste vorbereitet",
@@ -272,7 +272,7 @@ const FRAMEWORK = {
 
 
   const DATA_MODEL = {
-    version:"8.3.5",
+    version:"8.3.6",
     stores:{
       results:{
         id:"auto",
@@ -335,7 +335,7 @@ const FRAMEWORK = {
         fields:["source","imported","duplicates","invalid","reviewNeeded","createdAt"]
       }
     },
-    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.0.1","5.0.2","5.1.0","5.1.1","5.1.2","5.1.3","5.1.4","6.0.0","6.1.0","6.1.1","7.0.0","8.3.5","8.3.5"],
+    migrationPath:["1.0","1.1","1.2","1.2.1","1.3","1.4","1.4.1","1.5","1.5.1","1.6","1.6.1","1.7","1.7.1","1.7.2","1.8","1.8.1","1.9","1.9.1","2.0","2.1","2.2","2.3","2.3.1","2.4","2.5","2.5.1","2.6","2.7","2.8","2.8.1","2.9","2.9.1","3.1","3.1.1","3.2","3.3","3.3.1","3.3.2","3.4","3.4.1","3.5","3.5.1","3.5.2","3.5.3","3.5.4","3.5.5","3.6.0","3.6.1","3.6.2","4.0.0","4.1.0","4.1.1","4.2.0","4.2.1","5.0.0","5.0.1","5.0.2","5.1.0","5.1.1","5.1.2","5.1.3","5.1.4","6.0.0","6.1.0","6.1.1","7.0.0","8.3.6","8.3.6"],
     futureEngine:"active",
     currentEngine:"IndexedDB-primary",
     migrationPolicy:{active:true,mode:"full-activation",source:"localStorage",target:"IndexedDB",requiresManualCleanup:false,noDataDeletion:true},
@@ -348,7 +348,7 @@ const FRAMEWORK = {
     active:true,
     source:"localStorage",
     target:"IndexedDB",
-    version:"8.3.5",
+    version:"8.3.6",
     rules:[
       "Keine automatische Datenlöschung",
       "IndexedDB ist Hauptspeicher",
@@ -714,7 +714,7 @@ const FRAMEWORK = {
       });
       Object.values(groups).forEach(g=>{g.percent=Math.round(g.correct/Math.max(1,g.total)*100); g.avgMs=Math.round(g.time/Math.max(1,g.total));});
       return {
-        version:"8.3.5",
+        version:"8.3.6",
         mode,
         title,
         total,
@@ -1100,17 +1100,21 @@ const FRAMEWORK = {
       }
       throw lastError || new Error("Supabase GET fehlgeschlagen");
     },
-    async writeJson(body, timeoutMs=6500) {
+    async writeJson(body, timeoutMs=6500, prefer="return=minimal") {
       const url=this.endpoint();
       const attempts=["auto"];
       if(this.isPublishableKey(this.config().anonKey)) attempts.push("auth");
       let lastError=null;
       for(const mode of attempts) {
         try {
-          const response=await this.request(url, {method:"POST", headers:this.headers({"Prefer":"return=minimal"}, mode), body:JSON.stringify(body)}, timeoutMs);
+          const response=await this.request(url, {method:"POST", headers:this.headers({"Prefer":prefer}, mode), body:JSON.stringify(body)}, timeoutMs);
           const text=await response.text().catch(()=>"");
-          if(response.ok || response.status===201) return {ok:true,status:response.status,authMode:mode};
-          lastError=new Error("POST "+response.status+(text?" · "+text.slice(0,240):""));
+          if(response.ok || response.status===201) {
+            let items=[];
+            if(text) { try { items=JSON.parse(text); } catch(e) { items=[]; } }
+            return {ok:true,status:response.status,authMode:mode,items,text};
+          }
+          lastError=new Error("POST "+response.status+(text?" · "+text.slice(0,300):""));
           lastError.status=response.status; lastError.body=text; lastError.authMode=mode;
         } catch(error) { lastError=error; }
       }
@@ -1277,21 +1281,39 @@ const FRAMEWORK = {
     },
     async insertDebugEntry() {
       if(!this.isConfigured()) return {ok:false,reason:"Cloud nicht verbunden"};
+      const stamp = new Date().toISOString();
       const demo={
+        player_name:this.playerName(),
+        class_code:this.config().classCode.slice(0,40),
+        device_id:this.deviceId(),
         mode:"cloud-debug",
-        title:"Cloud Testeintrag",
+        title:"Cloud Testeintrag "+stamp.slice(11,19),
         percent:88,
         score:22,
         total:25,
         duration:"Test",
-        date:new Date().toISOString()
+        rank:this.rankLabel(88),
+        app_version:APP_VERSION
       };
-      return this.submit(demo);
+      const minimal={
+        player_name:demo.player_name, class_code:demo.class_code, mode:demo.mode, title:demo.title,
+        percent:demo.percent, score:demo.score, total:demo.total
+      };
+      let insert=null;
+      try { insert = await this.writeJson(demo, 8000, "return=representation"); }
+      catch(firstError) {
+        insert = await this.writeJson(minimal, 8000, "return=representation");
+        insert.warning = String(firstError && firstError.message ? firstError.message : firstError);
+        insert.variant = "minimal";
+      }
+      const verify = await this.fetchTop("all").catch(error=>({ok:false,items:[],error:String(error && error.message ? error.message : error)}));
+      const found = Array.isArray(verify.items) && verify.items.some(r => String(r.title||"") === demo.title || (String(r.mode||"") === "cloud-debug" && Number(r.percent) === 88));
+      return {ok:true, record:demo, status:insert.status, authMode:insert.authMode, variant:insert.variant || "full", warning:insert.warning || "", verifyCount:Array.isArray(verify.items)?verify.items.length:0, verified:found};
     },
     renderShell() {
       const configured=this.isConfigured();
       const miss=this.missingFields();
-      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert. Falls Supabase nicht antwortet, erscheint automatisch die lokale Rangliste.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div><div class="cloud-refresh-row"><span class="small">Status wird automatisch aktualisiert.</span><button class="ghost" onclick="App.refreshCloudRanking && App.refreshCloudRanking()">Ranking neu laden</button><button class="ghost" onclick="App.addCloudTestScore && App.addCloudTestScore()">Cloud-Testeintrag</button></div></div>`;
+      return `<div class="premium-card cloud-highscore-card" id="cloudHighscoreCard"><span class="coach-badge">Cloud Highscore</span><div class="coach-action">${configured?"Online-Ranking wird geladen":"Cloud nicht verbunden"}</div><div class="small">${configured?"Tägliche, wöchentliche und monatliche Ranglisten werden mit Supabase synchronisiert. Falls Supabase nicht antwortet, erscheint automatisch die lokale Rangliste.":"Keine Fake-Daten. Fehlende Konfiguration: "+escHTML(miss.join(", "))+"."}</div><div class="cloud-refresh-row"><span class="small">Status wird automatisch aktualisiert.</span><button class="ghost" type="button" data-action="cloud-refresh">Ranking neu laden</button><button class="ghost" type="button" data-action="cloud-test">Cloud-Testeintrag</button></div></div>`;
     },
     async refreshDashboard() {
       const el=$("cloudHighscoreCard");
@@ -1323,12 +1345,12 @@ const FRAMEWORK = {
           }
         }
         const note = total ? "Live aus Supabase geladen" : (backfill && backfill.count ? "Cloud Sync durchgeführt, Tabelle aktualisiert sich" : "Cloud erreichbar, aber noch keine Einträge vorhanden. Speichere einen Test oder nutze den Cloud-Testeintrag zur Prüfung.");
-        if(stillCurrent()) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking aktiv</div>${this.renderBoardStats(boards,"Supabase")}<div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="cloud-refresh-row"><span class="small">${note} · Klasse: ${escHTML(this.config().classCode)} · Tabelle: ${escHTML(this.config().table)}</span><button class="ghost" onclick="App.refreshCloudRanking && App.refreshCloudRanking()">Neu laden</button><button class="ghost" onclick="App.addCloudTestScore && App.addCloudTestScore()">Cloud-Testeintrag</button></div>`;
+        if(stillCurrent()) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Online</span><div class="coach-action">Ranking aktiv</div>${this.renderBoardStats(boards,"Supabase")}<div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="cloud-refresh-row"><span class="small">${note} · Klasse: ${escHTML(this.config().classCode)} · Tabelle: ${escHTML(this.config().table)}</span><button class="ghost" type="button" data-action="cloud-refresh">Neu laden</button><button class="ghost" type="button" data-action="cloud-test">Cloud-Testeintrag</button></div>`;
       } catch(error) {
         clearTimeout(watchdog);
         const boards=this.localFallbackBoards();
         const total=Object.values(boards).reduce((sum,rows)=>sum+(Array.isArray(rows)?rows.length:0),0);
-        if(stillCurrent()) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Fallback</span><div class="coach-action">Lokales Ranking aktiv</div><div class="small cloud-error-note">Supabase hat nicht sauber geantwortet: ${escHTML(error && error.message ? error.message : error)}</div><div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="cloud-refresh-row"><span class="small">${total?"Lokale Highscores angezeigt. Cloud-Sync versucht es beim nächsten Ergebnis erneut.":"Noch keine lokalen Highscores vorhanden."}</span><button class="ghost" onclick="App.refreshCloudRanking && App.refreshCloudRanking()">Cloud erneut prüfen</button></div>`;
+        if(stillCurrent()) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Fallback</span><div class="coach-action">Lokales Ranking aktiv</div><div class="small cloud-error-note">Supabase hat nicht sauber geantwortet: ${escHTML(error && error.message ? error.message : error)}</div><div class="cloud-board-grid">${this.periods.map(p=>`<section class="cloud-board"><h4>${escHTML(p.label)}</h4>${this.renderRows(boards[p.key], p.key==="all"?8:5)}</section>`).join("")}</div><div class="cloud-refresh-row"><span class="small">${total?"Lokale Highscores angezeigt. Cloud-Sync versucht es beim nächsten Ergebnis erneut.":"Noch keine lokalen Highscores vorhanden."}</span><button class="ghost" type="button" data-action="cloud-refresh">Cloud erneut prüfen</button></div>`;
       }
     },
     diagnostics() {
@@ -1422,14 +1444,14 @@ const FRAMEWORK = {
       const dynamicMix=DynamicGeneratorEngine.buildMix(baseCoach);
       const learning=LearningMemoryEngine.build(normalized,memory);
       const simulation=FullSimulationEngine.build(normalized,{...baseCoach,dynamicMix},learning);
-      return {version:"8.3.5",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
+      return {version:"8.3.6",readiness,memory,weaknesses,cognitive,recommendation,adaptive,dynamicMix,learning,simulation,focus:TrainingFocusEngine.current(),updatedAt:new Date().toISOString()};
     },
     renderDashboard(coach) {
       const r=coach.readiness;
       const weak=coach.weaknesses.slice(0,3).map((w,i)=>`<div>${i+1}. <b>${escHTML(w.group)}</b> · ${w.percent}% · ${w.wrong} Fehler</div>`).join("") || `<div>Noch keine belastbaren Schwächen erkannt.</div>`;
       const cog=coach.cognitive.slice(0,4).map(x=>`<div class="ai-profile-meter"><span>${escHTML(x.name)}</span><i style="width:${Math.max(8,x.score)}%"></i><b>${x.score?x.score+"%":"–"}</b></div>`).join("");
       return `<div class="premium-card ai-card">
-        <span class="coach-badge">AI Stable Core V8.3.5</span>
+        <span class="coach-badge">AI Stable Core V8.3.6</span>
         <div class="coach-action">KI Datenbasis: ${r.percent}%</div>
         <div class="ai-readiness-bar"><div class="ai-readiness-fill" style="width:${r.percent}%"></div></div>
         <div class="small ${r.ready?"ai-status-ready":"ai-status-locked"}">${r.ready?"Coach aktiv. Schwächenprofil wird verwertet.":`Daten werden gesammelt. Noch ${r.remaining} vollständige Simulation${r.remaining===1?"":"en"} nötig.`}</div>
@@ -1919,7 +1941,7 @@ const MODES = {
 
 
   const itPool = [
-    ["IT Netzwerk","Was macht DNS?",["Namen in IP-Adressen übersetzen","RAM erweitern","Dateien drucken","Strom speichern"],0,"DNS löst Domainnamen zu IP-Adressen auf."],["IT Netzwerk","Was vergibt DHCP typischerweise?",["IP-Adressen","Bildschirmauflösung","Passwortlänge","CPU-Takt"],0,"DHCP vergibt automatisch Netzwerkkonfigurationen."],["IT Netzwerk","Welche IPv4-Adresse ist privat?",["192.168.3.5","8.3.5.8","1.1.1.1","217.160.0.1"],0,"192.168.x.x ist privat."],["IT Netzwerk","Was macht ein Switch im LAN?",["Geräte im lokalen Netz verbinden","IP-Adressen weltweit registrieren","Strom speichern","Bilder komprimieren"],0,"Ein Switch verbindet Geräte im lokalen Netzwerk."],["IT Netzwerk","Was macht ein Router?",["Netzwerke miteinander verbinden","Texte korrigieren","RAM austauschen","Dateien verschlüsseln"],0,"Router verbinden verschiedene Netzwerke."],["IT Netzwerk","Was ist eine Subnetzmaske?",["Grenze zwischen Netz- und Hostanteil","Passwortregel","Bildformat","Druckersprache"],0,"Die Subnetzmaske trennt Netzanteil und Hostanteil."],["IT Netzwerk","Welche Portnummer nutzt HTTP typischerweise?",["80","22","25","3389"],0,"HTTP nutzt typischerweise Port 80."],["IT Netzwerk","Welche Portnummer nutzt HTTPS typischerweise?",["443","21","53","110"],0,"HTTPS nutzt typischerweise Port 443."],["IT Netzwerk","Welche Portnummer nutzt DNS typischerweise?",["53","80","443","3389"],0,"DNS nutzt typischerweise Port 53."],["IT Netzwerk","Was prüft der Befehl ping?",["Erreichbarkeit über Netzwerk","Festplattenplatz","Benutzerrechte","Druckerfarbe"],0,"ping prüft Erreichbarkeit."],["IT Hardware","Welche Komponente führt Rechenoperationen aus?",["CPU","SSD","Netzteil","Gehäuse"],0,"Die CPU ist der Prozessor."],["IT Hardware","Was macht RAM?",["flüchtiger Arbeitsspeicher","dauerhafte Archivierung","Netzwerk-Routing","Stromwandlung"],0,"RAM ist flüchtiger Arbeitsspeicher."],["IT Hardware","Was speichert Daten dauerhaft?",["SSD/HDD","RAM","CPU-Cache nur","Netzwerkkabel"],0,"SSD/HDD speichern Daten dauerhaft."],["IT Betriebssystem","Was sind Benutzerrechte?",["Berechtigungen für Aktionen im System","Bildschirmauflösung","Kabelstandard","Prozessorfrequenz"],0,"Benutzerrechte steuern Berechtigungen."],["IT FISI","Was ist Active Directory?",["Verzeichnisdienst für Benutzer und Ressourcen","Grafikkartentreiber","Antivirusprogramm","Browser"],0,"AD verwaltet Benutzer, Gruppen und Ressourcen."],["IT FISI","Was sind GPOs?",["Gruppenrichtlinien","Grafikprozessoren","Datenbanktabellen","Routerports"],0,"GPOs sind Gruppenrichtlinien."],["IT FISI","Was ist ein Ticket-System?",["System zur Bearbeitung von Anfragen/Störungen","Netzwerkkabel","Festplattentyp","Bildschirmmodus"],0,"Tickets dokumentieren Supportfälle."],["IT FISI","Warum dokumentiert man Änderungen?",["Nachvollziehbarkeit","mehr Stromverbrauch","schnelleres WLAN automatisch","weniger Sicherheit"],0,"Dokumentation macht Änderungen nachvollziehbar."],["IT Security","Was ist Phishing?",["Betrugsversuch über gefälschte Nachrichten","Festplattenformatierung","Netzteiltest","Monitorfehler"],0,"Phishing versucht Zugangsdaten zu stehlen."],["IT Security","Was macht eine Firewall?",["Netzwerkverkehr nach Regeln filtern","Bilder sortieren","CPU kühlen","Dateinamen übersetzen"],0,"Eine Firewall filtert Netzwerkverkehr."],["IT Security","Was bedeutet MFA?",["Mehrfaktor-Authentifizierung","Monitor-Farb-Anzeige","Mnboard-Fehleranalyse","Manuelle Freigabe"],0,"MFA nutzt mehrere Faktoren."],["IT Security","Was ist Ransomware?",["Erpressersoftware","Backupsoftware","Netzteilfehler","Bildschirmtreiber"],0,"Ransomware ist Erpressersoftware."],["IT Server","Was bedeutet Backup?",["Datensicherung","Bildvergrößerung","Internetvertrag","Druckauftrag"],0,"Backup = Datensicherung."],["IT Server","Was ist Virtualisierung?",["mehrere virtuelle Systeme auf Hardware betreiben","Kabel doppelt verlegen","Tastatur sperren","Monitor teilen"],0,"Virtualisierung ermöglicht VMs."],["IT Linux","Welcher Befehl listet Dateien?",["ls","cd","ping","mkdir"],0,"ls listet Dateien/Ordner auf."],["IT Linux","Welcher Befehl wechselt den Ordner?",["cd","ls","ipconfig","mkdir"],0,"cd wechselt das Verzeichnis."],["IT Windows","Welcher Befehl zeigt Netzwerkkonfiguration in Windows?",["ipconfig","ls","chmod","grep"],0,"ipconfig zeigt IP-Konfigurationen."]
+    ["IT Netzwerk","Was macht DNS?",["Namen in IP-Adressen übersetzen","RAM erweitern","Dateien drucken","Strom speichern"],0,"DNS löst Domainnamen zu IP-Adressen auf."],["IT Netzwerk","Was vergibt DHCP typischerweise?",["IP-Adressen","Bildschirmauflösung","Passwortlänge","CPU-Takt"],0,"DHCP vergibt automatisch Netzwerkkonfigurationen."],["IT Netzwerk","Welche IPv4-Adresse ist privat?",["192.168.3.6","8.3.6.8","1.1.1.1","217.160.0.1"],0,"192.168.x.x ist privat."],["IT Netzwerk","Was macht ein Switch im LAN?",["Geräte im lokalen Netz verbinden","IP-Adressen weltweit registrieren","Strom speichern","Bilder komprimieren"],0,"Ein Switch verbindet Geräte im lokalen Netzwerk."],["IT Netzwerk","Was macht ein Router?",["Netzwerke miteinander verbinden","Texte korrigieren","RAM austauschen","Dateien verschlüsseln"],0,"Router verbinden verschiedene Netzwerke."],["IT Netzwerk","Was ist eine Subnetzmaske?",["Grenze zwischen Netz- und Hostanteil","Passwortregel","Bildformat","Druckersprache"],0,"Die Subnetzmaske trennt Netzanteil und Hostanteil."],["IT Netzwerk","Welche Portnummer nutzt HTTP typischerweise?",["80","22","25","3389"],0,"HTTP nutzt typischerweise Port 80."],["IT Netzwerk","Welche Portnummer nutzt HTTPS typischerweise?",["443","21","53","110"],0,"HTTPS nutzt typischerweise Port 443."],["IT Netzwerk","Welche Portnummer nutzt DNS typischerweise?",["53","80","443","3389"],0,"DNS nutzt typischerweise Port 53."],["IT Netzwerk","Was prüft der Befehl ping?",["Erreichbarkeit über Netzwerk","Festplattenplatz","Benutzerrechte","Druckerfarbe"],0,"ping prüft Erreichbarkeit."],["IT Hardware","Welche Komponente führt Rechenoperationen aus?",["CPU","SSD","Netzteil","Gehäuse"],0,"Die CPU ist der Prozessor."],["IT Hardware","Was macht RAM?",["flüchtiger Arbeitsspeicher","dauerhafte Archivierung","Netzwerk-Routing","Stromwandlung"],0,"RAM ist flüchtiger Arbeitsspeicher."],["IT Hardware","Was speichert Daten dauerhaft?",["SSD/HDD","RAM","CPU-Cache nur","Netzwerkkabel"],0,"SSD/HDD speichern Daten dauerhaft."],["IT Betriebssystem","Was sind Benutzerrechte?",["Berechtigungen für Aktionen im System","Bildschirmauflösung","Kabelstandard","Prozessorfrequenz"],0,"Benutzerrechte steuern Berechtigungen."],["IT FISI","Was ist Active Directory?",["Verzeichnisdienst für Benutzer und Ressourcen","Grafikkartentreiber","Antivirusprogramm","Browser"],0,"AD verwaltet Benutzer, Gruppen und Ressourcen."],["IT FISI","Was sind GPOs?",["Gruppenrichtlinien","Grafikprozessoren","Datenbanktabellen","Routerports"],0,"GPOs sind Gruppenrichtlinien."],["IT FISI","Was ist ein Ticket-System?",["System zur Bearbeitung von Anfragen/Störungen","Netzwerkkabel","Festplattentyp","Bildschirmmodus"],0,"Tickets dokumentieren Supportfälle."],["IT FISI","Warum dokumentiert man Änderungen?",["Nachvollziehbarkeit","mehr Stromverbrauch","schnelleres WLAN automatisch","weniger Sicherheit"],0,"Dokumentation macht Änderungen nachvollziehbar."],["IT Security","Was ist Phishing?",["Betrugsversuch über gefälschte Nachrichten","Festplattenformatierung","Netzteiltest","Monitorfehler"],0,"Phishing versucht Zugangsdaten zu stehlen."],["IT Security","Was macht eine Firewall?",["Netzwerkverkehr nach Regeln filtern","Bilder sortieren","CPU kühlen","Dateinamen übersetzen"],0,"Eine Firewall filtert Netzwerkverkehr."],["IT Security","Was bedeutet MFA?",["Mehrfaktor-Authentifizierung","Monitor-Farb-Anzeige","Mnboard-Fehleranalyse","Manuelle Freigabe"],0,"MFA nutzt mehrere Faktoren."],["IT Security","Was ist Ransomware?",["Erpressersoftware","Backupsoftware","Netzteilfehler","Bildschirmtreiber"],0,"Ransomware ist Erpressersoftware."],["IT Server","Was bedeutet Backup?",["Datensicherung","Bildvergrößerung","Internetvertrag","Druckauftrag"],0,"Backup = Datensicherung."],["IT Server","Was ist Virtualisierung?",["mehrere virtuelle Systeme auf Hardware betreiben","Kabel doppelt verlegen","Tastatur sperren","Monitor teilen"],0,"Virtualisierung ermöglicht VMs."],["IT Linux","Welcher Befehl listet Dateien?",["ls","cd","ping","mkdir"],0,"ls listet Dateien/Ordner auf."],["IT Linux","Welcher Befehl wechselt den Ordner?",["cd","ls","ipconfig","mkdir"],0,"cd wechselt das Verzeichnis."],["IT Windows","Welcher Befehl zeigt Netzwerkkonfiguration in Windows?",["ipconfig","ls","chmod","grep"],0,"ipconfig zeigt IP-Konfigurationen."]
   ];
 
   const opinionFacts = [
@@ -1934,13 +1956,13 @@ const MODES = {
 
   const EDV_STORY = `Firma Nova richtet einen kleinen Schulungsraum ein. Es gibt einen Router, einen Switch, einen Server, zwei PCs, einen Drucker, ein Backup-Ziel und ein Ticketsystem. Der Plan soll zeigen, wie Netzwerk, Sicherheit, Benutzerrechte, Backup und Support zusammenhängen. In der dargestellten Seite sind genau 11 Fehler versteckt.`;
   const EDV_SCHEMA = [
-    {id:"A1", text:"Router LAN: 192.168.3.5", ok:true},
+    {id:"A1", text:"Router LAN: 192.168.3.6", ok:true},
     {id:"A2", text:"Switch verbindet PC-1, PC-2, Server und Drucker", ok:true},
-    {id:"A3", text:"PC-1: 192.168.3.5 / Gateway 192.168.3.5", ok:true},
-    {id:"A4", text:"PC-2: 192.168.3.5 / Gateway 192.168.3.5", ok:false, nd:"Logikfehler", ex:"PC-2 liegt nicht im gleichen Netz wie Gateway 192.168.3.5."},
-    {id:"A5", text:"DNS-Server zeigt auf 192.168.3.5", ok:true},
-    {id:"A6", text:"DHCP verteilt 192.168.3.5 bis 192.168.3.5", ok:true},
-    {id:"A7", text:"Client bekommt 10.0.0.55 aus dem DHCP-Bereich", ok:false, nd:"Logikfehler", ex:"10.0.0.55 passt nicht zum DHCP-Bereich 192.168.3.5 bis 100."},
+    {id:"A3", text:"PC-1: 192.168.3.6 / Gateway 192.168.3.6", ok:true},
+    {id:"A4", text:"PC-2: 192.168.3.6 / Gateway 192.168.3.6", ok:false, nd:"Logikfehler", ex:"PC-2 liegt nicht im gleichen Netz wie Gateway 192.168.3.6."},
+    {id:"A5", text:"DNS-Server zeigt auf 192.168.3.6", ok:true},
+    {id:"A6", text:"DHCP verteilt 192.168.3.6 bis 192.168.3.6", ok:true},
+    {id:"A7", text:"Client bekommt 10.0.0.55 aus dem DHCP-Bereich", ok:false, nd:"Logikfehler", ex:"10.0.0.55 passt nicht zum DHCP-Bereich 192.168.3.6 bis 100."},
     {id:"A8", text:"Server stellt Benutzerfreigabe bereit", ok:true},
     {id:"A9", text:"Gastbenutzer darf Systemdateien löschen", ok:false, nd:"Inhaltsfehler", ex:"Ein Gastbenutzer darf keine Systemdateien löschen."},
     {id:"A10", text:"Admin-Gruppe darf Software installieren", ok:true},
@@ -2114,7 +2136,7 @@ const MODES = {
     },
     itScenario() {
       return choice([
-        ()=>makeMC("IT Fehleranalyse",35,"Ein PC hat IP 192.168.3.5, Gateway 192.168.3.5, DNS leer. Internet per IP geht, Webseiten-Namen gehen nicht. Was ist wahrscheinlich falsch?",["DNS fehlt","RAM defekt","Monitor defekt","Tastatur defekt"],0,"Wenn IP geht, aber Namen nicht, ist DNS wahrscheinlich das Problem."),
+        ()=>makeMC("IT Fehleranalyse",35,"Ein PC hat IP 192.168.3.6, Gateway 192.168.3.6, DNS leer. Internet per IP geht, Webseiten-Namen gehen nicht. Was ist wahrscheinlich falsch?",["DNS fehlt","RAM defekt","Monitor defekt","Tastatur defekt"],0,"Wenn IP geht, aber Namen nicht, ist DNS wahrscheinlich das Problem."),
         ()=>makeMC("IT Netzwerk",35,"Ein Client bekommt 169.254.x.x als IP-Adresse. Was ist wahrscheinlich passiert?",["DHCP nicht erreichbar","DNS ist zu schnell","CPU überhitzt","Passwort falsch"],0,"169.254.x.x ist meist APIPA, wenn DHCP nicht klappt."),
         ()=>makeMC("IT FISI",35,"Ein neuer Benutzer soll dieselben Rechte wie alle Azubis bekommen. Was ist sinnvoll?",["in passende Gruppe aufnehmen","lokal Admin machen","Passwort öffentlich teilen","Firewall abschalten"],0,"Rechte werden sinnvoll über Gruppen vergeben."),
         ()=>makeMC("IT Security",30,"Welche Maßnahme ist am sinnvollsten gegen Kontoübernahme?",["MFA aktivieren","Bildschirm heller machen","DNS löschen","Drucker tauschen"],0,"MFA schützt zusätzlich.")
@@ -2587,7 +2609,7 @@ const MODES = {
   };
 
 
-  // V8.3.5 Aufgabenbank-Generatoren: bereinigte digitale Aufgaben + PDF-Bildaufgaben.
+  // V8.3.6 Aufgabenbank-Generatoren: bereinigte digitale Aufgaben + PDF-Bildaufgaben.
   Generators.bookNumberSeries = function(level){
     return fromQuestionBank({tag:"zahlenreihen-buch", verifiedOnly:true}, Generators.series(level), level);
   };
@@ -2607,7 +2629,7 @@ const MODES = {
     return fromQuestionBank({tag:"it-basis", verifiedOnly:true}, Generators.itScenario(level), level);
   };
   Generators.bookSymbolArithmetic = function(level){
-    // V8.3.5: schwache selbst erzeugte Symbolarithmetik-Aufgaben wurden aus der Bank entfernt.
+    // V8.3.6: schwache selbst erzeugte Symbolarithmetik-Aufgaben wurden aus der Bank entfernt.
     // Fallback bewusst auf Aussagenlogik statt neue Symbolbilder/-pseudoaufgaben.
     return fromQuestionBank({tag:"symbolarithmetik", verifiedOnly:true}, Generators.statementLogic(level), level);
   };
@@ -2834,7 +2856,7 @@ const MODES = {
     const p=readProfile();
     const idShort=String(p.player_id||"").replace(/^plr_/,'').slice(0,12) || "lokal";
     return `<div class="premium-card profile-manager-card">
-      <span class="coach-badge">Profilverwaltung V8.3.5</span>
+      <span class="coach-badge">Profilverwaltung V8.3.6</span>
       <div class="coach-action">Name ändern</div>
       <p class="small">Dein sichtbarer Name kann geändert werden. Die interne Spieler-ID bleibt gleich, damit lokale Ergebnisse und spätere Sync-Funktionen stabil bleiben.</p>
       <div class="profile-edit-row"><input id="profileEditNameInput" data-profile-name-input="1" maxlength="32" value="${escHTML(p.name||"")}" placeholder="Dein Name" autocomplete="name" enterkeyhint="done"><button type="button" data-action="save-profile-name" onclick="App.saveProfileName()">Speichern</button></div><div id="profileSaveState" class="profile-save-state" aria-live="polite"></div>
@@ -3100,7 +3122,7 @@ const MODES = {
     const start=$("start");
     const anchor=$("premiumDashboard");
     const intro=$("sectionIntro");
-    // Stable rule V8.3.5: Mobile-Navigation wird direkt an den Body gehängt.
+    // Stable rule V8.3.6: Mobile-Navigation wird direkt an den Body gehängt.
     // Grund: position:fixed ist in verschachtelten App-Containern auf Mobile/Standalone-PWA unzuverlässig.
     // Desktop bekommt die Navigation sauber zurück in den App-Container.
     if(mobile){
@@ -3360,7 +3382,7 @@ const MODES = {
     const cloudBlock=`<div class="premium-card section-card settings-card"><b>Cloud & Supabase</b><p class="small">Live-Diagnose, Online-Highscore und Cache-Neuladen.</p><button class="ghost" onclick="App.showFrameworkHealth()">Cloud Diagnose öffnen</button></div>`;
     const audioBlock=`<div class="premium-card section-card settings-card"><b>Audio & Feedback</b><p class="small">Platzhalter für Sound, Vibration und Prüfungsfeedback. Die Logik bleibt vorbereitet, ohne die Kernmodule zu berühren.</p></div>`;
     const dataBlock=`<div class="premium-card section-card settings-card"><b>Daten & Backup</b><p class="small">Lokale Ergebnisse, IndexedDB, Export und Cache-Verwaltung.</p><div class="settings-button-row"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div></div>`;
-    const frameworkBlock=`<div class="premium-card section-card settings-card"><b>Framework</b><p class="small">Production Feature-Ready V8.3.5 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
+    const frameworkBlock=`<div class="premium-card section-card settings-card"><b>Framework</b><p class="small">Production Feature-Ready V8.3.6 · Module bleiben getrennt: EDV, Route, Simulation, Storage und Cloud.</p><button class="ghost" onclick="App.showFrameworkHealth()">Framework prüfen</button></div>`;
     const blocks={profile:profileBlock,cloud:cloudBlock,audio:audioBlock,data:dataBlock,framework:frameworkBlock};
     const secondary=`${tab!=="profile"?profileBlock:""}${tab!=="cloud"?cloudBlock:""}${tab!=="audio"?audioBlock:""}${tab!=="data"?dataBlock:""}${tab!=="framework"?frameworkBlock:""}`;
     return `<div class="section-stack settings-stack"><div class="section-heading"><h2>Settings</h2><p>Profil, Cloud, Audio, Daten und Framework sind jetzt als Settings-Bereich gebündelt.</p></div><div class="section-primary-block settings-primary-block">${blocks[tab] || profileBlock}</div><div class="section-grid settings-secondary-grid">${secondary}</div></div>`;
@@ -3425,7 +3447,7 @@ const MODES = {
     const section=state.activeAppSection || "home";
     if(!state.activeTopTab || !(TOP_NAV_TABS[section]||[]).some(t=>t.key===state.activeTopTab)) state.activeTopTab=defaultTopTab(section);
     document.body.dataset.appSection = section;
-    // V8.3.5: mobile-nav-attached wird ausschließlich in renderAppNav/stabilizeMobileBottomNav gesetzt.
+    // V8.3.6: mobile-nav-attached wird ausschließlich in renderAppNav/stabilizeMobileBottomNav gesetzt.
     renderPremiumDashboard();
     renderAppNav();
     renderMobileTopNav();
@@ -4203,7 +4225,7 @@ const MODES = {
       <div class="health-row"><span>Gespeicherte Läufe</span><strong>${d.records}/${d.maxRecords}</strong></div>
       <div class="health-row"><span>Ungefähre Größe</span><strong>${d.approxSizeKb} KB</strong></div>
       <div class="db-status-card"><b>Vorbereitet für spätere Stores:</b><br>${Object.keys(DATA_MODEL.stores).join(", ")}</div>
-      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V8.3.5: Textaufgaben digital ergänzt.</span></div>
+      <div class="db-status-card"><b>Aufgabenbank-Import:</b><br><code>source, sourcePage, category, group, subtype, difficulty, question, answers, correct, explanation, tags, verified</code><br><span class="small">Status V8.3.6: Textaufgaben digital ergänzt.</span></div>
       <div class="db-status-card"><b>Feature Flags:</b><br>Aktiv: ${FEATURE_STATUS.stable.join(", ")}<br>Geparkt: ${FEATURE_STATUS.disabled.join(", ")}</div>
       <div class="pwa-panel"><b>PWA & Datenbank Status:</b><br><code>${PWA_CONFIG.manifestFile}</code> · <code>${PWA_CONFIG.serviceWorkerFile}</code><br><span class="small">${escHTML(PWA_CONFIG.note)}</span></div>
     `;
@@ -4309,6 +4331,8 @@ const MODES = {
       const actionTarget = ev.target && ev.target.closest ? ev.target.closest('[data-action]') : null;
       if(actionTarget){
         const action = actionTarget.getAttribute('data-action');
+        if(action === 'cloud-refresh'){ ev.preventDefault(); ev.stopPropagation(); CloudHighscoreEngine.refreshDashboard(); return; }
+        if(action === 'cloud-test'){ ev.preventDefault(); ev.stopPropagation(); addCloudTestScore(); return; }
         if(action === 'route-clear'){ ev.preventDefault(); clearRouteSelection(); return; }
         if(action === 'route-undo'){ ev.preventDefault(); undoRouteStreet(); return; }
         if(action === 'route-submit'){ ev.preventDefault(); submitRouteSequence(); return; }
@@ -4326,7 +4350,9 @@ const MODES = {
       if(target.hasAttribute('data-route-street')) { selectRouteStreet(target.getAttribute('data-route-street')); return; }
       if(target.hasAttribute('data-edv-id')) { toggleEdvMultiNode(target.getAttribute('data-edv-id')); return; }
       const action = target.getAttribute('data-action');
-      if(action === 'route-clear') clearRouteSelection();
+      if(action === 'cloud-refresh') CloudHighscoreEngine.refreshDashboard();
+      else if(action === 'cloud-test') addCloudTestScore();
+      else if(action === 'route-clear') clearRouteSelection();
       else if(action === 'route-undo') undoRouteStreet();
       else if(action === 'route-submit') submitRouteSequence();
       else if(action === 'edv-clear') clearEdvMultiSelection();
@@ -4367,14 +4393,14 @@ const MODES = {
   } catch(error) { console.warn("Component-State bridge", error); }
 
   async function addCloudTestScore(){
+    const el=$("cloudHighscoreCard");
     try {
+      if(el) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Test läuft</span><div class="coach-action">Testeintrag wird gespeichert...</div><div class="small">Button erkannt · Insert gestartet · Supabase antwortet gleich sichtbar.</div>`;
       const res = await CloudHighscoreEngine.insertDebugEntry();
-      const el=$("cloudHighscoreCard");
-      if(el) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Test</span><div class="coach-action">${res && res.ok ? "Testeintrag gespeichert" : "Testeintrag fehlgeschlagen"}</div><div class="small">${escHTML(res && (res.reason || res.warning || res.status || res.variant) ? (res.reason || res.warning || ("HTTP "+res.status)+" · "+(res.variant||"")) : "Ranking wird neu geladen...")}</div>`;
-      setTimeout(()=>CloudHighscoreEngine.refreshDashboard(), 400);
+      if(el) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Test</span><div class="coach-action">${res && res.ok ? "Testeintrag gespeichert" : "Testeintrag fehlgeschlagen"}</div><div class="small">HTTP ${escHTML(res && res.status ? res.status : "?")} · ${escHTML(res && res.variant ? res.variant : "full")} · ${escHTML(res && res.authMode ? res.authMode : "auto")} · Verifikation: ${res && res.verified ? "gefunden" : "noch nicht in Topliste"} · Datensätze gelesen: ${escHTML(res && res.verifyCount != null ? res.verifyCount : "?")}</div>${res && res.warning ? `<div class="small cloud-error-note">Fallback-Hinweis: ${escHTML(res.warning)}</div>` : ""}<div class="cloud-refresh-row"><button class="ghost" type="button" data-action="cloud-refresh">Ranking neu laden</button><button class="ghost" type="button" data-action="cloud-test">Nochmals testen</button></div>`;
+      setTimeout(()=>CloudHighscoreEngine.refreshDashboard(), 900);
     } catch(error) {
-      const el=$("cloudHighscoreCard");
-      if(el) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Testfehler</span><div class="coach-action">Testeintrag konnte nicht gespeichert werden</div><div class="small cloud-error-note">${escHTML(error && error.message ? error.message : error)}</div><div class="cloud-refresh-row"><button class="ghost" onclick="App.refreshCloudRanking && App.refreshCloudRanking()">Neu laden</button></div>`;
+      if(el) el.innerHTML=`<span class="coach-badge">Cloud Highscore · Testfehler</span><div class="coach-action">Testeintrag konnte nicht gespeichert werden</div><div class="small cloud-error-note">${escHTML(error && error.message ? error.message : error)}</div><div class="cloud-refresh-row"><button class="ghost" type="button" data-action="cloud-refresh">Neu laden</button><button class="ghost" type="button" data-action="cloud-test">Nochmals testen</button></div>`;
     }
   }
 

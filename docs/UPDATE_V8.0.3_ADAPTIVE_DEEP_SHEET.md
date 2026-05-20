@@ -1,4 +1,4 @@
-# Update V8.3.5 · Adaptive Deep Sheet
+# Update V8.3.6 · Adaptive Deep Sheet
 
 - Deep Sheet bleibt auf Desktop und Mobile aktiv.
 - Sheet-Skalierung reagiert auf Breite, Höhe, Pointer/Touch und Orientation.

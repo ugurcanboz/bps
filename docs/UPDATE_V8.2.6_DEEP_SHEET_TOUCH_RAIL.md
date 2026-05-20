@@ -1,4 +1,4 @@
-# V8.3.5 Deep Sheet Touch Rail
+# V8.3.6 Deep Sheet Touch Rail
 
 - Top-Kategorieband bleibt animiert und wird zusätzlich echt horizontal scrollbar.
 - iOS/Android Touch-Scroll für die Kategorie-Rail repariert.

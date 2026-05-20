@@ -1,4 +1,4 @@
-# BPS-Trainer V8.3.5 Production Feature-Ready Stable
+# BPS-Trainer V8.3.6 Production Feature-Ready Stable
 
 Start:
 1. `VERSION_CHECK.html` öffnen.

@@ -1,4 +1,4 @@
-# V8.3.5 Desktop/Mobile Rail Split
+# V8.3.6 Desktop/Mobile Rail Split
 
 ## Fixes
 - Mobile horizontal category rail remains active and swipeable.

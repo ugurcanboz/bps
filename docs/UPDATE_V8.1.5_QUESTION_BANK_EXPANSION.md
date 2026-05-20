@@ -1,4 +1,4 @@
-# V8.3.5 Question Bank Expansion
+# V8.3.6 Question Bank Expansion
 
 ## Eingebaut
 - 56 digitale Zahlenreihen aus `Zahlenreihen.pdf` inklusive Lösungen und Regel-Erklärungen.

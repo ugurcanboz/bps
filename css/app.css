@@ -443,7 +443,7 @@ body.premium-ui{
 .modeCard.hub-mode-card{margin:0;border-radius:18px;min-height:112px;}
 @media(max-width:700px){.training-hub-sheet{gap:10px}.training-category-card{border-radius:22px}.training-category-head{padding:14px}.training-category-modes{grid-template-columns:1fr;padding:0 10px 10px}.modeCard.hub-mode-card{min-height:auto}.modeTabs{overflow-x:auto;display:flex;gap:8px;padding-bottom:4px}.modeTabs .modeTab{white-space:nowrap;flex:0 0 auto}}
 
-/* V8.3.5 Deep Sheet: echte Bottom-Sheet Trainingsauswahl */
+/* V8.3.6 Deep Sheet: echte Bottom-Sheet Trainingsauswahl */
 .training-sheet-launch-card{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
   border-radius:28px;padding:18px;margin:12px 0 14px;
@@ -463,7 +463,7 @@ body.premium-ui{
 .training-sheet-content{padding:14px;max-height:calc(min(86vh,820px) - 82px);overflow:auto;-webkit-overflow-scrolling:touch}.training-hub-sheet.sheet-mode{padding-bottom:20px}.training-hub-sheet.sheet-mode .training-category-card{background:#fff}.training-hub-sheet.sheet-mode .training-category-modes{grid-template-columns:1fr}.training-sheet-open{overflow:hidden}
 @media(max-width:760px){.training-sheet{left:0;right:0;width:100vw;max-height:88vh;transform:translateY(110%);border-radius:30px 30px 0 0}.training-sheet.show{transform:translateY(0)}.training-inline-preview{display:none}.training-sheet-launch-card{position:sticky;top:calc(var(--mobile-top-height,0px) + 8px);z-index:20;margin:8px 0 12px;padding:16px;align-items:flex-start}.training-sheet-launch-card button{min-width:0;width:100%;margin-top:8px}.training-sheet-launch-card{flex-direction:column}.training-sheet-content{padding:12px 10px 90px}.training-category-card:first-child .training-category-modes{display:none}.training-category-card.open .training-category-modes{display:grid}}
 
-/* V8.3.5 Adaptive Deep Sheet: bleibt auf Desktop UND Mobile, skaliert aber sauber */
+/* V8.3.6 Adaptive Deep Sheet: bleibt auf Desktop UND Mobile, skaliert aber sauber */
 .training-inline-preview{display:none!important}
 .training-sheet-launch-card{
   position:relative;
@@ -537,7 +537,7 @@ body.premium-ui{
 @media (prefers-reduced-motion:reduce){.training-sheet,.training-sheet-backdrop,.modeCard.hub-mode-card,.training-sheet-launch-card button{transition:none!important}}
 
 
-/* V8.3.5 UI REPAIR: native adaptive Deep Sheet, no legacy presentation layout */
+/* V8.3.6 UI REPAIR: native adaptive Deep Sheet, no legacy presentation layout */
 body.training-sheet-open{overflow:hidden!important;touch-action:none;}
 body[data-app-section="practice"] #modeTabs,
 body[data-app-section="practice"] #modeSectionTitle{display:none!important;}
@@ -598,7 +598,7 @@ body[data-app-section="practice"] #modeSectionTitle{display:none!important;}
 }
 
 
-/* V8.3.5 Deep Sheet Core Repair: removes old static practice layout and makes sheet interaction native */
+/* V8.3.6 Deep Sheet Core Repair: removes old static practice layout and makes sheet interaction native */
 body[data-app-section="practice"] #modeTabs,
 body[data-app-section="practice"] #modeSectionTitle{display:none!important;}
 body[data-app-section="practice"] .warn.small{display:none!important;}
@@ -625,7 +625,7 @@ body[data-app-section="practice"] .warn.small{display:none!important;}
 @media(max-width:900px){.training-sheet{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100vw!important;height:min(90vh,780px)!important;border-radius:30px 30px 0 0!important;transform:translate3d(0,108%,0) scale(1)!important;}.training-sheet.show{transform:translate3d(0,0,0) scale(1)!important}.training-sheet-mode-grid{grid-template-columns:1fr!important}.training-sheet-content{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;}.training-sheet-pill{padding:11px 13px!important;font-size:13px!important;}}
 @media(max-height:700px) and (min-width:901px){.training-sheet{top:2vh!important;height:96vh!important}.training-sheet-mode-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.training-sheet-mode-grid .modeCard{min-height:112px!important}}
 
-/* V8.3.5 DEEP SHEET RUNTIME AUDIT
+/* V8.3.6 DEEP SHEET RUNTIME AUDIT
    Ziel: keine alte Accordion-/Listenoptik mehr im Üben-Bereich, native iPhone-artige Sheet-UX,
    alle Trainingskarten klickbar und sauber skaliert. */
 body[data-app-section="practice"] #focusControls,
@@ -714,7 +714,7 @@ body[data-app-section="practice"] .practice-stack{padding-bottom:0!important;}
   .training-sheet-mode-grid .modeCard{min-height:108px!important;}
 }
 
-/* V8.3.5 Deep Sheet Core Reset: kein altes Accordion/List-Layout mehr */
+/* V8.3.6 Deep Sheet Core Reset: kein altes Accordion/List-Layout mehr */
 body[data-app-section="practice"] #focusControls,
 body[data-app-section="practice"] .focus-controls,
 body[data-app-section="practice"] #modeTabs,
@@ -849,7 +849,7 @@ body.training-sheet-open{overflow:hidden!important;}
   .training-mode-bubble{min-height:108px!important;}
 }
 
-/* V8.3.5 Deep Sheet Final Router: keine Katalog-Karten, nur Kategorie -> kompakte Modusliste -> Start */
+/* V8.3.6 Deep Sheet Final Router: keine Katalog-Karten, nur Kategorie -> kompakte Modusliste -> Start */
 body[data-app-section="practice"] #modeGrid > :not(.training-native-launch):not(.clean-training-launch){display:none!important;}
 .training-native-launch.v814-launch,.clean-training-launch{display:grid!important;place-items:center!important;width:100%!important;max-width:760px!important;margin:18px auto!important;padding:0!important;grid-template-columns:1fr!important;}
 .training-native-launch.v814-launch > button,.clean-training-launch > button{width:min(520px,100%)!important;border:0!important;border-radius:28px!important;background:linear-gradient(180deg,#101827,#020617)!important;color:#fff!important;padding:20px 26px!important;box-shadow:0 24px 70px rgba(15,23,42,.25)!important;display:grid!important;gap:4px!important;text-align:center!important;cursor:pointer!important;}
@@ -869,7 +869,7 @@ body[data-app-section="practice"] #modeGrid > :not(.training-native-launch):not(
 .training-sheet-pills,.training-sheet-summary,.training-sheet-selected,.training-mode-bubble,.clean-category-rail,.clean-category-summary,.clean-mode-card{display:none!important;}
 @media(max-width:900px){.training-native-menu,.training-sheet-router,.clean-sheet-router{grid-template-columns:1fr!important;grid-template-rows:auto minmax(0,1fr) auto!important;}.training-category-list,.clean-category-list{grid-row:1!important;grid-column:1!important;display:flex!important;flex-direction:row!important;overflow-x:auto!important;overflow-y:hidden!important;border-right:0!important;border-bottom:1px solid rgba(15,23,42,.08)!important;padding:10px!important;}.training-category-row,.clean-category-row{flex:0 0 auto!important;width:auto!important;min-width:118px!important;grid-template-columns:auto 1fr!important;}.training-category-row em,.clean-category-row em{display:none!important;}.training-mode-panel,.clean-mode-panel{grid-row:2!important;grid-column:1!important;padding:12px!important;}.training-panel-head,.clean-panel-head{padding:12px!important;border-radius:22px!important;}.training-panel-head b,.clean-panel-head b{font-size:19px!important;}.training-panel-head strong,.clean-panel-head strong{display:none!important;}.training-mode-row,.clean-mode-row{grid-template-columns:auto minmax(0,1fr)!important;border-radius:18px!important;}.training-row-tags,.clean-row-tags{display:none!important;}.training-sheet-startbar,.clean-selected-bar{grid-column:1!important;grid-row:3!important;padding:12px 14px calc(12px + env(safe-area-inset-bottom,0px))!important;}.training-sheet-startbar b,.clean-selected-bar b{font-size:15px!important}.training-sheet-startbar small,.clean-selected-bar small{display:none!important}.training-sheet-startbar button,.clean-selected-bar button{min-width:96px!important;padding:11px 17px!important;}}
 
-/* V8.3.5 Premium Sheet Polish: edler iPhone-/VisionOS-Look ohne Router-Logik zu verändern */
+/* V8.3.6 Premium Sheet Polish: edler iPhone-/VisionOS-Look ohne Router-Logik zu verändern */
 .clean-sheet-backdrop.show{
   background:radial-gradient(circle at 50% 12%,rgba(255,255,255,.20),transparent 28%),rgba(2,6,23,.46)!important;
   backdrop-filter:blur(18px) saturate(1.18)!important;
@@ -949,12 +949,12 @@ body[data-app-section="practice"] #modeGrid > :not(.training-native-launch):not(
   .premium-panel-copy b{font-size:20px!important}.premium-panel-copy p{display:none!important;}
 }
 
-/* V8.3.5: old training-sheet-open class must not kill touch scrolling when new BPS sheet is active */
+/* V8.3.6: old training-sheet-open class must not kill touch scrolling when new BPS sheet is active */
 body.bps-sheet-open.training-sheet-open{touch-action:auto!important;overflow:hidden!important;}
 body.bps-sheet-open > #appNav.app-nav,
 body.bps-sheet-open #mobileTopNav.mobile-top-nav{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important;}
 
-/* V8.3.5 Answer Engine: sichtbare Multi-Select-Auswahl für EDV */
+/* V8.3.6 Answer Engine: sichtbare Multi-Select-Auswahl für EDV */
 .edv-option-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:10px 0}
 .edv-option-grid .edv-select-btn{margin:0;background:#fff;color:#111827;border:2px solid #cbd5e1;text-align:left;border-radius:12px;padding:10px;display:flex;gap:8px;align-items:flex-start;min-height:64px}
 .edv-option-grid .edv-select-btn b{display:inline-flex;align-items:center;justify-content:center;min-width:38px;border-radius:999px;background:#111827;color:#fff;padding:4px 7px;font-size:12px}

@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.3.5 · Feature Gates
+/* Eignungstest-Trainer V8.3.6 · Feature Gates
    Große Features werden bewusst freigeschaltet, statt unkontrolliert Core/UI zu verändern. */
 (function(){
   "use strict";
-  if(window.FeatureGates && window.FeatureGates.__version === "8.3.5") return;
+  if(window.FeatureGates && window.FeatureGates.__version === "8.3.6") return;
   const defaults = (window.AppConfig && window.AppConfig.featureDefaults) || {};
   const gates = Object.assign({}, defaults);
   function isEnabled(name){ return !!gates[name]; }
@@ -14,5 +14,5 @@
   }
   function merge(values){ Object.keys(values || {}).forEach(k => set(k, values[k])); return list(); }
   function list(){ return Object.keys(gates).sort().map(name => ({name, enabled:!!gates[name]})); }
-  window.FeatureGates = Object.freeze({__version:"8.3.5", isEnabled, set, merge, list});
+  window.FeatureGates = Object.freeze({__version:"8.3.6", isEnabled, set, merge, list});
 })();

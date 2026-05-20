@@ -1,4 +1,4 @@
-# Update V8.3.5 · Local File Guard + Fixed Branding
+# Update V8.3.6 · Local File Guard + Fixed Branding
 
 ## Behoben
 - Begrüßung fest: Willkommen im BPS-Trainer.

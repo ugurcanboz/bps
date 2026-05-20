@@ -1,9 +1,9 @@
-/* Eignungstest-Trainer V8.3.5 · Module Registry
+/* Eignungstest-Trainer V8.3.6 · Module Registry
    Neue Features werden hier registriert, statt Core/UI direkt zu verändern. */
 (function(){
   "use strict";
   const modules = new Map();
-  const state = Object.seal({version:"8.3.5", lockedUi:true, started:false, initialized:[]});
+  const state = Object.seal({version:"8.3.6", lockedUi:true, started:false, initialized:[]});
 
   function assertName(name){
     if(!name || typeof name !== "string" || !/^[a-z0-9][a-z0-9_-]*$/i.test(name)){
@@ -30,5 +30,5 @@
     }
     return list();
   }
-  window.TrainerModules = Object.freeze({__version:"8.3.5", register, get, list, initAll, state});
+  window.TrainerModules = Object.freeze({__version:"8.3.6", register, get, list, initAll, state});
 })();

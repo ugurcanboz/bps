@@ -1,4 +1,4 @@
-# Update V8.3.5 Training Hub + Cloud Rebuild
+# Update V8.3.6 Training Hub + Cloud Rebuild
 
 ## Enthalten
 - Simulationen BPS/CTC/Elite/Jogging sichtbar im Frontend unter Training > Simulationen.

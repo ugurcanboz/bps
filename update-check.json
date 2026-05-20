@@ -1,9 +1,9 @@
 {
-  "version": "8.3.5",
+  "version": "8.3.6",
   "date": "2026-05-20",
-  "message": "V8.3.5: Cloud-Highscore Render-Mapping, Testeintrag und Versionssynchronisierung.",
+  "message": "V8.3.6: Cloud-Highscore Runtime-Debug, klickfeste Testeinträge und Render-Verifikation.",
   "download": "./",
-  "label": "V8.3.5 Highscore Render Audit",
-  "latestVersion": "8.3.5",
+  "label": "V8.3.6 Highscore Render Audit",
+  "latestVersion": "8.3.6",
   "forceReload": true
 }

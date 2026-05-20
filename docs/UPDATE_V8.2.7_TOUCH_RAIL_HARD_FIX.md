@@ -1,4 +1,4 @@
-# V8.3.5 Touch Rail Hard Fix
+# V8.3.6 Touch Rail Hard Fix
 
 - Isoliert das obere Kategorieband als echte horizontale Scroll-Rail.
 - Erzwingt overflow-x:auto, pan-x und max-content Verhalten.

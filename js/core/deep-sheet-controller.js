@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  const VERSION = '8.3.5';
+  const VERSION = '8.3.6';
   const SHEET_ID = 'bpsDeepSheet';
   const BACKDROP_ID = 'bpsDeepSheetBackdrop';
   const BODY_ID = 'bpsDeepSheetBody';
@@ -186,9 +186,9 @@
   }
 
   function cleanupLegacyPractice(){
-    // V8.3.5: old sheet classes can block iPhone scrolling via touch-action:none. Remove them at the source.
+    // V8.3.6: old sheet classes can block iPhone scrolling via touch-action:none. Remove them at the source.
     document.body.classList.remove('training-sheet-open','training-sheet-compact','training-sheet-desktop');
-    // V8.3.5: old training sheet/accordion DOM is removed, not just visually hidden.
+    // V8.3.6: old training sheet/accordion DOM is removed, not just visually hidden.
     ['trainingSheet','trainingSheetBackdrop'].forEach(id=>{
       const el = $(id);
       if(el && el.parentNode) el.parentNode.removeChild(el);
@@ -201,7 +201,7 @@
       el.innerHTML = '';
       el.style.display = 'none';
       el.setAttribute('aria-hidden', 'true');
-      el.setAttribute('data-retired-by', 'bps-deep-sheet-v8.3.5');
+      el.setAttribute('data-retired-by', 'bps-deep-sheet-v8.3.6');
     });
   }
 
@@ -261,7 +261,7 @@
     let lastY = 0;
     body.addEventListener('touchstart', ev => { if(ev.touches && ev.touches[0]){ lastY = ev.touches[0].clientY; body._bpsLastX = ev.touches[0].clientX; } }, {passive:true});
     body.addEventListener('touchmove', ev => {
-      // V8.3.5: do not block the horizontal category rail. The rail must own pan-x.
+      // V8.3.6: do not block the horizontal category rail. The rail must own pan-x.
       if(ev.target && ev.target.closest && ev.target.closest('.bps-category-nav')) return;
       if(!ev.touches || !ev.touches[0]) return;
       const currentY = ev.touches[0].clientY;
@@ -507,7 +507,7 @@
       const target = tapTarget;
       const wasMoved = moved;
       end();
-      // V8.3.5: iOS fast tap. A simple tap must select immediately; drag still suppresses click.
+      // V8.3.6: iOS fast tap. A simple tap must select immediately; drag still suppresses click.
       if(!wasMoved && target && target.dataset && target.dataset.cat != null){
         ev.preventDefault();
         ev.stopPropagation();

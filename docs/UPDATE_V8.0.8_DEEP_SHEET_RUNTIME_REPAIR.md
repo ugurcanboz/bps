@@ -1,4 +1,4 @@
-# V8.3.5 Deep Sheet Runtime Repair
+# V8.3.6 Deep Sheet Runtime Repair
 
 Reparatur-Ziel: Deep Sheet als einzige Trainingsnavigation, keine alte Accordion-/Listenoptik mehr, alle 22 Modi vollständig erreichbar.
 
@@ -9,7 +9,7 @@ Reparatur-Ziel: Deep Sheet als einzige Trainingsnavigation, keine alte Accordion
 - Alte Accordion-/Listen-/Fallback-Container im Üben-Bereich werden per Runtime und CSS deaktiviert.
 - Buttons: Sheet öffnen, Kategorie wechseln, Modul wählen, Training starten, Schließen per X/Backdrop/Escape.
 - Selektiertes Modul wird im Sheet sichtbar angezeigt und kann direkt gestartet werden.
-- Manifest/Version/Serviceworker auf V8.3.5 vereinheitlicht.
+- Manifest/Version/Serviceworker auf V8.3.6 vereinheitlicht.
 
 ## Validierung
 - JS Syntax: OK
