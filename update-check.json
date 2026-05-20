@@ -1,0 +1,9 @@
+{
+  "version": "8.1.2",
+  "date": "2026-05-19",
+  "message": "V8.1.2: Deep-Sheet Runtime Audit, alte Accordion-UI entfernt, Buttons und Trainingsszenarien nachgezogen.",
+  "download": "./",
+  "label": "V8.1.2 Deep Sheet Runtime Audit",
+  "latestVersion": "8.1.2",
+  "forceReload": true
+}

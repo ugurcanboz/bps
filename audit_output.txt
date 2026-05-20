@@ -1,0 +1,28 @@
+# V8.0.0 Full Framework Audit
+
+Checks: 21/21 bestanden
+Befunde behoben: 6
+
+- [OK] APP_VERSION 8.0.0
+- [OK] FRAMEWORK 8.0.0
+- [OK] Begrüßung korrekt
+- [OK] Modus ctcLohr vorhanden
+- [OK] Modus bps vorhanden
+- [OK] Modus ctc vorhanden
+- [OK] Modus jogging vorhanden
+- [OK] Modus matrixOnlySprint vorhanden
+- [OK] Modus sentenceSprint vorhanden
+- [OK] Simulation Tab im Frontend
+- [OK] Training Hub Renderer
+- [OK] Highscore Broad Fallback
+- [OK] Matrix Bild 1
+- [OK] Matrix Bild 2
+- [OK] Matrix Bild 3
+- [OK] Matrix Bild 4
+- [OK] Matrix Bild 5
+- [OK] Matrix Bild 6
+- [OK] Matrix Bild 7
+- [OK] Matrix Bild 8
+- [OK] Training Hub CSS
+
+Behoben: Simulationen im Frontend sichtbar, Übungsbereich kategorisiert, Highscore-Fallback erweitert, Versionen vereinheitlicht, Begrüßung/Copyright gesichert, Matrix/Satzergänzung gezielt erreichbar.
