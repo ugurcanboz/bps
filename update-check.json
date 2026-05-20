@@ -1,9 +1,9 @@
 {
-  "version": "8.3.4",
+  "version": "8.3.5",
   "date": "2026-05-20",
-  "message": "V8.3.4: Bus Route Memory und EDV-11-Fehler mit delegierter Multi-/Sequenz-Auswahl hart repariert.",
+  "message": "V8.3.5: Cloud-Highscore Render-Mapping, Testeintrag und Versionssynchronisierung.",
   "download": "./",
-  "label": "V8.3.4 Answer Engine Hard Fix",
-  "latestVersion": "8.3.4",
+  "label": "V8.3.5 Highscore Render Audit",
+  "latestVersion": "8.3.5",
   "forceReload": true
 }

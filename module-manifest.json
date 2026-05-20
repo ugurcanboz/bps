@@ -1,7 +1,7 @@
 {
   "app": "Eignungstest-Trainer",
   "version": "7.6.0",
-  "build": "v7600",
+  "build": "v835",
   "status": "production-feature-ready",
   "contracts": [
     "core-is-stable",

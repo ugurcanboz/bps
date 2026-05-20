@@ -1,4 +1,4 @@
-# Update V8.0.4 Native Deep Sheet Fix
+# Update V8.3.5 Native Deep Sheet Fix
 
 ## Ziel
 Korrektur der Deep-Sheet-Darstellung nach Desktop-Screenshots. Das Trainingsmenü bleibt als Deep Sheet auf Desktop und Mobile erhalten, wird aber nicht mehr als Präsentationskarte dargestellt.
@@ -10,7 +10,7 @@ Korrektur der Deep-Sheet-Darstellung nach Desktop-Screenshots. Das Trainingsmen�
 - Mobile-Sheet bleibt Bottom-Sheet, aber mit korrekter Höhe und internem Scrollbereich.
 - Mode-Karten im Sheet synchron als 1/2/3-Spalten-Grid je nach Bildschirmgröße.
 - Content-Scroll im Sheet repariert, damit der Nutzer nicht am unteren Rand abgeschnitten wird.
-- Version auf V8.0.4 vereinheitlicht.
+- Version auf V8.3.5 vereinheitlicht.
 
 ## Fix-Befunde
 1. Sheet saß auf Desktop zu weit unten.

@@ -1,4 +1,4 @@
-/* V8.2.7 Deep Sheet Touch Rail Hard Fix - real category tabs, swipeable, viewport/orientation based */
+/* V8.3.5 Deep Sheet Touch Rail Hard Fix - real category tabs, swipeable, viewport/orientation based */
 :root{
   --bps-vw:100vw;
   --bps-vh:100dvh;
@@ -122,7 +122,7 @@ html[data-bps-sheet-device="tablet"][data-bps-sheet-compact="true"] .bps-panel-h
 #bpsSheetDebug{position:fixed;left:8px;right:8px;bottom:8px;z-index:2147483647;padding:8px 10px;border-radius:12px;background:rgba(2,6,23,.88);color:#fff;font:700 11px/1.35 system-ui,-apple-system,Segoe UI,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);pointer-events:none;white-space:normal;}
 
 
-/* V8.2.5 Router V3: mobile category rail is now the real navigation, not a decorative banner */
+/* V8.3.5 Router V3: mobile category rail is now the real navigation, not a decorative banner */
 html[data-bps-sheet-device="mobile"] .bps-sheet-layout,
 html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bps-sheet-layout{
   display:grid!important;
@@ -226,7 +226,7 @@ html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bp
 html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bps-sheet-footer{grid-template-columns:minmax(0,1fr) minmax(150px,34%)!important;}
 
 
-/* V8.2.6: hard fix for iOS/Android horizontal touch scrolling in the top category rail */
+/* V8.3.5: hard fix for iOS/Android horizontal touch scrolling in the top category rail */
 html[data-bps-sheet-device="mobile"] .bps-sheet-body,
 html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bps-sheet-body{
   touch-action:pan-x pan-y!important;
@@ -252,7 +252,7 @@ html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bp
 }
 
 
-/* V8.2.7 HARD FIX: isolate the top rail from every legacy/layout rule and force real horizontal scrolling. */
+/* V8.3.5 HARD FIX: isolate the top rail from every legacy/layout rule and force real horizontal scrolling. */
 #bpsDeepSheetBody .bps-category-nav.bps-touch-rail{
   position:relative!important;
   z-index:5!important;
@@ -307,7 +307,7 @@ html[data-bps-sheet-device="mobile"][data-bps-sheet-orientation="landscape"] .bp
   #bpsDeepSheetBody .bps-category-nav.bps-touch-rail .bps-category{min-width:90px!important;min-height:50px!important;}
 }
 
-/* V8.2.9 Desktop/Mobile Rail Split
+/* V8.3.5 Desktop/Mobile Rail Split
    Mobile keeps the successful horizontal touch rail. Desktop/tablet return to premium sidebar navigation. */
 html[data-bps-sheet-device="desktop"] #bpsDeepSheetBody .bps-sheet-layout,
 html[data-bps-sheet-device="tablet"] #bpsDeepSheetBody .bps-sheet-layout{

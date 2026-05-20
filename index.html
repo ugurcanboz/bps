@@ -11,22 +11,22 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="BPS-Trainer">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="manifest" href="./manifest.json?v=8.3.4">
+<link rel="manifest" href="./manifest.json?v=8.3.5">
 <link rel="apple-touch-icon" href="./icons/icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
 <meta name="application-name" content="BPS-Trainer">
 <meta name="description" content="Offlinefähiger Eignungstest-Trainer für CTC, BPS, Mathe, Logik, Konzentration, Visual IQ und IT/FISI.">
-<meta name="app-version" content="8.3.2">
-<meta name="cache-version" content="v824">
+<meta name="app-version" content="8.3.5">
+<meta name="cache-version" content="v835">
 <title>Willkommen im BPS-Trainer</title>
 
 
 <script>
-/* CACHE-CONTROL GUARD V8.3.2
+/* CACHE-CONTROL GUARD V8.3.5
    Temporär aktiv für GitHub-Pages-Deploys. Später reicht: window.TRAINER_CACHE_KILL_SWITCH = false. */
 (function(){
-  const TARGET = "8.3.2";
+  const TARGET = "8.3.5";
   window.TRAINER_BUILD_VERSION = TARGET;
   window.TRAINER_CACHE_KILL_SWITCH = true;
   document.documentElement.setAttribute("data-clean-rebuild", "on");
@@ -77,18 +77,18 @@
   killCachesEveryRefresh();
 })();
 </script>
-<link rel="stylesheet" href="./css/app.css?v=8.3.4">
-<link rel="stylesheet" href="./css/mobile.css?v=8.3.4">
-<link rel="stylesheet" href="./css/ui-lock.css?v=8.3.4">
-<link rel="stylesheet" href="./css/clean-deepsheet.css?v=8.3.4">
+<link rel="stylesheet" href="./css/app.css?v=8.3.5">
+<link rel="stylesheet" href="./css/mobile.css?v=8.3.5">
+<link rel="stylesheet" href="./css/ui-lock.css?v=8.3.5">
+<link rel="stylesheet" href="./css/clean-deepsheet.css?v=8.3.5">
 
 
 <script>
 (function(){
-  window.TRAINER_BUILD_VERSION = "8.3.2";
+  window.TRAINER_BUILD_VERSION = "8.3.5";
   document.addEventListener("DOMContentLoaded", function(){
     document.querySelectorAll(".premium-kicker span,.system-pill,#pwaRuntimePanel").forEach(function(el){
-      if(el && el.innerHTML) el.innerHTML = el.innerHTML.replace(/7\.0\.[0-9]+/g,"8.3.2").replace(/v70[0-9]/gi,"v824");
+      if(el && el.innerHTML) el.innerHTML = el.innerHTML.replace(/7\.0\.[0-9]+/g,"8.3.5").replace(/v70[0-9]/gi,"v835");
     });
     var nav=document.getElementById("appNav"), start=document.getElementById("start"), dash=document.getElementById("premiumDashboard"), intro=document.getElementById("sectionIntro");
     var isMobile = window.matchMedia ? window.matchMedia("(max-width:900px)").matches : window.innerWidth <= 900;
@@ -111,7 +111,7 @@
 <div class="app">
   <div id="start">
     <section class="premium-hero">
-      <div class="premium-kicker"><span>BPS-Trainer</span><span>Framework V8.3.2</span><span>Training Hub aktiv</span><span>Simulationen sichtbar</span><span>GitHub Pages Safe</span></div>
+      <div class="premium-kicker"><span>BPS-Trainer</span><span>Framework V8.3.5</span><span>Training Hub aktiv</span><span>Simulationen sichtbar</span><span>GitHub Pages Safe</span></div>
       <h1 class="premium-title" id="premiumGreeting">Willkommen im BPS-Trainer</h1>
       <p class="premium-subtitle" id="premiumSubtitle">© Ugurcan Bozkurt</p>
       <div id="profileSetup" class="profile-setup hidden">
@@ -137,7 +137,7 @@
     <div id="modeSectionTitle" class="modeSectionTitle"></div>
     <div class="modeGrid" id="modeGrid"></div>
     <div id="sectionActions" class="section-actions"></div>
-    <div><span class="system-pill system-ok">PWA vorbereitet</span><span class="system-pill system-ok">Framework V8.3.2</span><span class="system-pill system-warn">GitHub-Safe Cache-Diagnose</span></div>
+    <div><span class="system-pill system-ok">PWA vorbereitet</span><span class="system-pill system-ok">Framework V8.3.5</span><span class="system-pill system-warn">GitHub-Safe Cache-Diagnose</span></div>
 <div id="healthPanel" class="health-panel"></div>
 
 <div class="exam-options">
@@ -147,7 +147,7 @@
 </div>
 
 <div class="db-actions"><button class="ghost" onclick="App.exportBackup()">Backup exportieren</button><button class="ghost" onclick="App.showDatabaseInfo()">Datenbankstatus</button><button class="ghost" onclick="window.PWAEngine && PWAEngine.clearCaches()">PWA Cache zurücksetzen</button></div>
-<div id="pwaRuntimePanel" class="pwa-panel"><b>Cache-Diagnose V8.3.2:</b><br><span class="small">Lokal sicher. Bei file:// wird Service Worker bewusst nicht geprüft.</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button></div>
+<div id="pwaRuntimePanel" class="pwa-panel"><b>Cache-Diagnose V8.3.5:</b><br><span class="small">Lokal sicher. Bei file:// wird Service Worker bewusst nicht geprüft.</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache zurücksetzen</button></div>
   </div>
   <div id="memory" class="hidden">
     <h2>Gedächtnisphase</h2>
@@ -225,21 +225,21 @@
 </div>
 
 
-<script src="./js/core/app-config.js?v=8.3.4"></script>
-<script src="./data/cloud-config.js?v=8.3.4"></script>
-<script src="./data/question-bank.js?v=8.3.4"></script>
-<script src="./js/core/event-bus.js?v=8.3.4"></script>
-<script src="./js/core/state-manager.js?v=8.3.4"></script>
-<script src="./js/core/router.js?v=8.3.4"></script>
-<script src="./js/core/schema.js?v=8.3.4"></script>
-<script src="./js/core/feature-gates.js?v=8.3.4"></script>
-<script src="./js/components/component-registry.js?v=8.3.4"></script>
-<script src="./js/module-registry.js?v=8.3.4"></script>
-<script src="./js/modules/module-loader.js?v=8.3.4"></script>
-<script src="./js/app.js?v=8.3.4"></script>
-<script src="./js/core/deep-sheet-controller.js?v=8.3.4"></script>
-<script src="./js/core/architecture-guard.js?v=8.3.4"></script>
-<script src="./js/core/production-diagnostics.js?v=8.3.4"></script>
+<script src="./js/core/app-config.js?v=8.3.5"></script>
+<script src="./data/cloud-config.js?v=8.3.5"></script>
+<script src="./data/question-bank.js?v=8.3.5"></script>
+<script src="./js/core/event-bus.js?v=8.3.5"></script>
+<script src="./js/core/state-manager.js?v=8.3.5"></script>
+<script src="./js/core/router.js?v=8.3.5"></script>
+<script src="./js/core/schema.js?v=8.3.5"></script>
+<script src="./js/core/feature-gates.js?v=8.3.5"></script>
+<script src="./js/components/component-registry.js?v=8.3.5"></script>
+<script src="./js/module-registry.js?v=8.3.5"></script>
+<script src="./js/modules/module-loader.js?v=8.3.5"></script>
+<script src="./js/app.js?v=8.3.5"></script>
+<script src="./js/core/deep-sheet-controller.js?v=8.3.5"></script>
+<script src="./js/core/architecture-guard.js?v=8.3.5"></script>
+<script src="./js/core/production-diagnostics.js?v=8.3.5"></script>
 
 <script>
 (function(){
@@ -255,7 +255,7 @@
   async function clearCaches(){
     const report = { caches: 0, workers: 0, protocol: location.protocol };
     if(!isPwaSafeOrigin()){
-      panel(`<b>Cache-Diagnose V8.3.2</b><br><span class="small">Lokaler Test über <code>file://</code>: Service Worker wird bewusst nicht geprüft. Das ist kein App-Fehler.</span><br><span class="small">Für PWA/Cloud-Test bitte über lokalen Server, GitHub Pages oder Netlify öffnen.</span>`);
+      panel(`<b>Cache-Diagnose V8.3.5</b><br><span class="small">Lokaler Test über <code>file://</code>: Service Worker wird bewusst nicht geprüft. Das ist kein App-Fehler.</span><br><span class="small">Für PWA/Cloud-Test bitte über lokalen Server, GitHub Pages oder Netlify öffnen.</span>`);
       return report;
     }
     try{
@@ -271,9 +271,9 @@
           try{ await caches.delete(name); report.caches++; }catch(e){}
         }
       }
-      panel(`<b>Cache-Diagnose V8.3.2</b><br><span class="small">Bereinigt: ${report.caches} Cache(s), ${report.workers} Service Worker.</span><br><span class="small">Temporärer Refresh-Kill-Switch aktiv.</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache erneut löschen</button>`);
+      panel(`<b>Cache-Diagnose V8.3.5</b><br><span class="small">Bereinigt: ${report.caches} Cache(s), ${report.workers} Service Worker.</span><br><span class="small">Temporärer Refresh-Kill-Switch aktiv.</span><br><button class="ghost" style="margin-top:8px;font-size:13px;padding:9px" onclick="window.PWAEngine && window.PWAEngine.clearCaches()">Cache erneut löschen</button>`);
     }catch(err){
-      panel(`<b>Cache-Diagnose V8.3.2</b><br><span class="small">Fehler: ${err && err.message ? err.message : err}</span>`);
+      panel(`<b>Cache-Diagnose V8.3.5</b><br><span class="small">Fehler: ${err && err.message ? err.message : err}</span>`);
     }
     return report;
   }
@@ -289,7 +289,7 @@
 <script>
 (function(){
   "use strict";
-  const CURRENT = window.TRAINER_BUILD_VERSION || "8.3.2";
+  const CURRENT = window.TRAINER_BUILD_VERSION || "8.3.5";
   
   function appBaseUrl(){
     const base = new URL("./", document.baseURI || window.location.href);
@@ -359,5 +359,5 @@ window.addEventListener("DOMContentLoaded",function(){
 <div class="app-copyright">© Ugurcan Bozkurt</div>
 </body>
 
-<!-- BPS-Trainer V8.3.2 · Production Modular Framework -->
+<!-- BPS-Trainer V8.3.5 · Production Modular Framework -->
 </html>

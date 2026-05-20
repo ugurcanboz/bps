@@ -1,8 +1,8 @@
 {
-  "name": "BPS-Trainer V8.3.4",
+  "name": "BPS-Trainer V8.3.5",
   "short_name": "BPS-Trainer",
   "description": "Offlinefähiger BPS-Trainer mit Simulationen, Blocktraining, Matrixtraining, Satzergänzung und Cloud-Highscore.",
-  "start_url": "./index.html?v=8.3.4",
+  "start_url": "./index.html?v=8.3.5",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

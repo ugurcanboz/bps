@@ -1,24 +1,24 @@
-/* Eignungstest-Trainer V8.2.9 · Architecture Guard
+/* Eignungstest-Trainer V8.3.5 · Architecture Guard
    Prüft Core/State/Module/UI-Basis, ohne bestehende V7.3.1/V7.4.0-UI zu ersetzen. */
 (function(){
   "use strict";
-  if(window.ArchitectureGuard && window.ArchitectureGuard.__version === "8.2.9") return;
-  const VERSION = "8.2.9";
+  if(window.ArchitectureGuard && window.ArchitectureGuard.__version === "8.3.5") return;
+  const VERSION = "8.3.5";
   const REQUIRED_IDS = ["start","appNav","sectionIntro","modeGrid","premiumDashboard","mobileTopNav"];
   const REQUIRED_GLOBALS = ["AppConfig","AppState","AppEvents","AppRouter","AppSchema","FeatureGates","AppComponents","TrainerModules","AppModuleLoader","App"];
   const REQUIRED_FILES = [
-    "./css/app.css?v=8.2.9",
-    "./css/mobile.css?v=8.2.9",
-    "./css/ui-lock.css?v=8.2.9",
-    "./js/core/app-config.js?v=8.2.9",
-    "./js/core/event-bus.js?v=8.2.9",
-    "./js/core/state-manager.js?v=8.2.9",
-    "./js/core/router.js?v=8.2.9",
-    "./js/core/schema.js?v=8.2.9",
-    "./js/core/feature-gates.js?v=8.2.9",
-    "./js/components/component-registry.js?v=8.2.9",
-    "./js/module-registry.js?v=8.2.9",
-    "./js/modules/module-loader.js?v=8.2.9"
+    "./css/app.css?v=8.3.5",
+    "./css/mobile.css?v=8.3.5",
+    "./css/ui-lock.css?v=8.3.5",
+    "./js/core/app-config.js?v=8.3.5",
+    "./js/core/event-bus.js?v=8.3.5",
+    "./js/core/state-manager.js?v=8.3.5",
+    "./js/core/router.js?v=8.3.5",
+    "./js/core/schema.js?v=8.3.5",
+    "./js/core/feature-gates.js?v=8.3.5",
+    "./js/components/component-registry.js?v=8.3.5",
+    "./js/module-registry.js?v=8.3.5",
+    "./js/modules/module-loader.js?v=8.3.5"
   ];
   const resultClass = {ok:"architecture-guard-ok", warn:"architecture-guard-warn", bad:"architecture-guard-bad"};
   function status(ok, warn){ return ok ? "ok" : (warn ? "warn" : "bad"); }

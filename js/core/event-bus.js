@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.0.7 · Core Event Bus
-   Minimal-invasiv: erweitert V8.0.7, ersetzt keine bestehende App-Logik. */
+/* Eignungstest-Trainer V8.3.5 · Core Event Bus
+   Minimal-invasiv: erweitert V8.3.5, ersetzt keine bestehende App-Logik. */
 (function(){
   "use strict";
-  if(window.AppEvents && window.AppEvents.__version === "8.0.7") return;
+  if(window.AppEvents && window.AppEvents.__version === "8.3.5") return;
   const listeners = new Map();
   function on(name, handler){
     if(typeof name !== "string" || typeof handler !== "function") return () => {};
@@ -31,5 +31,5 @@
   function clear(name){
     if(name) listeners.delete(name); else listeners.clear();
   }
-  window.AppEvents = Object.freeze({__version:"8.0.7", on, once, off, emit, clear});
+  window.AppEvents = Object.freeze({__version:"8.3.5", on, once, off, emit, clear});
 })();

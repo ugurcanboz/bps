@@ -1,9 +1,9 @@
-/* Eignungstest-Trainer V8.2.9 · App Config
+/* Eignungstest-Trainer V8.3.5 · App Config
    Single Source of Truth für Version, Build, Pfade, Feature-Gates und Core-Verträge. */
 (function(){
   "use strict";
-  if(window.AppConfig && window.AppConfig.__version === "8.2.9") return;
-  const VERSION = "8.2.9";
+  if(window.AppConfig && window.AppConfig.__version === "8.3.5") return;
+  const VERSION = "8.3.5";
   const BUILD = "v7500";
   const BASE_PATH = "./";
   const selectors = Object.freeze({

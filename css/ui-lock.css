@@ -97,7 +97,7 @@
 .architecture-guard-ok{color:#166534}.architecture-guard-warn{color:#92400e}.architecture-guard-bad{color:#991b1b}
 @media (min-width:760px){.architecture-guard-grid{grid-template-columns:1fr 1fr}.architecture-guard-card{padding:16px}}
 
-/* V8.0.7 final responsive lock for adaptive deep sheet */
+/* V8.3.5 final responsive lock for adaptive deep sheet */
 .training-inline-preview{display:none!important}
 .training-sheet{width:min(1040px,calc(100vw - 42px))!important;max-height:min(88vh,880px)!important;transition:transform .38s cubic-bezier(.16,1,.3,1),opacity .28s ease!important;will-change:transform!important}
 .training-sheet.show{opacity:1!important}
@@ -106,7 +106,7 @@
 @media(max-width:520px){.training-sheet{left:0!important;right:0!important;width:100vw!important;max-height:90vh!important;transform:translate3d(0,112%,0) scale(.99)!important}.training-sheet.show{transform:translate3d(0,0,0) scale(1)!important}.training-sheet-content{padding-bottom:96px!important}}
 @media(min-width:1100px) and (min-height:780px){.training-sheet{width:min(1120px,calc(100vw - 88px))!important;max-height:82vh!important}.training-hub-sheet.sheet-mode .training-category-modes{grid-template-columns:repeat(2,minmax(260px,1fr))!important}}
 
-/* V8.0.4 native sheet correction: no presentation card, real adaptive modal sheet */
+/* V8.3.5 native sheet correction: no presentation card, real adaptive modal sheet */
 body[data-app-section="practice"] .modeTabs,
 body[data-app-section="practice"] #modeTabs,
 body[data-app-section="practice"] #modeSectionTitle{
@@ -219,7 +219,7 @@ body[data-app-section="practice"] #modeGrid{
   .training-hub-sheet.sheet-mode .modeCard.hub-mode-card{min-height:92px!important}
 }
 
-/* V8.0.7 FINAL OVERRIDE: Deep Sheet is the only practice selector. No legacy accordion/list UI. */
+/* V8.3.5 FINAL OVERRIDE: Deep Sheet is the only practice selector. No legacy accordion/list UI. */
 body[data-app-section="practice"] #modeTabs,
 body[data-app-section="practice"] .modeTabs,
 body[data-app-section="practice"] #modeSectionTitle,
@@ -253,7 +253,7 @@ body[data-app-section="practice"] #modeGrid{display:block!important;margin:0!imp
 @media(min-width:901px){.training-sheet{left:50%!important;right:auto!important;top:4vh!important;bottom:auto!important;width:min(1080px,calc(100vw - 96px))!important;height:min(88dvh,820px)!important;border-radius:34px!important;transform:translate3d(-50%,28px,0) scale(.985)!important;}.training-sheet.show{transform:translate3d(-50%,0,0) scale(1)!important;opacity:1!important}.training-sheet-mode-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;}}
 @media(max-width:900px){.training-sheet{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100vw!important;height:min(90dvh,780px)!important;border-radius:30px 30px 0 0!important;transform:translate3d(0,108%,0) scale(1)!important;}.training-sheet.show{transform:translate3d(0,0,0) scale(1)!important;opacity:1!important}.training-sheet-mode-grid{grid-template-columns:1fr!important}.training-sheet-content{padding-bottom:calc(92px + env(safe-area-inset-bottom,0px))!important;}.training-sheet-pill{padding:11px 13px!important;font-size:13px!important;}}
 
-/* V8.0.7 hard lock: practice uses only the native deep-sheet launcher and overlay. */
+/* V8.3.5 hard lock: practice uses only the native deep-sheet launcher and overlay. */
 body[data-app-section="practice"] #focusControls,
 body[data-app-section="practice"] .focus-controls,
 body[data-app-section="practice"] #modeTabs,
@@ -268,7 +268,7 @@ body[data-app-section="practice"] .training-category-modes{display:none!importan
 .training-sheet .training-category-head,
 .training-sheet .training-category-modes{display:none!important;}
 
-/* V8.0.9 HARD FIX: Sheet router only. No catalogue/accordion in practice view. */
+/* V8.3.5 HARD FIX: Sheet router only. No catalogue/accordion in practice view. */
 body[data-app-section="practice"] #modeTabs,
 body[data-app-section="practice"] .modeTabs,
 body[data-app-section="practice"] #modeSectionTitle,

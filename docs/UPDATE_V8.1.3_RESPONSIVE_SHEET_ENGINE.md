@@ -1,4 +1,4 @@
-# V8.1.4 Responsive Sheet Engine
+# V8.3.5 Responsive Sheet Engine
 
 ## Ziel
 Das Deep Sheet ist jetzt ein eigenes zentrales Modul für alle Trainingsauswahlen. Es entscheidet nicht über IP, sondern über echte Viewport- und Eingabedaten: Breite, Höhe, Orientation, Touch/Pointer und visualViewport.

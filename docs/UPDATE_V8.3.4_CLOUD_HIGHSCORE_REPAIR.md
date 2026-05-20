@@ -1,4 +1,4 @@
-# V8.3.4 Cloud Highscore Repair
+# V8.3.5 Cloud Highscore Repair
 
 - Keine UI-Struktur geändert.
 - Supabase REST-Header robuster gemacht.

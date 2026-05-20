@@ -1,4 +1,4 @@
-# Update V8.2.4 Universal Sheet Layout
+# Update V8.3.5 Universal Sheet Layout
 
 Schwerpunkt: universelle Deep-Sheet-Darstellung für Desktop, Tablet, Mobile, Hochformat und Querformat.
 
@@ -14,5 +14,5 @@ Schwerpunkt: universelle Deep-Sheet-Darstellung für Desktop, Tablet, Mobile, Ho
 
 ## Kontrolle
 - Deep-Sheet-Modul: Syntax OK.
-- CSS Single Source of Truth: clean-deepsheet.css V8.2.4.
+- CSS Single Source of Truth: clean-deepsheet.css V8.3.5.
 - ZIP-Test erforderlich nach Build.

@@ -1,4 +1,4 @@
-// V8.3.4 GitHub Pages Safe Cache Kill Worker
+// V8.3.5 GitHub Pages Safe Cache Kill Worker
 // Diagnose-Worker: cached nichts, löscht alte Caches und meldet sich danach ab.
 self.addEventListener("install", event => { self.skipWaiting(); });
 self.addEventListener("activate", event => {
@@ -10,8 +10,8 @@ self.addEventListener("activate", event => {
     try{ await self.registration.unregister(); }catch(e){}
     try{
       const clients = await self.clients.matchAll({type:"window", includeUncontrolled:true});
-      for(const c of clients){ c.postMessage({type:"CACHE_KILL_SWITCH_ACTIVE", version:"8.3.4"}); }
+      for(const c of clients){ c.postMessage({type:"CACHE_KILL_SWITCH_ACTIVE", version:"8.3.5"}); }
     }catch(e){}
   })());
 });
-self.addEventListener("fetch", event => { /* absichtlich kein Cache in V8.3.4 */ });
+self.addEventListener("fetch", event => { /* absichtlich kein Cache in V8.3.5 */ });

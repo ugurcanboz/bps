@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.0.7 · Hash Router Adapter
+/* Eignungstest-Trainer V8.3.5 · Hash Router Adapter
    Gibt neuen Modulen einen stabilen Router, ohne die alte App-Navigation zu zerstören. */
 (function(){
   "use strict";
-  if(window.AppRouter && window.AppRouter.__version === "8.0.7") return;
+  if(window.AppRouter && window.AppRouter.__version === "8.3.5") return;
   const routes = new Map();
   function normalize(route){
     const value = String(route || "start").replace(/^#/, "").trim();
@@ -24,5 +24,5 @@
   }
   function current(){ return normalize(location.hash || "start"); }
   window.addEventListener("hashchange", () => go(current()), {passive:true});
-  window.AppRouter = Object.freeze({__version:"8.0.7", register, go, current});
+  window.AppRouter = Object.freeze({__version:"8.3.5", register, go, current});
 })();

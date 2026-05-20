@@ -1,8 +1,8 @@
-/* Eignungstest-Trainer V8.0.7 · Schema Contracts
+/* Eignungstest-Trainer V8.3.5 · Schema Contracts
    Einheitliche Prüfverträge für Fragen, Module und Feature-Konfigurationen. */
 (function(){
   "use strict";
-  if(window.AppSchema && window.AppSchema.__version === "8.0.7") return;
+  if(window.AppSchema && window.AppSchema.__version === "8.3.5") return;
   const allowedQuestionTypes = new Set(["single","multiple","text","number","sequence","matrix","visual","memory","route","edv","logic","math"]);
   const allowedDifficulties = new Set(["leicht","mittel","schwer","ctc","bosch","bps","adaptive"]);
   function isPlainObject(value){ return value && typeof value === "object" && !Array.isArray(value); }
@@ -35,5 +35,5 @@
     if(!definition.version) issues.push(issue("version","Modulversion fehlt","warn"));
     return {ok:issues.filter(i=>i.level==="error").length===0, issues};
   }
-  window.AppSchema = Object.freeze({__version:"8.0.7", allowedQuestionTypes:[...allowedQuestionTypes], allowedDifficulties:[...allowedDifficulties], validateQuestion, normalizeQuestion, validateModule});
+  window.AppSchema = Object.freeze({__version:"8.3.5", allowedQuestionTypes:[...allowedQuestionTypes], allowedDifficulties:[...allowedDifficulties], validateQuestion, normalizeQuestion, validateModule});
 })();
