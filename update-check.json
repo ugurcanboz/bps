@@ -1,9 +1,0 @@
-{
-  "version": "8.3.9",
-  "date": "2026-05-20",
-  "message": "V8.3.9: Cloud-Highscore Runtime-Debug, klickfeste Testeinträge und Render-Verifikation.",
-  "download": "./",
-  "label": "V8.3.9 Cloud Source Fix",
-  "latestVersion": "8.3.9",
-  "forceReload": true
-}
