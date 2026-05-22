@@ -1,0 +1,9 @@
+{
+  "version": "8.4.1",
+  "date": "2026-05-20",
+  "message": "V8.4.1: Cloud-Highscore Runtime-Debug, klickfeste Testeinträge und Render-Verifikation.",
+  "download": "./",
+  "label": "V8.4.1 Cloud Source Fix",
+  "latestVersion": "8.4.1",
+  "forceReload": true
+}
