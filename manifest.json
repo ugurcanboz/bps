@@ -1,13 +1,13 @@
 {
-  "name": "BPS-Trainer V8.4.1",
-  "short_name": "BPS-Trainer",
+  "name": "BPS-Trainer",
+  "short_name": "BPS",
   "description": "Offlinefähiger BPS-Trainer mit Simulationen, Blocktraining, Matrixtraining, Satzergänzung und Cloud-Highscore.",
-  "start_url": "./index.html?v=8.4.1",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "theme_color": "#0f172a",
-  "background_color": "#eef3f9",
+  "theme_color": "#f8fafc",
+  "background_color": "#f8fafc",
   "icons": [
     {
       "src": "./icons/icon-180.png",

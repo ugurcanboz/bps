@@ -1,4 +1,4 @@
-# V8.4.1 Highscore Renderer Rewrite
+# V8.4.2 Highscore Renderer Rewrite
 
 - Cloud-Highscore direkt in app.js an der Quelle gerendert.
 - Keine Abhängigkeit von Testbuttons oder konkurrierenden Bridge-/Display-Renderern.

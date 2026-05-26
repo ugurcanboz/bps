@@ -1,0 +1,91 @@
+/* V9.0.1 Cross Platform Layout Repair
+   Ziel: einheitliche Sicht auf iOS, Android, Desktop und Tablet; Deep Sheet sichtbar, scrollfähig und ohne doppelte alte Layer. */
+:root{
+  --app-safe-top: env(safe-area-inset-top, 0px);
+  --app-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --app-viewport-h: 100dvh;
+}
+@supports not (height: 100dvh){ :root{ --app-viewport-h: 100vh; } }
+html,body{min-height:100%;width:100%;overscroll-behavior-y:none;-webkit-text-size-adjust:100%;}
+body{min-height:var(--app-viewport-h);touch-action:manipulation;}
+.app{width:min(1180px,100%);min-height:var(--app-viewport-h);margin:0 auto;padding-left:clamp(12px,2vw,24px);padding-right:clamp(12px,2vw,24px);padding-bottom:calc(94px + var(--app-safe-bottom));}
+#start,#quiz,#memory,#blockIntro,#result,#analysis{width:100%;max-width:100%;}
+button,input,select,textarea{font:inherit;max-width:100%;}
+button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+img,svg,canvas{max-width:100%;height:auto;}
+
+/* App Navigation: mobile fixed, tablet/desktop contained */
+.mobile-app-nav{position:fixed!important;left:12px!important;right:12px!important;bottom:calc(10px + var(--app-safe-bottom))!important;z-index:2147483000!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:6px!important;max-width:720px!important;margin:0 auto!important;padding:8px!important;border-radius:26px!important;background:rgba(255,255,255,.86)!important;box-shadow:0 18px 50px rgba(15,23,42,.18)!important;backdrop-filter:blur(20px) saturate(1.15)!important;-webkit-backdrop-filter:blur(20px) saturate(1.15)!important;}
+.mobile-app-nav button{min-width:0!important;min-height:52px!important;margin:0!important;padding:7px 4px!important;border-radius:18px!important;display:grid!important;place-items:center!important;gap:2px!important;}
+.mobile-app-nav button span{font-size:18px!important;line-height:1!important}.mobile-app-nav button em{font-size:10.5px!important;line-height:1.05!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;max-width:100%!important;}
+.desktop-app-nav{position:relative!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:10px!important;margin:14px auto!important;max-width:920px!important;}
+
+/* Practice launch: replaces broken/hidden legacy modeGrid state */
+body[data-app-section="practice"] #modeGrid > .bps-practice-launch{display:grid!important;visibility:visible!important;height:auto!important;margin:18px auto 0!important;padding:0!important;overflow:visible!important;pointer-events:auto!important;}
+.v901-launch{grid-template-columns:minmax(240px,1fr) minmax(220px,.85fr);gap:16px;align-items:stretch;width:min(920px,100%);}
+.v901-launch .bps-open-sheet,.v901-launch .bps-current-choice{min-height:142px;border-radius:30px;}
+
+/* Deep Sheet visibility repair: previous cleanup CSS hid the live sheet in practice. */
+body.training-sheet-open[data-app-section="practice"] #trainingSheet,
+body.training-sheet-open[data-app-section="practice"] #trainingSheetBackdrop,
+body.training-sheet-open[data-app-section="practice"] .training-sheet,
+body.training-sheet-open[data-app-section="practice"] .training-sheet-backdrop{display:flex!important;visibility:visible!important;height:auto!important;margin:0!important;padding:initial!important;overflow:hidden!important;pointer-events:auto!important;}
+body.training-sheet-open[data-app-section="practice"] #trainingSheetBackdrop{display:block!important;position:fixed!important;inset:0!important;height:100%!important;padding:0!important;}
+body.training-sheet-open[data-app-section="practice"] #trainingSheet{position:fixed!important;z-index:2147483201!important;flex-direction:column!important;background:rgba(248,250,252,.97)!important;color:#0f172a!important;border:1px solid rgba(255,255,255,.78)!important;box-shadow:0 30px 90px rgba(15,23,42,.30)!important;backdrop-filter:blur(24px) saturate(1.15)!important;-webkit-backdrop-filter:blur(24px) saturate(1.15)!important;}
+.training-sheet-content{min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important;}
+.training-sheet-router{display:grid!important;grid-template-columns:220px minmax(0,1fr)!important;grid-template-rows:minmax(0,1fr) auto!important;gap:14px!important;min-height:0!important;}
+.training-category-list{min-height:0!important;overflow:auto!important;-webkit-overflow-scrolling:touch!important;padding-right:4px!important;}
+.training-mode-panel{min-width:0!important;min-height:0!important;display:grid!important;grid-template-rows:auto minmax(0,1fr)!important;}
+.training-mode-list{min-height:0!important;overflow:auto!important;-webkit-overflow-scrolling:touch!important;padding-bottom:12px!important;}
+.training-sheet-startbar{grid-column:1/-1!important;position:sticky!important;bottom:0!important;z-index:5!important;}
+.training-mode-row,.training-category-row{touch-action:manipulation!important;}
+.training-mode-row small{display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;white-space:normal!important;overflow:hidden!important;}
+
+/* Quiz/readability safeguards */
+#quiz{max-width:980px;margin:0 auto;padding-bottom:calc(26px + var(--app-safe-bottom));}
+.topbar{position:sticky;top:calc(6px + var(--app-safe-top));z-index:50;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
+.answers button{min-height:54px;white-space:normal;line-height:1.25;}
+#question{overflow-wrap:anywhere;word-break:normal;}
+.big-schema,.edv-pro-grid{grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr))!important;}
+.route-scene{height:clamp(250px,46vh,420px)!important;}
+
+@media (min-width: 901px){
+  body.training-sheet-open[data-app-section="practice"] #trainingSheet{left:50%!important;right:auto!important;top:4vh!important;bottom:auto!important;width:min(1120px,calc(100vw - 72px))!important;height:min(88vh,840px)!important;border-radius:34px!important;transform:translate3d(-50%,0,0)!important;padding:0!important;}
+  .training-sheet-content{padding:16px 20px 20px!important;}
+}
+@media (max-width: 900px){
+  .app{padding-left:12px;padding-right:12px;padding-top:calc(8px + var(--app-safe-top));}
+  .v901-launch{grid-template-columns:1fr;gap:12px;margin-top:10px!important;}
+  .v901-launch .bps-open-sheet,.v901-launch .bps-current-choice{min-height:118px;border-radius:26px;}
+  body.training-sheet-open[data-app-section="practice"] #trainingSheet{left:0!important;right:0!important;top:auto!important;bottom:0!important;width:100vw!important;height:min(90dvh,780px)!important;max-height:calc(100dvh - var(--app-safe-top))!important;border-radius:30px 30px 0 0!important;transform:translate3d(0,0,0)!important;padding:0!important;padding-bottom:var(--app-safe-bottom)!important;}
+  .training-sheet-router{grid-template-columns:1fr!important;grid-template-rows:auto auto minmax(0,1fr) auto!important;gap:10px!important;}
+  .training-category-list{display:flex!important;gap:8px!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x proximity!important;padding:2px 2px 8px!important;}
+  .training-category-row{flex:0 0 auto!important;min-width:132px!important;grid-template-columns:auto 1fr auto!important;border-radius:18px!important;padding:10px!important;scroll-snap-align:start!important;}
+  .training-category-row b{font-size:13px!important;white-space:nowrap!important;}
+  .training-panel-head{border-radius:22px!important;padding:12px!important;}
+  .training-mode-list{overflow:visible!important;display:grid!important;gap:9px!important;}
+  .training-mode-row{grid-template-columns:34px minmax(0,1fr)!important;border-radius:20px!important;padding:11px!important;}
+  .training-row-tags{display:none!important;}
+  .training-sheet-startbar{border-radius:22px 22px 0 0!important;margin:4px -10px -12px!important;padding:12px 12px calc(12px + var(--app-safe-bottom))!important;}
+  .answers{grid-template-columns:1fr;}
+  .task-nav{grid-template-columns:1fr 1fr!important;}
+}
+@media (min-width: 701px) and (max-width: 1100px){
+  .app{width:100%;padding-left:18px;padding-right:18px;}
+  .section-grid,.dashboard-section-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media (max-width: 420px){
+  .mobile-app-nav{left:8px!important;right:8px!important;padding:7px!important;border-radius:24px!important;}
+  .mobile-app-nav button em{font-size:9.5px!important;}
+  .mobile-top-nav{top:calc(6px + var(--app-safe-top))!important;}
+  .premium-title,.section-heading h2{font-size:clamp(24px,8vw,34px)!important;}
+  .training-sheet-head b{font-size:20px!important;}
+  .training-sheet-head span{font-size:12px!important;}
+}
+@media (orientation: landscape) and (max-height: 540px){
+  .mobile-app-nav{display:none!important;}
+  body.training-sheet-open[data-app-section="practice"] #trainingSheet{height:96dvh!important;max-height:96dvh!important;border-radius:24px!important;}
+  .training-sheet-head{padding:6px 14px 8px!important;}
+  .training-sheet-handle{display:none!important;}
+}

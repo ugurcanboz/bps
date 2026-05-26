@@ -1,3 +1,5 @@
+/* BPS-Trainer V9.0.1 · Cloud Highscore Config
+   Zentrale Supabase-Konfiguration. Nur diese Datei anpassen, nie direkt in app.js. */
 window.CLOUD_HIGHSCORE_CONFIG = {
   enabled: true,
   provider: "supabase",

@@ -1,9 +1,7 @@
 {
-  "version": "8.4.1",
-  "date": "2026-05-20",
-  "message": "V8.4.1: Cloud-Highscore Runtime-Debug, klickfeste Testeinträge und Render-Verifikation.",
+  "version": "9.0.1",
+  "date": "2026-05-25",
+  "message": "V9.0.1: Cross-Platform-Sicht, Deep-Sheet-Reparatur, sinnvollere Modulstruktur und Stabilitätsfixes.",
   "download": "./",
-  "label": "V8.4.1 Cloud Source Fix",
-  "latestVersion": "8.4.1",
-  "forceReload": true
+  "label": "V9.0.1 Cross Platform Stable"
 }

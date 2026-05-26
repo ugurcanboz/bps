@@ -1,40 +1,5 @@
 {
-  "app": "Eignungstest-Trainer",
-  "version": "7.6.0",
-  "build": "v835",
-  "status": "production-feature-ready",
-  "contracts": [
-    "core-is-stable",
-    "ui-lock-protected",
-    "modules-only-for-new-features",
-    "question-schema-required",
-    "feature-gates-required"
-  ],
-  "reservedModules": [
-    {
-      "id": "ai-coach",
-      "enabled": false,
-      "stage": "planned"
-    },
-    {
-      "id": "ocr-import",
-      "enabled": false,
-      "stage": "planned"
-    },
-    {
-      "id": "adaptive-engine",
-      "enabled": false,
-      "stage": "planned"
-    },
-    {
-      "id": "analytics-dashboard",
-      "enabled": false,
-      "stage": "planned"
-    },
-    {
-      "id": "cloud-sync",
-      "enabled": false,
-      "stage": "planned"
-    }
-  ]
+  "version": "9.0.1",
+  "modules": [],
+  "generated": "2026-05-25T00:00:00.000Z"
 }

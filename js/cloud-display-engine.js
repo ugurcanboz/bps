@@ -1,9 +1,17 @@
-/* V8.4.1 Passive Cloud Display Engine
-   Die aktive Anzeige sitzt direkt in app.js/CloudHighscoreEngine.refreshDashboard. */
-(function(){
+/* BPS-Trainer V9.0.1 · Cloud Display Engine Shim
+   Leitet Aufrufe an HighscoreLiveRenderer weiter. Kein eigener Fetch. */
+(function () {
   'use strict';
-  const VERSION='8.4.1';
-  function refresh(){ try { const eng = window.App && window.App._test && window.App._test.CloudHighscoreEngine; return eng && eng.refreshDashboard ? eng.refreshDashboard() : null; } catch(e){ console.error(e); } }
-  window.CloudDisplayEngine = {version:VERSION, refresh, fetchBoards:null};
-  document.addEventListener('DOMContentLoaded', function(){ setTimeout(refresh, 900); setTimeout(refresh, 2200); });
+  function refresh() {
+    if (window.HighscoreLiveRenderer && typeof HighscoreLiveRenderer.refresh === 'function') {
+      return HighscoreLiveRenderer.refresh(true);
+    }
+    if (window.App && App._test && App._test.CloudHighscoreEngine) {
+      return App._test.CloudHighscoreEngine.refreshDashboard();
+    }
+  }
+  window.CloudDisplayEngine = { version: '9.0.1', refresh: refresh };
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(refresh, 1000);
+  });
 })();

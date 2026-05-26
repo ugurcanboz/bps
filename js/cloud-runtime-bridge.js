@@ -1,5 +1,13 @@
-/* V8.4.1 Cloud Runtime Bridge disabled: Cloud is handled at source in js/app.js. */
-(function(){
+/* BPS-Trainer V9.0.1 · Cloud Runtime Bridge Shim */
+(function () {
   'use strict';
-  window.CloudHighscoreBridge = {version:'8.4.1', source:'app.js-source-fix', testCloud:function(){try{return window.App&&window.App.addCloudTestScore&&window.App.addCloudTestScore();}catch(e){console.error(e);}}, refreshCloud:function(){try{return window.App&&window.App.refreshCloudRanking&&window.App.refreshCloudRanking();}catch(e){console.error(e);}}};
+  window.CloudHighscoreBridge = {
+    version: '9.0.1',
+    refresh: function () {
+      if (window.HighscoreLiveRenderer) return HighscoreLiveRenderer.refresh(true);
+    },
+    test: function () {
+      if (window.App && typeof App.addCloudTestScore === 'function') return App.addCloudTestScore();
+    }
+  };
 })();
