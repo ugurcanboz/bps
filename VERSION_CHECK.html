@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPS-Trainer V9 · Version Check</title>
+<style>
+  body{font-family:-apple-system,sans-serif;background:#f0f3fa;color:#0f172a;padding:24px;max-width:480px;margin:0 auto}
+  h1{font-size:22px;font-weight:800;margin:0 0 6px}
+  p{color:#64748b;font-size:14px;margin:0 0 20px}
+  .card{background:#fff;border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:0 4px 20px rgba(0,0,0,.07)}
+  .badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;background:#d1fae5;color:#065f46;margin-bottom:8px}
+  .row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #f1f5f9;font-size:13px}
+  .row:last-child{border-bottom:0}
+  a{display:block;margin-top:16px;text-align:center;padding:14px;background:#0f172a;color:#fff;border-radius:16px;text-decoration:none;font-weight:800;font-size:15px}
+</style>
+</head>
+<body>
+<h1>BPS-Trainer V9.0.2</h1>
+<p>Stable Release · Cloud Highscore repariert · WordHub UI neu</p>
+<div class="card">
+  <div class="badge">Stable</div>
+  <div class="row"><span>Version</span><b>9.0.2</b></div>
+  <div class="row"><span>Cloud Highscore</span><b>Repariert ✓</b></div>
+  <div class="row"><span>WordHub UI</span><b>Neu aufgebaut ✓</b></div>
+  <div class="row"><span>Service Worker</span><b>Version-Busting ✓</b></div>
+  <div class="row"><span>Race Conditions</span><b>Behoben ✓</b></div>
+  <div class="row"><span>iOS overflow Bug</span><b>Behoben ✓</b></div>
+  <div class="row"><span>Aufgabenbank</span><b id="bankCount">wird geladen…</b></div>
+</div>
+<a href="./index.html">Trainer starten →</a>
+<script>
+  try {
+    var bc = document.getElementById('bankCount');
+    if (bc && window.QUESTION_BANK_EXTERNAL) bc.textContent = window.QUESTION_BANK_EXTERNAL.length + ' Fragen';
+  } catch(e) {}
+</script>
+<script src="./data/question-bank.js?v=9.0.2" onload="try{document.getElementById('bankCount').textContent=(window.QUESTION_BANK_EXTERNAL||[]).length+' Fragen';}catch(e){}"></script>
+</body>
+</html>
