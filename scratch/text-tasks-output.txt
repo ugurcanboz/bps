@@ -1,0 +1,272 @@
+Found 45 Textaufgaben.
+
+ID: tm_001
+Q: Ein Wanderer legt 300 m in 6 Minuten zurück. Wie viele Kilometer schafft er in 2 Stunden?
+Opts: ["6 km","5 km","7,2 km","10 km"]
+Correct [0]: "6 km"
+Expl: 300 m in 6 Minuten sind 50 m pro Minute. 2 Stunden sind 120 Minuten. 120 × 50 m = 6000 m = 6 km.
+---
+ID: tm_002
+Q: 3 Arbeiter benötigen 8 Stunden, um ein Haus anzustreichen. Wie lange würden 2 Arbeiter für dieselbe Arbeit brauchen?
+Opts: ["12 Stunden","10 Stunden","16 Stunden","24 Stunden"]
+Correct [0]: "12 Stunden"
+Expl: Die gesamte Arbeit beträgt 3 × 8 = 24 Arbeiterstunden. Bei 2 Arbeitern gilt: 24 ÷ 2 = 12 Stunden.
+---
+ID: tm_003
+Q: Die Fahrzeit beträgt 5 Stunden bei einer Geschwindigkeit von 80 km/h. Wie hoch muss die Geschwindigkeit sein, wenn die gleiche Strecke in 8 Stunden zurückgelegt werden soll?
+Opts: ["50 km/h","64 km/h","80 km/h","32 km/h"]
+Correct [0]: "50 km/h"
+Expl: Zuerst die Strecke berechnen: 5 × 80 = 400 km. Für dieselbe Strecke in 8 Stunden gilt: 400 ÷ 8 = 50 km/h.
+---
+ID: tm_004
+Q: In einer Stadt wurden im Monat Mai 100 Kinder geboren. Von diesen 100 Kindern sind 57 Jungen. Gib in Prozent an, wie viele Mädchen geboren wurden.
+Opts: ["43 %","57 %","47 %","53 %"]
+Correct [0]: "43 %"
+Expl: Von 100 Kindern sind 57 Jungen. Also sind 100 − 57 = 43 Mädchen. Bei 100 Kindern entspricht das 43 %.
+---
+ID: tm_005
+Q: Der Vater einer Familie verdient im Monat ein Viertel dessen, was der Sohn verdient, mehr als dieser. Der Sohn verdient das Doppelte, was die Mutter verdient. Die Tochter verdient ein Drittel dessen, was die Mutter verdient. Wie hoch ist das Einkommen der Familie, wenn die Tochter 300 € im Monat verdient?
+Opts: ["5.250 €","4.950 €","5.550 €","6.000 €"]
+Correct [0]: "5.250 €"
+Expl: Die Tochter verdient 300 € und das ist ein Drittel des Muttereinkommens. Die Mutter verdient also 900 €. Der Sohn verdient das Doppelte der Mutter: 1.800 €. Der Vater verdient ein Viertel des Sohneinkommens mehr als der Sohn: 1.800 € + 450 € = 2.250 €. Gesamt: 300 € + 900 € + 1.800 € + 2.250 € = 5.250 €.
+---
+ID: tm_006
+Q: Im Durchschnitt wiegen 5 Äpfel je 55 g. Der erste Apfel wiegt 48 g, der zweite 65 g, der dritte 57 g und der vierte 52 g. Wie viel Gramm wiegt der fünfte Apfel?
+Opts: ["53 g","50 g","55 g","58 g"]
+Correct [0]: "53 g"
+Expl: 5 Äpfel mit durchschnittlich 55 g ergeben insgesamt 5 × 55 = 275 g. Die ersten vier wiegen zusammen 48 + 65 + 57 + 52 = 222 g. Der fünfte Apfel wiegt 275 − 222 = 53 g.
+---
+ID: tm830_001
+Q: In einer Werkstatt werden 18 identische Bauteile in 45 Minuten geprüft. Nach 15 Minuten fällt ein Prüfplatz aus, dadurch sinkt die Leistung ab dann um ein Drittel. Wie viele Bauteile sind nach 45 Minuten insgesamt geprüft?
+Opts: ["12","14","15","16","18"]
+Correct [1]: "14"
+Expl: Normalleistung: 18/45=0,4 Bauteile pro Minute. Erste 15 Min: 6. Danach 30 Min mit 2/3 Leistung: 30×0,4×2/3=8. Insgesamt 14? Achtung: 6+8=14. Korrekt ist 14.
+---
+ID: tm830_002
+Q: Ein Lagerbestand reicht bei 6 gleichen Maschinen 8 Tage. Nach 2 Tagen werden 2 Maschinen abgeschaltet. Wie lange reicht der restliche Bestand ab diesem Zeitpunkt noch?
+Opts: ["6 Tage","8 Tage","9 Tage","10 Tage","12 Tage"]
+Correct [2]: "9 Tage"
+Expl: Gesamtvorrat: 6×8=48 Maschinentage. Verbrauch in 2 Tagen: 12. Rest: 36. Bei 4 Maschinen: 36/4=9 Tage.
+---
+ID: tm830_003
+Q: Ein Fahrradkurier fährt 12 km in 36 Minuten. Wegen Gegenwind ist er auf dem Rückweg 25 % langsamer. Wie lange braucht er zurück?
+Opts: ["42 min","45 min","48 min","54 min","60 min"]
+Correct [2]: "48 min"
+Expl: Hinweg: 20 km/h. 25 % langsamer = 15 km/h. 12 km bei 15 km/h = 0,8 h = 48 min.
+---
+ID: tm830_004
+Q: Ein Preis wird zuerst um 20 % erhöht und danach um 20 % gesenkt. Am Ende kostet der Artikel 96 €. Wie teuer war er ursprünglich?
+Opts: ["96 €","100 €","104 €","120 €","80 €"]
+Correct [1]: "100 €"
+Expl: Faktor: 1,2×0,8=0,96. Endpreis 96 € entspricht 96 %, also ursprünglich 100 €.
+---
+ID: tm830_005
+Q: In einem Büro werden 30 % der Ausdrucke doppelseitig gedruckt. Von 200 Blättern gehören 80 zu doppelseitigen Ausdrucken. Wie viele Ausdrucke wurden insgesamt erstellt, wenn ein doppelseitiger Ausdruck zwei Seiten nutzt und ein einseitiger eine Seite?
+Opts: ["160","180","200","220","240"]
+Correct [2]: "200"
+Expl: 80 Blätter doppelseitig = 160 Seiten/Ausdruckseiten. Das sind 30 % der Ausdrucke? Falle: gefragt Ausdrucke, nicht Seiten. Sei x Ausdrucke. 30 % doppelseitig =0,3x, einseitig=0,7x. Blätter: 2-seitige Ausdrucke brauchen je 1 Blatt und einseitige je 1 Blatt, also x=200. Korrekt 200.
+---
+ID: tm830_006
+Q: Ein Team sortiert Akten. Person A schafft 24 Ordner in 3 Stunden, Person B schafft 18 Ordner in 2 Stunden. Beide arbeiten gemeinsam 2 Stunden, aber B macht nach genau 1 Stunde 20 Minuten Pause. Wie viele vollständig sortierte Ordner schaffen sie?
+Opts: ["28","30","31","32","34"]
+Correct [2]: "31"
+Expl: A schafft 8 Ordner/h → 16 Ordner. B schafft 9 Ordner/h und arbeitet 1 Stunde 40 Minuten = 5/3 h. 9×5/3=15. Zusammen 31.
+---
+ID: tm830_007
+Q: Eine Maschine füllt 5 Kartons in 12 Minuten. Eine zweite Maschine ist 20 % schneller. Wie viele Kartons füllen beide zusammen in 1 Stunde?
+Opts: ["45","50","55","60","65"]
+Correct [2]: "55"
+Expl: Maschine 1: 25 Kartons/h. Maschine 2: 20 % schneller = 30 Kartons/h. Zusammen 55.
+---
+ID: tm830_008
+Q: Ein Rabatt von 15 % senkt einen Preis auf 68 €. Wie hoch wäre der Preis nach einem Rabatt von 25 % auf denselben ursprünglichen Preis?
+Opts: ["56 €","58 €","60 €","62 €","64 €"]
+Correct [2]: "60 €"
+Expl: 68 € entsprechen 85 %. Ursprung: 80 €. 25 % Rabatt: 60 €.
+---
+ID: tm830_009
+Q: Ein Tank ist zu 3/5 gefüllt. Nach dem Entnehmen von 18 Litern ist er noch halb voll. Wie viele Liter fasst der Tank?
+Opts: ["120","150","180","200","240"]
+Correct [2]: "180"
+Expl: 3/5 - 1/2 = 1/10 des Tanks. 1/10 = 18 L → Tank = 180 L.
+---
+ID: tm830_010
+Q: Ein Zug fährt 90 km/h. Er startet 20 Minuten später, soll aber auf 180 km Strecke zur gleichen Zeit ankommen. Welche Durchschnittsgeschwindigkeit braucht er?
+Opts: ["100 km/h","108 km/h","120 km/h","135 km/h","150 km/h"]
+Correct [1]: "108 km/h"
+Expl: Normalzeit: 180/90=2h. Verbleibend 1h40=5/3h. 180÷5/3=108 km/h.
+---
+ID: tm830_011
+Q: Ein Artikel kostet nach 10 % Rabatt und anschließend 5 € Gutschein noch 85 €. Wie hoch war der ursprüngliche Preis?
+Opts: ["95 €","100 €","105 €","110 €","115 €"]
+Correct [1]: "100 €"
+Expl: Nach Rabatt vor Gutschein waren es 90 €. 90 entspricht 90 %, also Ursprung 100 €.
+---
+ID: tm830_012
+Q: Für 7 gleiche Kabel werden 42 € bezahlt. Ein anderes Kabel ist pro Stück 50 Cent teurer. Was kosten 9 dieser anderen Kabel?
+Opts: ["54 €","56,50 €","58,50 €","60 €","63 €"]
+Correct [2]: "58,50 €"
+Expl: Erstes Kabel: 42/7=6 €. Neues Kabel: 6,50 €. 9×6,50=58,50 €.
+---
+ID: tm830_013
+Q: Eine Gruppe besteht aus Kindern und Erwachsenen. Insgesamt sind es 28 Personen. Erwachsene zahlen 6 €, Kinder 4 €. Die Einnahmen betragen 136 €. Wie viele Erwachsene sind dabei?
+Opts: ["8","10","12","14","16"]
+Correct [2]: "12"
+Expl: Wenn alle Kinder wären: 28×4=112 €. Differenz 24 €. Jeder Erwachsene bringt 2 € mehr → 12 Erwachsene.
+---
+ID: tm830_014
+Q: Ein Prüfungsblock hat 40 Fragen. Für richtige Antworten gibt es 2 Punkte, für falsche wird 1 Punkt abgezogen. Nicht beantwortete Fragen geben 0 Punkte. Jemand beantwortet 35 Fragen und erreicht 49 Punkte. Wie viele Antworten waren richtig?
+Opts: ["26","27","28","29","30"]
+Correct [2]: "28"
+Expl: richtig r, falsch 35-r. Punkte: 2r-(35-r)=49 → 3r=84 → r=28.
+---
+ID: tm830_015
+Q: Ein Rechteck hat 54 cm Umfang. Die Länge ist 3 cm größer als die doppelte Breite. Wie breit ist es?
+Opts: ["6 cm","7 cm","8 cm","9 cm","10 cm"]
+Correct [2]: "8 cm"
+Expl: 2(l+b)=54 → l+b=27. l=2b+3. 3b+3=27 → b=8.
+---
+ID: tm830_016
+Q: Ein Auto verbraucht auf 240 km 18 Liter. Wie viele Liter braucht es für 400 km, wenn der Verbrauch pro 100 km gleich bleibt?
+Opts: ["27","28","30","32","34"]
+Correct [2]: "30"
+Expl: 18/240×400=30 Liter.
+---
+ID: tm830_017
+Q: Eine Zahl wird mit 4 multipliziert. Danach werden 18 abgezogen. Das Ergebnis ist doppelt so groß wie die ursprüngliche Zahl. Wie lautet die Zahl?
+Opts: ["6","7","8","9","10"]
+Correct [3]: "9"
+Expl: 4x-18=2x → 2x=18 → x=9.
+---
+ID: tm830_018
+Q: Eine Prüfung beginnt um 8:35 Uhr. Drei Blöcke dauern 25, 40 und 35 Minuten. Zwischen den Blöcken sind jeweils 5 Minuten Pause. Wann endet die Prüfung?
+Opts: ["10:05","10:10","10:15","10:20","10:25"]
+Correct [4]: "10:25"
+Expl: Arbeitszeit: 25+40+35=100 Minuten. Zwei Pausen: 10 Minuten. Insgesamt 110 Minuten. 8:35 + 110 Minuten = 10:25.
+---
+ID: hm831_tm_001
+Q: In einer Werkstatt prüft ein Team 72 Bauteile in 3 Stunden. Für den nächsten Auftrag arbeitet ein Drittel des Teams an etwas anderem, die übrigen arbeiten gleich schnell weiter. Wie viele Bauteile schafft das Team dann in 2 Stunden?
+Opts: ["24","32","36","48","54"]
+Correct [1]: "32"
+Expl: 72 in 3 Stunden = 24 pro Stunde. Es arbeiten nur noch 2/3 des Teams: 16 pro Stunde. In 2 Stunden: 32.
+---
+ID: hm831_tm_002
+Q: Ein Fahrradkurier fährt zur Kundschaft 15 km in 45 Minuten. Auf dem Rückweg ist er wegen Gegenwind ein Drittel langsamer. Wie lange dauert der Rückweg?
+Opts: ["45 Minuten","60 Minuten","67,5 Minuten","75 Minuten","90 Minuten"]
+Correct [2]: "67,5 Minuten"
+Expl: 15 km in 45 Minuten. Ein Drittel langsamer bedeutet 2/3 der Geschwindigkeit; die Zeit wird mit 3/2 multipliziert: 45 × 1,5 = 67,5 Minuten.
+---
+ID: hm831_tm_003
+Q: Ein Artikel kostet nach einem Preisnachlass von 20 % noch 64 €. Danach wird er wieder um 20 % erhöht. Was kostet er dann?
+Opts: ["76,80 €","80 €","84 €","96 €","100 €"]
+Correct [0]: "76,80 €"
+Expl: 64 € sind 80 % des alten Preises, der alte Preis war 80 €. Erhöhung von 64 € um 20 % ergibt 76,80 €. Nicht wieder 80 €.
+---
+ID: hm831_tm_004
+Q: In einer Klasse sind 24 Personen. Drei Achtel kommen mit dem Bus, ein Viertel mit dem Fahrrad. Wie viele kommen weder mit Bus noch Fahrrad, wenn niemand beides nutzt?
+Opts: ["8","9","10","12","15"]
+Correct [1]: "9"
+Expl: 3/8 von 24 = 9. 1/4 von 24 = 6. Zusammen 15, übrig bleiben 9 Personen.
+---
+ID: hm831_tm_005
+Q: Ein Kopierer schafft 18 Seiten pro Minute. Nach 5 Minuten wird auf Duplexdruck umgestellt, dadurch halbiert sich die Blattzahl pro Minute, die Seitenzahl bleibt gleich. Wie viele Blatt Papier liegen nach insgesamt 9 Minuten im Ausgabefach?
+Opts: ["90","108","126","144","162"]
+Correct [2]: "126"
+Expl: Erste 5 Minuten: 5×18 = 90 Blatt. Danach 4 Minuten Duplex: 4×9 = 36 Blatt. Insgesamt 126 Blatt.
+---
+ID: hm831_tm_006
+Q: Ein Tank ist zu 70 % gefüllt. Nachdem 18 Liter entnommen werden, ist er noch zu 40 % gefüllt. Wie viel Liter fasst der Tank?
+Opts: ["45 l","50 l","60 l","72 l","90 l"]
+Correct [2]: "60 l"
+Expl: 18 Liter entsprechen 30 % des Tanks. 100 % sind 18 / 0,30 = 60 Liter.
+---
+ID: hm831_tm_008
+Q: Eine Maschine produziert 238 Teile in 4 Stunden. Wegen Wartung steht sie 30 Minuten, soll aber trotzdem 238 Teile schaffen. Welche Leistung pro Stunde braucht sie während der Laufzeit?
+Opts: ["60 Teile/h","64 Teile/h","68 Teile/h","72 Teile/h","80 Teile/h"]
+Correct [2]: "68 Teile/h"
+Expl: Die Maschine läuft 3,5 Stunden. 238 / 3,5 = 68 Teile pro Stunde.
+---
+ID: hm831_tm_009
+Q: Für 6 identische Kabel werden 45 € bezahlt. Ein anderer Kabeltyp kostet pro Stück 1,50 € mehr. Was kosten 8 Kabel des anderen Typs?
+Opts: ["56 €","60 €","66 €","72 €","84 €"]
+Correct [3]: "72 €"
+Expl: 45/6 = 7,50 € pro Kabel. Anderer Typ: 9 € pro Kabel. 8×9 = 72 €.
+---
+ID: hm831_tm_010
+Q: Ein Bus fährt um 7:18 Uhr los. Er braucht 42 Minuten bis zur ersten Haltestelle, steht dort 6 Minuten und fährt dann noch 29 Minuten. Wann kommt er an?
+Opts: ["8:29 Uhr","8:35 Uhr","8:41 Uhr","8:47 Uhr","8:55 Uhr"]
+Correct [1]: "8:35 Uhr"
+Expl: 7:18 + 42 = 8:00. Plus 6 Minuten = 8:06. Plus 29 Minuten = 8:35.
+---
+ID: hm831_tm_011
+Q: Ein Lager hat 18 große und kleine Kartons. Große Kartons enthalten je 5 Geräte, kleine je 3 Geräte. Insgesamt sind 70 Geräte verpackt. Wie viele große Kartons gibt es?
+Opts: ["6","8","10","12","14"]
+Correct [1]: "8"
+Expl: Wenn alle klein wären: 18×3=54. Es fehlen 16 Geräte. Jeder große statt kleiner Karton bringt +2. 16/2=8 große Kartons.
+---
+ID: hm831_tm_012
+Q: Ein Azubi bekommt in einem Test für jede richtige Antwort 3 Punkte, für jede falsche Antwort 1 Punkt Abzug. Er beantwortet 20 Fragen und erreicht 44 Punkte. Wie viele Antworten waren richtig?
+Opts: ["14","15","16","17","18"]
+Correct [2]: "16"
+Expl: richtig = r, falsch = 20-r. Punkte: 3r-(20-r)=44 -> 4r=64 -> r=16.
+---
+ID: hm831_tm_013
+Q: Eine Datei ist 480 MB groß. 35 % sind bereits hochgeladen. Danach werden weitere 144 MB übertragen. Wie viel Prozent der Datei sind dann insgesamt hochgeladen?
+Opts: ["55 %","60 %","65 %","70 %","75 %"]
+Correct [2]: "65 %"
+Expl: 35 % von 480 = 168 MB. Plus 144 MB = 312 MB. 312/480 = 65 %.
+---
+ID: hm831_tm_014
+Q: Ein Rechteck hat einen Umfang von 50 cm. Die Länge ist 5 cm größer als die Breite. Wie lang ist die längere Seite?
+Opts: ["10 cm","12,5 cm","15 cm","20 cm","25 cm"]
+Correct [2]: "15 cm"
+Expl: 2l+2b=50 -> l+b=25. l=b+5. Also 2b+5=25 -> b=10, l=15.
+---
+ID: hm831_tm_015
+Q: Ein Team braucht für eine Aufgabe zu viert 6 Stunden. Nach 2 Stunden gehen zwei Personen weg. Wie lange dauert die Aufgabe insgesamt, wenn alle gleich schnell arbeiten?
+Opts: ["8 Stunden","9 Stunden","10 Stunden","12 Stunden","14 Stunden"]
+Correct [2]: "10 Stunden"
+Expl: Gesamtarbeit: 4×6=24 Personenstunden. In 2 Stunden schaffen sie 8. Rest 16 Personenstunden. Zu zweit brauchen sie 8 Stunden. Gesamt: 10 Stunden.
+---
+ID: hm831_tm_016
+Q: Ein Preis wird zuerst um 10 % gesenkt und danach um 10 % erhöht. Am Ende kostet der Artikel 99 €. Wie hoch war der ursprüngliche Preis?
+Opts: ["99 €","100 €","101 €","110 €","121 €"]
+Correct [1]: "100 €"
+Expl: Nach -10 % und +10 % bleiben 99 % des ursprünglichen Preises. 99 € entsprechen 99 %, also ursprünglich 100 €.
+---
+ID: hm831_tm_017
+Q: Ein Akku verliert in 3 Stunden 18 % Ladung. Wenn der Verbrauch gleich bleibt und der Akku um 9:20 Uhr bei 82 % steht, wann erreicht er 40 %?
+Opts: ["15:20 Uhr","16:20 Uhr","17:20 Uhr","18:20 Uhr","19:20 Uhr"]
+Correct [1]: "16:20 Uhr"
+Expl: 18 % in 3 h = 6 % pro Stunde. Von 82 % auf 40 % sind 42 %. 42/6=7 Stunden. 9:20 + 7 h = 16:20.
+---
+ID: hm831_tm_018
+Q: Eine Strecke von 36 km wird mit 12 km/h begonnen. Nach 1 Stunde wird die Geschwindigkeit verdoppelt. Wie lange dauert die gesamte Strecke?
+Opts: ["2 Stunden","2,5 Stunden","3 Stunden","3,5 Stunden","4 Stunden"]
+Correct [0]: "2 Stunden"
+Expl: Nach 1 Stunde sind 12 km geschafft. Rest 24 km mit 24 km/h dauert 1 Stunde. Insgesamt 2 Stunden.
+---
+ID: hm831_tm_019
+Q: Eine Rechnung über 120 € wird zu 40 % von Person A bezahlt. Vom Rest übernimmt Person B die Hälfte. Wie viel zahlt Person C?
+Opts: ["24 €","36 €","48 €","60 €","72 €"]
+Correct [1]: "36 €"
+Expl: A zahlt 48 €. Rest 72 €. B zahlt davon die Hälfte = 36 €. C zahlt die restlichen 36 €.
+---
+ID: hm831_tm_020
+Q: In einem Kurs bestehen 75 % der Teilnehmenden. 6 Personen fallen durch. Wie viele Personen waren im Kurs?
+Opts: ["18","20","22","24","30"]
+Correct [3]: "24"
+Expl: Wenn 75 % bestehen, fallen 25 % durch. 6 Personen sind 25 %, also sind 24 Personen insgesamt im Kurs.
+---
+ID: hm831_tm_021
+Q: Ein Regal ist 1,80 m breit. Ordner sind 6 cm breit, Boxen 15 cm. Es stehen 20 Ordner im Regal. Wie viele Boxen passen zusätzlich maximal hinein?
+Opts: ["3","4","5","6","8"]
+Correct [1]: "4"
+Expl: 20 Ordner brauchen 120 cm. Übrig bleiben 60 cm. 60/15 = 4 Boxen.
+---
+ID: hm831_tm_022
+Q: Ein Auto fährt 180 km. Die erste Hälfte der Strecke fährt es mit 60 km/h, die zweite mit 90 km/h. Wie lange dauert die Fahrt?
+Opts: ["2 h","2,5 h","3 h","3,5 h","4 h"]
+Correct [1]: "2,5 h"
+Expl: 90 km mit 60 km/h = 1,5 h. 90 km mit 90 km/h = 1 h. Zusammen 2,5 h.
+---

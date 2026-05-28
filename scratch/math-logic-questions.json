@@ -1,0 +1,3290 @@
+[
+  {
+    "file": "question-bank.js",
+    "id": "alg_001",
+    "category": "Algebra",
+    "question": "Gegeben ist die Gleichung: 5x - 13 = 5 - 4x. Berechne x.",
+    "answers": [
+      "2",
+      "1",
+      "-2",
+      "4"
+    ],
+    "correct": 0,
+    "correctText": "2",
+    "explanation": "5x - 13 = 5 - 4x. Addiere 4x und 13 auf beiden Seiten: 9x = 18. Also x = 2."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg_002",
+    "category": "Algebra",
+    "question": "Gegeben ist die Gleichung: 2x / 10 = 4. Berechne x.",
+    "answers": [
+      "20",
+      "10",
+      "40",
+      "8"
+    ],
+    "correct": 0,
+    "correctText": "20",
+    "explanation": "Multipliziere beide Seiten mit 10: 2x = 40. Teile durch 2: x = 20."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg_003",
+    "category": "Formelumstellung",
+    "question": "Gegeben sind die Gleichungen: y/a = b und x/a = y. Wie lautet die Gleichung, mit der du x aus a und b berechnen kannst, ohne y zu kennen?",
+    "answers": [
+      "x = a²b",
+      "x = ab",
+      "x = b/a",
+      "x = a + b"
+    ],
+    "correct": 0,
+    "correctText": "x = a²b",
+    "explanation": "Aus y/a = b folgt y = ab. Aus x/a = y folgt x = ay. Einsetzen ergibt x = a · ab = a²b."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "stmt_001",
+    "category": "Aussagenlogik",
+    "question": "13 mutmaßliche Diebe wurden festgenommen. Der Erste sagt sinngemäß: Von mir erfährt niemand etwas, und die anderen lügen sowieso alle. Der Zweite sagt: Der Erste lügt. Der Dritte behauptet, der Zweite habe gelogen, der Vierte behauptet, der Dritte habe gelogen usw. Wie viele der Festgenommenen haben tatsächlich gelogen?",
+    "answers": [
+      "6",
+      "0",
+      "7",
+      "12",
+      "13"
+    ],
+    "correct": 0,
+    "correctText": "6",
+    "explanation": "Ab dem zweiten Gefangenen entsteht eine wechselnde Wahr/Falsch-Kette über die vorherige Aussage. Bei 13 Personen ergibt das 6 Lügner und 7 Wahrsprecher. Deshalb ist 6 richtig."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio_001",
+    "category": "Verhältnislogik",
+    "question": "Auf einem Bauernhof gab es Schafe und Ziegen. Es gab doppelt so viele Schafsbeine wie Ziegenköpfe. Was folgt daraus?",
+    "answers": [
+      "Halb so viele Schafe wie Ziegen",
+      "Gleich viele Schafe wie Ziegen",
+      "Doppelt so viele Schafe wie Ziegen",
+      "Ein Viertel so viele Schafe wie Ziegen",
+      "Ein Sechstel so viele Schafe wie Ziegen"
+    ],
+    "correct": 0,
+    "correctText": "Halb so viele Schafe wie Ziegen",
+    "explanation": "Ein Schaf hat 4 Beine, eine Ziege hat 1 Kopf. Doppelt so viele Schafsbeine wie Ziegenköpfe bedeutet: 4S = 2Z. Daraus folgt 2S = Z und damit S = Z/2. Es gibt also halb so viele Schafe wie Ziegen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_01",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 3  4  6  9  13  18  24  ?",
+    "answers": [
+      "31",
+      "32",
+      "30",
+      "33"
+    ],
+    "correct": 0,
+    "correctText": "31",
+    "explanation": "Richtige Fortsetzung: 31. Regel: +1, +2, +3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_02",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 4  5  6  8  10  13  16  20  24  ?",
+    "answers": [
+      "29",
+      "30",
+      "28",
+      "31"
+    ],
+    "correct": 0,
+    "correctText": "29",
+    "explanation": "Richtige Fortsetzung: 29. Regel: +1, +1, +2, +2, +3, +3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_03",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 6  7  5  8  4  9  3  10  2  ?",
+    "answers": [
+      "11",
+      "12",
+      "10",
+      "13"
+    ],
+    "correct": 0,
+    "correctText": "11",
+    "explanation": "Richtige Fortsetzung: 11. Regel: +1, -2, +3, -4, +5, -6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_04",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 3  9  10  5  15  16  8  24  25  ?",
+    "answers": [
+      "12,5",
+      "13,5",
+      "11,5",
+      "14,5"
+    ],
+    "correct": 0,
+    "correctText": "12,5",
+    "explanation": "Richtige Fortsetzung: 12,5. Regel: :3, +1, :2, ×3, +1, :2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_05",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 8  8  15  13  13  19  16  16  21  ?",
+    "answers": [
+      "17",
+      "18",
+      "16",
+      "19"
+    ],
+    "correct": 0,
+    "correctText": "17",
+    "explanation": "Richtige Fortsetzung: 17. Regel: +0, +7, -2, +0, +6, -3, +0, +5, -4 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_06",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 1  2  3  5  8  13  21  ?",
+    "answers": [
+      "34",
+      "35",
+      "33",
+      "36"
+    ],
+    "correct": 0,
+    "correctText": "34",
+    "explanation": "Richtige Fortsetzung: 34. Regel: Summe der 1. und 2. Zahl ergibt die 3. usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_07",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 9  12  16  20  25  30  36  42  ?",
+    "answers": [
+      "49",
+      "50",
+      "48",
+      "51"
+    ],
+    "correct": 0,
+    "correctText": "49",
+    "explanation": "Richtige Fortsetzung: 49. Regel: +3,+4,+4,+5,+5,+6,+6,+7 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_08",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 114  57  60  30  34  17  22  11  ?",
+    "answers": [
+      "17",
+      "18",
+      "16",
+      "19"
+    ],
+    "correct": 0,
+    "correctText": "17",
+    "explanation": "Richtige Fortsetzung: 17. Regel: :2, +3, :2, +4, :2, +5 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_09",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 2  3  6  11  18  27  ?",
+    "answers": [
+      "38",
+      "39",
+      "37",
+      "40"
+    ],
+    "correct": 0,
+    "correctText": "38",
+    "explanation": "Richtige Fortsetzung: 38. Regel: +1,+3,+5,+7,+9,+11 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_10",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 8  7  7  5  10  7  21  17  ?",
+    "answers": [
+      "68",
+      "69",
+      "67",
+      "70"
+    ],
+    "correct": 0,
+    "correctText": "68",
+    "explanation": "Richtige Fortsetzung: 68. Regel: -1, ×1, -2, ×2, -3, ×3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_11",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 15  19  22  11  15  18  9  ?",
+    "answers": [
+      "13",
+      "14",
+      "12",
+      "15"
+    ],
+    "correct": 0,
+    "correctText": "13",
+    "explanation": "Richtige Fortsetzung: 13. Regel: +4,+3,:2,+4,+3,:2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_12",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 8  15  24  35  48  63  ?",
+    "answers": [
+      "80",
+      "81",
+      "79",
+      "82"
+    ],
+    "correct": 0,
+    "correctText": "80",
+    "explanation": "Richtige Fortsetzung: 80. Regel: +7,+9,+11,+13,+15,+17 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_13",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 4  5  7  4  8  13  ?",
+    "answers": [
+      "7",
+      "8",
+      "6",
+      "9"
+    ],
+    "correct": 0,
+    "correctText": "7",
+    "explanation": "Richtige Fortsetzung: 7. Regel: +1,+2,-3,+4,+5,-6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_14",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 27  9  6  18  21  7  4  ?",
+    "answers": [
+      "12",
+      "13",
+      "11",
+      "14"
+    ],
+    "correct": 0,
+    "correctText": "12",
+    "explanation": "Richtige Fortsetzung: 12. Regel: :3, -3, ×3, +3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_15",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 39  13  6  30  10  3  ?",
+    "answers": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correct": 0,
+    "correctText": "15",
+    "explanation": "Richtige Fortsetzung: 15. Regel: :3, -7, ×5, :3, -7, ×5 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_16",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 84  21  63  65  64  16  48  50  ?",
+    "answers": [
+      "49",
+      "50",
+      "48",
+      "51"
+    ],
+    "correct": 0,
+    "correctText": "49",
+    "explanation": "Richtige Fortsetzung: 49. Regel: :4, ×3, +2, -1 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_17",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 200  100  105  35  40  10  ?",
+    "answers": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correct": 0,
+    "correctText": "15",
+    "explanation": "Richtige Fortsetzung: 15. Regel: :2,+5,:3,+5,:4,+5 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_18",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 3  6  10  30  35  140  146  730  ?",
+    "answers": [
+      "737",
+      "738",
+      "736",
+      "739"
+    ],
+    "correct": 0,
+    "correctText": "737",
+    "explanation": "Richtige Fortsetzung: 737. Regel: ×2,+4,×3,+5,×4,+6,×5,+7 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_19",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 75  80  40  45  15  20  5  10  ?",
+    "answers": [
+      "2",
+      "3",
+      "1",
+      "4"
+    ],
+    "correct": 0,
+    "correctText": "2",
+    "explanation": "Richtige Fortsetzung: 2. Regel: +5,:2,+5,:3,+5,:4 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_20",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 17  14  7  21  18  9  ?",
+    "answers": [
+      "27",
+      "28",
+      "26",
+      "29"
+    ],
+    "correct": 0,
+    "correctText": "27",
+    "explanation": "Richtige Fortsetzung: 27. Regel: -3,:2,×3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_21",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 199  150  108  73  45  24  ?",
+    "answers": [
+      "10",
+      "11",
+      "9",
+      "12"
+    ],
+    "correct": 0,
+    "correctText": "10",
+    "explanation": "Richtige Fortsetzung: 10. Regel: -49,-42,-35,-28,-21,-14."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_22",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 3  5  2  8  13  7  ?",
+    "answers": [
+      "49",
+      "50",
+      "48",
+      "51"
+    ],
+    "correct": 0,
+    "correctText": "49",
+    "explanation": "Richtige Fortsetzung: 49. Regel: +2,×3, -4, ×5, +6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_23",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 34  33  66  22  18  90  15  8  ?",
+    "answers": [
+      "64",
+      "65",
+      "63",
+      "66"
+    ],
+    "correct": 0,
+    "correctText": "64",
+    "explanation": "Richtige Fortsetzung: 64. Regel: -1,×2,:3,-4,×5,:6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_24",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 12  19  17  17  23  20  20  25  ?",
+    "answers": [
+      "21 und 21",
+      "21",
+      "keine Lösung",
+      "nicht bestimmbar"
+    ],
+    "correct": 0,
+    "correctText": "21 und 21",
+    "explanation": "Richtige Fortsetzung: 21 und 21. Regel: Zwei parallele Reihen: +7,-2,×1,+6,-3,×1,+5,-4,×1 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_25",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 24  26  11  15  3  9  0  8  ?",
+    "answers": [
+      "2 und 12",
+      "2",
+      "keine Lösung",
+      "nicht bestimmbar"
+    ],
+    "correct": 0,
+    "correctText": "2 und 12",
+    "explanation": "Richtige Fortsetzung: 2 und 12. Regel: Zwei parallele Reihen: +2,-15,+4,-12,+6,-9,+8,-6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b1_26",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 11  13  17  25  32  37  47  58  ?",
+    "answers": [
+      "71 und 79",
+      "71",
+      "keine Lösung",
+      "nicht bestimmbar"
+    ],
+    "correct": 0,
+    "correctText": "71 und 79",
+    "explanation": "Richtige Fortsetzung: 71 und 79. Regel: Quersumme wird addiert und ergibt die nächste Zahl."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_01",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 3  5  7  9  11  13  15  ?",
+    "answers": [
+      "17",
+      "18",
+      "16",
+      "19"
+    ],
+    "correct": 0,
+    "correctText": "17",
+    "explanation": "Richtige Fortsetzung: 17. Regel: +2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_02",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 27  30  29  32  33  36  35  ?",
+    "answers": [
+      "38",
+      "39",
+      "37",
+      "40"
+    ],
+    "correct": 0,
+    "correctText": "38",
+    "explanation": "Richtige Fortsetzung: 38. Regel: +3,-1,+3,+1 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_03",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 103  98  103  99  103  100  103  ?",
+    "answers": [
+      "101",
+      "102",
+      "100",
+      "103"
+    ],
+    "correct": 0,
+    "correctText": "101",
+    "explanation": "Richtige Fortsetzung: 101. Regel: -5,+5,-4,+4,-3,+3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_04",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 7  10  13  17  21  26  31  ?",
+    "answers": [
+      "37",
+      "38",
+      "36",
+      "39"
+    ],
+    "correct": 0,
+    "correctText": "37",
+    "explanation": "Richtige Fortsetzung: 37. Regel: +3,+3,+4,+4,+5,+5 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_05",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 10  11  13  14  16  17  19  ?",
+    "answers": [
+      "20",
+      "21",
+      "19",
+      "22"
+    ],
+    "correct": 0,
+    "correctText": "20",
+    "explanation": "Richtige Fortsetzung: 20. Regel: +1,+2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_06",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 10  15  22  31  42  55  70  ?",
+    "answers": [
+      "87",
+      "88",
+      "86",
+      "89"
+    ],
+    "correct": 0,
+    "correctText": "87",
+    "explanation": "Richtige Fortsetzung: 87. Regel: +5,+7,+9,+11 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_07",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 10  11  13  10  14  19  13  ?",
+    "answers": [
+      "20",
+      "21",
+      "19",
+      "22"
+    ],
+    "correct": 0,
+    "correctText": "20",
+    "explanation": "Richtige Fortsetzung: 20. Regel: +1,+2,-3,+4,+5,-6 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_08",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 2  4  1  4  9  3  21  ?",
+    "answers": [
+      "29",
+      "30",
+      "28",
+      "31"
+    ],
+    "correct": 0,
+    "correctText": "29",
+    "explanation": "Richtige Fortsetzung: 29. Regel: +2,-3,×4,+5,-6,×7 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_09",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 9  6  3  9  6  3  9  ?",
+    "answers": [
+      "6",
+      "7",
+      "5",
+      "8"
+    ],
+    "correct": 0,
+    "correctText": "6",
+    "explanation": "Richtige Fortsetzung: 6. Regel: -3,:2,×3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b2_10",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 13  21  34  55  89  144  233  ?",
+    "answers": [
+      "377",
+      "378",
+      "376",
+      "379"
+    ],
+    "correct": 0,
+    "correctText": "377",
+    "explanation": "Richtige Fortsetzung: 377. Regel: Summe der 1. und 2. Zahl ergibt die 3. usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_01",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 2  4  3  9  8  64  63  ?",
+    "answers": [
+      "3969",
+      "3970",
+      "3968",
+      "3971"
+    ],
+    "correct": 0,
+    "correctText": "3969",
+    "explanation": "Richtige Fortsetzung: 3969. Regel: 1. Zahl mal sich selbst = 2. Zahl, dann -1, wieder quadrieren, -1."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_02",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 10  5  20  10  30  15  30  ?",
+    "answers": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correct": 0,
+    "correctText": "15",
+    "explanation": "Richtige Fortsetzung: 15. Regel: :2,×4,:2,×3,:2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_03",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 54  52  26  24  12  10  5  ?",
+    "answers": [
+      "3",
+      "4",
+      "2",
+      "5"
+    ],
+    "correct": 0,
+    "correctText": "3",
+    "explanation": "Richtige Fortsetzung: 3. Regel: -2,:2,-2,:2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_04",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 18  20  40  42  84  86  172  ?",
+    "answers": [
+      "174",
+      "175",
+      "173",
+      "176"
+    ],
+    "correct": 0,
+    "correctText": "174",
+    "explanation": "Richtige Fortsetzung: 174. Regel: +2,×2,+2,×2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_05",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 100  50  52  26  28  14  16  ?",
+    "answers": [
+      "8",
+      "9",
+      "7",
+      "10"
+    ],
+    "correct": 0,
+    "correctText": "8",
+    "explanation": "Richtige Fortsetzung: 8. Regel: :2,+2,:2,+2 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_06",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 10  20  40  30  60  120  110  ?",
+    "answers": [
+      "220",
+      "221",
+      "219",
+      "222"
+    ],
+    "correct": 0,
+    "correctText": "220",
+    "explanation": "Richtige Fortsetzung: 220. Regel: ×2,×2,-10,×2,×2,-10 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_07",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 33  30  15  45  42  21  63  ?",
+    "answers": [
+      "60",
+      "61",
+      "59",
+      "62"
+    ],
+    "correct": 0,
+    "correctText": "60",
+    "explanation": "Richtige Fortsetzung: 60. Regel: -3,:2,×3,-3,:2,×3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_08",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 20  5  9  36  40  10  14  ?",
+    "answers": [
+      "56",
+      "57",
+      "55",
+      "58"
+    ],
+    "correct": 0,
+    "correctText": "56",
+    "explanation": "Richtige Fortsetzung: 56. Regel: :4,+4,×4,+4,:4,+4,×4 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_09",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 12  9  27  30  10  7  21  ?",
+    "answers": [
+      "24",
+      "25",
+      "23",
+      "26"
+    ],
+    "correct": 0,
+    "correctText": "24",
+    "explanation": "Richtige Fortsetzung: 24. Regel: -3,×3,+3,:3,-3,×3,+3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b3_10",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 18  20  10  14  6  12  6  ?",
+    "answers": [
+      "14",
+      "15",
+      "13",
+      "16"
+    ],
+    "correct": 0,
+    "correctText": "14",
+    "explanation": "Richtige Fortsetzung: 14. Regel: +2,-10,+4,-8,+6,-6,+8,-4 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_01",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 15  10  13  8  11  6  ?",
+    "answers": [
+      "9",
+      "10",
+      "8",
+      "11"
+    ],
+    "correct": 0,
+    "correctText": "9",
+    "explanation": "Richtige Fortsetzung: 9. Regel: -5,+3,-5,+3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_02",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 5  3  6  2  7  1  ?",
+    "answers": [
+      "8",
+      "9",
+      "7",
+      "10"
+    ],
+    "correct": 0,
+    "correctText": "8",
+    "explanation": "Richtige Fortsetzung: 8. Regel: -2,+3,-4,+5,-6,+7 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_03",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 5  2  6  2  8  3  ?",
+    "answers": [
+      "15",
+      "16",
+      "14",
+      "17"
+    ],
+    "correct": 0,
+    "correctText": "15",
+    "explanation": "Richtige Fortsetzung: 15. Regel: -3,×3,-4,×4,-5,×5 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_04",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 16  4  8  9  3  6  ?",
+    "answers": [
+      "7",
+      "8",
+      "6",
+      "9"
+    ],
+    "correct": 0,
+    "correctText": "7",
+    "explanation": "Richtige Fortsetzung: 7. Regel: :4,×2,+1,:3,×2,+1 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_05",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: 1  1  3  9  12  144  ?",
+    "answers": [
+      "148",
+      "149",
+      "147",
+      "150"
+    ],
+    "correct": 0,
+    "correctText": "148",
+    "explanation": "Richtige Fortsetzung: 148. Regel: 1. Zahl mal sich selbst, +2, mal sich selbst, +3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr_b4_06",
+    "category": "Zahlenreihen",
+    "question": "Setze die Zahlenreihe fort: -10  50  45  -180  -184  552  ?",
+    "answers": [
+      "549",
+      "550",
+      "548",
+      "551"
+    ],
+    "correct": 0,
+    "correctText": "549",
+    "explanation": "Richtige Fortsetzung: 549. Regel: ×(-5), -5, ×(-4), -4, ×(-3), -3 usw."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "gf_1",
+    "category": "Gemeinsamkeiten finden",
+    "question": "Gemeinsamkeiten finden – Bildaufgabe 1: Wähle die passende Lösung aus.",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "correct": 1,
+    "correctText": "B",
+    "explanation": "Die Linie ist jeweils auch Diagonale der beiden Quadrate."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "gf_2",
+    "category": "Gemeinsamkeiten finden",
+    "question": "Gemeinsamkeiten finden – Bildaufgabe 2: Wähle die passende Lösung aus.",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "correct": 3,
+    "correctText": "D",
+    "explanation": "Alle drei Figuren haben eine gemeinsame Fläche."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "gf_3",
+    "category": "Gemeinsamkeiten finden",
+    "question": "Gemeinsamkeiten finden – Bildaufgabe 3: Wähle die passende Lösung aus.",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "correct": 4,
+    "correctText": "E",
+    "explanation": "Dreieck und Quadrat schneiden sich unter dem Kreisbogen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "gf_4",
+    "category": "Gemeinsamkeiten finden",
+    "question": "Gemeinsamkeiten finden – Bildaufgabe 4: Wähle die passende Lösung aus.",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "correct": 1,
+    "correctText": "B",
+    "explanation": "Drei Figuren schneiden sich; die vierte liegt abseits."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "gf_5",
+    "category": "Gemeinsamkeiten finden",
+    "question": "Gemeinsamkeiten finden – Bildaufgabe 5: Wähle die passende Lösung aus.",
+    "answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "correct": 2,
+    "correctText": "C",
+    "explanation": "Ein Viertel der Figur ist schwarz gefärbt."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg1_1",
+    "category": "Zugehörigkeiten identifizieren I",
+    "question": "Zugehörigkeiten identifizieren I – Bildaufgabe 1: Welche Figuren gehören zusammen?",
+    "answers": [
+      "1,2,5",
+      "2,3,4",
+      "1,3,5",
+      "1,2,4"
+    ],
+    "correct": 0,
+    "correctText": "1,2,5",
+    "explanation": "In Gruppe A bilden die Quadrate eine Linie. In Gruppe B nicht."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg1_2",
+    "category": "Zugehörigkeiten identifizieren I",
+    "question": "Zugehörigkeiten identifizieren I – Bildaufgabe 2: Welche Figuren gehören zusammen?",
+    "answers": [
+      "1,4,5",
+      "2,3,4",
+      "1,3,5",
+      "1,2,4"
+    ],
+    "correct": 0,
+    "correctText": "1,4,5",
+    "explanation": "In Gruppe B sind beide geraden Striche immer gemeinsam an einem Bogen, in Gruppe A jeweils nur ein Strich an einem Bogen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg1_3",
+    "category": "Zugehörigkeiten identifizieren I",
+    "question": "Zugehörigkeiten identifizieren I – Bildaufgabe 3: Welche Figuren gehören zusammen?",
+    "answers": [
+      "1,5",
+      "2,3,4",
+      "1,3,5",
+      "1,2,4"
+    ],
+    "correct": 0,
+    "correctText": "1,5",
+    "explanation": "In Gruppe A kommen immer fünf Buchstaben vor, in Gruppe B immer sieben."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg2_2",
+    "category": "Zugehörigkeiten identifizieren II",
+    "question": "Zugehörigkeiten identifizieren II – Bildaufgabe 2: Ordne die Figuren den Gruppen A/B zu.",
+    "answers": [
+      "1A, 2B, 3A, 4A",
+      "1A, 2A, 3B, 4B",
+      "1B, 2B, 3A, 4A",
+      "1A, 2B, 3B, 4A"
+    ],
+    "correct": 0,
+    "correctText": "1A, 2B, 3A, 4A",
+    "explanation": "In Gruppe A werden stets mehr Quadrate als Kreise präsentiert; in Gruppe B andersherum."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg2_3",
+    "category": "Zugehörigkeiten identifizieren II",
+    "question": "Zugehörigkeiten identifizieren II – Bildaufgabe 3: Ordne die Figuren den Gruppen A/B zu.",
+    "answers": [
+      "1A, 2B, 3B, 4B",
+      "1A, 2A, 3B, 4B",
+      "1B, 2B, 3A, 4A",
+      "1A, 2B, 3B, 4A"
+    ],
+    "correct": 0,
+    "correctText": "1A, 2B, 3B, 4B",
+    "explanation": "In Gruppe B zeigen die geraden Striche stets zumindest grob in die gleiche Richtung."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg2_4",
+    "category": "Zugehörigkeiten identifizieren II",
+    "question": "Zugehörigkeiten identifizieren II – Bildaufgabe 4: Ordne die Figuren den Gruppen A/B zu.",
+    "answers": [
+      "1B, 2A, 3B, 4A",
+      "1A, 2A, 3B, 4B",
+      "1B, 2B, 3A, 4A",
+      "1A, 2B, 3B, 4A"
+    ],
+    "correct": 0,
+    "correctText": "1B, 2A, 3B, 4A",
+    "explanation": "Die Grafiken der Gruppe B enthalten stets mindestens ein H."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zg2_5",
+    "category": "Zugehörigkeiten identifizieren II",
+    "question": "Zugehörigkeiten identifizieren II – Bildaufgabe 5: Ordne die Figuren den Gruppen A/B zu.",
+    "answers": [
+      "1B, 2A, 3A, 4B",
+      "1A, 2A, 3B, 4B",
+      "1B, 2B, 3A, 4A",
+      "1A, 2B, 3B, 4A"
+    ],
+    "correct": 0,
+    "correctText": "1B, 2A, 3A, 4B",
+    "explanation": "In Gruppe A liegt der schwarze Punkt immer in der gemeinsamen Fläche von Kreis und Quadrat."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_001",
+    "category": "Textaufgaben",
+    "question": "Ein Wanderer legt 300 m in 6 Minuten zurück. Wie viele Kilometer schafft er in 2 Stunden?",
+    "answers": [
+      "6 km",
+      "5 km",
+      "7,2 km",
+      "10 km"
+    ],
+    "correct": 0,
+    "correctText": "6 km",
+    "explanation": "300 m in 6 Minuten sind 50 m pro Minute. 2 Stunden sind 120 Minuten. 120 × 50 m = 6000 m = 6 km."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_002",
+    "category": "Textaufgaben",
+    "question": "3 Arbeiter benötigen 8 Stunden, um ein Haus anzustreichen. Wie lange würden 2 Arbeiter für dieselbe Arbeit brauchen?",
+    "answers": [
+      "12 Stunden",
+      "10 Stunden",
+      "16 Stunden",
+      "24 Stunden"
+    ],
+    "correct": 0,
+    "correctText": "12 Stunden",
+    "explanation": "Die gesamte Arbeit beträgt 3 × 8 = 24 Arbeiterstunden. Bei 2 Arbeitern gilt: 24 ÷ 2 = 12 Stunden."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_003",
+    "category": "Textaufgaben",
+    "question": "Die Fahrzeit beträgt 5 Stunden bei einer Geschwindigkeit von 80 km/h. Wie hoch muss die Geschwindigkeit sein, wenn die gleiche Strecke in 8 Stunden zurückgelegt werden soll?",
+    "answers": [
+      "50 km/h",
+      "64 km/h",
+      "80 km/h",
+      "32 km/h"
+    ],
+    "correct": 0,
+    "correctText": "50 km/h",
+    "explanation": "Zuerst die Strecke berechnen: 5 × 80 = 400 km. Für dieselbe Strecke in 8 Stunden gilt: 400 ÷ 8 = 50 km/h."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_004",
+    "category": "Textaufgaben",
+    "question": "In einer Stadt wurden im Monat Mai 100 Kinder geboren. Von diesen 100 Kindern sind 57 Jungen. Gib in Prozent an, wie viele Mädchen geboren wurden.",
+    "answers": [
+      "43 %",
+      "57 %",
+      "47 %",
+      "53 %"
+    ],
+    "correct": 0,
+    "correctText": "43 %",
+    "explanation": "Von 100 Kindern sind 57 Jungen. Also sind 100 − 57 = 43 Mädchen. Bei 100 Kindern entspricht das 43 %."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_005",
+    "category": "Textaufgaben",
+    "question": "Der Vater einer Familie verdient im Monat ein Viertel dessen, was der Sohn verdient, mehr als dieser. Der Sohn verdient das Doppelte, was die Mutter verdient. Die Tochter verdient ein Drittel dessen, was die Mutter verdient. Wie hoch ist das Einkommen der Familie, wenn die Tochter 300 € im Monat verdient?",
+    "answers": [
+      "5.250 €",
+      "4.950 €",
+      "5.550 €",
+      "6.000 €"
+    ],
+    "correct": 0,
+    "correctText": "5.250 €",
+    "explanation": "Die Tochter verdient 300 € und das ist ein Drittel des Muttereinkommens. Die Mutter verdient also 900 €. Der Sohn verdient das Doppelte der Mutter: 1.800 €. Der Vater verdient ein Viertel des Sohneinkommens mehr als der Sohn: 1.800 € + 450 € = 2.250 €. Gesamt: 300 € + 900 € + 1.800 € + 2.250 € = 5.250 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm_006",
+    "category": "Textaufgaben",
+    "question": "Im Durchschnitt wiegen 5 Äpfel je 55 g. Der erste Apfel wiegt 48 g, der zweite 65 g, der dritte 57 g und der vierte 52 g. Wie viel Gramm wiegt der fünfte Apfel?",
+    "answers": [
+      "53 g",
+      "50 g",
+      "55 g",
+      "58 g"
+    ],
+    "correct": 0,
+    "correctText": "53 g",
+    "explanation": "5 Äpfel mit durchschnittlich 55 g ergeben insgesamt 5 × 55 = 275 g. Die ersten vier wiegen zusammen 48 + 65 + 57 + 52 = 222 g. Der fünfte Apfel wiegt 275 − 222 = 53 g."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_001",
+    "category": "Textaufgaben",
+    "question": "In einer Werkstatt werden 18 identische Bauteile in 45 Minuten geprüft. Nach 15 Minuten fällt ein Prüfplatz aus, dadurch sinkt die Leistung ab dann um ein Drittel. Wie viele Bauteile sind nach 45 Minuten insgesamt geprüft?",
+    "answers": [
+      "12",
+      "14",
+      "15",
+      "16",
+      "18"
+    ],
+    "correct": 1,
+    "correctText": "14",
+    "explanation": "Normalleistung: 18/45=0,4 Bauteile pro Minute. Erste 15 Min: 6. Danach 30 Min mit 2/3 Leistung: 30×0,4×2/3=8. Insgesamt 14? Achtung: 6+8=14. Korrekt ist 14."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_002",
+    "category": "Textaufgaben",
+    "question": "Ein Lagerbestand reicht bei 6 gleichen Maschinen 8 Tage. Nach 2 Tagen werden 2 Maschinen abgeschaltet. Wie lange reicht der restliche Bestand ab diesem Zeitpunkt noch?",
+    "answers": [
+      "6 Tage",
+      "8 Tage",
+      "9 Tage",
+      "10 Tage",
+      "12 Tage"
+    ],
+    "correct": 2,
+    "correctText": "9 Tage",
+    "explanation": "Gesamtvorrat: 6×8=48 Maschinentage. Verbrauch in 2 Tagen: 12. Rest: 36. Bei 4 Maschinen: 36/4=9 Tage."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_003",
+    "category": "Textaufgaben",
+    "question": "Ein Fahrradkurier fährt 12 km in 36 Minuten. Wegen Gegenwind ist er auf dem Rückweg 25 % langsamer. Wie lange braucht er zurück?",
+    "answers": [
+      "42 min",
+      "45 min",
+      "48 min",
+      "54 min",
+      "60 min"
+    ],
+    "correct": 2,
+    "correctText": "48 min",
+    "explanation": "Hinweg: 20 km/h. 25 % langsamer = 15 km/h. 12 km bei 15 km/h = 0,8 h = 48 min."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_004",
+    "category": "Textaufgaben",
+    "question": "Ein Preis wird zuerst um 20 % erhöht und danach um 20 % gesenkt. Am Ende kostet der Artikel 96 €. Wie teuer war er ursprünglich?",
+    "answers": [
+      "96 €",
+      "100 €",
+      "104 €",
+      "120 €",
+      "80 €"
+    ],
+    "correct": 1,
+    "correctText": "100 €",
+    "explanation": "Faktor: 1,2×0,8=0,96. Endpreis 96 € entspricht 96 %, also ursprünglich 100 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_005",
+    "category": "Textaufgaben",
+    "question": "In einem Büro werden 30 % der Ausdrucke doppelseitig gedruckt. Von 200 Blättern gehören 80 zu doppelseitigen Ausdrucken. Wie viele Ausdrucke wurden insgesamt erstellt, wenn ein doppelseitiger Ausdruck zwei Seiten nutzt und ein einseitiger eine Seite?",
+    "answers": [
+      "160",
+      "180",
+      "200",
+      "220",
+      "240"
+    ],
+    "correct": 2,
+    "correctText": "200",
+    "explanation": "80 Blätter doppelseitig = 160 Seiten/Ausdruckseiten. Das sind 30 % der Ausdrucke? Falle: gefragt Ausdrucke, nicht Seiten. Sei x Ausdrucke. 30 % doppelseitig =0,3x, einseitig=0,7x. Blätter: 2-seitige Ausdrucke brauchen je 1 Blatt und einseitige je 1 Blatt, also x=200. Korrekt 200."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_006",
+    "category": "Textaufgaben",
+    "question": "Ein Team sortiert Akten. Person A schafft 24 Ordner in 3 Stunden, Person B schafft 18 Ordner in 2 Stunden. Beide arbeiten gemeinsam 2 Stunden, aber B macht nach genau 1 Stunde 20 Minuten Pause. Wie viele vollständig sortierte Ordner schaffen sie?",
+    "answers": [
+      "28",
+      "30",
+      "31",
+      "32",
+      "34"
+    ],
+    "correct": 2,
+    "correctText": "31",
+    "explanation": "A schafft 8 Ordner/h → 16 Ordner. B schafft 9 Ordner/h und arbeitet 1 Stunde 40 Minuten = 5/3 h. 9×5/3=15. Zusammen 31."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_007",
+    "category": "Textaufgaben",
+    "question": "Eine Maschine füllt 5 Kartons in 12 Minuten. Eine zweite Maschine ist 20 % schneller. Wie viele Kartons füllen beide zusammen in 1 Stunde?",
+    "answers": [
+      "45",
+      "50",
+      "55",
+      "60",
+      "65"
+    ],
+    "correct": 2,
+    "correctText": "55",
+    "explanation": "Maschine 1: 25 Kartons/h. Maschine 2: 20 % schneller = 30 Kartons/h. Zusammen 55."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_008",
+    "category": "Textaufgaben",
+    "question": "Ein Rabatt von 15 % senkt einen Preis auf 68 €. Wie hoch wäre der Preis nach einem Rabatt von 25 % auf denselben ursprünglichen Preis?",
+    "answers": [
+      "56 €",
+      "58 €",
+      "60 €",
+      "62 €",
+      "64 €"
+    ],
+    "correct": 2,
+    "correctText": "60 €",
+    "explanation": "68 € entsprechen 85 %. Ursprung: 80 €. 25 % Rabatt: 60 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_009",
+    "category": "Textaufgaben",
+    "question": "Ein Tank ist zu 3/5 gefüllt. Nach dem Entnehmen von 18 Litern ist er noch halb voll. Wie viele Liter fasst der Tank?",
+    "answers": [
+      "120",
+      "150",
+      "180",
+      "200",
+      "240"
+    ],
+    "correct": 2,
+    "correctText": "180",
+    "explanation": "3/5 - 1/2 = 1/10 des Tanks. 1/10 = 18 L → Tank = 180 L."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_010",
+    "category": "Textaufgaben",
+    "question": "Ein Zug fährt 90 km/h. Er startet 20 Minuten später, soll aber auf 180 km Strecke zur gleichen Zeit ankommen. Welche Durchschnittsgeschwindigkeit braucht er?",
+    "answers": [
+      "100 km/h",
+      "108 km/h",
+      "120 km/h",
+      "135 km/h",
+      "150 km/h"
+    ],
+    "correct": 1,
+    "correctText": "108 km/h",
+    "explanation": "Normalzeit: 180/90=2h. Verbleibend 1h40=5/3h. 180÷5/3=108 km/h."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_011",
+    "category": "Textaufgaben",
+    "question": "Ein Artikel kostet nach 10 % Rabatt und anschließend 5 € Gutschein noch 85 €. Wie hoch war der ursprüngliche Preis?",
+    "answers": [
+      "95 €",
+      "100 €",
+      "105 €",
+      "110 €",
+      "115 €"
+    ],
+    "correct": 1,
+    "correctText": "100 €",
+    "explanation": "Nach Rabatt vor Gutschein waren es 90 €. 90 entspricht 90 %, also Ursprung 100 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_012",
+    "category": "Textaufgaben",
+    "question": "Für 7 gleiche Kabel werden 42 € bezahlt. Ein anderes Kabel ist pro Stück 50 Cent teurer. Was kosten 9 dieser anderen Kabel?",
+    "answers": [
+      "54 €",
+      "56,50 €",
+      "58,50 €",
+      "60 €",
+      "63 €"
+    ],
+    "correct": 2,
+    "correctText": "58,50 €",
+    "explanation": "Erstes Kabel: 42/7=6 €. Neues Kabel: 6,50 €. 9×6,50=58,50 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_013",
+    "category": "Textaufgaben",
+    "question": "Eine Gruppe besteht aus Kindern und Erwachsenen. Insgesamt sind es 28 Personen. Erwachsene zahlen 6 €, Kinder 4 €. Die Einnahmen betragen 136 €. Wie viele Erwachsene sind dabei?",
+    "answers": [
+      "8",
+      "10",
+      "12",
+      "14",
+      "16"
+    ],
+    "correct": 2,
+    "correctText": "12",
+    "explanation": "Wenn alle Kinder wären: 28×4=112 €. Differenz 24 €. Jeder Erwachsene bringt 2 € mehr → 12 Erwachsene."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_014",
+    "category": "Textaufgaben",
+    "question": "Ein Prüfungsblock hat 40 Fragen. Für richtige Antworten gibt es 2 Punkte, für falsche wird 1 Punkt abgezogen. Nicht beantwortete Fragen geben 0 Punkte. Jemand beantwortet 35 Fragen und erreicht 49 Punkte. Wie viele Antworten waren richtig?",
+    "answers": [
+      "26",
+      "27",
+      "28",
+      "29",
+      "30"
+    ],
+    "correct": 2,
+    "correctText": "28",
+    "explanation": "richtig r, falsch 35-r. Punkte: 2r-(35-r)=49 → 3r=84 → r=28."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_015",
+    "category": "Textaufgaben",
+    "question": "Ein Rechteck hat 54 cm Umfang. Die Länge ist 3 cm größer als die doppelte Breite. Wie breit ist es?",
+    "answers": [
+      "6 cm",
+      "7 cm",
+      "8 cm",
+      "9 cm",
+      "10 cm"
+    ],
+    "correct": 2,
+    "correctText": "8 cm",
+    "explanation": "2(l+b)=54 → l+b=27. l=2b+3. 3b+3=27 → b=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_016",
+    "category": "Textaufgaben",
+    "question": "Ein Auto verbraucht auf 240 km 18 Liter. Wie viele Liter braucht es für 400 km, wenn der Verbrauch pro 100 km gleich bleibt?",
+    "answers": [
+      "27",
+      "28",
+      "30",
+      "32",
+      "34"
+    ],
+    "correct": 2,
+    "correctText": "30",
+    "explanation": "18/240×400=30 Liter."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_017",
+    "category": "Textaufgaben",
+    "question": "Eine Zahl wird mit 4 multipliziert. Danach werden 18 abgezogen. Das Ergebnis ist doppelt so groß wie die ursprüngliche Zahl. Wie lautet die Zahl?",
+    "answers": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "correct": 3,
+    "correctText": "9",
+    "explanation": "4x-18=2x → 2x=18 → x=9."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "tm830_018",
+    "category": "Textaufgaben",
+    "question": "Eine Prüfung beginnt um 8:35 Uhr. Drei Blöcke dauern 25, 40 und 35 Minuten. Zwischen den Blöcken sind jeweils 5 Minuten Pause. Wann endet die Prüfung?",
+    "answers": [
+      "10:05",
+      "10:10",
+      "10:15",
+      "10:20",
+      "10:25"
+    ],
+    "correct": 4,
+    "correctText": "10:25",
+    "explanation": "Arbeitszeit: 25+40+35=100 Minuten. Zwei Pausen: 10 Minuten. Insgesamt 110 Minuten. 8:35 + 110 Minuten = 10:25."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_001",
+    "category": "Algebra",
+    "question": "Gegeben ist 3(2x-5)=4x+9. Berechne x.",
+    "answers": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "correct": 2,
+    "correctText": "12",
+    "explanation": "6x-15=4x+9 → 2x=24 → x=12."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_002",
+    "category": "Algebra",
+    "question": "Gegeben ist 5x-2(3x-4)=17. Berechne x.",
+    "answers": [
+      "-9",
+      "-8",
+      "8",
+      "9",
+      "25"
+    ],
+    "correct": 0,
+    "correctText": "-9",
+    "explanation": "5x-6x+8=17 → -x=9 → x=-9."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_003",
+    "category": "Algebra",
+    "question": "Gegeben ist (x+6)/3 = x-2. Berechne x.",
+    "answers": [
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correct": 2,
+    "correctText": "6",
+    "explanation": "x+6=3x-6 → 12=2x → x=6."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_004",
+    "category": "Algebra",
+    "question": "Ein Rechteck hat Fläche A = l·b. Stelle nach b um.",
+    "answers": [
+      "b=A-l",
+      "b=A/l",
+      "b=l/A",
+      "b=A+l",
+      "b=2A/l"
+    ],
+    "correct": 1,
+    "correctText": "b=A/l",
+    "explanation": "Durch l teilen: b=A/l."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_005",
+    "category": "Algebra",
+    "question": "Für die Geschwindigkeit gilt v=s/t. Stelle nach t um.",
+    "answers": [
+      "t=s/v",
+      "t=v/s",
+      "t=s·v",
+      "t=v-s",
+      "t=s+v"
+    ],
+    "correct": 0,
+    "correctText": "t=s/v",
+    "explanation": "v=s/t → vt=s → t=s/v."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_006",
+    "category": "Algebra",
+    "question": "Gegeben ist 2x+7 = 5x-11. Berechne x.",
+    "answers": [
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correct": 2,
+    "correctText": "6",
+    "explanation": "7+11=5x-2x → 18=3x → x=6."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_007",
+    "category": "Algebra",
+    "question": "Gegeben ist 4(x-3)+2=2(x+5). Berechne x.",
+    "answers": [
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "correct": 2,
+    "correctText": "10",
+    "explanation": "4x-12+2=2x+10 → 4x-10=2x+10 → 2x=20 → x=10."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_008",
+    "category": "Algebra",
+    "question": "Gegeben ist 12 - 2x = 3x - 8. Berechne x.",
+    "answers": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "correct": 2,
+    "correctText": "4",
+    "explanation": "12+8=3x+2x → 20=5x → x=4."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_009",
+    "category": "Algebra",
+    "question": "Die Formel lautet K = 3a + 2b. Stelle nach a um.",
+    "answers": [
+      "a=(K-2b)/3",
+      "a=K-2b/3",
+      "a=(K+2b)/3",
+      "a=3K-2b",
+      "a=K/(3+2b)"
+    ],
+    "correct": 0,
+    "correctText": "a=(K-2b)/3",
+    "explanation": "K=3a+2b → K-2b=3a → a=(K-2b)/3."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_010",
+    "category": "Algebra",
+    "question": "Gegeben ist 0,5x + 6 = 18. Berechne x.",
+    "answers": [
+      "12",
+      "18",
+      "20",
+      "24",
+      "36"
+    ],
+    "correct": 3,
+    "correctText": "24",
+    "explanation": "0,5x=12 → x=24."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_011",
+    "category": "Algebra",
+    "question": "Gegeben ist 7x+3 = 2(2x+12). Berechne x.",
+    "answers": [
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "correct": 2,
+    "correctText": "7",
+    "explanation": "7x+3=4x+24 → 3x=21 → x=7."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "alg830_012",
+    "category": "Algebra",
+    "question": "Gegeben ist 9 - (x+4) = 2x - 1. Berechne x.",
+    "answers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct": 1,
+    "correctText": "2",
+    "explanation": "9-x-4=2x-1 → 5-x=2x-1 → 6=3x → x=2."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_001",
+    "category": "Zahlenreihen",
+    "question": "4, 7, 13, 22, 34, ?",
+    "answers": [
+      "43",
+      "46",
+      "49",
+      "52",
+      "55"
+    ],
+    "correct": 2,
+    "correctText": "49",
+    "explanation": "Differenzen: +3,+6,+9,+12,+15 → 49."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_002",
+    "category": "Zahlenreihen",
+    "question": "2, 6, 12, 20, 30, ?",
+    "answers": [
+      "40",
+      "41",
+      "42",
+      "44",
+      "46"
+    ],
+    "correct": 2,
+    "correctText": "42",
+    "explanation": "n(n+1): 1×2,2×3,3×4,4×5,5×6,6×7=42."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_003",
+    "category": "Zahlenreihen",
+    "question": "96, 48, 52, 26, 30, ?",
+    "answers": [
+      "10",
+      "13",
+      "15",
+      "18",
+      "20"
+    ],
+    "correct": 2,
+    "correctText": "15",
+    "explanation": "Abwechselnd halbieren und +4: 96/2=48, +4=52, /2=26, +4=30, /2=15."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_004",
+    "category": "Zahlenreihen",
+    "question": "3, 8, 6, 11, 9, 14, ?",
+    "answers": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "15"
+    ],
+    "correct": 2,
+    "correctText": "12",
+    "explanation": "Zwei ineinanderliegende Reihen: 3,6,9,12 und 8,11,14."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_005",
+    "category": "Zahlenreihen",
+    "question": "5, 11, 23, 47, 95, ?",
+    "answers": [
+      "181",
+      "187",
+      "191",
+      "193",
+      "195"
+    ],
+    "correct": 2,
+    "correctText": "191",
+    "explanation": "Jeweils ×2+1: 95×2+1=191."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_006",
+    "category": "Zahlenreihen",
+    "question": "100, 97, 91, 82, 70, ?",
+    "answers": [
+      "55",
+      "56",
+      "57",
+      "58",
+      "60"
+    ],
+    "correct": 0,
+    "correctText": "55",
+    "explanation": "Differenzen -3,-6,-9,-12,-15 → 55."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_007",
+    "category": "Zahlenreihen",
+    "question": "2, 3, 5, 9, 17, ?",
+    "answers": [
+      "28",
+      "31",
+      "33",
+      "34",
+      "35"
+    ],
+    "correct": 2,
+    "correctText": "33",
+    "explanation": "Jeweils ×2-1: 17×2-1=33."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_008",
+    "category": "Zahlenreihen",
+    "question": "7, 14, 12, 24, 22, ?",
+    "answers": [
+      "40",
+      "42",
+      "44",
+      "46",
+      "48"
+    ],
+    "correct": 2,
+    "correctText": "44",
+    "explanation": "Abwechselnd ×2, -2: 22×2=44."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_009",
+    "category": "Zahlenreihen",
+    "question": "1, 4, 9, 16, 25, ?",
+    "answers": [
+      "30",
+      "32",
+      "34",
+      "36",
+      "49"
+    ],
+    "correct": 3,
+    "correctText": "36",
+    "explanation": "Quadratzahlen: 1²,2²,3²,4²,5²,6²=36."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_010",
+    "category": "Zahlenreihen",
+    "question": "64, 32, 36, 18, 22, ?",
+    "answers": [
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "correct": 2,
+    "correctText": "11",
+    "explanation": "Abwechselnd halbieren, +4: 22/2=11."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_011",
+    "category": "Zahlenreihen",
+    "question": "6, 7, 10, 15, 22, ?",
+    "answers": [
+      "29",
+      "30",
+      "31",
+      "32",
+      "33"
+    ],
+    "correct": 2,
+    "correctText": "31",
+    "explanation": "Differenzen +1,+3,+5,+7,+9 → 31."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_012",
+    "category": "Zahlenreihen",
+    "question": "4, 12, 9, 27, 24, ?",
+    "answers": [
+      "48",
+      "54",
+      "60",
+      "72",
+      "81"
+    ],
+    "correct": 3,
+    "correctText": "72",
+    "explanation": "Abwechselnd ×3, -3: 24×3=72."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_013",
+    "category": "Zahlenreihen",
+    "question": "2, 5, 11, 23, 47, ?",
+    "answers": [
+      "93",
+      "94",
+      "95",
+      "96",
+      "97"
+    ],
+    "correct": 2,
+    "correctText": "95",
+    "explanation": "Jeweils ×2+1: 47×2+1=95."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_014",
+    "category": "Zahlenreihen",
+    "question": "9, 18, 15, 30, 27, ?",
+    "answers": [
+      "48",
+      "51",
+      "54",
+      "57",
+      "60"
+    ],
+    "correct": 2,
+    "correctText": "54",
+    "explanation": "Abwechselnd ×2, -3: 27×2=54."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "zr830_015",
+    "category": "Zahlenreihen",
+    "question": "120, 60, 65, 32,5, 37,5, ?",
+    "answers": [
+      "16,25",
+      "17,5",
+      "18,75",
+      "20",
+      "22,5"
+    ],
+    "correct": 2,
+    "correctText": "18,75",
+    "explanation": "Abwechselnd ÷2, +5: 37,5÷2=18,75."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_001",
+    "category": "Aussagenlogik",
+    "question": "In einer Werkstatt gilt: Wer am Montag Frühschicht hat, hat am Mittwoch keine Spätschicht. Mehmet hat Mittwoch Spätschicht. Was folgt sicher?",
+    "answers": [
+      "Mehmet hatte Montag Frühschicht",
+      "Mehmet hatte Montag keine Frühschicht",
+      "Mehmet arbeitet nie Frühschicht",
+      "Mehmet arbeitet Montag gar nicht",
+      "Keine Aussage möglich"
+    ],
+    "correct": 1,
+    "correctText": "Mehmet hatte Montag keine Frühschicht",
+    "explanation": "Wenn Montag Frühschicht → Mittwoch nicht Spätschicht. Mehmet hat Mittwoch Spätschicht, also kann er Montag keine Frühschicht gehabt haben."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_002",
+    "category": "Aussagenlogik",
+    "question": "Alle geprüften Router sind beschriftet. Einige beschriftete Geräte sind defekt. Welche Aussage folgt sicher?",
+    "answers": [
+      "Einige geprüfte Router sind defekt",
+      "Alle defekten Geräte sind Router",
+      "Kein geprüfter Router ist defekt",
+      "Geprüfte Router sind beschriftet",
+      "Beschriftete Geräte sind immer geprüft"
+    ],
+    "correct": 3,
+    "correctText": "Geprüfte Router sind beschriftet",
+    "explanation": "Nur „geprüfte Router sind beschriftet“ folgt direkt. Defekt-Aussagen folgen nicht sicher."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_003",
+    "category": "Aussagenlogik",
+    "question": "Drei Server A, B und C werden geprüft. Genau einer ist offline. Wenn B online ist, ist A offline. B ist online. Was folgt sicher?",
+    "answers": [
+      "A ist online",
+      "A ist offline",
+      "C ist offline",
+      "B ist offline",
+      "Alle sind online"
+    ],
+    "correct": 1,
+    "correctText": "A ist offline",
+    "explanation": "B ist online und Bedingung sagt: Wenn B online, dann A offline. Genau einer offline bestätigt zusätzlich, dass C online ist; gefragt ist sicher A offline."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_004",
+    "category": "Aussagenlogik",
+    "question": "In einer Klasse sind alle, die Spanisch lernen, auch in Englisch. Einige Englisch-Schüler lernen Informatik. Was folgt sicher?",
+    "answers": [
+      "Alle Informatik-Schüler lernen Spanisch",
+      "Einige Spanisch-Schüler lernen Informatik",
+      "Alle Spanisch-Schüler sind in Englisch",
+      "Kein Englisch-Schüler lernt Spanisch",
+      "Alle Englisch-Schüler lernen Spanisch"
+    ],
+    "correct": 2,
+    "correctText": "Alle Spanisch-Schüler sind in Englisch",
+    "explanation": "Spanisch ⊂ Englisch. Über Informatik lässt sich für Spanisch nichts Sicheres sagen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_005",
+    "category": "Aussagenlogik",
+    "question": "Vier Bewerber A, B, C, D stehen in einer Reihenfolge. A steht nicht vor B. C steht direkt vor A. D steht nicht am Ende. Welche Reihenfolge ist möglich?",
+    "answers": [
+      "B-C-A-D",
+      "D-B-C-A",
+      "C-A-B-D",
+      "B-D-C-A",
+      "A-C-B-D"
+    ],
+    "correct": 3,
+    "correctText": "B-D-C-A",
+    "explanation": "C muss direkt vor A stehen. A darf nicht vor B stehen, also B muss vor A stehen. D darf nicht am Ende stehen. B-D-C-A erfüllt alles."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_006",
+    "category": "Aussagenlogik",
+    "question": "Wenn ein Auftrag eilig ist, wird er markiert. Alle markierten Aufträge werden zuerst geprüft. Auftrag 17 wurde zuerst geprüft. Was folgt sicher?",
+    "answers": [
+      "Auftrag 17 war eilig",
+      "Auftrag 17 war markiert",
+      "Auftrag 17 kann markiert gewesen sein",
+      "Alle zuerst geprüften Aufträge sind eilig",
+      "Nicht eilige Aufträge werden nie geprüft"
+    ],
+    "correct": 2,
+    "correctText": "Auftrag 17 kann markiert gewesen sein",
+    "explanation": "Aus „markiert → zuerst geprüft“ folgt nicht rückwärts „zuerst geprüft → markiert“. Sicher ist nur: Es kann so gewesen sein, aber nicht zwingend."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_007",
+    "category": "Aussagenlogik",
+    "question": "Eine Aussage lautet: „Mindestens zwei der vier Lampen sind aus.“ Welche Beobachtung widerspricht dieser Aussage?",
+    "answers": [
+      "Eine Lampe ist aus",
+      "Zwei Lampen sind aus",
+      "Drei Lampen sind aus",
+      "Vier Lampen sind aus",
+      "Keine Lampe ist an"
+    ],
+    "correct": 0,
+    "correctText": "Eine Lampe ist aus",
+    "explanation": "Mindestens zwei aus bedeutet 2,3 oder 4 aus. Nur eine aus widerspricht."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_008",
+    "category": "Aussagenlogik",
+    "question": "In einem Regal stehen Ordner rot, blau, grün. Rot steht links von Grün. Blau steht nicht rechts von Grün. Welche Reihenfolge ist möglich?",
+    "answers": [
+      "Rot-Grün-Blau",
+      "Blau-Grün-Rot",
+      "Rot-Blau-Grün",
+      "Grün-Rot-Blau",
+      "Grün-Blau-Rot"
+    ],
+    "correct": 2,
+    "correctText": "Rot-Blau-Grün",
+    "explanation": "Rot links von Grün. Blau nicht rechts von Grün bedeutet Blau links von Grün. Rot-Blau-Grün erfüllt beides."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_009",
+    "category": "Aussagenlogik",
+    "question": "Alle Azubis, die den Netzwerktest bestehen, dürfen ins Praktikum. Lea darf ins Praktikum. Was folgt sicher?",
+    "answers": [
+      "Lea hat den Netzwerktest bestanden",
+      "Lea ist Azubi",
+      "Lea darf ins Praktikum",
+      "Lea hat nicht bestanden",
+      "Alle Praktikanten haben bestanden"
+    ],
+    "correct": 2,
+    "correctText": "Lea darf ins Praktikum",
+    "explanation": "Die Aussage erlaubt keinen Rückschluss. Sicher ist nur die gegebene Information."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "log830_010",
+    "category": "Aussagenlogik",
+    "question": "Ein Code besteht aus drei verschiedenen Ziffern. Die erste ist größer als die zweite. Die dritte ist die Summe der ersten beiden. Welcher Code ist möglich?",
+    "answers": [
+      "213",
+      "325",
+      "431",
+      "541",
+      "642"
+    ],
+    "correct": 1,
+    "correctText": "325",
+    "explanation": "3>2 und 3+2=5 → 325."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_001",
+    "category": "Verhältnislogik",
+    "question": "In einer Box liegen rote und blaue Klemmen. Es gibt dreimal so viele rote wie blaue. Nach dem Entfernen von 8 roten sind es doppelt so viele rote wie blaue. Wie viele blaue Klemmen liegen in der Box?",
+    "answers": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "correct": 2,
+    "correctText": "8",
+    "explanation": "R=3B. Nach Entfernen: R-8=2B. Also 3B-8=2B → B=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_002",
+    "category": "Verhältnislogik",
+    "question": "Auf einem Parkplatz stehen Autos und Motorräder. Zusammen sind es 18 Fahrzeuge und 52 Räder. Wie viele Autos stehen dort?",
+    "answers": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "correct": 2,
+    "correctText": "8",
+    "explanation": "Autos a, Motorräder m. a+m=18, 4a+2m=52. Verdoppelte erste Gleichung: 2a+2m=36. Differenz: 2a=16 → a=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_003",
+    "category": "Verhältnislogik",
+    "question": "Ein Korb enthält Äpfel und Birnen. Nach dem Herausnehmen von 5 Äpfeln gibt es gleich viele Äpfel wie Birnen. Vorher gab es doppelt so viele Äpfel wie Birnen minus 3. Wie viele Birnen sind im Korb?",
+    "answers": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "correct": 2,
+    "correctText": "8",
+    "explanation": "A-5=B und A=2B-3. Einsetzen: B+5=2B-3 → B=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_004",
+    "category": "Verhältnislogik",
+    "question": "In einer Gruppe sind doppelt so viele Erwachsene wie Kinder. Gehen 6 Erwachsene, sind es gleich viele Erwachsene wie Kinder. Wie viele Personen waren anfangs in der Gruppe?",
+    "answers": [
+      "12",
+      "18",
+      "24",
+      "30",
+      "36"
+    ],
+    "correct": 1,
+    "correctText": "18",
+    "explanation": "E=2K, E-6=K → 2K-6=K → K=6, E=12, gesamt 18."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_005",
+    "category": "Verhältnislogik",
+    "question": "Ein Lager hat kleine und große Kartons. Große Kartons enthalten 3 Stück, kleine 2 Stück. Es gibt 20 Kartons und 48 Stück. Wie viele große Kartons sind es?",
+    "answers": [
+      "6",
+      "8",
+      "10",
+      "12",
+      "14"
+    ],
+    "correct": 1,
+    "correctText": "8",
+    "explanation": "g+k=20, 3g+2k=48. 2g+2k=40, Differenz g=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "ratio830_006",
+    "category": "Verhältnislogik",
+    "question": "In einer Reihe sitzen Männer und Frauen. Es gibt 4 Frauen mehr als Männer. Wenn 3 Frauen gehen, sind es noch doppelt so viele Frauen wie Männer? Welche Anfangszahl Männer passt?",
+    "answers": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct": 0,
+    "correctText": "1",
+    "explanation": "F=M+4. Nachher F-3=2M. M+1=2M → M=1."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_001",
+    "category": "Textaufgaben",
+    "question": "In einer Werkstatt prüft ein Team 72 Bauteile in 3 Stunden. Für den nächsten Auftrag arbeitet ein Drittel des Teams an etwas anderem, die übrigen arbeiten gleich schnell weiter. Wie viele Bauteile schafft das Team dann in 2 Stunden?",
+    "answers": [
+      "24",
+      "32",
+      "36",
+      "48",
+      "54"
+    ],
+    "correct": 1,
+    "correctText": "32",
+    "explanation": "72 in 3 Stunden = 24 pro Stunde. Es arbeiten nur noch 2/3 des Teams: 16 pro Stunde. In 2 Stunden: 32."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_002",
+    "category": "Textaufgaben",
+    "question": "Ein Fahrradkurier fährt zur Kundschaft 15 km in 45 Minuten. Auf dem Rückweg ist er wegen Gegenwind ein Drittel langsamer. Wie lange dauert der Rückweg?",
+    "answers": [
+      "45 Minuten",
+      "60 Minuten",
+      "67,5 Minuten",
+      "75 Minuten",
+      "90 Minuten"
+    ],
+    "correct": 2,
+    "correctText": "67,5 Minuten",
+    "explanation": "15 km in 45 Minuten. Ein Drittel langsamer bedeutet 2/3 der Geschwindigkeit; die Zeit wird mit 3/2 multipliziert: 45 × 1,5 = 67,5 Minuten."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_003",
+    "category": "Textaufgaben",
+    "question": "Ein Artikel kostet nach einem Preisnachlass von 20 % noch 64 €. Danach wird er wieder um 20 % erhöht. Was kostet er dann?",
+    "answers": [
+      "76,80 €",
+      "80 €",
+      "84 €",
+      "96 €",
+      "100 €"
+    ],
+    "correct": 0,
+    "correctText": "76,80 €",
+    "explanation": "64 € sind 80 % des alten Preises, der alte Preis war 80 €. Erhöhung von 64 € um 20 % ergibt 76,80 €. Nicht wieder 80 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_004",
+    "category": "Textaufgaben",
+    "question": "In einer Klasse sind 24 Personen. Drei Achtel kommen mit dem Bus, ein Viertel mit dem Fahrrad. Wie viele kommen weder mit Bus noch Fahrrad, wenn niemand beides nutzt?",
+    "answers": [
+      "8",
+      "9",
+      "10",
+      "12",
+      "15"
+    ],
+    "correct": 1,
+    "correctText": "9",
+    "explanation": "3/8 von 24 = 9. 1/4 von 24 = 6. Zusammen 15, übrig bleiben 9 Personen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_005",
+    "category": "Textaufgaben",
+    "question": "Ein Kopierer schafft 18 Seiten pro Minute. Nach 5 Minuten wird auf Duplexdruck umgestellt, dadurch halbiert sich die Blattzahl pro Minute, die Seitenzahl bleibt gleich. Wie viele Blatt Papier liegen nach insgesamt 9 Minuten im Ausgabefach?",
+    "answers": [
+      "90",
+      "108",
+      "126",
+      "144",
+      "162"
+    ],
+    "correct": 2,
+    "correctText": "126",
+    "explanation": "Erste 5 Minuten: 5×18 = 90 Blatt. Danach 4 Minuten Duplex: 4×9 = 36 Blatt. Insgesamt 126 Blatt."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_006",
+    "category": "Textaufgaben",
+    "question": "Ein Tank ist zu 70 % gefüllt. Nachdem 18 Liter entnommen werden, ist er noch zu 40 % gefüllt. Wie viel Liter fasst der Tank?",
+    "answers": [
+      "45 l",
+      "50 l",
+      "60 l",
+      "72 l",
+      "90 l"
+    ],
+    "correct": 2,
+    "correctText": "60 l",
+    "explanation": "18 Liter entsprechen 30 % des Tanks. 100 % sind 18 / 0,30 = 60 Liter."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_008",
+    "category": "Textaufgaben",
+    "question": "Eine Maschine produziert 238 Teile in 4 Stunden. Wegen Wartung steht sie 30 Minuten, soll aber trotzdem 238 Teile schaffen. Welche Leistung pro Stunde braucht sie während der Laufzeit?",
+    "answers": [
+      "60 Teile/h",
+      "64 Teile/h",
+      "68 Teile/h",
+      "72 Teile/h",
+      "80 Teile/h"
+    ],
+    "correct": 2,
+    "correctText": "68 Teile/h",
+    "explanation": "Die Maschine läuft 3,5 Stunden. 238 / 3,5 = 68 Teile pro Stunde."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_009",
+    "category": "Textaufgaben",
+    "question": "Für 6 identische Kabel werden 45 € bezahlt. Ein anderer Kabeltyp kostet pro Stück 1,50 € mehr. Was kosten 8 Kabel des anderen Typs?",
+    "answers": [
+      "56 €",
+      "60 €",
+      "66 €",
+      "72 €",
+      "84 €"
+    ],
+    "correct": 3,
+    "correctText": "72 €",
+    "explanation": "45/6 = 7,50 € pro Kabel. Anderer Typ: 9 € pro Kabel. 8×9 = 72 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_010",
+    "category": "Textaufgaben",
+    "question": "Ein Bus fährt um 7:18 Uhr los. Er braucht 42 Minuten bis zur ersten Haltestelle, steht dort 6 Minuten und fährt dann noch 29 Minuten. Wann kommt er an?",
+    "answers": [
+      "8:29 Uhr",
+      "8:35 Uhr",
+      "8:41 Uhr",
+      "8:47 Uhr",
+      "8:55 Uhr"
+    ],
+    "correct": 1,
+    "correctText": "8:35 Uhr",
+    "explanation": "7:18 + 42 = 8:00. Plus 6 Minuten = 8:06. Plus 29 Minuten = 8:35."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_011",
+    "category": "Textaufgaben",
+    "question": "Ein Lager hat 18 große und kleine Kartons. Große Kartons enthalten je 5 Geräte, kleine je 3 Geräte. Insgesamt sind 70 Geräte verpackt. Wie viele große Kartons gibt es?",
+    "answers": [
+      "6",
+      "8",
+      "10",
+      "12",
+      "14"
+    ],
+    "correct": 1,
+    "correctText": "8",
+    "explanation": "Wenn alle klein wären: 18×3=54. Es fehlen 16 Geräte. Jeder große statt kleiner Karton bringt +2. 16/2=8 große Kartons."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_012",
+    "category": "Textaufgaben",
+    "question": "Ein Azubi bekommt in einem Test für jede richtige Antwort 3 Punkte, für jede falsche Antwort 1 Punkt Abzug. Er beantwortet 20 Fragen und erreicht 44 Punkte. Wie viele Antworten waren richtig?",
+    "answers": [
+      "14",
+      "15",
+      "16",
+      "17",
+      "18"
+    ],
+    "correct": 2,
+    "correctText": "16",
+    "explanation": "richtig = r, falsch = 20-r. Punkte: 3r-(20-r)=44 -> 4r=64 -> r=16."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_013",
+    "category": "Textaufgaben",
+    "question": "Eine Datei ist 480 MB groß. 35 % sind bereits hochgeladen. Danach werden weitere 144 MB übertragen. Wie viel Prozent der Datei sind dann insgesamt hochgeladen?",
+    "answers": [
+      "55 %",
+      "60 %",
+      "65 %",
+      "70 %",
+      "75 %"
+    ],
+    "correct": 2,
+    "correctText": "65 %",
+    "explanation": "35 % von 480 = 168 MB. Plus 144 MB = 312 MB. 312/480 = 65 %."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_014",
+    "category": "Textaufgaben",
+    "question": "Ein Rechteck hat einen Umfang von 50 cm. Die Länge ist 5 cm größer als die Breite. Wie lang ist die längere Seite?",
+    "answers": [
+      "10 cm",
+      "12,5 cm",
+      "15 cm",
+      "20 cm",
+      "25 cm"
+    ],
+    "correct": 2,
+    "correctText": "15 cm",
+    "explanation": "2l+2b=50 -> l+b=25. l=b+5. Also 2b+5=25 -> b=10, l=15."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_015",
+    "category": "Textaufgaben",
+    "question": "Ein Team braucht für eine Aufgabe zu viert 6 Stunden. Nach 2 Stunden gehen zwei Personen weg. Wie lange dauert die Aufgabe insgesamt, wenn alle gleich schnell arbeiten?",
+    "answers": [
+      "8 Stunden",
+      "9 Stunden",
+      "10 Stunden",
+      "12 Stunden",
+      "14 Stunden"
+    ],
+    "correct": 2,
+    "correctText": "10 Stunden",
+    "explanation": "Gesamtarbeit: 4×6=24 Personenstunden. In 2 Stunden schaffen sie 8. Rest 16 Personenstunden. Zu zweit brauchen sie 8 Stunden. Gesamt: 10 Stunden."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_016",
+    "category": "Textaufgaben",
+    "question": "Ein Preis wird zuerst um 10 % gesenkt und danach um 10 % erhöht. Am Ende kostet der Artikel 99 €. Wie hoch war der ursprüngliche Preis?",
+    "answers": [
+      "99 €",
+      "100 €",
+      "101 €",
+      "110 €",
+      "121 €"
+    ],
+    "correct": 1,
+    "correctText": "100 €",
+    "explanation": "Nach -10 % und +10 % bleiben 99 % des ursprünglichen Preises. 99 € entsprechen 99 %, also ursprünglich 100 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_017",
+    "category": "Textaufgaben",
+    "question": "Ein Akku verliert in 3 Stunden 18 % Ladung. Wenn der Verbrauch gleich bleibt und der Akku um 9:20 Uhr bei 82 % steht, wann erreicht er 40 %?",
+    "answers": [
+      "15:20 Uhr",
+      "16:20 Uhr",
+      "17:20 Uhr",
+      "18:20 Uhr",
+      "19:20 Uhr"
+    ],
+    "correct": 1,
+    "correctText": "16:20 Uhr",
+    "explanation": "18 % in 3 h = 6 % pro Stunde. Von 82 % auf 40 % sind 42 %. 42/6=7 Stunden. 9:20 + 7 h = 16:20."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_018",
+    "category": "Textaufgaben",
+    "question": "Eine Strecke von 36 km wird mit 12 km/h begonnen. Nach 1 Stunde wird die Geschwindigkeit verdoppelt. Wie lange dauert die gesamte Strecke?",
+    "answers": [
+      "2 Stunden",
+      "2,5 Stunden",
+      "3 Stunden",
+      "3,5 Stunden",
+      "4 Stunden"
+    ],
+    "correct": 0,
+    "correctText": "2 Stunden",
+    "explanation": "Nach 1 Stunde sind 12 km geschafft. Rest 24 km mit 24 km/h dauert 1 Stunde. Insgesamt 2 Stunden."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_019",
+    "category": "Textaufgaben",
+    "question": "Eine Rechnung über 120 € wird zu 40 % von Person A bezahlt. Vom Rest übernimmt Person B die Hälfte. Wie viel zahlt Person C?",
+    "answers": [
+      "24 €",
+      "36 €",
+      "48 €",
+      "60 €",
+      "72 €"
+    ],
+    "correct": 1,
+    "correctText": "36 €",
+    "explanation": "A zahlt 48 €. Rest 72 €. B zahlt davon die Hälfte = 36 €. C zahlt die restlichen 36 €."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_020",
+    "category": "Textaufgaben",
+    "question": "In einem Kurs bestehen 75 % der Teilnehmenden. 6 Personen fallen durch. Wie viele Personen waren im Kurs?",
+    "answers": [
+      "18",
+      "20",
+      "22",
+      "24",
+      "30"
+    ],
+    "correct": 3,
+    "correctText": "24",
+    "explanation": "Wenn 75 % bestehen, fallen 25 % durch. 6 Personen sind 25 %, also sind 24 Personen insgesamt im Kurs."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_021",
+    "category": "Textaufgaben",
+    "question": "Ein Regal ist 1,80 m breit. Ordner sind 6 cm breit, Boxen 15 cm. Es stehen 20 Ordner im Regal. Wie viele Boxen passen zusätzlich maximal hinein?",
+    "answers": [
+      "3",
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "correct": 1,
+    "correctText": "4",
+    "explanation": "20 Ordner brauchen 120 cm. Übrig bleiben 60 cm. 60/15 = 4 Boxen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_tm_022",
+    "category": "Textaufgaben",
+    "question": "Ein Auto fährt 180 km. Die erste Hälfte der Strecke fährt es mit 60 km/h, die zweite mit 90 km/h. Wie lange dauert die Fahrt?",
+    "answers": [
+      "2 h",
+      "2,5 h",
+      "3 h",
+      "3,5 h",
+      "4 h"
+    ],
+    "correct": 1,
+    "correctText": "2,5 h",
+    "explanation": "90 km mit 60 km/h = 1,5 h. 90 km mit 90 km/h = 1 h. Zusammen 2,5 h."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_001",
+    "category": "Zahlenreihen",
+    "question": "8, 12, 11, 17, 16, 24, ?",
+    "answers": [
+      "21",
+      "22",
+      "23",
+      "24",
+      "25"
+    ],
+    "correct": 2,
+    "correctText": "23",
+    "explanation": "Abwechselnd +4, -1, +6, -1, +8, -1. Nächste Zahl: 23."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_002",
+    "category": "Zahlenreihen",
+    "question": "3, 6, 11, 18, 27, 38, ?",
+    "answers": [
+      "49",
+      "50",
+      "51",
+      "52",
+      "53"
+    ],
+    "correct": 2,
+    "correctText": "51",
+    "explanation": "Die Differenzen sind +3, +5, +7, +9, +11, also folgt +13: 51."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_004",
+    "category": "Zahlenreihen",
+    "question": "96, 48, 52, 26, 30, 15, ?",
+    "answers": [
+      "17",
+      "18",
+      "19",
+      "20",
+      "22"
+    ],
+    "correct": 2,
+    "correctText": "19",
+    "explanation": "Abwechselnd halbieren und +4: 96/2=48, +4=52, /2=26, +4=30, /2=15, +4=19."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_005",
+    "category": "Zahlenreihen",
+    "question": "2, 5, 4, 9, 8, 17, ?",
+    "answers": [
+      "14",
+      "15",
+      "16",
+      "18",
+      "19"
+    ],
+    "correct": 2,
+    "correctText": "16",
+    "explanation": "Abwechselnd ×2+1 und -1: 2→5, 5→4, 4→9, 9→8, 8→17, 17→16."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_006",
+    "category": "Zahlenreihen",
+    "question": "7, 10, 16, 25, 37, ?",
+    "answers": [
+      "48",
+      "49",
+      "51",
+      "52",
+      "54"
+    ],
+    "correct": 3,
+    "correctText": "52",
+    "explanation": "Die Differenzen wachsen um 3: +3, +6, +9, +12, +15. 37+15=52."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_007",
+    "category": "Zahlenreihen",
+    "question": "5, 6, 12, 15, 30, 35, ?",
+    "answers": [
+      "65",
+      "68",
+      "70",
+      "72",
+      "75"
+    ],
+    "correct": 2,
+    "correctText": "70",
+    "explanation": "Abwechselnd +1, ×2, +3, ×2, +5, ×2. 35×2=70."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_008",
+    "category": "Zahlenreihen",
+    "question": "144, 72, 75, 25, 28, ?",
+    "answers": [
+      "7",
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "correct": 0,
+    "correctText": "7",
+    "explanation": "Abwechselnd ÷2, +3, ÷3, +3, ÷4. 28/4 = 7."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_009",
+    "category": "Zahlenreihen",
+    "question": "1, 2, 6, 24, 120, ?",
+    "answers": [
+      "240",
+      "360",
+      "600",
+      "720",
+      "840"
+    ],
+    "correct": 3,
+    "correctText": "720",
+    "explanation": "Fakultätsmuster: ×2, ×3, ×4, ×5, danach ×6 = 720."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_010",
+    "category": "Zahlenreihen",
+    "question": "20, 18, 21, 17, 22, 16, ?",
+    "answers": [
+      "21",
+      "22",
+      "23",
+      "24",
+      "25"
+    ],
+    "correct": 2,
+    "correctText": "23",
+    "explanation": "Abwechselnd -2, +3, -4, +5, -6, +7: 16+7=23."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_011",
+    "category": "Zahlenreihen",
+    "question": "4, 9, 19, 39, 79, ?",
+    "answers": [
+      "119",
+      "139",
+      "149",
+      "159",
+      "169"
+    ],
+    "correct": 3,
+    "correctText": "159",
+    "explanation": "Immer ×2 +1: 4→9→19→39→79→159."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_zr_012",
+    "category": "Zahlenreihen",
+    "question": "2, 4, 7, 11, 16, 22, ?",
+    "answers": [
+      "27",
+      "28",
+      "29",
+      "30",
+      "31"
+    ],
+    "correct": 2,
+    "correctText": "29",
+    "explanation": "Differenzen +2,+3,+4,+5,+6,+7. 22+7=29."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_001",
+    "category": "Aussagenlogik",
+    "question": "In der Frühschicht gilt: Wer die Maschine startet, prüft vorher den Ölstand. Nicht jeder, der den Ölstand prüft, startet danach die Maschine. Lara hat den Ölstand geprüft. Was folgt sicher?",
+    "answers": [
+      "Lara startet die Maschine",
+      "Lara startet die Maschine nicht",
+      "Lara könnte die Maschine starten",
+      "Niemand startet die Maschine",
+      "Der Ölstand war zu niedrig"
+    ],
+    "correct": 2,
+    "correctText": "Lara könnte die Maschine starten",
+    "explanation": "Aus Ölstand geprüft folgt nicht automatisch Maschine gestartet. Sicher ist nur: Es ist möglich, aber nicht zwingend."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_002",
+    "category": "Aussagenlogik",
+    "question": "Vier Tickets liegen auf dem Tisch: rot, blau, gelb, grün. Das rote Ticket liegt links vom gelben. Das blaue liegt nicht neben dem roten. Das grüne liegt ganz rechts. Welche Reihenfolge ist möglich?",
+    "answers": [
+      "rot-gelb-blau-grün",
+      "blau-rot-gelb-grün",
+      "rot-blau-gelb-grün",
+      "gelb-rot-blau-grün",
+      "blau-gelb-rot-grün"
+    ],
+    "correct": 0,
+    "correctText": "rot-gelb-blau-grün",
+    "explanation": "Rot muss links von Gelb liegen, Grün ganz rechts. In rot-gelb-blau-grün liegt Blau nicht neben Rot. Das passt."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_003",
+    "category": "Aussagenlogik",
+    "question": "Ein Ausbilder sagt: „Wenn Tim die Netzwerkkarte tauscht, dokumentiert er den Vorgang.“ Am Ende liegt keine Dokumentation vor. Was folgt sicher?",
+    "answers": [
+      "Tim hat die Netzwerkkarte getauscht",
+      "Tim hat sie nicht getauscht",
+      "Die Karte war defekt",
+      "Die Dokumentation wurde gelöscht",
+      "Tim war nicht im Raum"
+    ],
+    "correct": 1,
+    "correctText": "Tim hat sie nicht getauscht",
+    "explanation": "Wenn Tausch -> Doku. Keine Doku bedeutet nach Kontraposition: kein Tausch."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_004",
+    "category": "Aussagenlogik",
+    "question": "In einer Schublade liegen nur blaue und schwarze Adapter. Jeder blaue Adapter ist beschriftet. Einige beschriftete Adapter sind defekt. Welche Aussage ist sicher?",
+    "answers": [
+      "Alle defekten Adapter sind blau",
+      "Einige blaue Adapter sind defekt",
+      "Alle blauen Adapter sind beschriftet",
+      "Alle beschrifteten Adapter sind blau",
+      "Kein schwarzer Adapter ist beschriftet"
+    ],
+    "correct": 2,
+    "correctText": "Alle blauen Adapter sind beschriftet",
+    "explanation": "Nur die Aussage „Alle blauen Adapter sind beschriftet“ steht sicher fest."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_005",
+    "category": "Aussagenlogik",
+    "question": "Drei Kolleginnen A, B und C kommen nacheinander. A kommt nicht zuerst. C kommt direkt nach B. Welche Reihenfolge ist möglich?",
+    "answers": [
+      "A-B-C",
+      "B-C-A",
+      "C-B-A",
+      "B-A-C",
+      "A-C-B"
+    ],
+    "correct": 1,
+    "correctText": "B-C-A",
+    "explanation": "C muss direkt nach B kommen. A darf nicht zuerst sein. B-C-A passt."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_006",
+    "category": "Verhältnislogik",
+    "question": "Auf einem Hof stehen Fahrräder und Dreiräder. Insgesamt sind es 11 Fahrzeuge und 25 Räder. Wie viele Dreiräder stehen dort?",
+    "answers": [
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "correct": 1,
+    "correctText": "3",
+    "explanation": "Wenn alle Fahrräder wären: 22 Räder. Es fehlen 3 Räder. Jedes Dreirad bringt +1. Also 3 Dreiräder."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_007",
+    "category": "Aussagenlogik",
+    "question": "In einer Kiste liegen rote, blaue und grüne Stecker. Es gibt mehr rote als blaue, aber weniger rote als grüne. Welche Farbe ist sicher am häufigsten?",
+    "answers": [
+      "rot",
+      "blau",
+      "grün",
+      "rot und grün gleich",
+      "nicht bestimmbar"
+    ],
+    "correct": 2,
+    "correctText": "grün",
+    "explanation": "Grün > Rot > Blau. Grün ist am häufigsten."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_008",
+    "category": "Aussagenlogik",
+    "question": "Alle Geräte im Regal A sind geprüft. Kein geprüftes Gerät liegt im Regal C. Was folgt sicher?",
+    "answers": [
+      "Regal C ist leer",
+      "Geräte in Regal C sind ungeprüft",
+      "Regal A und C enthalten dieselben Geräte",
+      "Kein Gerät in Regal A liegt in Regal C",
+      "Alle ungeprüften Geräte liegen in Regal C"
+    ],
+    "correct": 3,
+    "correctText": "Kein Gerät in Regal A liegt in Regal C",
+    "explanation": "Geräte aus A sind geprüft. In C liegt kein geprüftes Gerät. Also kann kein A-Gerät in C liegen."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_009",
+    "category": "Aussagenlogik",
+    "question": "Ein Code besteht aus drei Ziffern. Die mittlere Ziffer ist doppelt so groß wie die erste. Die letzte ist um 1 kleiner als die mittlere. Welche Zahl passt?",
+    "answers": [
+      "243",
+      "365",
+      "486",
+      "572",
+      "693"
+    ],
+    "correct": 1,
+    "correctText": "365",
+    "explanation": "Bei 365 ist die mittlere Ziffer 6 doppelt so groß wie 3, und die letzte Ziffer 5 ist um 1 kleiner als 6."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_010",
+    "category": "Aussagenlogik",
+    "question": "Wenn der Server rot blinkt, ist entweder das Netzwerk getrennt oder der Speicher voll. Das Netzwerk ist nicht getrennt. Was folgt sicher?",
+    "answers": [
+      "Der Speicher ist voll",
+      "Der Server blinkt nicht rot",
+      "Das Netzwerk ist langsam",
+      "Beides ist falsch",
+      "Der Speicher ist leer"
+    ],
+    "correct": 0,
+    "correctText": "Der Speicher ist voll",
+    "explanation": "Rot blinkt -> Netzwerk getrennt oder Speicher voll. Wenn Netzwerk nicht getrennt ist, bleibt Speicher voll."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_012",
+    "category": "Aussagenlogik",
+    "question": "Fünf Personen stehen an. Ben steht vor Cem, Cem steht vor Dana, Ali steht hinter Dana. Wer steht sicher vor Ali?",
+    "answers": [
+      "nur Dana",
+      "Ben, Cem und Dana",
+      "nur Ben",
+      "Eva",
+      "niemand sicher"
+    ],
+    "correct": 1,
+    "correctText": "Ben, Cem und Dana",
+    "explanation": "Ben vor Cem, Cem vor Dana, Dana vor Ali. Also stehen Ben, Cem und Dana sicher vor Ali."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_013",
+    "category": "Aussagenlogik",
+    "question": "Auf einem Prüfzettel stehen 12 Aussagen. Genau jede dritte Aussage ist falsch, beginnend mit Aussage 2. Wie viele Aussagen sind richtig?",
+    "answers": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "correct": 2,
+    "correctText": "8",
+    "explanation": "Falsch sind 2,5,8,11 = 4 Aussagen. Richtig sind 8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_014",
+    "category": "Aussagenlogik",
+    "question": "In einem Team sprechen alle, die Java können, auch Englisch. Niemand, der Englisch spricht, ist heute krank. Mira kann Java. Was folgt sicher?",
+    "answers": [
+      "Mira ist krank",
+      "Mira spricht kein Englisch",
+      "Mira ist heute nicht krank",
+      "Mira kann nur Java",
+      "Alle Gesunden können Java"
+    ],
+    "correct": 2,
+    "correctText": "Mira ist heute nicht krank",
+    "explanation": "Java -> Englisch -> nicht krank. Also ist Mira nicht krank."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_015",
+    "category": "Aussagenlogik",
+    "question": "Eine Lampe leuchtet nur, wenn Schalter A an ist und Schalter B aus ist. Die Lampe leuchtet. Was folgt sicher?",
+    "answers": [
+      "A ist aus",
+      "B ist an",
+      "A ist an und B ist aus",
+      "A und B sind an",
+      "keine Aussage möglich"
+    ],
+    "correct": 2,
+    "correctText": "A ist an und B ist aus",
+    "explanation": "Leuchtet nur bei A an und B aus."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_016",
+    "category": "Verhältnislogik",
+    "question": "Bei einer Kontrolle sind doppelt so viele Helme wie Westen vorhanden. Nachdem 6 Helme ausgegeben wurden, sind es gleich viele Helme wie Westen. Wie viele Westen gab es?",
+    "answers": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "correct": 1,
+    "correctText": "6",
+    "explanation": "Helme H = 2W. Nach Ausgabe: H-6=W. Also 2W-6=W -> W=6."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_017",
+    "category": "Aussagenlogik",
+    "question": "Ein Lehrer sagt: „Mindestens einer von euch hat Aufgabe 4 falsch.“ Welche Beobachtung würde diese Aussage widerlegen?",
+    "answers": [
+      "eine Person hat Aufgabe 4 falsch",
+      "zwei Personen haben Aufgabe 4 falsch",
+      "niemand hat Aufgabe 4 falsch",
+      "alle haben Aufgabe 4 falsch",
+      "eine Person hat Aufgabe 3 falsch"
+    ],
+    "correct": 2,
+    "correctText": "niemand hat Aufgabe 4 falsch",
+    "explanation": "Mindestens einer falsch wird nur widerlegt, wenn niemand Aufgabe 4 falsch hat."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_018",
+    "category": "Verhältnislogik",
+    "question": "In einer Box sind Schrauben und Muttern. Es gibt 4 Muttern mehr als Schrauben. Zusammen sind es 30 Teile. Wie viele Schrauben sind in der Box?",
+    "answers": [
+      "11",
+      "12",
+      "13",
+      "14",
+      "17"
+    ],
+    "correct": 2,
+    "correctText": "13",
+    "explanation": "Schrauben s, Muttern s+4. 2s+4=30 -> s=13."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_020",
+    "category": "Aussagenlogik",
+    "question": "Ein Schloss öffnet mit einer dreistelligen Zahl. Die erste Ziffer ist halb so groß wie die zweite. Die dritte Ziffer ist die Summe der ersten beiden. Welche Zahl passt?",
+    "answers": [
+      "246",
+      "235",
+      "369",
+      "486",
+      "257"
+    ],
+    "correct": 0,
+    "correctText": "246",
+    "explanation": "Bei 246 ist 2 halb von 4 und 6 = 2+4."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_021",
+    "category": "Aussagenlogik",
+    "question": "Wenn ein Auftrag im System „rot“ markiert ist, muss er heute erledigt werden. Auftrag 14 muss heute erledigt werden. Was folgt sicher?",
+    "answers": [
+      "Auftrag 14 ist rot markiert",
+      "Auftrag 14 kann rot markiert sein",
+      "Auftrag 14 ist nicht rot",
+      "Alle heutigen Aufträge sind rot",
+      "Das System ist falsch"
+    ],
+    "correct": 1,
+    "correctText": "Auftrag 14 kann rot markiert sein",
+    "explanation": "Rot -> heute. Heute -> rot gilt nicht zwingend. Sicher ist nur: Er kann rot sein, muss aber nicht."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_022",
+    "category": "Verhältnislogik",
+    "question": "Ein Raum hat doppelt so viele Stühle wie Tische. Werden 4 Tische zusätzlich hineingestellt, gibt es gleich viele Tische wie Stühle. Wie viele Stühle waren zuerst im Raum?",
+    "answers": [
+      "4",
+      "6",
+      "8",
+      "10",
+      "12"
+    ],
+    "correct": 2,
+    "correctText": "8",
+    "explanation": "Stühle S=2T. Nach +4 Tischen: T+4=S=2T -> T=4, S=8."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_023",
+    "category": "Aussagenlogik",
+    "question": "Drei Kabel sind rot, blau und grün. Das rote ist länger als das blaue. Das grüne ist kürzer als das blaue. Welches Kabel ist am kürzesten?",
+    "answers": [
+      "rot",
+      "blau",
+      "grün",
+      "rot und blau",
+      "nicht bestimmbar"
+    ],
+    "correct": 2,
+    "correctText": "grün",
+    "explanation": "Rot > Blau > Grün. Grün ist am kürzesten."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_024",
+    "category": "Aussagenlogik",
+    "question": "In einer Prüfung gilt: Wer weniger als 50 Punkte hat, muss wiederholen. Jonas muss nicht wiederholen. Was folgt sicher?",
+    "answers": [
+      "Jonas hat genau 50 Punkte",
+      "Jonas hat mindestens 50 Punkte",
+      "Jonas hat über 50 Punkte",
+      "Jonas hat weniger als 50 Punkte",
+      "Die Regel gilt nicht"
+    ],
+    "correct": 1,
+    "correctText": "Jonas hat mindestens 50 Punkte",
+    "explanation": "Nicht wiederholen bedeutet nicht weniger als 50, also mindestens 50."
+  },
+  {
+    "file": "question-bank.js",
+    "id": "hm831_log_025",
+    "category": "Aussagenlogik",
+    "question": "Ein Lager hat 9 Regale. Jedes zweite Regal ist leer, beginnend mit Regal 2. Wie viele Regale sind nicht leer?",
+    "answers": [
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "correct": 1,
+    "correctText": "5",
+    "explanation": "Leer sind 2,4,6,8 = 4 Regale. Nicht leer sind 5."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_001",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Händler gewährt auf eine Ware im Wert von 400 € einen Rabatt von 15 %. Wie hoch ist der ermäßigte Preis?",
+    "answers": [
+      "340 €",
+      "360 €",
+      "350 €",
+      "330 €"
+    ],
+    "correct": 0,
+    "correctText": "340 €",
+    "explanation": "15 % von 400 € sind 60 € (400 * 0,15 = 60). Der neue Preis beträgt 400 € - 60 € = 340 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_002",
+    "category": "Kaufm. Rechnen",
+    "question": "Eine Rechnung über 1.200 € wird unter Abzug von 2 % Skonto bezahlt. Welcher Betrag muss überwiesen werden?",
+    "answers": [
+      "1.176 €",
+      "1.180 €",
+      "1.150 €",
+      "1.198 €"
+    ],
+    "correct": 0,
+    "correctText": "1.176 €",
+    "explanation": "2 % Skonto von 1.200 € sind 24 € (1.200 * 0,02 = 24). Der Überweisungsbetrag ist 1.200 € - 24 € = 1.176 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_003",
+    "category": "Kaufm. Rechnen",
+    "question": "Drei Kopierer benötigen für einen großen Druckauftrag 6 Stunden. Wie lange würden 4 Kopierer gleicher Leistung für denselben Auftrag benötigen?",
+    "answers": [
+      "4,5 Stunden",
+      "5 Stunden",
+      "4 Stunden",
+      "8 Stunden"
+    ],
+    "correct": 0,
+    "correctText": "4,5 Stunden",
+    "explanation": "Antiproportionaler Dreisatz: Gesamtleistung entspricht 3 Kopierer * 6 Stunden = 18 Kopiererstunden. 4 Kopierer benötigen 18 / 4 = 4,5 Stunden."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_004",
+    "category": "Kaufm. Rechnen",
+    "question": "Wie hoch ist der Bruttobetrag einer Dienstleistung, deren Nettopreis 850 € bei einem Umsatzsteuersatz von 19 % beträgt?",
+    "answers": [
+      "1.011,50 €",
+      "1.025,00 €",
+      "990,50 €",
+      "1.019,00 €"
+    ],
+    "correct": 0,
+    "correctText": "1.011,50 €",
+    "explanation": "Die Umsatzsteuer beträgt 19 % von 850 € = 161,50 €. Bruttobetrag: 850 € + 161,50 € = 1.011,50 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_005",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Artikel wird mit 25 % Gewinnspanne auf den Einstandspreis von 80 € kalkuliert. Wie hoch ist der Verkaufspreis ohne Steuern?",
+    "answers": [
+      "100 €",
+      "105 €",
+      "95 €",
+      "110 €"
+    ],
+    "correct": 0,
+    "correctText": "100 €",
+    "explanation": "Der Gewinnaufschlag beträgt 25 % auf den Einstandspreis (Selbstkosten). 80 € * 1,25 = 100 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_006",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Guthaben von 5.000 € wird zu einem Zinssatz von 1,5 % p.a. angelegt. Wie hoch sind die Zinsen nach 9 Monaten (ohne Zinseszins)?",
+    "answers": [
+      "56,25 €",
+      "75,00 €",
+      "50,00 €",
+      "62,50 €"
+    ],
+    "correct": 0,
+    "correctText": "56,25 €",
+    "explanation": "Jahreszins = 5.000 € * 0,015 = 75 €. Für 9 Monate (9/12 = 0,75 Jahre): 75 € * 0,75 = 56,25 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_007",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Büromöbelhersteller senkt den Verkaufspreis eines Schreibtisches um 10 % und gewährt bei Barzahlung nochmals 2 % Skonto. Wie hoch ist der Gesamtrabatt in Prozent?",
+    "answers": [
+      "11,8 %",
+      "12,0 %",
+      "11,5 %",
+      "10,8 %"
+    ],
+    "correct": 0,
+    "correctText": "11,8 %",
+    "explanation": "Ausgangswert sei 100. Nach 10 % Rabatt bleiben 90. Darauf 2 % Skonto (1,8). Verbleibend 88,2. Gesamtminderung ist 100 - 88,2 = 11,8 %."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_008",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Kopierer verbraucht in 30 Tagen bei durchschnittlicher Nutzung 4 Packungen Papier. Wie viele Packungen Papier werden hochgerechnet für 135 Tage benötigt?",
+    "answers": [
+      "18",
+      "16",
+      "20",
+      "15"
+    ],
+    "correct": 0,
+    "correctText": "18",
+    "explanation": "Proportionaler Dreisatz: 4 / 30 * 135 = 18 Packungen."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_009",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Großhändler kauft Ware für brutto 1.190 € (inkl. 19 % MwSt.). Wie viel Vorsteuer kann er beim Finanzamt geltend machen?",
+    "answers": [
+      "190 €",
+      "226,10 €",
+      "170 €",
+      "199 €"
+    ],
+    "correct": 0,
+    "correctText": "190 €",
+    "explanation": "Nettobetrag = Bruttobetrag / 1,19 = 1.190 / 1,19 = 1.000 €. Die Umsatzsteuer (Vorsteuer) beträgt demnach 190 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_010",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Mitarbeiter erhält 2.800 € Bruttogehalt. Davon werden 20 % für Lohnsteuer und 20 % für Sozialabgaben einbehalten. Wie hoch ist das Nettogehalt?",
+    "answers": [
+      "1.680 €",
+      "1.720 €",
+      "1.600 €",
+      "1.800 €"
+    ],
+    "correct": 0,
+    "correctText": "1.680 €",
+    "explanation": "Abzüge gesamt = 40 % (20% + 20%). Nettogehalt = 60 % von 2.800 € = 2.800 * 0,60 = 1.680 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_011",
+    "category": "Kaufm. Rechnen",
+    "question": "Für die Renovierung von 3 Büroräumen werden 5 Arbeiter für 4 Tage benötigt. Wie viele Tage brauchen 2 Arbeiter gleicher Arbeitsgeschwindigkeit?",
+    "answers": [
+      "10 Tage",
+      "8 Tage",
+      "6 Tage",
+      "12 Tage"
+    ],
+    "correct": 0,
+    "correctText": "10 Tage",
+    "explanation": "Gesamtaufwand: 5 Arbeiter * 4 Tage = 20 Personentage. 2 Arbeiter benötigen: 20 Personentage / 2 Arbeiter = 10 Tage."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_012",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Einzelhändler kalkuliert den Verkaufspreis einer Ware mit 30 % Handelsspanne auf den Netto-Verkaufspreis von 200 €. Wie hoch sind die Selbstkosten?",
+    "answers": [
+      "140 €",
+      "170 €",
+      "150 €",
+      "160 €"
+    ],
+    "correct": 0,
+    "correctText": "140 €",
+    "explanation": "Eine Handelsspanne von 30 % auf den Verkaufspreis von 200 € entspricht 60 €. Die Selbstkosten liegen bei 200 € - 60 € = 140 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_013",
+    "category": "Kaufm. Rechnen",
+    "question": "Eine Fracht kostet für 240 km Strecke 480 €. Wie viel kostet die Fracht für eine Strecke von 360 km unter der Annahme, dass ab 300 km ein Rabatt von 10 % auf den Gesamtpreis gewährt wird?",
+    "answers": [
+      "648 €",
+      "720 €",
+      "680 €",
+      "612 €"
+    ],
+    "correct": 0,
+    "correctText": "648 €",
+    "explanation": "Preis pro km = 480 € / 240 km = 2 €/km. Standardpreis für 360 km = 720 €. Da über 300 km: 10 % Rabatt auf 720 € = 72 €. Neuer Preis: 648 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_014",
+    "category": "Kaufm. Rechnen",
+    "question": "Eine Kaffeemaschine kostet brutto 119 € (inkl. 19 % MwSt.). Was kostet sie netto?",
+    "answers": [
+      "100 €",
+      "99 €",
+      "101 €",
+      "95 €"
+    ],
+    "correct": 0,
+    "correctText": "100 €",
+    "explanation": "Netto = Brutto / 1,19 = 119 € / 1,19 = 100 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_015",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Büromaterial-Lieferant liefert Schreibblöcke für 1,20 € netto das Stück. Bei Abnahme von über 100 Stück sinkt der Preis auf 1,00 € netto. Wie hoch ist die Ersparnis bei 120 Schreibblöcken im Vergleich zum Normalpreis?",
+    "answers": [
+      "24 €",
+      "20 €",
+      "12 €",
+      "16 €"
+    ],
+    "correct": 0,
+    "correctText": "24 €",
+    "explanation": "Normalpreis: 120 * 1,20 € = 144 €. Rabattpreis: 120 * 1,00 € = 120 €. Die Ersparnis beträgt 144 € - 120 € = 24 €."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_016",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Kaufmann erzielt einen Jahresumsatz von 1.500.000 € bei Gesamtkosten von 1.200.000 €. Wie hoch ist die Umsatzrendite in Prozent?",
+    "answers": [
+      "20 %",
+      "25 %",
+      "15 %",
+      "30 %"
+    ],
+    "correct": 0,
+    "correctText": "20 %",
+    "explanation": "Gewinn = Umsatz - Kosten = 300.000 €. Umsatzrendite = (Gewinn / Umsatz) * 100 = (300.000 / 1.500.000) * 100 = 20 %."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_017",
+    "category": "Kaufm. Rechnen",
+    "question": "Wie hoch ist der Zinssatz p.a., wenn eine Anlage von 10.000 € in einem halben Jahr 150 € Zinsen abwirft?",
+    "answers": [
+      "3,0 %",
+      "1,5 %",
+      "2,0 %",
+      "4,0 %"
+    ],
+    "correct": 0,
+    "correctText": "3,0 %",
+    "explanation": "Halbjahreszins = 150 € -> Jahreszins = 300 €. Zinssatz = (300 € / 10.000 €) * 100 = 3,0 % p.a."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_018",
+    "category": "Kaufm. Rechnen",
+    "question": "Ein Vorrat reicht bei 8 Personen für 15 Tage. Wie viele Tage reicht er bei 6 Personen?",
+    "answers": [
+      "20 Tage",
+      "18 Tage",
+      "16 Tage",
+      "22 Tage"
+    ],
+    "correct": 0,
+    "correctText": "20 Tage",
+    "explanation": "Gesamttage = 8 Personen * 15 Tage = 120 Tage. Für 6 Personen reicht der Vorrat 120 / 6 = 20 Tage."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_019",
+    "category": "Kaufm. Rechnen",
+    "question": "Eine Aktie steigt am ersten Tag um 10 % und fällt am zweiten Tag um 10 %. Wie hat sich der Wert der Aktie nach zwei Tagen verändert?",
+    "answers": [
+      "Um 1 % gesunken",
+      "Gleich geblieben",
+      "Um 1 % gestiegen",
+      "Um 2 % gesunken"
+    ],
+    "correct": 0,
+    "correctText": "Um 1 % gesunken",
+    "explanation": "Wert am Anfang = 100 %. Tag 1: 110 %. Tag 2: 110 % * 0,90 = 99 %. Der Wert ist somit um 1 % gesunken."
+  },
+  {
+    "file": "question-bank-kaufm.js",
+    "id": "km_rech_020",
+    "category": "Kaufm. Rechnen",
+    "question": "Eine Dienstleistung wird für 4.000 € kalkuliert. Der Kunde verhandelt 5 % Rabatt. Welcher Betrag steht nach Abzug des Rabatts auf der Rechnung?",
+    "answers": [
+      "3.800 €",
+      "3.900 €",
+      "3.750 €",
+      "3.850 €"
+    ],
+    "correct": 0,
+    "correctText": "3.800 €",
+    "explanation": "5 % von 4.000 € sind 200 €. Rechnungsbetrag: 4.000 € - 200 € = 3.800 €."
+  }
+]
