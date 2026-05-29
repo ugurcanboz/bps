@@ -1,0 +1,23 @@
+{
+  "id": "math_percent_001",
+  "type": "single",
+  "category": "Mathematik",
+  "difficulty": "mittel",
+  "tags": [
+    "prozentrechnung",
+    "ctc"
+  ],
+  "prompt": "Wie viel sind 20% von 150?",
+  "choices": [
+    "20",
+    "25",
+    "30",
+    "35"
+  ],
+  "answer": "30",
+  "explanation": "20% von 150 = 0,2 × 150 = 30",
+  "analytics": {
+    "skill": "percent",
+    "estimatedSeconds": 25
+  }
+}

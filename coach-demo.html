@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KI Coach V9.5.4 · Modul-Demo</title>
+  <link rel="stylesheet" href="./css/learning-coach.css?v=9.5.4">
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;min-height:100vh;background:#0f172a;color:#f8fafc;padding:24px;}
+    .demo-card{max-width:720px;margin:0 auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:24px;padding:22px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    button{border:0;border-radius:999px;padding:12px 16px;margin:6px;background:#f8fafc;color:#111827;font-weight:700;cursor:pointer}
+    pre{white-space:pre-wrap;background:rgba(0,0,0,.28);border-radius:16px;padding:14px;overflow:auto}
+  </style>
+  <script>
+    window.BPSLearningCoachConfig = {
+      autoMount:false,
+      injectHomeCard:false,
+      injectQuizButton:false,
+      patchAppHelp:false,
+      pauseAppTimer:false,
+      debug:true
+    };
+    window.TRAINER_BUILD_VERSION = 'coach-demo-v9.5.4';
+    window.App = {
+      getCurrentTask:function(){ return window.__demoTask; },
+      pauseTimer:function(){},
+      resumeTimer:function(){}
+    };
+  </script>
+  <script src="./data/question-bank.js"></script>
+  <script src="./data/question-bank-mathe.js"></script>
+  <script src="./data/question-bank-it-extra.js"></script>
+  <script src="./data/coach-knowledge-base.js?v=9.5.4"></script>
+  <script src="./js/learning-coach-engine.js?v=9.5.4"></script>
+  <script src="./js/learning-coach-ui.js?v=9.5.4"></script>
+</head>
+<body>
+  <main class="demo-card">
+    <h1>KI Coach V9.5.4 · Integration Demo</h1>
+    <p>Diese Seite testet das Coach-Modul ohne Haupt-App. Der Coach wird manuell initialisiert.</p>
+    <button onclick="BPSLearningCoach.init(); BPSLearningCoach.openHub();">Coach starten</button>
+    <button onclick="BPSLearningCoach.ask('Zeig mir meinen Fortschritt')">Status fragen</button>
+    <button onclick="BPSLearningCoach.startTraining('logic',4,5,'focus-5')">Logik-Fokus starten</button>
+    <button onclick="demoAnswer(true)">Demo-Antwort richtig melden</button>
+    <button onclick="demoAnswer(false)">Demo-Antwort falsch melden</button>
+    <button onclick="document.querySelector('#state').textContent=JSON.stringify(BPSLearningCoach.getState(),null,2)">State anzeigen</button>
+    <button onclick="BPSLearningCoach.destroy()">Destroy testen</button>
+    <pre id="state">Noch kein State geladen.</pre>
+  </main>
+  <script>
+    window.__demoTask = { id:'demo_series_1', cat:'Mathe', type:'Zahlenreihe', q:'2, 4, 8, 16, ?', a:['18','24','32','36'], correct:2, trap:'Addition statt Multiplikation vermutet' };
+    function demoAnswer(ok){
+      BPSLearningCoach.recordAnswer({cat:'Mathe', group:'Zahlenreihen', correct:ok, givenIndex:ok?2:1, correctIndex:2, duration: ok?7200:15100, allowed:20000}, window.__demoTask);
+      BPSLearningCoach.ask(ok ? 'Was war daran gut?' : 'Warum war das falsch?');
+    }
+  </script>
+</body>
+</html>
