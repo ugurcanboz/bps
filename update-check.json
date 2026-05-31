@@ -1,7 +1,0 @@
-{
-  "version": "10.5.1",
-  "date": "2026-05-30",
-  "message": "V10.5.1: Python Quest Integrationsanleitung ergänzt. Enthält Start-Guide, technische Kopplung mit KI-Coach, Level-Gating, QA-Checkliste, Level-Erweiterungsanleitung, Service-Worker-Update und Cache-Busting.",
-  "download": "./",
-  "label": "BPS-Trainer V10.5.1 Python Quest Integration Guide"
-}
