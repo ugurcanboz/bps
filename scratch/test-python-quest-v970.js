@@ -1,0 +1,25 @@
+// V9.7.0 Python Quest Phase 2 QA smoke test (run from project root with: node scratch/test-python-quest-v970.js)
+const fs = require('fs');
+const vm = require('vm');
+const store = {};
+const ctx = { console, window:{}, document:undefined, localStorage:{ getItem:k=>store[k]||null, setItem:(k,v)=>{store[k]=String(v)}, removeItem:k=>{delete store[k]} }, setTimeout, clearTimeout, Date, Math };
+ctx.window = ctx;
+vm.createContext(ctx);
+vm.runInContext(fs.readFileSync('data/python-quest-db.js','utf8'), ctx, {filename:'data/python-quest-db.js'});
+vm.runInContext(fs.readFileSync('js/learning-coach-engine.js','utf8'), ctx, {filename:'js/learning-coach-engine.js'});
+const db = ctx.PYTHON_QUEST_DB;
+const engine = ctx.BPSLearningCoachEngine;
+if(!db || db.levels.length !== 30) throw new Error('Python DB muss 30 Level enthalten');
+if(!engine || typeof engine.evaluatePythonSubmission !== 'function') throw new Error('Python Code-Coach fehlt');
+const l1 = db.levels[0];
+const l2 = db.levels[1];
+const good1 = '# Test\nname="Mira"\nziel="Python"\nprint("Hallo")\nprint(name)\nprint(ziel)';
+const bad1 = 'print("Hallo")';
+const good2 = '# Profilkarte\nname="Mira"\nalter=25\nstadt="Ulm"\nziel="Python"\nprint("\\033[36m====================\\033[0m")\nprint(f"Name: {name}")\nprint(f"Alter: {alter}")\nprint(f"Stadt: {stadt}")\nprint(f"Ziel: {ziel}")';
+const bad2 = '# Profil\nname="Mira"\nprint("Name:", name)';
+const r1 = engine.evaluatePythonSubmission({level:l1, exam:l1.finalExam, examType:'final', code:good1});
+const r2 = engine.evaluatePythonSubmission({level:l1, exam:l1.finalExam, examType:'final', code:bad1});
+const r3 = engine.evaluatePythonSubmission({level:l2, exam:l2.finalExam, examType:'final', code:good2});
+const r4 = engine.evaluatePythonSubmission({level:l2, exam:l2.finalExam, examType:'final', code:bad2});
+if(!r1.passed || r2.passed || !r3.passed || r4.passed) throw new Error('Pass/Fail-Logik fehlerhaft');
+console.log('V9.7.0 Python Quest Phase 2 QA ok', {l1:r1.score, l1bad:r2.score, l2:r3.score, l2bad:r4.score});

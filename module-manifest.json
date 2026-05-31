@@ -1,0 +1,55 @@
+{
+  "version": "10.5.1",
+  "module": "learning-coach-plus-python-quest",
+  "status": "python-quest-phase-10-integration-ready",
+  "entrypoints": {
+    "css": [
+      "css/learning-coach.css",
+      "css/python-quest.css"
+    ],
+    "data": [
+      "data/coach-knowledge-base.js",
+      "data/python-quest-db.js"
+    ],
+    "js": [
+      "js/learning-coach-engine.js",
+      "js/learning-coach-ui.js",
+      "js/python-quest-module.js"
+    ],
+    "docs": [
+      "docs/python-levels/python-level-01.pdf",
+      "docs/python-levels/python-level-02.pdf",
+      "docs/python-levels/python-level-03.pdf",
+      "docs/python-levels/python-level-04.pdf",
+      "docs/python-levels/python-level-05.pdf",
+      "docs/python-levels/python-level-06.pdf",
+      "docs/python-levels/python-level-07.pdf",
+      "docs/python-levels/python-level-08.pdf",
+      "docs/python-levels/python-level-09.pdf",
+      "docs/python-levels/python-level-10.pdf",
+      "PYTHON_QUEST_START_HERE.md",
+      "docs/PYTHON_QUEST_INTEGRATION_GUIDE.md",
+      "docs/PYTHON_QUEST_QA_CHECKLIST.md",
+      "docs/PYTHON_QUEST_LEVEL_AUTHORING_GUIDE.md"
+    ]
+  },
+  "api": {
+    "ui": "window.BPSLearningCoach",
+    "engine": "window.BPSLearningCoachEngine",
+    "pythonQuest": "window.PythonQuest",
+    "config": "window.BPSLearningCoachConfig",
+    "learningIntelligence": [
+      "normalizeTaskDNA",
+      "effectiveDifficulty",
+      "learningIntelligenceReport",
+      "dueSpacedItems",
+      "taskDebugInfo",
+      "lastDecisionLog",
+      "evaluatePythonSubmission",
+      "errorPathReport",
+      "sectionTrafficLight",
+      "masteryReport"
+    ]
+  },
+  "generated": "2026-05-30T11:30:00.000Z"
+}
