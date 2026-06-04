@@ -1,0 +1,14 @@
+{
+  "index_version": true,
+  "app_version": true,
+  "service_worker_cache": true,
+  "wordhub_shell_disabled_flag": true,
+  "wordhub_no_create_whshell": true,
+  "wordhub_hide_legacy_noop": true,
+  "app_default_home": true,
+  "app_neutralize_shell": true,
+  "app_removes_whshell": true,
+  "html_missing_refs": [],
+  "sw_missing_refs": [],
+  "timestamp": "2026-06-01T09:56:00+02:00"
+}

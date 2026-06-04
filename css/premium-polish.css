@@ -1,0 +1,380 @@
+/* Eignungstest-Trainer · UI-F1.7 Visual Polish & Regression Shield
+   Finaler optischer Schutz über der bestehenden Premium-Home-Struktur.
+   Ziel: einheitliche Premium-DNA, ruhige Animationen, keine Legacy-White-Cards. */
+
+:root{
+  --egt-glow-blue: 0 0 34px rgba(56,189,248,.22);
+  --egt-glow-purple: 0 0 34px rgba(217,70,239,.20);
+  --egt-glass-stroke: rgba(255,255,255,.10);
+  --egt-card-shadow: 0 20px 62px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.07);
+  --egt-motion-pop: cubic-bezier(.2,.9,.22,1);
+}
+
+html{scroll-behavior:smooth;}
+body.ui-f-premium-home-ready{
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  background-color:#020617!important;
+}
+
+/* App shell: old light app panels are visually neutralized only in premium context. */
+body.ui-f-premium-home-ready .app{
+  background:transparent!important;
+  box-shadow:none!important;
+  border:0!important;
+}
+
+body.ui-f-premium-home-ready #whShell{
+  isolation:isolate;
+  position:relative;
+}
+body.ui-f-premium-home-ready #whShell::before{
+  content:"";
+  position:fixed;
+  inset:-30% -20%;
+  z-index:-1;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 10%, rgba(14,165,233,.10), transparent 31%),
+    radial-gradient(circle at 78% 14%, rgba(168,85,247,.13), transparent 34%),
+    radial-gradient(circle at 54% 86%, rgba(59,130,246,.07), transparent 37%);
+  filter:saturate(1.05);
+}
+
+/* Header refinement */
+.wh-premium-header{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:linear-gradient(180deg,rgba(2,6,23,.80),rgba(2,6,23,.48) 72%,rgba(2,6,23,0));
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border-bottom:1px solid rgba(255,255,255,.045);
+}
+.wh-brand-logo{
+  filter:drop-shadow(0 0 14px rgba(56,189,248,.44));
+}
+.wh-app-name{
+  letter-spacing:-.055em!important;
+  text-shadow:0 8px 30px rgba(0,0,0,.35);
+}
+.wh-app-sub{letter-spacing:.01em;}
+.wh-login-btn{
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 18px 44px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+.wh-login-btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(110deg,transparent,rgba(255,255,255,.10),transparent);
+  transform:translateX(-120%);
+  transition:transform .75s var(--egt-motion-pop);
+}
+.wh-login-btn:hover::after{transform:translateX(120%);}
+
+/* Hero refinement */
+.wh-hero-premium{
+  box-shadow:
+    0 28px 86px rgba(0,0,0,.44),
+    0 0 0 1px rgba(59,130,246,.10),
+    inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+.wh-hero-premium::after{
+  content:"";
+  position:absolute;
+  left:10%; right:10%; bottom:-1px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(56,189,248,.45),rgba(217,70,239,.38),transparent);
+  opacity:.75;
+}
+.wh-hero-pill,
+.wh-hero-cta,
+.wh-premium-btn{
+  will-change:transform;
+}
+.wh-hero-cta{
+  position:relative;
+  overflow:hidden;
+}
+.wh-hero-cta::after{
+  content:"";
+  position:absolute;
+  inset:-40% -20%;
+  background:linear-gradient(100deg,transparent 34%,rgba(255,255,255,.28),transparent 66%);
+  transform:translateX(-120%) rotate(8deg);
+  transition:transform .9s var(--egt-motion-pop);
+}
+.wh-hero-cta:hover::after{transform:translateX(120%) rotate(8deg);}
+.wh-hero-cta:hover{filter:saturate(1.1) brightness(1.04);}
+.wh-hero-target{transform-origin:50% 50%;}
+
+/* Card DNA: unified depth, focus, hover and tap behaviour */
+.wh-training-area-card,
+.wh-quick-card,
+.wh-premium-banner,
+.wh-premium-panel{
+  box-shadow:var(--egt-card-shadow)!important;
+  transform:translateZ(0);
+  will-change:transform, box-shadow, border-color;
+}
+.wh-training-area-card,
+.wh-quick-card{
+  outline:0;
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+}
+.wh-training-area-card:hover,
+.wh-quick-card:hover{
+  transform:translateY(-4px) scale(1.012)!important;
+  border-color:color-mix(in srgb, var(--area-color,#38bdf8) 70%, white 8%)!important;
+}
+.wh-training-area-card:active,
+.wh-quick-card:active{
+  transform:translateY(0) scale(.975)!important;
+}
+.wh-training-area-card:focus-visible,
+.wh-quick-card:focus-visible,
+.wh-tab:focus-visible,
+.wh-hero-cta:focus-visible,
+.wh-login-btn:focus-visible,
+.wh-premium-btn:focus-visible{
+  outline:2px solid rgba(56,189,248,.62)!important;
+  outline-offset:3px!important;
+}
+.wh-area-icon,
+.wh-quick-icon{
+  position:relative;
+  transition:transform .22s var(--egt-motion-pop), filter .22s ease;
+}
+.wh-training-area-card:hover .wh-area-icon,
+.wh-quick-card:hover .wh-quick-icon{
+  transform:translateY(-2px) scale(1.06);
+  filter:drop-shadow(0 0 16px var(--area-glow,rgba(56,189,248,.26)));
+}
+.wh-training-area-card b,
+.wh-quick-card b{
+  text-wrap:balance;
+}
+
+/* Page entrance. Subtle, premium, not carnival. */
+body.ui-f-premium-home-ready .wh-hero-premium,
+body.ui-f-premium-home-ready .wh-section-title-block,
+body.ui-f-premium-home-ready .wh-training-area-card,
+body.ui-f-premium-home-ready .wh-quick-card,
+body.ui-f-premium-home-ready .wh-premium-banner{
+  animation:egt-rise-in .48s var(--egt-motion-pop) both;
+}
+body.ui-f-premium-home-ready .wh-training-area-card:nth-child(2){animation-delay:.04s;}
+body.ui-f-premium-home-ready .wh-training-area-card:nth-child(3){animation-delay:.08s;}
+body.ui-f-premium-home-ready .wh-training-area-card:nth-child(4){animation-delay:.12s;}
+body.ui-f-premium-home-ready .wh-quick-card:nth-child(2){animation-delay:.04s;}
+body.ui-f-premium-home-ready .wh-quick-card:nth-child(3){animation-delay:.08s;}
+body.ui-f-premium-home-ready .wh-quick-card:nth-child(4){animation-delay:.12s;}
+body.ui-f-premium-home-ready .wh-quick-card:nth-child(5){animation-delay:.16s;}
+body.ui-f-premium-home-ready .wh-quick-card:nth-child(6){animation-delay:.20s;}
+@keyframes egt-rise-in{
+  from{opacity:0; transform:translateY(14px) scale(.992);}
+  to{opacity:1; transform:translateY(0) scale(1);}
+}
+
+/* Bottom dock: keep the user's fixed solution, polish it without adding a huge overlay. */
+.wh-tabbar,
+body.ui-f-premium-home-ready #whTabBar{
+  width:min(600px, calc(100% - 28px))!important;
+  height:64px!important;
+  min-height:64px!important;
+  max-height:64px!important;
+  padding:6px!important;
+  background:linear-gradient(135deg,rgba(4,10,28,.84),rgba(10,9,33,.78))!important;
+  border-color:rgba(148,163,184,.16)!important;
+  box-shadow:0 18px 50px rgba(0,0,0,.52), inset 0 1px 0 rgba(255,255,255,.08)!important;
+}
+.wh-tab{
+  overflow:hidden!important;
+}
+.wh-tab::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  border-radius:18px!important;
+  background:radial-gradient(circle at 50% 0%,rgba(56,189,248,.16),transparent 64%)!important;
+  opacity:0!important;
+  transform:scale(.86)!important;
+  transition:opacity .2s ease, transform .22s var(--egt-motion-pop)!important;
+}
+.wh-tab:hover::before,
+.wh-tab.is-active::before{opacity:1!important;transform:scale(1)!important;}
+.wh-tab.is-active{
+  background:linear-gradient(135deg,rgba(14,165,233,.18),rgba(37,99,235,.12))!important;
+}
+.wh-tab-icon,
+.wh-tab-label{position:relative;z-index:1;}
+
+/* Content spacing: enough room for fixed dock but no visual block. */
+.wh-premium-home,
+body.ui-f-premium-home-ready .wh-home-scroll,
+body.ui-f-premium-home-ready .wh-tab-content{
+  padding-bottom:calc(102px + env(safe-area-inset-bottom,0px))!important;
+}
+
+/* Legacy screen visual shield: prevents white/light leftovers when switching screens. */
+body.ui-f-premium-home-ready #quiz,
+body.ui-f-premium-home-ready #result,
+body.ui-f-premium-home-ready #analysis,
+body.ui-f-premium-home-ready #memory,
+body.ui-f-premium-home-ready #blockIntro{
+  background:linear-gradient(135deg,rgba(8,18,39,.92),rgba(15,23,42,.82))!important;
+  color:#f8fafc!important;
+  border:1px solid rgba(96,165,250,.16)!important;
+  border-radius:26px!important;
+  box-shadow:var(--egt-card-shadow)!important;
+  width:min(1180px, calc(100% - 36px))!important;
+  margin:18px auto calc(105px + env(safe-area-inset-bottom,0px))!important;
+  padding:24px!important;
+}
+body.ui-f-premium-home-ready #result h2,
+body.ui-f-premium-home-ready #analysis h2,
+body.ui-f-premium-home-ready #memory h2{
+  color:#f8fafc!important;
+}
+body.ui-f-premium-home-ready input,
+body.ui-f-premium-home-ready select,
+body.ui-f-premium-home-ready textarea{
+  background:rgba(2,6,23,.62)!important;
+  color:#f8fafc!important;
+  border-color:rgba(148,163,184,.18)!important;
+}
+
+/* Admin portal visual consistency when opened over premium home. */
+.admin-sheet,
+.admin-portal,
+.admin-card,
+.participant-card{
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+}
+
+@media (min-width: 1220px){
+  .wh-premium-header,
+  .wh-home-scroll,
+  .wh-tab-content{width:min(1180px, calc(100% - 80px))!important;}
+}
+
+@media (max-width: 700px){
+  .wh-tabbar,
+  body.ui-f-premium-home-ready #whTabBar{
+    width:calc(100% - 18px)!important;
+    height:66px!important;
+    min-height:66px!important;
+    max-height:66px!important;
+    bottom:calc(8px + env(safe-area-inset-bottom,0px))!important;
+    border-radius:24px!important;
+  }
+  .wh-tab-label{font-size:10.5px!important;}
+  .wh-premium-home,
+  body.ui-f-premium-home-ready .wh-home-scroll,
+  body.ui-f-premium-home-ready .wh-tab-content{padding-bottom:calc(94px + env(safe-area-inset-bottom,0px))!important;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+    transition-duration:.01ms!important;
+  }
+}
+
+/* UI-F1.8 · Seamless Background & Transparent Graphic Fix
+   Entfernt sichtbare rechteckige Hintergrund-Balken in Header/Grafik-Bereichen. */
+body.ui-f-premium-home-ready,
+body.ui-f-premium-home-ready .wh-premium-home{
+  background:
+    radial-gradient(circle at 78% 4%, rgba(88,28,135,.30), transparent 39%),
+    radial-gradient(circle at 12% 12%, rgba(14,165,233,.17), transparent 35%),
+    linear-gradient(135deg,#020617 0%,#08111f 44%,#08051a 100%) !important;
+  background-attachment: fixed !important;
+  background-size: 100vw 100vh !important;
+  background-position: center top !important;
+}
+
+/* Keine zweite feste Hintergrundebene mehr: sie erzeugte seitliche Balken/Kanten. */
+body.ui-f-premium-home-ready #whShell::before{
+  display:none !important;
+  content:none !important;
+}
+
+/* Header soll über dem Hintergrund schweben, nicht als sichtbarer Block wirken. */
+body.ui-f-premium-home-ready .wh-premium-header{
+  background: transparent !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Hero-Grafik darf keinen rechteckigen Bild-Hintergrund zeigen. */
+body.ui-f-premium-home-ready .wh-hero-art,
+body.ui-f-premium-home-ready .wh-hero-target,
+body.ui-f-premium-home-ready .wh-hero-target svg,
+body.ui-f-premium-home-ready .wh-hero-target img{
+  background: transparent !important;
+}
+
+/* UI-F1.9 · Trackpad/Touchpad Scroll Fix
+   Chrome/Windows darf die Premium-Home-Seite nicht durch alte fixed/overflow-Layer blockieren. */
+html:has(body.ui-f-premium-home-ready),
+body.ui-f-premium-home-ready{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  height:auto!important;
+  min-height:100%!important;
+  touch-action:pan-y!important;
+  overscroll-behavior-y:auto!important;
+}
+body.ui-f-premium-home-ready .wh-premium-home,
+body.ui-f-premium-home-ready #whShell,
+body.ui-f-premium-home-ready .wh-home-scroll{
+  overflow:visible!important;
+  touch-action:pan-y!important;
+  overscroll-behavior-y:auto!important;
+}
+body.ui-f-premium-home-ready .wh-tabbar,
+body.ui-f-premium-home-ready #whTabBar{
+  touch-action:manipulation!important;
+}
+
+/* UI-F2.3 · Interaction Cleanup
+   Deko-Layer dürfen keine iPad-/Touch-Taps verschlucken. */
+body.ui-f-premium-home-ready .wh-hero-visual,
+body.ui-f-premium-home-ready .wh-hero-visual *,
+body.ui-f-premium-home-ready .wh-area-icon,
+body.ui-f-premium-home-ready .wh-area-icon *,
+body.ui-f-premium-home-ready .wh-quick-icon,
+body.ui-f-premium-home-ready .wh-quick-icon *,
+body.ui-f-premium-home-ready .wh-tab-icon,
+body.ui-f-premium-home-ready .wh-tab-icon *,
+body.ui-f-premium-home-ready .wh-training-area-card::before,
+body.ui-f-premium-home-ready .wh-training-area-card::after,
+body.ui-f-premium-home-ready .wh-quick-card::before,
+body.ui-f-premium-home-ready .wh-quick-card::after,
+body.ui-f-premium-home-ready .wh-hero-premium::before{
+  pointer-events:none !important;
+}
+
+body.ui-f-premium-home-ready [data-wh-action],
+body.ui-f-premium-home-ready .wh-tab[data-tab]{
+  pointer-events:auto !important;
+  touch-action:manipulation !important;
+  -webkit-tap-highlight-color:transparent !important;
+  user-select:none !important;
+  -webkit-user-select:none !important;
+}
+
+body.ui-f-premium-home-ready [data-wh-action] > *,
+body.ui-f-premium-home-ready .wh-tab[data-tab] > *{
+  pointer-events:none !important;
+}

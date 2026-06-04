@@ -1,0 +1,11 @@
+{
+  "version": "G22.4-HARD-UI-PURGE-2026-06-01",
+  "checks": {
+    "html_missing_refs": [],
+    "service_worker_missing_refs": [],
+    "forbidden_active_hits": {},
+    "notes": [
+      "v901 localStorage keys intentionally kept for data continuity; not UI loading."
+    ]
+  }
+}

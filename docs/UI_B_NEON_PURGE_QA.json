@@ -1,0 +1,35 @@
+{
+  "version": "UI-B-NEON-PURGE-2026-06-01",
+  "base": "Eignungstest-Trainer-UI-B-Card-Layout-System.zip",
+  "kept_ui": [
+    "Neon Hero",
+    "UI-B Card Layout",
+    "Dark Glassmorphism",
+    "Neon Bottom Dock",
+    "assets/ui hero target and icons"
+  ],
+  "removed_active_tokens": [
+    "Guten Tag",
+    "Bronze",
+    "KI sammelt Daten",
+    "hub-grid",
+    "hub-card",
+    "wordhub",
+    "whShell",
+    "whGrid",
+    "whTabBar",
+    "deep-sheet-controller",
+    "ui-c-* dashboard hero",
+    "card-hero"
+  ],
+  "qa": {
+    "js_syntax": "ok",
+    "service_worker_syntax": "ok",
+    "css_braces": "ok",
+    "missing_references": 0,
+    "old_active_design_tokens": 0,
+    "kaufm_groups": "52/52 Kaufmännisch",
+    "sozial_groups": "20/20 Sozialpädagogik",
+    "it_groups": "15/15 IT/FISI"
+  }
+}
