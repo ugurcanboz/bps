@@ -1,0 +1,10 @@
+{
+  "version": "G34.2",
+  "latest": "G34.2",
+  "required": false,
+  "force": false,
+  "label": "G34.2 Login/Profile Hotfix",
+  "release": "Duelle werden ohne Fake-Daten vorbereitet. Profil zeigt Sync-Status, Firebase/Offline-Warteschlange ist vorbereitet und Coach-/Versuchsdaten können nach Verbindungsrückkehr übertragen werden.",
+  "build": "G34.2-LOGIN-PROFILE-HOTFIX-2026-06-08",
+  "cache": "bps-trainer-g342-login-profile-hotfix"
+}

@@ -1,0 +1,20 @@
+{
+  "build": "G33.1-FIREBASE-ACCESS-CODE-SHELL-2026-06-08",
+  "scope": "Phase 2-4 Auth/Profile + Firebase access code shell",
+  "checks": [
+    "Auth/Profile shell loads from index.html",
+    "EGTUserDatabase exposes redeemAccessCode",
+    "Unknown access code does not create fake rights",
+    "Nickname is required for access-code registration",
+    "Existing training/highscore/progress code was not refactored",
+    "Service worker caches new report files"
+  ],
+  "manualTests": [
+    "Open app and tap Login/Profile",
+    "Open Zugangscode sheet",
+    "Submit empty nickname and expect validation error",
+    "Submit unknown code without Firebase and expect error",
+    "Start Demo and verify soft session only",
+    "Open Üben, Fortschritt and Highscore after Auth/Profile changes"
+  ]
+}
