@@ -1,0 +1,11 @@
+{
+  "version": "G26.1",
+  "focus": "Systeminfo TaskCount Fix",
+  "checks": {
+    "taskCountCountsFlatObjects": true,
+    "taskCountSupportsNestedArrays": true,
+    "questionBankQualityAuditFallback": true,
+    "neonHomeChanged": false,
+    "portalRightsChanged": false
+  }
+}
