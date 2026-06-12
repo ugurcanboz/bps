@@ -1,0 +1,11 @@
+{
+  "version": "G26",
+  "focus": "Systeminfo & Diagnose",
+  "checks": {
+    "neon_home_touched": false,
+    "system_cards_added": true,
+    "diagnostics_text_added": true,
+    "copy_diagnostics_added": true,
+    "cache_name_updated": "bps-trainer-g26-systeminfo-diagnose"
+  }
+}
