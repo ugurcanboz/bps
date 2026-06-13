@@ -1,0 +1,38 @@
+{
+  "name": "Eignungstest-Trainer",
+  "short_name": "Eignungstest",
+  "description": "Eignungstest-Trainer PWA mit Auth/Profile Shell, Firebase UserDatabase und Zugangscode-Einlösung",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#020617",
+  "background_color": "#020617",
+  "icons": [
+    {
+      "src": "./icons/icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "version": "G38.0"
+}

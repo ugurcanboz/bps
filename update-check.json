@@ -1,0 +1,10 @@
+{
+  "version": "G38.0-STABLE-2026-06-13",
+  "latest": "G38.0-STABLE-2026-06-13",
+  "required": false,
+  "force": false,
+  "label": "G38.0 Stable: stabilisierte, bereinigte Version. Toter Code entfernt, Selbstdiagnose ohne Fehlalarme, Intro-Video integriert, network-first Cache.",
+  "release": "Stabilisierungsrunde: Architektur-Selbstprüfung präzisiert (keine Fehlalarme bei offenem Overlay), Boot/alle Tabs/Flows fehlerfrei verifiziert, Versionen vereinheitlicht.",
+  "build": "G38.0-STABLE-2026-06-13",
+  "cache": "bps-trainer-g380-stable"
+}
