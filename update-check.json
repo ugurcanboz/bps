@@ -1,9 +1,0 @@
-{
-  "version": "G54.7-2026-06-16",
-  "latest": "G54.7-2026-06-16",
-  "required": true,
-  "force": false,
-  "label": "G54.7: Supabase-Cloud-Highscore aktiviert (geraeteuebergreifende Ranglisten)",
-  "build": "G54.7-2026-06-16",
-  "cache": "egt-trainer-g54-7"
-}
