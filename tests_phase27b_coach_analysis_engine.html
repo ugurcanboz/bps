@@ -1,0 +1,23 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Phase 27B Coach Analyse Engine Test</title></head><body>
+<h1>Phase 27B Coach Analyse Engine Test</h1>
+<pre id="out">läuft…</pre>
+<script>
+(async function(){
+  const out=document.getElementById('out');
+  function ok(name, cond){ if(!cond) throw new Error('FAIL: '+name); return 'PASS: '+name; }
+  const js=await fetch('./js/modules/language-course-entry-module.js').then(r=>r.text());
+  const css=await fetch('./css/language-course.css').then(r=>r.text());
+  const checks=[];
+  checks.push(ok('Version 27B vorhanden', js.includes('phase27b-coach-analysis-v1')));
+  checks.push(ok('Coach TaskType Breakdown vorhanden', js.includes('coachTaskTypeBreakdown')));
+  checks.push(ok('Coach Lesson Breakdown vorhanden', js.includes('coachLessonBreakdown')));
+  checks.push(ok('Datenqualität vorhanden', js.includes('coachDataQuality')));
+  checks.push(ok('Evidence UI vorhanden', js.includes('coachEvidenceHtml')));
+  checks.push(ok('Coach Plan UI vorhanden', js.includes('coachPlanHtml')));
+  checks.push(ok('Phase 27B Panel Marker vorhanden', js.includes('data-la-coach-panel="phase27b"')));
+  checks.push(ok('CSS Evidence vorhanden', css.includes('.la-coach-evidence')));
+  checks.push(ok('CSS Row List vorhanden', css.includes('.la-coach-row-list')));
+  checks.push(ok('Diagnose Phase 27B vorhanden', js.includes("phase:'27B'")));
+  out.textContent=checks.join('\n')+'\n\nPhase 27B: PASS';
+})().catch(e=>{document.getElementById('out').textContent=e.stack||String(e);});
+</script></body></html>

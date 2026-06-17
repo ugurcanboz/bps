@@ -1,0 +1,14 @@
+{
+  "version": "G28",
+  "feature": "Export und Berichte",
+  "checks": {
+    "admin_reports_tab": true,
+    "dozent_reports_tab": true,
+    "admin_exports_all_visible": true,
+    "dozent_exports_assigned_only": true,
+    "csv_export": true,
+    "json_export": true,
+    "help_export": true,
+    "copy_report": true
+  }
+}

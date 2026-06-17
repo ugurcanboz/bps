@@ -1,0 +1,44 @@
+{
+  "version": "G46.0",
+  "phase": "8",
+  "title": "Quiz-Orchestrator-Grenze",
+  "status": "static-check-passed",
+  "changedRuntimeLogic": true,
+  "changedCss": false,
+  "changedAuth": false,
+  "changedFirebase": false,
+  "changedHighscore": false,
+  "changedCoach": false,
+  "checks": {
+    "jsSyntax": {
+      "status": "passed",
+      "files": 64
+    },
+    "jsonValid": {
+      "status": "passed",
+      "files": 66
+    },
+    "serviceWorkerAssets": {
+      "status": "passed",
+      "assets": 194,
+      "missing": 0
+    },
+    "zipIntegrity": {
+      "status": "passed",
+      "file": "Eignungstest-Trainer-G46.0-Phase8-Quiz-Orchestrator.zip"
+    }
+  },
+  "manualTestFocus": [
+    "Simulationen IT/FISI, Kaufmännisch, Sozialpädagogik starten",
+    "MatrixOnlySprint starten, falls erreichbar",
+    "CTC/CTC-Lohr Reihenfolge prüfen",
+    "Gedächtnis-/Memory-Anteil prüfen",
+    "Keine leeren Quizsets",
+    "Ergebnis weiterhin erreichbar"
+  ],
+  "notes": [
+    "buildQuiz() ist Wrapper über EGTQuizOrchestrator.build(ctx).",
+    "buildQuizInternal() bleibt als Fallback erhalten.",
+    "generateQuestionForMode() wurde bewusst nicht verschoben."
+  ]
+}

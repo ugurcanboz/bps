@@ -1,0 +1,17 @@
+{
+  "build": "G33.5-DEMO-GATES-HIGHSCORE-PROFILE-2026-06-08",
+  "checks": [
+    "demo-session-starts",
+    "demo-max-2-simulations",
+    "feature-gates-present",
+    "highscore-identity-profile-bound",
+    "no-avatar-upload",
+    "js-syntax-clean"
+  ],
+  "manualTests": [
+    "Demo starten -> Profil zeigt verbleibende Simulationen",
+    "Demo -> Üben/Coach/Fortschritt gesperrt",
+    "Demo -> Simulation starten erlaubt bis 2 Abschlüsse",
+    "Zugangscode-Profil -> Highscore nutzt Nickname"
+  ]
+}
