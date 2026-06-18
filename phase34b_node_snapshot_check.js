@@ -1,0 +1,38 @@
+const fs=require('fs');
+const path=require('path');
+global.window=global;
+global.document={querySelector(){return null;},querySelectorAll(){return[];},addEventListener(){},createElement(){return {style:{},classList:{add(){},remove(){},toggle(){}},dataset:{},setAttribute(){},appendChild(){},querySelector(){return null;},querySelectorAll(){return[];},innerHTML:''};},body:{appendChild(){}}};
+global.navigator={userAgent:'Node QA Phase34B'};
+global.localStorage={_:{},getItem(k){return this._[k]||null},setItem(k,v){this._[k]=String(v)},removeItem(k){delete this._[k]}};
+global.AppModuleHost={register(){},listModules(){return [{id:'language-course-entry'}]}};
+global.EGTUILayer={openDeepSheet(){return true}};
+global.speechSynthesis={speak(){},cancel(){},getVoices(){return[]}};
+const vm=require('vm');
+const code=fs.readFileSync(path.join(__dirname,'js/modules/language-course-entry-module.js'),'utf8');
+vm.runInThisContext(code,{filename:'language-course-entry-module.js'});
+const api=global.LanguageAcademyCourseEntry;
+const c1=api.c1ContentSnapshot();
+const b2=api.b2ContentSnapshot();
+const b1=api.b1ContentSnapshot();
+const a2=api.a2ContentSnapshot();
+const diag=api.diagnostics();
+const errors=[];
+if(!c1.ok) errors.push('C1 content not ok');
+if(c1.phase!=='34B') errors.push('phase not 34B');
+if(c1.lessons!==10) errors.push('C1 lessons invalid');
+if(c1.expandedLessons!==5 || c1.starterLessons!==5) errors.push('C1 expansion split invalid');
+if(c1.totalTasks!==275 || c1.normalTasks!==215 || c1.speakingTasks!==60) errors.push('C1 totals invalid');
+Object.entries(c1.perLesson||{}).forEach(([id,row])=>{
+  if(!row.ok) errors.push(id+': '+JSON.stringify(row));
+  if(row.expandedContent && (row.tasks!==43 || row.speakingTasks!==8 || row.normalTasks!==35)) errors.push(id+' expanded counts invalid: '+JSON.stringify(row));
+  if(!row.expandedContent && (row.tasks!==12 || row.speakingTasks!==4 || row.normalTasks!==8)) errors.push(id+' starter counts invalid: '+JSON.stringify(row));
+});
+if(!b2.ok || b2.totalTasks!==430 || b2.speakingTasks!==80) errors.push('B2 regression invalid');
+if(!b1.ok || b1.totalTasks!==430 || b1.speakingTasks!==80) errors.push('B1 regression invalid');
+if(!a2.ok || a2.totalTasks!==430 || a2.speakingTasks!==80) errors.push('A2 regression invalid');
+if(!diag.c1Content || !diag.c1Content.ok) errors.push('diagnostics missing c1Content');
+
+const result={pass:errors.length===0,errors,c1:{ok:c1.ok,phase:c1.phase,lessons:c1.lessons,expandedLessons:c1.expandedLessons,starterLessons:c1.starterLessons,totalTasks:c1.totalTasks,normalTasks:c1.normalTasks,speakingTasks:c1.speakingTasks},b2:{ok:b2.ok,totalTasks:b2.totalTasks,speakingTasks:b2.speakingTasks},b1:{ok:b1.ok,totalTasks:b1.totalTasks,speakingTasks:b1.speakingTasks},a2:{ok:a2.ok,totalTasks:a2.totalTasks,speakingTasks:a2.speakingTasks},diagnostics:{phase:diag.phase,version:diag.version,hasC1Content:!!diag.c1Content}};
+fs.writeFileSync(path.join(__dirname,'phase34b_node_snapshot_result.json'), JSON.stringify(result,null,2));
+if(errors.length){ console.error(JSON.stringify(result,null,2)); process.exit(1); }
+console.log('PASS phase34B snapshot', JSON.stringify(result.c1,null,2));

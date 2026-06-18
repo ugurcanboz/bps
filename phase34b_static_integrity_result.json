@@ -1,0 +1,16 @@
+{
+  "pass": true,
+  "checks": {
+    "version_g5426": true,
+    "c1_content_snapshot": true,
+    "phase34b_expansion_ids": true,
+    "phase34b_expanded_tasks": true,
+    "phase34b_ensure": true,
+    "app_config_g5426": true,
+    "service_worker_cache": true,
+    "manifest_version": true,
+    "update_check": true,
+    "test_file": true,
+    "docs_file": true
+  }
+}

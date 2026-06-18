@@ -1,0 +1,26 @@
+{
+  "phase": "38B.2",
+  "title": "Groq Frontend Integration",
+  "status": "passed",
+  "date": "2026-06-17",
+  "workerUrl": "https://bps.ugurcan-boz.workers.dev",
+  "implemented": [
+    "Frontend-Konfiguration ohne Secrets",
+    "Language AI Client für Cloudflare Worker",
+    "KI-Coach UI nutzt Groq Live-Coach zuerst",
+    "Lokaler Coach bleibt als Fallback aktiv",
+    "Health-Test, Live-Test, Remote/Lokal-Umschalter",
+    "Service-Worker-Cache aktualisiert"
+  ],
+  "security": {
+    "apiKeyInFrontend": false,
+    "workerOnly": true,
+    "fallbackAvailable": true
+  },
+  "checks": {
+    "staticIntegrity": "passed",
+    "nodeSyntax": "passed",
+    "manualWorkerHealthPreviouslyConfirmedByUser": true
+  },
+  "knownNote": "Die hochgeladene Ausgangs-ZIP enthielt ein beschädigtes PNG assets/logic/zugehoerigkeiten1_3.png; es wurde ein sicherer Platzhalter eingefügt, damit der ZIP-Build vollständig bleibt."
+}
