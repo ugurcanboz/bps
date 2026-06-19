@@ -1,0 +1,32 @@
+{
+  "phase": "24B",
+  "name": "Language Course Visible Entry",
+  "status": "PASS",
+  "checks": [
+    {
+      "id": "home_card",
+      "status": "PASS",
+      "detail": "Sprachkurs-Kachel auf Startseite ergänzt"
+    },
+    {
+      "id": "quick_card",
+      "status": "PASS",
+      "detail": "Sprachkurs im Schnellzugriff ergänzt"
+    },
+    {
+      "id": "router_actions",
+      "status": "PASS",
+      "detail": "language-course-open/levels/settings geroutet"
+    },
+    {
+      "id": "deep_sheet",
+      "status": "PASS",
+      "detail": "Sprachkurs-Dashboard öffnet über bestehendes Deep-Sheet"
+    },
+    {
+      "id": "no_ctc_touch",
+      "status": "PASS",
+      "detail": "CTC, Highscore, Admin, Supabase/Firebase nicht verändert"
+    }
+  ]
+}
