@@ -1,0 +1,111 @@
+{
+  "pass": true,
+  "errors": [],
+  "b1": {
+    "ok": true,
+    "phase": "32C",
+    "level": "b1",
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "lessons": 10,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "expandedLessonTarget": {
+      "tasks": 43,
+      "speaking": 8
+    },
+    "perLesson": {
+      "b1-opinions-discussion": {
+        "title": "Meinung & Diskussion",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-work-communication": {
+        "title": "Kommunikation im Beruf",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-experience-past": {
+        "title": "Erfahrungen erzählen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-problems-solutions": {
+        "title": "Probleme & Lösungen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-media-information": {
+        "title": "Medien & Informationen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-education-plans": {
+        "title": "Bildung & Lernen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-travel-report": {
+        "title": "Reisen & Berichten",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-health-lifestyle": {
+        "title": "Gesundheit & Lebensstil",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-official-service": {
+        "title": "Amt & Service",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "b1-future-goals": {
+        "title": "Zukunft & Ziele",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      }
+    },
+    "parallelBuildPolicy": {
+      "active": true,
+      "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+    },
+    "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  }
+}
