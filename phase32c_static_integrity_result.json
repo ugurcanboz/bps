@@ -1,0 +1,14 @@
+{
+  "pass": true,
+  "errors": [],
+  "checkedFiles": 6,
+  "markers": [
+    "G54.19-phase32c",
+    "b1ContentSnapshot",
+    "phase:'32C'",
+    "total===430",
+    "speaking===80",
+    "b1-education-plans",
+    "b1-future-goals"
+  ]
+}

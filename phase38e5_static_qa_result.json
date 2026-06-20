@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "checks": {
+    "phase_38e5": true,
+    "evaluateMiniTraining": true,
+    "progress_key": true,
+    "loadTrainingProgress_export": true,
+    "trainingProgressSummaryHtml": true,
+    "mini_answer_fields": true,
+    "mini_check_fields": true,
+    "mini_evaluate_action": true,
+    "mini_reset_action": true,
+    "persist_on_finish": true,
+    "dashboard_progress_summary": true,
+    "css_progress_blocks": true
+  }
+}

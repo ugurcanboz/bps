@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "errors": [],
+  "b2": {
+    "ok": true,
+    "phase": "33C",
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "33C",
+    "version": "G54.23-phase33c-b2-lessons-6-10-content-speaking-expansion",
+    "hasB2Content": true
+  }
+}

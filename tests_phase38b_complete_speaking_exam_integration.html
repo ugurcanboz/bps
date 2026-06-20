@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 38B · Speaking AI Complete Test</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:20px;background:#f8fafc;color:#0f172a}main{max-width:980px;margin:auto}.card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 10px 30px rgba(15,23,42,.06)}textarea,input,select{width:100%;box-sizing:border-box;margin:6px 0 12px;padding:10px;border:1px solid #cbd5e1;border-radius:12px}button{border:0;border-radius:999px;padding:10px 14px;font-weight:700;background:#2563eb;color:#fff;margin:4px;cursor:pointer}.secondary{background:#e2e8f0;color:#0f172a}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:14px;padding:14px;overflow:auto}.ok{color:#047857;font-weight:700}.warn{color:#b45309;font-weight:700}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}@media(max-width:720px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Phase 38B · Speaking AI Complete Test</h1>
+  <p>Testet Cloudflare/Groq-Verbindung, Trainingsbewertung und Prüfungsbewertung inklusive Abschweif-Erkennung.</p>
+
+  <section class="card">
+    <h2>1. Client-Status</h2>
+    <button id="health">Worker prüfen</button>
+    <span id="clientStatus">wartet …</span>
+  </section>
+
+  <section class="card">
+    <h2>2. Prüfungsbewertung</h2>
+    <div class="grid">
+      <label>Niveau<select id="level"><option>A1</option><option>A2</option><option selected>B1</option><option>B2</option><option>C1</option><option>C2</option></select></label>
+      <label>Thema<input id="topic" value="Arzttermin verschieben"></label>
+    </div>
+    <label>Antwort des Teilnehmers<textarea id="userText" rows="5">Guten Tag, ich möchte meinen Termin verschieben, weil ich morgen arbeiten muss. Haben Sie am Freitag einen freien Termin?</textarea></label>
+    <button id="exam">/api/exam-speaking testen</button>
+    <button id="training" class="secondary">/api/speaking testen</button>
+    <button id="offtopic" class="secondary">Abschweifen-Test einsetzen</button>
+  </section>
+
+  <section class="card">
+    <h2>Ausgabe</h2>
+    <pre id="output">Noch kein Test gestartet.</pre>
+  </section>
+</main>
+<script src="data/language-ai-config.js"></script>
+<script src="js/modules/language-ai-client.js"></script>
+<script src="js/modules/language-speaking-ai-client.js"></script>
+<script>
+(function(){
+  const out=document.getElementById('output');
+  const status=document.getElementById('clientStatus');
+  function show(data){ out.textContent=typeof data==='string'?data:JSON.stringify(data,null,2); }
+  function payload(){ return { level:level.value, topic:topic.value, userText:userText.value, requiredPoints:['höfliche Begrüßung','Termin verschieben','Grund nennen','neuen Termin vorschlagen','passende Verabschiedung'] }; }
+  status.innerHTML = window.LanguageSpeakingAI ? '<span class="ok">LanguageSpeakingAI geladen</span>' : '<span class="warn">LanguageSpeakingAI fehlt</span>';
+  health.onclick=async()=>{ try{ show(await window.EGTLanguageAIClient.health()); status.innerHTML='<span class="ok">Worker erreichbar</span>'; }catch(e){ show('Fehler: '+e.message); status.innerHTML='<span class="warn">Fallback/Fehler</span>'; }};
+  exam.onclick=async()=>{ show('Prüfungsbewertung läuft …'); try{ show(await window.LanguageSpeakingAI.checkExamSpeaking(payload())); }catch(e){ show('Fehler: '+e.message); } };
+  training.onclick=async()=>{ show('Trainingsbewertung läuft …'); try{ show(await window.LanguageSpeakingAI.checkSpeaking(payload())); }catch(e){ show('Fehler: '+e.message); } };
+  offtopic.onclick=()=>{ userText.value='Ich spiele gerne Fußball und esse Pizza mit meinen Freunden. Am Wochenende schaue ich Filme.'; };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "phase": "39B",
+  "checks": {
+    "no_admin_touchmove_manual_scroll": true,
+    "no_admin_wheel_manual_scroll": true,
+    "native_scroll_class": true,
+    "mobile_perf_media": true,
+    "webkit_touch_scroll": true,
+    "backdrop_removed_mobile": true,
+    "touch_targets_48": true,
+    "nested_scroll_reduced": true,
+    "doc_exists": true,
+    "test_exists": true
+  }
+}

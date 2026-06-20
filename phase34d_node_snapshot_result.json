@@ -1,0 +1,44 @@
+{
+  "pass": true,
+  "errors": [],
+  "qaSummary": {
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "duplicateTaskIds": 0,
+    "missingRequired": 0
+  },
+  "c1": {
+    "ok": true,
+    "phase": "34C",
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80
+  },
+  "b2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "34D",
+    "version": "G54.28-phase34d-c1-total-qa-device-simulation",
+    "hasPhase34D": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "phase": "34D",
+  "version": "G54.28",
+  "label": "C1 Total QA + Device Simulation",
+  "pass": true,
+  "checks": {
+    "jsSyntax": "PASS",
+    "serviceWorkerSyntax": "PASS",
+    "nodeSnapshot": "PASS",
+    "staticIntegrity": "PASS",
+    "deviceSimulationAttempt": "RECORDED"
+  },
+  "summary": {
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "duplicateTaskIds": 0,
+    "missingRequired": 0
+  },
+  "c1": {
+    "ok": true,
+    "phase": "34C",
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80
+  },
+  "regression": {
+    "a2": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "b1": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "b2": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    }
+  },
+  "deviceSimulation": {
+    "phase": "34D",
+    "attempted": true,
+    "profiles": [
+      "Desktop 1440",
+      "Desktop 1024",
+      "iPhone 15 Pro Max",
+      "iPhone SE",
+      "iPad 11",
+      "iPad 12.9"
+    ],
+    "realBrowserRun": false,
+    "reason": "Container may not provide Playwright/Chromium browser binaries; use tests_phase34d_c1_total_qa_device_simulation.html after deploy for real device/browser check.",
+    "manualTestFile": "tests_phase34d_c1_total_qa_device_simulation.html"
+  },
+  "manualBrowserTest": "tests_phase34d_c1_total_qa_device_simulation.html"
+}

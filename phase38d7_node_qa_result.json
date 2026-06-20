@@ -1,0 +1,421 @@
+{
+  "ok": true,
+  "phase": "38D.7",
+  "pool": {
+    "version": "G54.38D.7-b2-total-qa-pool",
+    "level": "B2",
+    "reading": 8,
+    "listening": 8,
+    "grammar": 8,
+    "writing": 8,
+    "speaking": 8,
+    "combinations": 32768,
+    "focus": "B2 Hardmode vollständig endvalidiert: 8×8×8×8×8 Kombinationen, alle fünf Prüfungsteile, B2-Gesamt-QA und Regressionsmatrix"
+  },
+  "shell": {
+    "ok": true,
+    "phase": "38D.7",
+    "version": "G54.38D.7-b2-total-qa-shell",
+    "hasEngine": true,
+    "hasBlueprints": true,
+    "routes": [
+      "language-exam-open",
+      "language-exam-start",
+      "language-exam-hybrid-check"
+    ],
+    "levels": [
+      "A1",
+      "A2",
+      "B1",
+      "B2",
+      "C1",
+      "C2"
+    ],
+    "storageKey": "language-academy-exam-shell-session-v18-b2-total-qa",
+    "features": [
+      "visible exam shell",
+      "level selection",
+      "part navigation",
+      "B1 hard reading pool",
+      "B1 hard listening pool",
+      "B1 writing task pool",
+      "B1 speaking task pool",
+      "Groq examiner for free answers",
+      "strict final report",
+      "readiness prognosis",
+      "critical weakness report",
+      "repeat recommendations",
+      "no exam release gate",
+      "B1 expanded pool",
+      "hard edge case detection",
+      "visual exam pressure",
+      "countdown timer",
+      "completion status strip",
+      "mobile exam layout",
+      "realistic listening mode",
+      "browser tts playback",
+      "listening repeat limit",
+      "locked answers before listening",
+      "hidden transcript",
+      "strict b1 writing rubric",
+      "formal structure checklist",
+      "subject reason check",
+      "writing hard caps",
+      "strict b1 speaking rubric",
+      "speaking structure checklist",
+      "confirmed transcript mode",
+      "speaking hard caps",
+      "B1 full exam QA scenarios",
+      "pass/fail regression test",
+      "Groq fallback validation",
+      "incomplete exam validation",
+      "B2 exam architecture active",
+      "B2 hard reading pool active",
+      "B2 hard listening pool active",
+      "B2 hard grammar pool active",
+      "B2 hard writing pool active",
+      "B2 hard speaking pool active",
+      "B2 speaking 8 variants",
+      "B2 speaking 180-350 words",
+      "B2 speaking example hard cap",
+      "B2 speaking own-position hard cap",
+      "B2 writing formal complaint",
+      "B2 writing argumentative essay",
+      "B2 writing strict word count",
+      "B2 writing register hard caps",
+      "B2 grammar nominalization",
+      "B2 grammar passive reported speech",
+      "B2 grammar register correction",
+      "B2 grammar sentence order",
+      "B2 listening speaker attitude",
+      "B2 listening indirect criticism",
+      "B2 listening conditions and constraints",
+      "level difficulty matrix",
+      "A1 vs B2 differentiation guarantee",
+      "dynamic examiner profile per level",
+      "level-specific hard caps",
+      "B2 reading author intent",
+      "B2 reading indirect meaning",
+      "B2 reading hard distractors",
+      "B2 reading/listening/writing/speaking starter pool",
+      "B2 argumentation requirements",
+      "B2 strict Groq examiner",
+      "listening final helper mode",
+      "audio fallback marking",
+      "transcript helper mode",
+      "listening source validation",
+      "grammar language elements required block",
+      "B1/B2 grammar pool",
+      "five-part hardmode exam",
+      "B1 hardmode total QA",
+      "grammar required in final QA",
+      "B2 full exam QA scenarios",
+      "B2 endsimulation matrix",
+      "B2 hardmode total regression",
+      "B2 all five parts validation",
+      "B2 incomplete part fail validation",
+      "B2 Groq fallback regression",
+      "B2 helper listening marking",
+      "B2 A1/B1 answer rejection",
+      "listening helper mode marked in final QA"
+    ]
+  },
+  "checks": [
+    {
+      "name": "b2-five-part-hardmode",
+      "ok": true
+    },
+    {
+      "name": "b2-pool-8x8x8x8x8",
+      "ok": true,
+      "pool": {
+        "version": "G54.38D.7-b2-total-qa-pool",
+        "level": "B2",
+        "reading": 8,
+        "listening": 8,
+        "grammar": 8,
+        "writing": 8,
+        "speaking": 8,
+        "combinations": 32768,
+        "focus": "B2 Hardmode vollständig endvalidiert: 8×8×8×8×8 Kombinationen, alle fünf Prüfungsteile, B2-Gesamt-QA und Regressionsmatrix"
+      }
+    },
+    {
+      "name": "weak-listening-fails",
+      "ok": true
+    },
+    {
+      "name": "weak-grammar-fails",
+      "ok": true
+    },
+    {
+      "name": "weak-writing-fails",
+      "ok": true
+    },
+    {
+      "name": "weak-speaking-fails",
+      "ok": true
+    },
+    {
+      "name": "incomplete-speaking-fails",
+      "ok": true
+    },
+    {
+      "name": "listening-helper-mode-marked",
+      "ok": true
+    },
+    {
+      "name": "groq-fallback-stable",
+      "ok": true
+    },
+    {
+      "name": "a1-writing-fails-b2-hardmode",
+      "ok": true,
+      "score": 20,
+      "reasons": [
+        "Antwort deutlich zu kurz.",
+        "Schreibantwort deutlich unter der Niveau-Mindestlänge.",
+        "Antwort wirkt komplett am Thema vorbei.",
+        "Mehrere zentrale Pflichtpunkte fehlen.",
+        "Schreibaufbau/Register nicht prüfungstauglich.",
+        "Formelle Schreibstruktur unvollständig: Text ist nicht ausreichend gegliedert.",
+        "Gute Einzelsprache reicht nicht: zentrale Aufgabe wird inhaltlich nicht erfüllt.",
+        "Fast alle Pflichtpunkte fehlen.",
+        "B2: Umfang liegt unter dem Niveauprofil. Eine A1/A2/B1-Antwort darf hier nicht als B2 bestehen.",
+        "B2: Abwägung/Argumentationsansatz fehlt.",
+        "B2: eigene Position ist nicht klar erkennbar.",
+        "B2: Begründung/Argumentstütze fehlt.",
+        "B2: zu wenige niveaupassende Konnektoren/Strukturmarker.",
+        "B2: konkretes Beispiel fehlt."
+      ]
+    },
+    {
+      "name": "a1-speaking-fails-b2-hardmode",
+      "ok": true,
+      "score": 13,
+      "reasons": [
+        "Antwort deutlich zu kurz.",
+        "Antwort wirkt komplett am Thema vorbei.",
+        "Mehrere zentrale Pflichtpunkte fehlen.",
+        "Sprechstruktur nicht prüfungstauglich.",
+        "Sprechantwort unter der Niveau-Mindestlänge.",
+        "Sprechstruktur unvollständig: Einleitung/Themenbezug fehlt, keine zusammenhängende Argumentation, Pro/Contra oder Abwägung fehlt.",
+        "Sprechantwort deutlich unter dem Niveau-Mindestumfang.",
+        "Gute Einzelsprache reicht nicht: zentrale Aufgabe wird inhaltlich nicht erfüllt.",
+        "Fast alle Pflichtpunkte fehlen.",
+        "B2: Umfang liegt unter dem Niveauprofil. Eine A1/A2/B1-Antwort darf hier nicht als B2 bestehen.",
+        "B2: Abwägung/Argumentationsansatz fehlt.",
+        "B2: zu wenige niveaupassende Konnektoren/Strukturmarker.",
+        "B2: konkretes Beispiel fehlt."
+      ]
+    },
+    {
+      "name": "structured-b2-writing-can-pass",
+      "ok": true,
+      "score": 82,
+      "words": 187
+    },
+    {
+      "name": "structured-b2-speaking-can-pass",
+      "ok": true,
+      "score": 80,
+      "words": 195
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario": "strong-pass",
+      "expected": "bestanden",
+      "actual": "bestanden",
+      "ok": true,
+      "overall": 85,
+      "readiness": "Sehr gute reale Chancen",
+      "weakParts": [],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": []
+    },
+    {
+      "scenario": "borderline-pass",
+      "expected": "bestanden",
+      "actual": "bestanden",
+      "ok": true,
+      "overall": 70,
+      "readiness": "Realistische Chancen",
+      "weakParts": [],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": []
+    },
+    {
+      "scenario": "overall-borderline-fail",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 67,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": []
+    },
+    {
+      "scenario": "weak-listening",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 72,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "listening"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Hören: Mindestleistung unterschritten (46% statt mindestens 58%).",
+        "Hören: als nicht bestanden bewertet.",
+        "Hören: B2-Hören deutlich unter Mindestleistung: indirekte Aussagen und Sprecherhaltung nicht sicher erkannt."
+      ]
+    },
+    {
+      "scenario": "weak-grammar",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 72,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "grammar"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Grammatik & Sprachbausteine: Mindestleistung unterschritten (44% statt mindestens 60%).",
+        "Grammatik & Sprachbausteine: als nicht bestanden bewertet.",
+        "Grammatik & Sprachbausteine: Grammatik & Sprachbausteine unter B2-Mindestleistung: Konnektoren, Passiv, Nominalstil oder Register unsicher."
+      ]
+    },
+    {
+      "scenario": "weak-writing-a1-style",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 69,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "writing"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Schreiben: Mindestleistung unterschritten (38% statt mindestens 58%).",
+        "Schreiben: als nicht bestanden bewertet.",
+        "Schreiben: A1/B1-artige Kurzantwort statt B2-Stellungnahme.",
+        "Schreiben: Schreibantwort unter der B2-Mindestlänge.",
+        "Schreiben: Eigene Position, Abwägung und Beispiel fehlen.",
+        "Schreiben: mehrere Pflichtpunkte fehlen."
+      ]
+    },
+    {
+      "scenario": "weak-speaking-a1-style",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 69,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "speaking"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Sprechen: Mindestleistung unterschritten (36% statt mindestens 58%).",
+        "Sprechen: als nicht bestanden bewertet.",
+        "Sprechen: A1/B1-artige Kurzantwort statt B2-Sprechleistung.",
+        "Sprechen: Sprechantwort unter dem Niveau-Mindestumfang.",
+        "Sprechen: Nur Behauptung ohne Abwägung, Begründung und Beispiel.",
+        "Sprechen: mehrere Pflichtpunkte fehlen."
+      ]
+    },
+    {
+      "scenario": "writing-topic-missed",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 65,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "writing"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Schreiben: Mindestleistung unterschritten (29% statt mindestens 58%).",
+        "Schreiben: als nicht bestanden bewertet.",
+        "Schreiben: B2-Schreibthema deutlich verfehlt.",
+        "Schreiben: Aufgabenbezug trotz ausreichender Länge nicht erfüllt.",
+        "Schreiben: mehrere Pflichtpunkte fehlen."
+      ]
+    },
+    {
+      "scenario": "speaking-no-example",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 72,
+      "readiness": "Unsichere Chancen",
+      "weakParts": [
+        "speaking"
+      ],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Sprechen: Mindestleistung unterschritten (56% statt mindestens 58%).",
+        "Sprechen: als nicht bestanden bewertet.",
+        "Sprechen: B2-Anforderung nicht erfüllt: konkretes Beispiel fehlt."
+      ]
+    },
+    {
+      "scenario": "listening-helper-mode",
+      "expected": "bestanden",
+      "actual": "bestanden",
+      "ok": true,
+      "overall": 76,
+      "readiness": "Realistische Chancen",
+      "weakParts": [],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": [
+        "Hören: Hilfsmodus/Transkript-Fallback genutzt – Ergebnis ist nutzbar, aber weniger streng als echtes Hören."
+      ]
+    },
+    {
+      "scenario": "groq-down-fallback",
+      "expected": "bestanden",
+      "actual": "bestanden",
+      "ok": true,
+      "overall": 76,
+      "readiness": "Realistische Chancen",
+      "weakParts": [],
+      "totalParts": 5,
+      "completedParts": 5,
+      "criticalWeaknesses": []
+    },
+    {
+      "scenario": "incomplete-speaking",
+      "expected": "nicht bestanden",
+      "actual": "nicht bestanden",
+      "ok": true,
+      "overall": 79,
+      "readiness": "Unvollständig",
+      "weakParts": [
+        "speaking"
+      ],
+      "totalParts": 5,
+      "completedParts": 4,
+      "criticalWeaknesses": [
+        "Sprechen: Prüfungsteil noch nicht abgeschlossen."
+      ]
+    }
+  ]
+}

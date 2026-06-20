@@ -1,0 +1,108 @@
+{
+  "apiVersion": "G54.17-phase32a-b1-course-speaking-structure",
+  "b1Structure": {
+    "ok": true,
+    "phase": "32A",
+    "level": "b1",
+    "lessons": 10,
+    "totalTasks": 120,
+    "normalTasks": 80,
+    "speakingTasks": 40,
+    "minimumStarterTasksPerLesson": 12,
+    "minimumSpeakingPerLesson": 4,
+    "perLesson": {
+      "b1-opinions-discussion": {
+        "title": "Meinung & Diskussion",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-work-communication": {
+        "title": "Kommunikation im Beruf",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-experience-past": {
+        "title": "Erfahrungen erzählen",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-problems-solutions": {
+        "title": "Probleme & Lösungen",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-media-information": {
+        "title": "Medien & Informationen",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-education-plans": {
+        "title": "Bildung & Lernen",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-travel-report": {
+        "title": "Reisen & Berichten",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-health-lifestyle": {
+        "title": "Gesundheit & Lebensstil",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-official-service": {
+        "title": "Amt & Service",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      },
+      "b1-future-goals": {
+        "title": "Zukunft & Ziele",
+        "tasks": 12,
+        "normalTasks": 8,
+        "speakingTasks": 4,
+        "parallelSpeaking": true,
+        "ok": true
+      }
+    },
+    "parallelBuildPolicy": {
+      "active": true,
+      "rule": "B1 wird ab Start mit Kursaufgaben und Speaking parallel aufgebaut."
+    },
+    "nextRecommendedPhase": "32B B1 Lektionen 1-5 Inhalt + Speaking ausbauen"
+  },
+  "a2RegressionCheck": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnosticsPhase": "32A",
+  "errors": []
+}

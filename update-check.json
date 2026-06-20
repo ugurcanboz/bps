@@ -1,0 +1,14 @@
+{
+  "version": "G54.42-2026-06-20",
+  "latest": "G54.42-2026-06-20",
+  "required": true,
+  "force": false,
+  "label": "G54.42: Live Deploy Device QA",
+  "build": "G54.42-2026-06-20",
+  "cache": "egt-trainer-g54-42",
+  "phase": "42",
+  "updatedAt": "2026-06-20T19:20:00+02:00",
+  "timestamp": "2026-06-20T19:20:00+02:00",
+  "notes": "Live-Deploy-Geräte-QA vorbereitet: iPhone, iPad und Desktop-Prüfpfade, Cache-/Service-Worker-Reset, Browser-Testseite, manuelle Abnahme-Matrix und zentrale Versionen aktualisiert.",
+  "description": "Live Device QA für GitHub Pages nach Deploy-Readiness."
+}
