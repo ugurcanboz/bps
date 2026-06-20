@@ -1,9 +1,0 @@
-{
-  "version": "G33.6-DEMO-SIMULATION-HOTFIX-2026-06-08",
-  "checks": [
-    "auth-demo-simulation-start action patched",
-    "no feature gate redesign",
-    "no highscore rebuild",
-    "no avatar changes"
-  ]
-}
