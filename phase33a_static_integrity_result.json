@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "errors": [],
+  "checks": {
+    "version_g5421": true,
+    "b2_blueprints": true,
+    "b2_ensure": true,
+    "b2_snapshot": true,
+    "b2_export": true,
+    "parallel_policy": true,
+    "speech_fallback_kept": true
+  }
+}

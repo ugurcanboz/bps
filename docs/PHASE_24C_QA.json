@@ -1,0 +1,18 @@
+{
+  "phase": "24C",
+  "status": "PASS",
+  "focus": "Sprachkurs-Dashboard",
+  "checks": {
+    "dashboardVisible": true,
+    "profileIdentityReadOnly": true,
+    "learningLanguageVisible": true,
+    "helpLanguageVisible": true,
+    "levelsA1ToC2Visible": true,
+    "statisticsVisible": true,
+    "shortcutsVisible": true,
+    "helpPreviewNoSolution": true,
+    "ctcTouched": false,
+    "highscoreTouched": false,
+    "adminTouched": false
+  }
+}

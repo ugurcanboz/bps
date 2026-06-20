@@ -1,0 +1,14 @@
+{
+  "build": "G31.0-SUPABASE-LIVE-STABILITY-2026-06-08",
+  "date": "2026-06-08",
+  "checks": {
+    "jsSyntax": "passed",
+    "jsonSyntax": "passed",
+    "serviceWorkerAssets": "passed",
+    "oldHighscoreRewriteRemoved": true,
+    "updateCheckerUsesBuild": true,
+    "supabasePriority": true,
+    "autoRefreshMs": 20000,
+    "pythonPdfDeadLinksRemoved": true
+  }
+}

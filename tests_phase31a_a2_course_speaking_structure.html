@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 31A – A2 Course + Speaking Structure Test</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#07101f;color:#eef4ff;padding:24px;line-height:1.45}
+    pre{background:#101b2f;border:1px solid #2d3e5f;border-radius:12px;padding:16px;white-space:pre-wrap}
+    .pass{color:#78f0a2}.fail{color:#ff8b8b}
+  </style>
+</head>
+<body>
+  <h1>Phase 31A – A2 Kursstruktur + Speaking-Struktur</h1>
+  <p>Dieser Test prüft, ob A2 geöffnet ist, 10 Lektionen besitzt und normale Aufgaben plus Sprechaufgaben parallel angelegt sind.</p>
+  <pre id="out">Lade Test…</pre>
+  <script src="js/core/app-config.js"></script>
+  <script src="js/i18n/language-store.js"></script>
+  <script src="js/i18n/language-adapter.js"></script>
+  <script src="js/modules/language-adaptive-engine.js"></script>
+  <script src="js/modules/language-course-cloud-sync.js"></script>
+  <script src="js/modules/language-course-entry-module.js"></script>
+  <script>
+    (function(){
+      var out=document.getElementById('out');
+      function print(obj){out.textContent=JSON.stringify(obj,null,2);}
+      try{
+        var api=window.LanguageAcademyCourseEntry;
+        if(!api || typeof api.a2StructureSnapshot!=='function') throw new Error('a2StructureSnapshot fehlt');
+        var snap=api.a2StructureSnapshot();
+        var pass=!!(snap && snap.ok && snap.lessons===10 && snap.totalTasks===120 && snap.normalTasks===80 && snap.speakingTasks===40);
+        print({pass:pass, snapshot:snap, version:api.__version});
+        out.className=pass?'pass':'fail';
+      }catch(e){print({pass:false,error:e.message});out.className='fail';}
+    })();
+  </script>
+</body>
+</html>

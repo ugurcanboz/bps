@@ -1,0 +1,33 @@
+{
+  "version": "G52.9",
+  "phase": "23",
+  "title": "Profile Auth Domain Engine",
+  "date": "2026-06-15",
+  "checks": {
+    "syntax": [
+      "js/core/profile-auth-domain-engine.js",
+      "js/app.js",
+      "js/ui-router.js",
+      "js/modules/egt-profile-entry-module.js",
+      "js/modules/auth-profile-shell.js",
+      "js/modules/egt-auth-engine.js",
+      "js/core/admin-portal-domain-engine.js",
+      "service-worker.js"
+    ],
+    "json": [
+      "manifest.json",
+      "update-check.json",
+      "module-manifest.json"
+    ],
+    "smoke": [
+      "EGTProfileAuthDomainEngine vorhanden",
+      "ProfileAuthDomainEngine vorhanden",
+      "App._test.ProfileAuthDomainEngine vorhanden",
+      "ProfileAuthDomainEngine.diagnostics funktioniert",
+      "ProfileAuthDomainEngine.state funktioniert",
+      "Highscore-Identity erzeugbar",
+      "Gate-Status lesbar",
+      "horizontaler Overflow 0"
+    ]
+  }
+}

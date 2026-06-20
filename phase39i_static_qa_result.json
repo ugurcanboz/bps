@@ -1,0 +1,72 @@
+{
+  "phase": "39I",
+  "title": "LOW-/Pixel-Polish",
+  "passed": true,
+  "checks": [
+    {
+      "name": "phase39i css exists",
+      "passed": true,
+      "detail": "/mnt/data/phase40/css/phase39i-pixel-polish.css"
+    },
+    {
+      "name": "phase39i css linked",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "build version 39I",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker cache 39I",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker caches phase39i css",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker caches phase39i report",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile header polish",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "tablet footer polish",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "performance fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "icon stabilization",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "qa html exists",
+      "passed": true,
+      "detail": "/mnt/data/phase40/tests_phase39i_pixel_polish.html"
+    },
+    {
+      "name": "report exists",
+      "passed": true,
+      "detail": "/mnt/data/phase40/docs/PHASE39I_PIXEL_POLISH_REPORT.md"
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  }
+}

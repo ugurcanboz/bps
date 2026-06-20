@@ -1,0 +1,14 @@
+{
+  "version": "G54.42.2-2026-06-20",
+  "latest": "G54.42.2-2026-06-20",
+  "required": true,
+  "force": false,
+  "label": "G54.42.2: Admin iPhone Portrait Scroll Hotfix",
+  "build": "G54.42.2-2026-06-20",
+  "cache": "egt-trainer-g54-42-2",
+  "phase": "42.2",
+  "updatedAt": "2026-06-20T20:05:00+02:00",
+  "timestamp": "2026-06-20T20:05:00+02:00",
+  "notes": "Minimaler Frontend-Hotfix: Adminportal iPhone-Hochformat Tabs ohne Überlappung und natives iOS-Scrolling im Admin-Modal repariert.",
+  "description": "Live Device QA Hotfix für iPhone Hochformat Adminportal."
+}

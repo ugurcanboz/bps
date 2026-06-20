@@ -1,0 +1,27 @@
+{
+  "phase": "35C",
+  "version": "G54.31",
+  "ok": true,
+  "summary": {
+    "level": "c2",
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80
+  },
+  "checks": [
+    "JS syntax PASS",
+    "service-worker syntax PASS",
+    "phase35c_node_snapshot_check PASS",
+    "phase35c_static_integrity_check PASS"
+  ],
+  "regression": [
+    "A2 PASS",
+    "B1 PASS",
+    "B2 PASS",
+    "C1 PASS"
+  ],
+  "next": "35D C2 Gesamt-QA + UI/Flow-Prüfung"
+}

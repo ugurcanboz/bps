@@ -1,0 +1,46 @@
+{
+  "version": "G54.1",
+  "phase": "CTC FlowLogic Integration",
+  "scope": "Simulation -> IT/FISI -> CTC only",
+  "task": {
+    "title": "CTC-Logik: Wenn-Dann-Ablauf",
+    "subtitle": "Finde die versteckten Fehler.",
+    "timeSeconds": 780,
+    "helpAllowed": false,
+    "coachDuring": false,
+    "expectedErrors": 11
+  },
+  "filesAdded": [
+    "js/modules/ctc-flowlogic-adapter.js",
+    "css/ctc-flowlogic-integration.css",
+    "modules/flowlogic/**"
+  ],
+  "scopeChecks": {
+    "it_ctc": {"allowed": true, "generatedType": "ctcFlowLogic"},
+    "it_bps": {"allowed": false},
+    "sozial_bps": {"allowed": false},
+    "kaufm_bps": {"allowed": false},
+    "training_it": {"allowed": false}
+  },
+  "flowLogicSelfTest": {"total": 41, "passed": 41, "failed": 0},
+  "visualChecks": {
+    "desktop_chrome": {"rendered": true, "horizontalOverflow": 0},
+    "ipad_portrait": {"rendered": true, "horizontalOverflow": 0},
+    "ipad_landscape": {"rendered": true, "horizontalOverflow": 0},
+    "iphone_ios_viewport": {"rendered": true, "horizontalOverflow": 0}
+  },
+  "codingChecks": [
+    "node --check js/modules/ctc-flowlogic-adapter.js",
+    "node --check js/core/quiz-build-pipeline-engine.js",
+    "node --check js/core/question-factory.js",
+    "node --check js/modules/egt-simulation-engine.js",
+    "node --check js/app.js",
+    "node --check js/question-bank-quality-engine.js",
+    "node --check js/modules/auth-profile-shell.js",
+    "node --check service-worker.js",
+    "node --check modules/flowlogic/src/*.js",
+    "JSON validation",
+    "Service worker asset validation"
+  ],
+  "limitation": "Device QA used Chromium viewports, not physical iOS Safari."
+}
