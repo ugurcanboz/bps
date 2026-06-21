@@ -1,0 +1,78 @@
+{
+  "phase": "39G",
+  "title": "Visual Observer Report ausführen/auswerten",
+  "source": "G54.39F Visual Observer QA Cockpit",
+  "method": "Static integrity + available visual screenshot review + prepared browser runner",
+  "browser_execution_note": "In dieser Sandbox wurde Playwright/Chromium durch eine lokale Administrator-Policy mit ERR_BLOCKED_BY_ADMINISTRATOR am Öffnen von local/file URLs blockiert. Die auslieferte ZIP enthält den ausführbaren Runner phase39g_visual_observer_report.py für lokale/CI-Ausführung sowie den Report mit den aktuell ableitbaren Befunden.",
+  "summary": {
+    "high": 0,
+    "medium": 4,
+    "low": 5,
+    "app_release_blocked": false,
+    "next_phase": "39H"
+  },
+  "tested_assets": [
+    "js/qa-visual-observer.js",
+    "tests_phase39f_visual_observer.html",
+    "phase39f_static_qa_result.json",
+    "qa_phase39a_screenshots/iphone-home-demo.png",
+    "qa_phase39a_screenshots/ipad-home.png",
+    "qa_phase39a_screenshots/desktop-home.png"
+  ],
+  "issues": [
+    {
+      "severity": "medium",
+      "area": "Mobile Home / Bottom Dock",
+      "finding": "Auf dem iPhone-Screenshot liegt der Bottom-Dock optisch sehr nah bzw. teilweise über dem unteren Kachelbereich. Das ist kein Funktionsbruch, aber ein klares Risiko für verdeckte Inhalte beim Scroll-Ende.",
+      "recommendation": "Globale mobile Content-Bottom-Spacer prüfen und für Seiten mit Dock mindestens calc(dock-height + safe-area + 24px) sichern."
+    },
+    {
+      "severity": "medium",
+      "area": "iPad Gate / Startscreen",
+      "finding": "Der iPad-Gate-Screen nutzt eine harte 2-Spalten-Aufteilung; links bleibt sehr viel leerer Raum, während die aktive Auswahl komplett rechts sitzt. Das wirkt auf Tablets unausgewogen.",
+      "recommendation": "Tablet-Breakpoint mit stärkerem Hero-/Info-Inhalt links oder zentrierterem Gate-Layout ergänzen."
+    },
+    {
+      "severity": "medium",
+      "area": "QA Tooling",
+      "finding": "Der Observer erzeugt Visual Maps und DOM-Befunde, aber echte Pixel-Screenshots sind nur über externen Browser/CI möglich. Das Cockpit selbst weist diese Begrenzung bereits aus.",
+      "recommendation": "Phase 40 sollte einen CI-/Playwright-Pfad mit Screenshot-Artefakten als Golden-Master-Check fest einführen."
+    },
+    {
+      "severity": "medium",
+      "area": "Scrollcontainer",
+      "finding": "Der Observer ist auf viele interne Scrollcontainer sensibilisiert. In mehreren CSS-Bereichen existieren overflow-x:auto/overflow:auto-Flächen, die auf iOS erfahrungsgemäß Konflikte verursachen können.",
+      "recommendation": "In Phase 39H/39I gezielt die Module mit Tabellen, SVG-Flows, Training-Sheets und Admin-Listen gegen iPhone/iPad prüfen."
+    },
+    {
+      "severity": "low",
+      "area": "iPhone Header",
+      "finding": "Der App-Titel bricht auf iPhone bewusst zweizeilig. Lesbar, aber sehr dominant im oberen Bereich.",
+      "recommendation": "Optional kompaktere Header-Variante für kleine Geräte prüfen."
+    },
+    {
+      "severity": "low",
+      "area": "iPad Footer",
+      "finding": "Footer sitzt im Gate-Screen sehr tief und visuell schwach. Nicht kritisch, aber auf Tablet wirkt der Screen dadurch leer.",
+      "recommendation": "Footer/Branding im Gate-Screen auf Tablet optisch integrieren oder aus dem sichtbaren Hauptbereich lösen."
+    },
+    {
+      "severity": "low",
+      "area": "Performance",
+      "finding": "Viele Glass-/Blur-Flächen sind gestalterisch stark, können auf älteren iPhones aber Performance kosten.",
+      "recommendation": "Observer-Schwellenwert für backdrop-filter im CI später als Warnung nutzen."
+    },
+    {
+      "severity": "low",
+      "area": "Icon QA",
+      "finding": "Phase 39C.2 hat Emoji-Reste weitgehend entfernt; der Observer sollte künftig jede neue Kachel automatisch gegen Emoji-Fallbacks prüfen.",
+      "recommendation": "Kein neuer UI-Code ohne SVG-Token/Inline-SVG und Observer-Check."
+    },
+    {
+      "severity": "low",
+      "area": "Versioning",
+      "finding": "39G ist primär Report-/Auditphase. Die App-Funktion wurde nicht umgebaut.",
+      "recommendation": "Version trotzdem auf G54.39G anheben, damit der Übergabestand eindeutig ist."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 38C.6 – B1 Härtefälle</title>
+  <link rel="stylesheet" href="css/language-course.css">
+</head>
+<body style="font-family:Arial,sans-serif;padding:20px;max-width:980px;margin:auto">
+  <h1>Phase 38C.6 – B1 Aufgabenpool + Härtefälle</h1>
+  <p>Diese Testseite prüft Poolgröße, Variantenbildung und harte lokale Grenzfallbewertung.</p>
+  <button id="diag">Diagnose starten</button>
+  <button id="edge">Härtefälle testen</button>
+  <button id="attempts">5 Varianten erzeugen</button>
+  <pre id="out" style="white-space:pre-wrap;background:#111;color:#e5e7eb;padding:16px;border-radius:12px;overflow:auto"></pre>
+
+  <script src="data/language-ai-config.js"></script>
+  <script src="data/language-exam-blueprints.js"></script>
+  <script src="data/language-b1-exam-pilot.js"></script>
+  <script src="js/modules/language-speaking-ai-client.js"></script>
+  <script src="js/modules/language-exam-engine.js"></script>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    const out = document.getElementById('out');
+    function print(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+    document.getElementById('diag').onclick = () => {
+      print({
+        pool: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.poolInfo(),
+        edgeCases: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.getEdgeCases(),
+        engine: window.LanguageExamEngine && window.LanguageExamEngine.__version,
+        shell: window.LanguageExamShell && window.LanguageExamShell.diagnose && window.LanguageExamShell.diagnose()
+      });
+    };
+    document.getElementById('edge').onclick = () => {
+      const attempt = window.LanguageB1ExamPilot.buildAttempt('edge-test-38c6');
+      const task = attempt.speaking;
+      const cases = window.LanguageB1ExamPilot.getEdgeCases();
+      const results = cases.map(c => ({
+        id:c.id,
+        title:c.title,
+        expected:c.expected,
+        assessment: window.LanguageExamEngine.localAssessResponse({level:'B1', part:'speaking', task, userText:c.input})
+      }));
+      print(results);
+    };
+    document.getElementById('attempts').onclick = () => {
+      const variants = [];
+      for(let i=0;i<5;i++){
+        const a = window.LanguageB1ExamPilot.buildAttempt('phase38c6-'+i+'-'+Date.now());
+        variants.push({seed:a.poolMeta.seed, reading:a.reading.id, listening:a.listening.id, writing:a.writing.id, speaking:a.speaking.id, meta:a.poolMeta});
+      }
+      print(variants);
+    };
+  </script>
+</body>
+</html>

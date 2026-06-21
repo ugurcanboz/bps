@@ -1,0 +1,37 @@
+{
+  "version": "G53.1",
+  "phase": "25",
+  "title": "Release QA / Multi Device Visual Simulation",
+  "timestamp": "2026-06-15",
+  "overallOk": true,
+  "rowsChecked": 28,
+  "screenshotsCreated": 43,
+  "devices": [
+    "desktop_chrome",
+    "ipad_landscape",
+    "ipad_portrait",
+    "iphone_ios_viewport"
+  ],
+  "flows": [
+    "analysis",
+    "duel_direct",
+    "highscore",
+    "home",
+    "home_after_result_restart",
+    "result",
+    "simulation_drawer",
+    "simulation_question"
+  ],
+  "failureCount": 0,
+  "failures": [],
+  "notices": [
+    "Visual test uses Chromium viewports for Desktop, iPad portrait, iPad landscape and iPhone-sized iOS viewport.",
+    "True physical iOS Safari rendering cannot be fully replaced by headless Chromium; real device smoke test remains recommended before public release.",
+    "Inline QA environment uses a storage polyfill because localStorage is blocked in opaque-origin set_content tests; localhost/browser tests are unaffected."
+  ],
+  "fixesApplied": [
+    "Added release-qa-engine.js for DOM/layout/engine health metrics.",
+    "Added phase25-release-qa-fixes.css to prevent closed question overview drawer from creating horizontal overflow.",
+    "Updated ArchitectureGuard and Service Worker asset list."
+  ]
+}

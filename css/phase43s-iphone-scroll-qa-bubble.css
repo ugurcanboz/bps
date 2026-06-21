@@ -1,0 +1,243 @@
+/* =========================================================
+   G54.43.8B · iPhone Scroll Hotfix + QA Bubble
+   Ziel:
+   - Analyse/Fortschritt-Deep-Sheets auf iPhone nativ scrollbar
+   - keine konkurrierenden Scrollcontainer im QA-Modus
+   - Bottom-Dock-Reserve bleibt erhalten
+   - QA Capture startet als kleine Bubble statt als großes Overlay
+   ========================================================= */
+:root{
+  --egt-mobile-sheet-top: max(8px, env(safe-area-inset-top, 0px));
+  --egt-mobile-sheet-bottom: max(8px, env(safe-area-inset-bottom, 0px));
+  --egt-mobile-dock-reserve: calc(124px + env(safe-area-inset-bottom, 0px));
+  --egt-visual-vh: 100dvh;
+}
+
+html,
+body{
+  min-height:100%;
+  overflow-x:hidden !important;
+  -webkit-text-size-adjust:100%;
+}
+
+body:not(.egt-deep-sheet-active):not(.qnav-drawer-open){
+  overflow-y:auto !important;
+  height:auto !important;
+  position:relative !important;
+  touch-action:pan-y !important;
+  -webkit-overflow-scrolling:touch !important;
+}
+
+body.ui-f-ui-home-ready .ui-home,
+body.ui-f-ui-home-ready .ui-home-scroll,
+body.ui-f-ui-home-ready .ui-tab-content,
+#uiHomeViewport,
+#uiTabContent,
+.ui-analysis-wrap,
+.ui-highscore-page,
+.ui-duel-page,
+.ui-profile-page,
+#analysis,
+#analysisContent{
+  min-height:0 !important;
+  max-height:none !important;
+  overflow-x:hidden !important;
+  overflow-y:visible !important;
+  touch-action:pan-y !important;
+  -webkit-overflow-scrolling:touch !important;
+  overscroll-behavior-y:auto !important;
+}
+
+body.ui-f-ui-home-ready .ui-home,
+body.ui-f-ui-home-ready .ui-home-scroll,
+body.ui-f-ui-home-ready .ui-tab-content,
+#uiHomeViewport,
+#uiTabContent,
+.ui-analysis-wrap,
+.ui-highscore-page,
+.ui-duel-page,
+.ui-profile-page{
+  padding-bottom:max(156px, var(--egt-mobile-dock-reserve)) !important;
+  scroll-padding-bottom:max(156px, var(--egt-mobile-dock-reserve)) !important;
+}
+
+#analysis:not(.hidden){
+  display:block !important;
+  width:min(1120px, calc(100vw - 18px)) !important;
+  margin:10px auto calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+  padding:18px !important;
+  max-height:none !important;
+  overflow:visible !important;
+  touch-action:pan-y !important;
+}
+
+@media (hover:none), (pointer:coarse), (max-width:760px){
+  html.egt-deep-sheet-active,
+  body.egt-deep-sheet-active{
+    overflow:hidden !important;
+    height:100% !important;
+    max-height:100% !important;
+    touch-action:none !important;
+  }
+
+  .ui-sheet-backdrop.show,
+  .ui-sheet-backdrop.is-visible{
+    position:fixed !important;
+    inset:0 !important;
+    overflow:hidden !important;
+    touch-action:none !important;
+    overscroll-behavior:contain !important;
+  }
+
+  .ui-sheet.ui-deep-sheet.show,
+  .ui-sheet.ui-deep-sheet.is-visible,
+  .ui-deep-sheet.show,
+  .ui-deep-sheet.is-visible{
+    position:fixed !important;
+    left:50% !important;
+    right:auto !important;
+    top:var(--egt-mobile-sheet-top) !important;
+    bottom:var(--egt-mobile-sheet-bottom) !important;
+    width:calc(100vw - 16px) !important;
+    max-width:calc(100vw - 16px) !important;
+    height:auto !important;
+    max-height:none !important;
+    min-height:0 !important;
+    display:flex !important;
+    flex-direction:column !important;
+    overflow:hidden !important;
+    transform:translate3d(-50%,0,0) !important;
+    touch-action:auto !important;
+    overscroll-behavior:contain !important;
+    padding:0 !important;
+  }
+
+  .ui-deep-sheet .ui-sheet-handle{
+    flex:0 0 auto !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-head,
+  .ui-deep-sheet .ui-deep-head{
+    flex:0 0 auto !important;
+    position:relative !important;
+    min-height:0 !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-body,
+  .ui-deep-sheet .ui-deep-body,
+  .ui-sheet.ui-deep-sheet [data-sheet-scroll],
+  .ui-deep-sheet [data-sheet-scroll]{
+    flex:1 1 auto !important;
+    display:block !important;
+    min-height:0 !important;
+    height:auto !important;
+    max-height:none !important;
+    overflow-x:hidden !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-y !important;
+    overscroll-behavior-y:contain !important;
+    padding-bottom:calc(42px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .ui-deep-sheet[data-ui-deep-sheet="analysis-dashboard-v2"] .ui-deep-body,
+  .ui-deep-sheet[data-ui-deep-sheet="progress-menu"] .ui-deep-body{
+    padding-bottom:calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .analysis-v2-shell,
+  .analysis-v2-dynamic,
+  .analysis-v2-chart-card,
+  .analysis-v2-coach,
+  .ui-deep-benefits,
+  .ui-deep-startbox{
+    min-height:0 !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .analysis-v2-chart-svg,
+  .analysis-v2-chart-svg-multiline{
+    max-width:100% !important;
+    height:auto !important;
+  }
+}
+
+/* QA-Capture: iPhone startet als Bubble. Geöffnet ist es ein kompaktes Sheet oberhalb des Docks. */
+.egt-vsc[data-minimized="true"]{
+  left:auto !important;
+  right:max(14px, env(safe-area-inset-right, 0px)) !important;
+  bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+  width:64px !important;
+  height:64px !important;
+  max-height:64px !important;
+  border-radius:999px !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  display:grid !important;
+  place-items:center !important;
+  pointer-events:auto !important;
+  z-index:2147482500 !important;
+  touch-action:manipulation !important;
+}
+
+.egt-vsc[data-minimized="true"] .egt-vsc__head{
+  width:100% !important;
+  height:100% !important;
+  padding:0 !important;
+  border:0 !important;
+  display:grid !important;
+  place-items:center !important;
+  cursor:pointer !important;
+}
+
+.egt-vsc[data-minimized="true"] .egt-vsc__title,
+.egt-vsc[data-minimized="true"] .egt-vsc__meta,
+.egt-vsc[data-minimized="true"] .egt-vsc__head-actions,
+.egt-vsc[data-minimized="true"] .egt-vsc__body,
+.egt-vsc[data-minimized="true"] .egt-vsc__actions{
+  display:none !important;
+}
+
+.egt-vsc[data-minimized="true"] .egt-vsc__head::after{
+  content:'QA';
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  border-radius:999px;
+  color:#07111f;
+  background:linear-gradient(135deg,#93c5fd,#38bdf8 55%,#a78bfa);
+  font-weight:950;
+  letter-spacing:-.03em;
+  box-shadow:0 14px 40px rgba(56,189,248,.32);
+}
+
+.egt-vsc:not([data-minimized="true"]){
+  pointer-events:auto !important;
+}
+
+@media(max-width:520px){
+  .egt-vsc:not([data-minimized="true"]){
+    left:10px !important;
+    right:10px !important;
+    bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important;
+    width:auto !important;
+    max-height:min(62vh, 560px) !important;
+    border-radius:18px !important;
+    overflow:hidden !important;
+    z-index:2147482500 !important;
+  }
+  .egt-vsc:not([data-minimized="true"]) .egt-vsc__body{
+    max-height:calc(min(62vh, 560px) - 150px) !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    touch-action:pan-y !important;
+    overscroll-behavior-y:contain !important;
+  }
+  .egt-vsc:not([data-minimized="true"]) .egt-vsc__actions{
+    max-height:112px !important;
+    overflow-y:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+  }
+}

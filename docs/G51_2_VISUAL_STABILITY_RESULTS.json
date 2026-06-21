@@ -1,0 +1,44 @@
+{
+  "desktop": {
+    "G51_1_class_before": "learning-screen training-cockpit",
+    "G51_1_class_after": "learning-screen",
+    "G51_1_answersTop_delta": 69,
+    "G51_2_class_before": "learning-screen training-cockpit",
+    "G51_2_class_after": "learning-screen training-cockpit",
+    "G51_2_answersTop_delta": 0,
+    "G51_2_buttonTop_deltas": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "ipad": {
+    "G51_1_class_before": "learning-screen training-cockpit",
+    "G51_1_class_after": "learning-screen",
+    "G51_1_answersTop_delta": -41,
+    "G51_2_class_before": "learning-screen training-cockpit",
+    "G51_2_class_after": "learning-screen training-cockpit",
+    "G51_2_answersTop_delta": 0,
+    "G51_2_buttonTop_deltas": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "iphone": {
+    "G51_1_class_before": "learning-screen training-cockpit",
+    "G51_1_class_after": "learning-screen",
+    "G51_1_answersTop_delta": -41,
+    "G51_2_class_before": "learning-screen training-cockpit",
+    "G51_2_class_after": "learning-screen training-cockpit",
+    "G51_2_answersTop_delta": 0,
+    "G51_2_buttonTop_deltas": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

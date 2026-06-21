@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Phase 27F Coach Start Actions Test</title></head>
+<body>
+<h1>Phase 27F Coach Start Actions Test</h1>
+<pre id="out">läuft…</pre>
+<script>
+(async function(){
+  const out=document.getElementById('out');
+  try{
+    const src=await fetch('./js/modules/language-course-entry-module.js').then(r=>r.text());
+    const checks=[
+      ['version phase27f', src.includes('phase27f-coach-start-actions')],
+      ['startCoachRecommendation exists', src.includes('function startCoachRecommendation(action)')],
+      ['tasktype action exists', src.includes('language-course-train-tasktype:')],
+      ['vocab review action exists', src.includes('language-course-start-vocab-review')],
+      ['openTaskTypeTraining exists', src.includes('function openTaskTypeTraining(type)')],
+      ['repeat errors route exists', src.includes("language-course-repeat-errors")],
+      ['lesson route exists', src.includes('language-course-open-lesson:')],
+      ['exported start helper', src.includes('startCoachRecommendation:startCoachRecommendation')],
+      ['diagnostics phase 27F', src.includes("phase:'27F'")]
+    ];
+    const failed=checks.filter(x=>!x[1]);
+    out.textContent=checks.map(x=>(x[1]?'PASS ':'FAIL ')+x[0]).join('\n')+(failed.length?'\n\nFAILED':'\n\nALL PASS');
+    if(failed.length) document.body.dataset.test='fail'; else document.body.dataset.test='pass';
+  }catch(e){out.textContent='ERROR '+e.message; document.body.dataset.test='error';}
+})();
+</script>
+</body>
+</html>

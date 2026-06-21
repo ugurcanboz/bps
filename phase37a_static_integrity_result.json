@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "checks": {
+    "version": true,
+    "placementSnapshot": true,
+    "phase37Qa": true,
+    "route": true,
+    "testFile": true,
+    "docFile": true
+  }
+}
