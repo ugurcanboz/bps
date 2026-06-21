@@ -1,0 +1,42 @@
+{
+  "phase": "G54.43.3",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Adapter version G54.43.3",
+      "passed": true
+    },
+    {
+      "name": "buildForecastChart present",
+      "passed": true
+    },
+    {
+      "name": "forecastChart payload present",
+      "passed": true
+    },
+    {
+      "name": "UI forecast chart function present",
+      "passed": true
+    },
+    {
+      "name": "UI inserts forecast chart after forecast box",
+      "passed": true
+    },
+    {
+      "name": "Forecast chart data marker present",
+      "passed": true
+    },
+    {
+      "name": "No guarantee wording present",
+      "passed": true
+    },
+    {
+      "name": "CSS forecast chart present",
+      "passed": true
+    },
+    {
+      "name": "Service worker cache bumped",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 38C.9 · B1 Schreibprüfung hart</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:20px;line-height:1.45}
+    .box{max-width:980px;margin:0 auto 14px;background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px;box-shadow:0 10px 28px rgba(15,23,42,.06)}
+    button{border:0;border-radius:12px;padding:10px 14px;font-weight:700;background:#0f172a;color:#fff;margin:4px;cursor:pointer}
+    button.secondary{background:#e2e8f0;color:#0f172a}
+    pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:12px;border-radius:12px;overflow:auto}
+    .pass{color:#047857;font-weight:800}.fail{color:#b91c1c;font-weight:800}.warn{color:#92400e;font-weight:800}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Phase 38C.9 · B1 Schreibprüfung hart</h1>
+    <p>Testet Aufgabenpool, formellen Aufbau, Pflichtpunkte, Punktdeckelung und lokale Vorprüfung.</p>
+    <button onclick="diagnose()">Diagnose starten</button>
+    <button class="secondary" onclick="testGood()">Gute formelle Antwort</button>
+    <button class="secondary" onclick="testShort()">Zu kurz</button>
+    <button class="secondary" onclick="testPoliteEmpty()">Höflich aber inhaltsarm</button>
+    <button class="secondary" onclick="testBadTone()">Falscher Ton</button>
+    <pre id="out">Bereit.</pre>
+  </div>
+
+  <script src="./data/language-exam-blueprints.js"></script>
+  <script src="./data/language-b1-exam-pilot.js"></script>
+  <script src="./js/modules/language-exam-engine.js"></script>
+  <script>
+    const out = document.getElementById('out');
+    function print(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+    function task(){ const a=window.LanguageB1ExamPilot.buildAttempt('phase38c9-refund'); if(a.writing && a.writing.id==='b1-writing-course-refund-request-formal') return a.writing; for(let i=0;i<50;i++){ const x=window.LanguageB1ExamPilot.buildAttempt('refund-'+i); if(x.writing && x.writing.id==='b1-writing-course-refund-request-formal') return x.writing; } return a.writing; }
+    function assess(text){ return window.LanguageExamEngine.localAssessResponse({ level:'B1', part:'writing', task:task(), userText:text }); }
+    function diagnose(){
+      const pool = window.LanguageB1ExamPilot.poolInfo();
+      const t = task();
+      const ok = !!window.LanguageExamEngine && !!window.LanguageB1ExamPilot && pool.writing >= 8 && t.assessmentRubric;
+      print({ ok, phase:'38C.9', pool, sampleTask:{ id:t.id, title:t.title, minWords:t.minWords, rubric:t.assessmentRubric && t.assessmentRubric.label, requiredStructure:t.requiredStructure } });
+    }
+    function testGood(){
+      const text = `Betreff: Beschwerde und Bitte um Lösung\n\nSehr geehrte Damen und Herren,\n\nich habe an Ihrem Prüfungsvorbereitungskurs teilgenommen. Leider sind zwei Termine ohne Ersatz ausgefallen. Das ist für mich problematisch, weil ich mich gezielt auf die B1-Prüfung vorbereiten muss und wichtige Inhalte verpasst habe.\n\nIch bitte Sie deshalb um eine angemessene Lösung, zum Beispiel einen Ersatztermin oder eine teilweise Rückerstattung der Kursgebühr. Bitte senden Sie mir dazu eine schriftliche Antwort. Außerdem möchte ich wissen, ob die ausgefallenen Inhalte in einem zusätzlichen Termin wiederholt werden können, damit meine Prüfungsvorbereitung vollständig bleibt.\n\nVielen Dank für Ihre Rückmeldung.\n\nMit freundlichen Grüßen`;
+      print(assess(text));
+    }
+    function testShort(){ print(assess('Sehr geehrte Damen und Herren, der Kurs war schlecht. Bitte Geld zurück. Danke.')); }
+    function testPoliteEmpty(){ print(assess('Sehr geehrte Damen und Herren, vielen Dank für Ihre freundliche Nachricht. Ich wünsche Ihnen einen schönen Tag und freue mich über Ihre Arbeit. Mit freundlichen Grüßen')); }
+    function testBadTone(){ print(assess('Hey, das ist eine Frechheit!!! Ich verlange sofort mein Geld zurück. Alles war schlecht und nervig. Gruß')); }
+  </script>
+</body>
+</html>

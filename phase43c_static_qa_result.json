@@ -1,0 +1,61 @@
+{
+  "phase": "43C",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Version app-config",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Version manifest",
+      "ok": true,
+      "detail": "G54.42.3"
+    },
+    {
+      "name": "Update check",
+      "ok": true,
+      "detail": "G54.42.3-2026-06-20"
+    },
+    {
+      "name": "SW cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS hotfix marker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "iPhone portrait query",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Icon center",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Deep sheet flex",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Native scroll",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Safe area bottom",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS brace balance",
+      "ok": true,
+      "detail": "{=34}=34"
+    }
+  ]
+}

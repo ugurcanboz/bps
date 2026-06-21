@@ -1,0 +1,772 @@
+/* ════════════════════════════════════════════════════════════════
+   egt-simulation.css — Phase 2 Simulation Layout Layer
+   Zweck: zentrale, überschreibende Simulation-Styles statt verteiltem
+   Timer/Drawer/Antworten-Flickwerk.
+   ════════════════════════════════════════════════════════════════ */
+
+body.egt-simulation-active #quiz.training-cockpit,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit {
+  position: relative;
+  isolation: isolate;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .topbar,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  overflow: visible;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #meta,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #meta {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #timer,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #timer {
+  flex: 0 0 auto;
+  width: 58px;
+  min-width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  z-index: 3;
+  margin-left: auto;
+  line-height: 1;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #timer::before,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #timer::before {
+  content: attr(data-label);
+  position: absolute;
+  bottom: -17px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  line-height: 1;
+  opacity: .75;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top));
+  right: max(10px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  width: min(360px, calc(100vw - 28px));
+  max-height: none;
+  overflow: auto;
+  z-index: 8500;
+  transform: translateX(calc(100% + 24px));
+  transition: transform .22s ease;
+  grid-template-columns: repeat(5, minmax(42px, 1fr));
+  align-content: start;
+  box-shadow: 0 24px 70px rgba(0,0,0,.45);
+  backdrop-filter: blur(18px);
+}
+
+body.qnav-drawer-open.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer,
+body.qnav-drawer-open.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer {
+  transform: translateX(0);
+}
+
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer::before,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer::before {
+  content: "Frageübersicht";
+  grid-column: 1 / -1;
+  display: block;
+  margin: 2px 0 10px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #questionNav .qnav-pages,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav .qnav-pages {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #questionNav .qnav-page-btn,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav .qnav-page-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,.28);
+  background: rgba(15,23,42,.62);
+  color: rgba(226,232,240,.86);
+  padding: 7px 10px;
+  font-weight: 800;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #questionNav .qnav-page-btn.active,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav .qnav-page-btn.active {
+  background: rgba(59,130,246,.92);
+  border-color: rgba(147,197,253,.68);
+  color: #fff;
+}
+
+body.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  bottom: calc(max(14px, env(safe-area-inset-bottom)) + 14px);
+  z-index: 8600;
+  border: 1px solid rgba(148,163,184,.35);
+  background: rgba(15,23,42,.92);
+  color: #fff;
+  border-radius: 999px;
+  min-height: 44px;
+  padding: 0 14px;
+  font-weight: 900;
+  box-shadow: 0 16px 44px rgba(0,0,0,.38);
+}
+
+body.egt-simulation-active #quiz.training-cockpit .answers,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers {
+  gap: 10px;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .answer-card,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answer-card {
+  min-height: 50px;
+  align-items: center;
+}
+
+body.egt-simulation-active #result .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 680px) {
+  body.egt-simulation-active #quiz.training-cockpit .topbar,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit .topbar {
+    grid-template-columns: minmax(0, 1fr) 54px;
+    gap: 9px;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit #timer,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit #timer {
+    width: 54px;
+    min-width: 54px;
+    height: 54px;
+    font-size: 15px;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer {
+    width: min(330px, calc(100vw - 20px));
+    grid-template-columns: repeat(5, minmax(38px, 1fr));
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   G51.2 · Answer Stability Layer
+   Zweck: Antwortkarten dürfen nach Render nicht durch Touch-Hover,
+   nachträgliche Layout-Guards oder Grid-Reflow sichtbar springen.
+   ════════════════════════════════════════════════════════════════ */
+body.egt-simulation-active #quiz.training-cockpit #answers,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #answers,
+body.egt-simulation-active #quiz.training-cockpit .answers,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  align-self: start;
+  align-content: start;
+  justify-content: stretch;
+  transform: none !important;
+  contain: layout paint;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .answer-card,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answer-card,
+body.egt-simulation-active #quiz.training-cockpit .answers button,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers button {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  transform: translate3d(0,0,0);
+  will-change: auto;
+  transition: border-color .14s ease, background .14s ease, box-shadow .14s ease, color .14s ease !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  body.egt-simulation-active #quiz.training-cockpit .answer-card:hover,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit .answer-card:hover,
+  body.egt-simulation-active #quiz.training-cockpit .answers button:hover,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers button:hover,
+  body.egt-simulation-active #quiz.training-cockpit .answer-card:active,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit .answer-card:active,
+  body.egt-simulation-active #quiz.training-cockpit .answers button:active,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers button:active {
+    transform: none !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   G51.3 · Simulation Viewport Polish / No Inner Scroll Layer
+   Ziel:
+   - Frageübersicht nicht mehr als rechter Fremdblock im Layoutfluss.
+   - Timer kompakt und stabil in der Topbar.
+   - Route-Memory ohne Innen-Scrollbar und ohne überlappende Straßennamen.
+   - Ein einheitlicher Cockpit-Kartenstandard für Frage, Visual, Antworten und Aktionen.
+   ════════════════════════════════════════════════════════════════ */
+html:has(#quiz.training-cockpit:not(.hidden)),
+body:has(#quiz.training-cockpit:not(.hidden)) {
+  overflow-x: hidden !important;
+}
+
+#quiz.training-cockpit,
+#quiz.learning-screen.training-cockpit,
+body.egt-simulation-active #quiz.training-cockpit,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit {
+  --egt-cockpit-gap: clamp(10px, 1.1vw, 14px);
+  --egt-cockpit-card: rgba(8, 18, 39, .70);
+  --egt-cockpit-card-strong: rgba(12, 20, 44, .86);
+  --egt-cockpit-line: rgba(148, 163, 184, .16);
+  width: min(1460px, calc(100vw - 36px)) !important;
+  margin: 12px auto calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  padding: clamp(12px, 1.25vw, 18px) !important;
+  border-radius: clamp(22px, 2vw, 30px) !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  gap: var(--egt-cockpit-gap) !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 1040px) {
+  #quiz.training-cockpit,
+  #quiz.learning-screen.training-cockpit,
+  body.egt-simulation-active #quiz.training-cockpit,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-areas:
+      "top"
+      "question"
+      "visual"
+      "answers"
+      "feedback"
+      "help"
+      "actions"
+      "footer" !important;
+    grid-template-rows: auto auto auto auto auto auto auto auto !important;
+    align-content: start !important;
+  }
+}
+
+body.egt-simulation-active #quiz.training-cockpit .topbar,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .topbar,
+#quiz.training-cockpit .topbar,
+#quiz.learning-screen.training-cockpit .topbar {
+  grid-area: top !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) clamp(64px, 5vw, 82px) !important;
+  align-items: stretch !important;
+  gap: clamp(9px, 1vw, 14px) !important;
+  min-height: 76px !important;
+  padding: clamp(10px, 1vw, 14px) !important;
+  border-radius: clamp(18px, 1.6vw, 24px) !important;
+  background: linear-gradient(145deg, rgba(6, 14, 32, .92), rgba(15, 23, 42, .72)) !important;
+  border: 1px solid var(--egt-cockpit-line) !important;
+  box-shadow: 0 18px 44px rgba(0,0,0,.24) !important;
+  overflow: hidden !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .topbar > div:first-child,
+#quiz.training-cockpit .topbar > div:first-child {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  display: grid !important;
+  align-content: center !important;
+  gap: 10px !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #meta,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #meta,
+#quiz.training-cockpit #meta {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+  align-items: center !important;
+  min-width: 0 !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #timer,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #timer,
+#quiz.training-cockpit #timer,
+#quiz.learning-screen.training-cockpit #timer {
+  width: clamp(62px, 5vw, 78px) !important;
+  min-width: clamp(62px, 5vw, 78px) !important;
+  height: clamp(62px, 5vw, 78px) !important;
+  min-height: clamp(62px, 5vw, 78px) !important;
+  justify-self: end !important;
+  align-self: center !important;
+  font-size: clamp(20px, 1.7vw, 27px) !important;
+  line-height: .96 !important;
+  z-index: 2 !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #timer::before,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #timer::before {
+  content: none !important;
+}
+body.egt-simulation-active #quiz.training-cockpit #timer::after,
+#quiz.training-cockpit #timer::after {
+  font-size: 9px !important;
+  margin-top: 3px !important;
+  letter-spacing: .04em !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .question,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .question,
+#quiz.training-cockpit .question {
+  grid-area: question !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: clamp(14px, 1.45vw, 20px) clamp(16px, 1.7vw, 24px) !important;
+  border-radius: clamp(18px, 1.7vw, 25px) !important;
+  font-size: clamp(22px, 1.55vw, 34px) !important;
+  line-height: 1.16 !important;
+  background: linear-gradient(145deg, rgba(14, 23, 48, .86), rgba(9, 16, 37, .72)) !important;
+  border: 1px solid var(--egt-cockpit-line) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,.20) !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #visual,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #visual,
+#quiz.training-cockpit #visual,
+#quiz.training-cockpit .learning-visual {
+  grid-area: visual !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit #visual:empty,
+#quiz.training-cockpit #visual:empty {
+  display: none !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .visualBox,
+#quiz.training-cockpit .visualBox,
+body.egt-simulation-active #quiz.training-cockpit .route-scene,
+#quiz.training-cockpit .route-scene {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  overflow: hidden !important;
+  border-radius: clamp(18px, 1.6vw, 24px) !important;
+  background: linear-gradient(145deg, rgba(7, 15, 34, .88), rgba(13, 24, 51, .68)) !important;
+  border: 1px solid var(--egt-cockpit-line) !important;
+  box-shadow: 0 18px 48px rgba(0,0,0,.22) !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-scene,
+#quiz.training-cockpit .route-scene {
+  padding: clamp(8px, .9vw, 12px) !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-svg,
+#quiz.training-cockpit .route-svg {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(185px, 28dvh, 274px) !important;
+  max-height: 274px !important;
+  overflow: visible !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-stop-label,
+#quiz.training-cockpit .route-stop-label {
+  font-size: clamp(10px, .9vw, 13px) !important;
+  letter-spacing: -.03em !important;
+  stroke-width: 3px !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-status,
+#quiz.training-cockpit .route-status {
+  margin: 8px 0 0 !important;
+  padding: 8px 11px !important;
+  border-radius: 14px !important;
+  font-size: clamp(12px, .9vw, 14px) !important;
+  line-height: 1.28 !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-memory-ready,
+#quiz.training-cockpit .route-memory-ready {
+  margin: 0 !important;
+  min-height: clamp(96px, 18dvh, 160px) !important;
+  display: grid !important;
+  place-items: center !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .answers,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit .answers,
+body.egt-simulation-active #quiz.training-cockpit #answers,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #answers,
+#quiz.training-cockpit .answers,
+#quiz.training-cockpit #answers {
+  grid-area: answers !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: clamp(8px, .85vw, 11px) !important;
+  contain: layout paint !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .answer-card,
+body.egt-simulation-active #quiz.training-cockpit .answers button,
+#quiz.training-cockpit .answer-card,
+#quiz.training-cockpit .answers button {
+  min-height: clamp(46px, 4.9dvh, 58px) !important;
+  padding: clamp(9px, .9vw, 13px) clamp(12px, 1.1vw, 16px) !important;
+  border-radius: 16px !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-sequence-panel,
+#quiz.training-cockpit .route-sequence-panel,
+body.egt-simulation-active #quiz.training-cockpit .edv-answer-panel,
+#quiz.training-cockpit .edv-answer-panel {
+  display: grid !important;
+  gap: 10px !important;
+  padding: clamp(12px, 1vw, 16px) !important;
+  border-radius: clamp(18px, 1.6vw, 24px) !important;
+  background: linear-gradient(145deg, rgba(8, 18, 39, .84), rgba(15, 23, 42, .64)) !important;
+  border: 1px solid var(--egt-cockpit-line) !important;
+  overflow: visible !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-option-grid,
+#quiz.training-cockpit .route-option-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 8px !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .route-action-row,
+#quiz.training-cockpit .route-action-row {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+}
+
+body.egt-simulation-active #quiz.training-cockpit .task-nav,
+#quiz.training-cockpit .task-nav,
+body.egt-simulation-active #quiz.training-cockpit .quiz-footer-row,
+#quiz.training-cockpit .quiz-footer-row,
+body.egt-simulation-active #quiz.training-cockpit .learning-footer-row,
+#quiz.training-cockpit .learning-footer-row {
+  border-radius: clamp(17px, 1.5vw, 22px) !important;
+}
+
+/* Frageübersicht: immer echter Drawer, niemals rechter Layout-Block. */
+#quiz.training-cockpit #questionNav.qnav-drawer,
+#quiz.learning-screen.training-cockpit #questionNav.qnav-drawer,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer,
+body.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer {
+  grid-area: unset !important;
+  position: fixed !important;
+  top: max(12px, env(safe-area-inset-top)) !important;
+  right: max(10px, env(safe-area-inset-right)) !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  width: min(390px, calc(100vw - 26px)) !important;
+  min-height: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 66px 18px 18px !important;
+  border-radius: 30px !important;
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(44px, 1fr)) !important;
+  grid-auto-rows: 44px !important;
+  gap: 10px !important;
+  align-content: start !important;
+  justify-content: center !important;
+  overflow: auto !important;
+  z-index: 8600 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translate3d(calc(100% + 32px), 0, 0) !important;
+  transition: transform .22s ease, opacity .18s ease, visibility .18s ease !important;
+  background: linear-gradient(160deg, rgba(5, 12, 30, .98), rgba(17, 24, 49, .96)) !important;
+  border: 1px solid rgba(148, 163, 184, .20) !important;
+  box-shadow: 0 26px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.04) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+  backdrop-filter: blur(22px) !important;
+}
+
+body.qnav-drawer-open #quiz.training-cockpit #questionNav.qnav-drawer,
+body.qnav-drawer-open #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer,
+body.qnav-drawer-open.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer,
+body.qnav-drawer-open.egt-simulation-active #quiz.learning-screen.training-cockpit #questionNav.qnav-drawer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+#quiz.training-cockpit #questionNav.qnav-drawer::before,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer::before {
+  content: "Frageübersicht" !important;
+  position: absolute !important;
+  top: 21px !important;
+  left: 20px !important;
+  right: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  min-height: 24px !important;
+  padding-bottom: 13px !important;
+  border-bottom: 1px solid rgba(148, 163, 184, .14) !important;
+  color: #f8fafc !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+#quiz.training-cockpit #questionNav.qnav-drawer::after,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer::after {
+  content: "" !important;
+  display: none !important;
+}
+
+body.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle,
+#qnavDrawerToggle.qnav-drawer-toggle {
+  position: fixed !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 14px) !important;
+  top: auto !important;
+  z-index: 8700 !important;
+  min-width: 96px !important;
+  min-height: 44px !important;
+  padding: 0 18px !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  border: 1px solid rgba(96, 165, 250, .34) !important;
+  background: linear-gradient(135deg, rgba(14, 165, 233, .95), rgba(124, 58, 237, .92)) !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  letter-spacing: .01em !important;
+  box-shadow: 0 16px 45px rgba(0,0,0,.42), 0 0 24px rgba(59,130,246,.22) !important;
+}
+
+#qnavDrawerToggle.qnav-drawer-toggle::before {
+  content: "☷ Fragen" !important;
+  font-size: 14px !important;
+  line-height: 1 !important;
+}
+
+body.qnav-drawer-open #qnavDrawerToggle.qnav-drawer-toggle::before {
+  content: "✕ Schließen" !important;
+  font-size: 14px !important;
+}
+
+body.qnav-drawer-open #qnavDrawerToggle.qnav-drawer-toggle {
+  background: linear-gradient(135deg, rgba(15,23,42,.96), rgba(30,41,59,.94)) !important;
+  border-color: rgba(248,250,252,.22) !important;
+}
+
+#quiz.training-cockpit #questionNav.qnav-drawer .qnav-pages,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer .qnav-pages {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 7px !important;
+  justify-content: flex-start !important;
+  margin: 0 0 6px !important;
+}
+
+#quiz.training-cockpit #questionNav.qnav-drawer .qnav-page-btn,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer .qnav-page-btn {
+  min-height: 32px !important;
+  padding: 7px 10px !important;
+  font-size: 11px !important;
+}
+
+#quiz.training-cockpit #questionNav.qnav-drawer .progress-dot,
+body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer .progress-dot {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  font-size: 13px !important;
+}
+
+@media (max-width: 1039px) {
+  #quiz.training-cockpit,
+  #quiz.learning-screen.training-cockpit,
+  body.egt-simulation-active #quiz.training-cockpit,
+  body.egt-simulation-active #quiz.learning-screen.training-cockpit {
+    width: min(820px, calc(100vw - 16px)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 11px !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit .topbar,
+  #quiz.training-cockpit .topbar {
+    grid-template-columns: minmax(0, 1fr) 64px !important;
+    min-height: 68px !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit #timer,
+  #quiz.training-cockpit #timer {
+    width: 58px !important;
+    min-width: 58px !important;
+    height: 58px !important;
+    min-height: 58px !important;
+    font-size: 18px !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit .question,
+  #quiz.training-cockpit .question {
+    font-size: clamp(19px, 4.5vw, 26px) !important;
+    padding: 14px 16px !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit .route-svg,
+  #quiz.training-cockpit .route-svg {
+    height: clamp(170px, 30dvh, 250px) !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit .route-stop-label,
+  #quiz.training-cockpit .route-stop-label {
+    font-size: 10px !important;
+    stroke-width: 2.7px !important;
+  }
+
+  body.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle,
+  #qnavDrawerToggle.qnav-drawer-toggle {
+    top: auto !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    bottom: calc(max(12px, env(safe-area-inset-bottom)) + 14px) !important;
+    min-width: 92px !important;
+  }
+
+  #quiz.training-cockpit #questionNav.qnav-drawer,
+  body.egt-simulation-active #quiz.training-cockpit #questionNav.qnav-drawer {
+    width: min(360px, calc(100vw - 20px)) !important;
+    grid-template-columns: repeat(5, minmax(40px, 1fr)) !important;
+    grid-auto-rows: 42px !important;
+  }
+
+  body.egt-simulation-active #quiz.training-cockpit .route-action-row,
+  #quiz.training-cockpit .route-action-row {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 520px) {
+  #quiz.training-cockpit,
+  body.egt-simulation-active #quiz.training-cockpit {
+    width: calc(100vw - 10px) !important;
+    padding: 10px !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-option-grid,
+  #quiz.training-cockpit .route-option-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* G51.3b · Desktop Route-Answer Density: Nach der Animation sollen die Antwortchips ohne unnötiges Scrollen erreichbar sein. */
+@media (min-width: 1040px) {
+  body.egt-simulation-active #quiz.training-cockpit .route-sequence-panel,
+  #quiz.training-cockpit .route-sequence-panel {
+    padding: 10px 12px !important;
+    gap: 7px !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-sequence-panel > b,
+  #quiz.training-cockpit .route-sequence-panel > b {
+    font-size: 13px !important;
+    line-height: 1.18 !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-selected-list,
+  #quiz.training-cockpit .route-selected-list {
+    margin: 2px 0 !important;
+    gap: 6px !important;
+    min-height: 0 !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-chip,
+  #quiz.training-cockpit .route-chip {
+    min-height: 30px !important;
+    padding: 5px 8px !important;
+    font-size: 12px !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-option-grid,
+  #quiz.training-cockpit .route-option-grid {
+    grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)) !important;
+    gap: 6px !important;
+    margin-top: 2px !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-option-grid .answer-card,
+  body.egt-simulation-active #quiz.training-cockpit .route-option-grid button,
+  #quiz.training-cockpit .route-option-grid .answer-card,
+  #quiz.training-cockpit .route-option-grid button {
+    min-height: 38px !important;
+    padding: 7px 10px !important;
+    font-size: 12.5px !important;
+    line-height: 1.15 !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-action-row,
+  #quiz.training-cockpit .route-action-row {
+    margin-top: 2px !important;
+    gap: 7px !important;
+  }
+  body.egt-simulation-active #quiz.training-cockpit .route-action-row .btn,
+  body.egt-simulation-active #quiz.training-cockpit .route-action-row button,
+  #quiz.training-cockpit .route-action-row .btn,
+  #quiz.training-cockpit .route-action-row button {
+    min-height: 36px !important;
+    padding: 7px 9px !important;
+    font-size: 12px !important;
+  }
+}
+
+/* G51.3c · QNav-Close-Button darf den Fragenraster nicht überdecken. */
+body.qnav-drawer-open #qnavDrawerToggle.qnav-drawer-toggle,
+body.qnav-drawer-open.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle {
+  bottom: calc(max(16px, env(safe-area-inset-bottom)) + 14px) !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  top: auto !important;
+  min-width: 104px !important;
+  min-height: 44px !important;
+  padding: 0 16px !important;
+  font-size: 13px !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.34) !important;
+}
+@media (max-width: 1039px) {
+  body.qnav-drawer-open #qnavDrawerToggle.qnav-drawer-toggle,
+  body.qnav-drawer-open.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle {
+    bottom: calc(max(12px, env(safe-area-inset-bottom)) + 14px) !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+    top: auto !important;
+  }
+}

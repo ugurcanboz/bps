@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 38C.4 – B1 Ergebnisbericht</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Arial,sans-serif;margin:24px;line-height:1.45;background:#f8fafc;color:#0f172a;}
+    button{padding:10px 14px;border-radius:12px;border:1px solid #2563eb;background:#2563eb;color:#fff;font-weight:700;margin:4px;}
+    pre{background:#0f172a;color:#e2e8f0;padding:14px;border-radius:14px;overflow:auto;white-space:pre-wrap;}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin:12px 0;}
+  </style>
+</head>
+<body>
+  <h1>Phase 38C.4 – B1 Ergebnisbericht / Prüfungsreife-Prognose</h1>
+  <div class="card">
+    <button id="diag">Diagnose</button>
+    <button id="fail">Nicht-bestanden-Bericht simulieren</button>
+    <button id="pass">Bestanden-Bericht simulieren</button>
+    <button id="open">Exam Shell öffnen</button>
+  </div>
+  <pre id="out">Bereit.</pre>
+
+  <script src="data/language-ai-config.js"></script>
+  <script src="js/modules/language-ai-client.js"></script>
+  <script src="js/modules/language-speaking-ai-client.js"></script>
+  <script src="data/language-exam-blueprints.js"></script>
+  <script src="data/language-b1-exam-pilot.js"></script>
+  <script src="js/modules/language-exam-engine.js"></script>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    const out = document.getElementById('out');
+    function show(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+    function session(parts){
+      return { level:'B1', parts:Object.assign({reading:null,listening:null,writing:null,speaking:null}, parts || {}) };
+    }
+    document.getElementById('diag').onclick = () => show({
+      shell: window.LanguageExamShell && window.LanguageExamShell.diagnostics(),
+      engine: window.LanguageExamEngine && window.LanguageExamEngine.__version,
+      blueprint: window.LanguageExamBlueprints && window.LanguageExamBlueprints.__version
+    });
+    document.getElementById('fail').onclick = () => show(window.LanguageExamEngine.computeFinal(session({
+      reading:{part:'reading',overallScore:83,passed:true},
+      listening:{part:'listening',overallScore:72,passed:true},
+      writing:{part:'writing',overallScore:51,passed:false,hardFailReasons:['Mindestleistung im Prüfungsteil nicht erreicht.'],local:{missingPoints:['konkrete Lösung fordern','höflicher Abschluss']}},
+      speaking:{part:'speaking',overallScore:49,passed:false,hardFailReasons:['Antwort deutlich zu kurz.'],local:{missingPoints:['neuen Termin vorschlagen','höflicher Abschluss']}}
+    })));
+    document.getElementById('pass').onclick = () => show(window.LanguageExamEngine.computeFinal(session({
+      reading:{part:'reading',overallScore:86,passed:true},
+      listening:{part:'listening',overallScore:79,passed:true},
+      writing:{part:'writing',overallScore:76,passed:true,ai:{strengths:['Formelle Struktur ist klar.']}},
+      speaking:{part:'speaking',overallScore:78,passed:true,ai:{strengths:['Aufgabe wurde kommunikativ gelöst.']}}
+    })));
+    document.getElementById('open').onclick = () => window.LanguageExamShell.open();
+  </script>
+</body>
+</html>

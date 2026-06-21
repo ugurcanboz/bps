@@ -1,0 +1,34 @@
+{
+  "pass": true,
+  "errors": [],
+  "c1": {
+    "ok": true,
+    "phase": "34B",
+    "lessons": 10,
+    "expandedLessons": 5,
+    "starterLessons": 5,
+    "totalTasks": 275,
+    "normalTasks": 215,
+    "speakingTasks": 60
+  },
+  "b2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "34B",
+    "version": "G54.26-phase34b-c1-lessons-1-5-content-speaking-expansion",
+    "hasC1Content": true
+  }
+}

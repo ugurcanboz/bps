@@ -1,0 +1,74 @@
+{
+  "version": "G40.7-2026-06-15",
+  "phase": "2G",
+  "title": "EDV-Multi Renderer Migration",
+  "completedAt": "2026-06-15",
+  "status": "passed-static-qa",
+  "changedFiles": [
+    "js/modules/egt-simulation-engine.js",
+    "js/app.js",
+    "js/core/app-config.js",
+    "module-manifest.json",
+    "manifest.json",
+    "service-worker.js",
+    "update-check.json",
+    "WORKING-PLAN_1.md",
+    "docs/WORKING-PLAN.md",
+    "docs/G40_7_PHASE2G_EDV_MULTI_RENDERER_REPORT.md",
+    "docs/G40_7_PHASE2G_EDV_MULTI_RENDERER_QA.json"
+  ],
+  "moduleApisAdded": [
+    "renderEdvMultiAnswers(question)",
+    "toggleEdvMultiNode(id)",
+    "undoEdvMultiSelection()",
+    "clearEdvMultiSelection()",
+    "submitEdvMultiAnswer()"
+  ],
+  "shellHooksAdded": [
+    "renderEdvVisual(question)",
+    "recordEdvMultiAnswers(selected)",
+    "markEdvMultiCoveredDone(need)",
+    "afterEdvMultiSubmit(need, selected)"
+  ],
+  "leftInShellByDesign": [
+    "EDV_SCHEMA",
+    "EDV_ERRORS",
+    "renderEdvProHTML(q)",
+    "Generators.bigEDVMulti()",
+    "Generators.bigEDVCovered(slot)",
+    "recordEdvMultiAnswersInternal(selected)",
+    "result detail rendering",
+    "review/highscore/coach sync"
+  ],
+  "checks": {
+    "jsSyntax": {
+      "status": "passed",
+      "command": "find js data -name '*.js' -type f -print0 | xargs -0 -n1 node --check",
+      "filesChecked": 47
+    },
+    "jsonValidation": {
+      "status": "passed",
+      "command": "python3 json.loads over all *.json",
+      "filesChecked": 55
+    },
+    "serviceWorkerAssets": {
+      "status": "passed",
+      "assetsChecked": 174,
+      "missing": 0
+    },
+    "zipIntegrity": {
+      "status": "passed",
+      "command": "zip -T Eignungstest-Trainer-G40.7-Phase2G-EDV-Multi-Renderer.zip"
+    },
+    "browserRuntime": {
+      "status": "not-run",
+      "reason": "No browser runtime test environment was used in this execution. Static checks passed."
+    }
+  },
+  "riskNotes": [
+    "EDV visual HTML remains in app.js intentionally, exposed through renderEdvVisual(question).",
+    "Existing document-level EDV click handlers remain protected by module event stopPropagation and App wrapper fallback.",
+    "History payload remains in app.js to protect result/review/coach/highscore compatibility."
+  ],
+  "nextStep": "Phase 2H optional visual-renderer boundary, or Phase 3 Shell/ModuleHost contract and start-page/branch structure cleanup."
+}

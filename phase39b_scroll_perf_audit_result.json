@@ -1,0 +1,11 @@
+{
+  "phase": "39B",
+  "manual_admin_touchmove_handlers": 0,
+  "manual_admin_wheel_handlers": 0,
+  "admin_css_backdrop_filter_count": 22,
+  "admin_css_box_shadow_count": 60,
+  "phase39b_css_block_present": true,
+  "mobile_touch_target_px": 48,
+  "native_momentum_scroll": true,
+  "status": "passed"
+}

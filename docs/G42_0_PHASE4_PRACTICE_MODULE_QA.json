@@ -1,0 +1,44 @@
+{
+  "version": "G42.0",
+  "phase": "Phase 4",
+  "title": "Freies Lern-/Übungsmodul als echtes Fachmodul",
+  "date": "2026-06-15",
+  "createdFiles": [
+    "js/modules/egt-practice.js",
+    "css/egt-practice.css"
+  ],
+  "updatedFiles": [
+    "index.html",
+    "js/modules/egt-practice-entry-module.js",
+    "js/core/module-host.js",
+    "js/core/architecture-guard.js",
+    "service-worker.js",
+    "module-manifest.json",
+    "js/core/app-config.js",
+    "update-check.json",
+    "manifest.json",
+    "WORKING-PLAN_1.md",
+    "docs/WORKING-PLAN.md"
+  ],
+  "newGlobals": [
+    "window.EGTPracticeModule"
+  ],
+  "moduleHostRegisteredIds": [
+    "practice"
+  ],
+  "checks": {
+    "jsSyntax": "passed: 58 JS files checked with node --check",
+    "jsonValidation": "passed: 61 JSON files parsed",
+    "serviceWorkerAssets": "passed: 186 cached assets, 0 missing",
+    "zipIntegrity": "passed: unzip -tq reported no errors",
+    "browserLiveTest": "not_run: static QA only in this environment"
+  },
+  "riskBoundary": [
+    "No generator logic changed",
+    "No simulation runtime changed",
+    "No Firebase/Auth/Admin/Profile logic changed",
+    "No highscore schema changed",
+    "No coach memory logic changed"
+  ],
+  "nextStep": "Phase 5 branch-specific simulation modules or Phase 4B practice-generator boundary."
+}
