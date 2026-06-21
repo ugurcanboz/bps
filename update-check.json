@@ -1,9 +1,0 @@
-{
-  "version": "G54.43.8-2026-06-21",
-  "latest": "G54.43.8-2026-06-21",
-  "required": true,
-  "force": false,
-  "label": "G54.43.8: Visual Regression / Capture-Diff",
-  "build": "G54.43.8-2026-06-21",
-  "cache": "egt-trainer-g54-43-8"
-}
