@@ -1,0 +1,12 @@
+{
+  "version": "G25",
+  "name": "Dozentenfokus & Hilfebedarf-Filter",
+  "checks": {
+    "zip": "pending",
+    "js_syntax": "pending",
+    "service_worker_syntax": "pending",
+    "status_filter_functions": true,
+    "priority_list_functions": true,
+    "neon_home_touched": false
+  }
+}

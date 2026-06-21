@@ -1,0 +1,23 @@
+{
+  "phase": "G54.43.8A",
+  "checks": [
+    {
+      "file": "js/qa/egt-visual-state-capture.js",
+      "version_438a": true,
+      "minimize": true,
+      "touch_44": true
+    },
+    {
+      "file": "js/qa/egt-live-visual-qa.js",
+      "version_438a": true,
+      "minimize": true,
+      "touch_44": true
+    },
+    {
+      "file": "js/qa/egt-visual-regression-diff.js",
+      "version_438a": true,
+      "minimize": true,
+      "touch_44": true
+    }
+  ]
+}

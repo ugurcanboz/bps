@@ -1,0 +1,42 @@
+<!doctype html><meta charset="utf-8"><title>Phase 30B/30C Browser Speech QA</title>
+<script>
+(function(){
+  function MockSpeechRecognition(){
+    this.lang=''; this.interimResults=false; this.maxAlternatives=1; this.continuous=true;
+    this.start=function(){ if(this.onstart) this.onstart(); };
+    this.stop=function(){};
+  }
+  window.SpeechRecognition=MockSpeechRecognition;
+})();
+</script>
+<script src="js/i18n/language-store.js"></script>
+<script src="js/i18n/language-adapter.js"></script>
+<script src="js/modules/language-adaptive-engine.js"></script>
+<script src="js/modules/language-course-cloud-sync.js"></script>
+<script src="js/modules/language-course-entry-module.js"></script>
+<body><pre id="out"></pre><script>
+(function(){
+  var out=[]; function ok(name, pass){ out.push((pass?'✅ ':'❌ ')+name); if(!pass) throw new Error(name); }
+  var api=window.LanguageAcademyCourseEntry;
+  ok('Course API exists', !!api);
+  var d=api.diagnostics();
+  ok('Diagnostics upgraded to Phase 30C', d.phase==='30C');
+  ok('Phase 30 speech snapshot exists', !!d.phase30Speech && d.phase30Speech.phase==='30C');
+  ok('interimResults planned', d.phase30Speech.interimResults===true);
+  ok('maxAlternatives planned as 5', d.phase30Speech.maxAlternatives===5);
+  ok('Mobile-safe fallback enabled', d.phase30Speech.mobileSafeFallback===true);
+  ok('A1 speaking tasks expanded to 40', d.phase30Speech.a1SpeakingTasks===40);
+  ok('A1 all 10 lessons covered', d.phase30Speech.a1SpeakingCoverage && d.phase30Speech.a1SpeakingCoverage.a1Lessons===10 && d.phase30Speech.a1SpeakingCoverage.complete===true);
+  ok('Speech QA snapshot exists', !!d.speechQa && d.speechQa.phase==='30C');
+  ok('Language de-DE mapped', d.speechQa.languageDetection.de==='de-DE');
+  ok('Language tr-TR mapped', d.speechQa.languageDetection.tr==='tr-TR');
+  ok('Exact score is 100', d.speechQa.scoring.exact===100);
+  ok('Best alternative chooses correct transcript', d.speechQa.scoring.bestAlternative===100);
+  ok('Wrong score remains low', d.speechQa.scoring.wrong<40);
+  ok('Word feedback generated', d.speechQa.wordFeedback && d.speechQa.wordFeedback.words && d.speechQa.wordFeedback.words.length>=2);
+  ok('Required statuses present', d.speechQa.config.statuses.indexOf('permission_denied')>=0 && d.speechQa.config.statuses.indexOf('listening')>=0);
+  ok('iOS safe config exists', d.speechQa.config.iosSafeConfig && d.speechQa.config.iosSafeConfig.maxAlternatives===1);
+  ok('Phase 29 reports Phase 30C speaking', d.phase29Qa.speakingStatus==='phase30c-a1-speaking-expanded');
+  document.getElementById('out').textContent=out.join('\n');
+})();
+</script></body>

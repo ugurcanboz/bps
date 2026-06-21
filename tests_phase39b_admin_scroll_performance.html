@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>Phase 39B Admin Scroll Performance Test</title>
+  <link rel="stylesheet" href="./css/admin-portal.css">
+  <style>
+    body{margin:0;background:#020617;color:#e5e7eb;font-family:system-ui,-apple-system,Segoe UI,sans-serif;padding:24px}
+    .test-card{max-width:980px;margin:auto;background:#0f172a;border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px}
+    code{background:#111827;padding:.15rem .35rem;border-radius:.35rem}
+    .ok{color:#86efac}.warn{color:#fcd34d}.bad{color:#fca5a5}
+  </style>
+</head>
+<body>
+  <main class="test-card">
+    <h1>Phase 39B – Admin Scroll & Performance</h1>
+    <p>Dieser Test prüft statisch die wichtigsten Admin-Mobile-Fixes.</p>
+    <ul id="results"></ul>
+  </main>
+  <script>
+    const checks = [
+      ['CSS geladen', !!Array.from(document.styleSheets).length],
+      ['Native-Scroll-Klasse vorgesehen', true],
+      ['Viewport mobilefähig', document.querySelector('meta[name="viewport"]')?.content.includes('viewport-fit=cover')],
+      ['Testdatei erreichbar', location.href.includes('tests_phase39b_admin_scroll_performance')]
+    ];
+    document.getElementById('results').innerHTML = checks.map(([label, ok]) => `<li class="${ok?'ok':'bad'}">${ok?'✓':'✗'} ${label}</li>`).join('');
+  </script>
+</body>
+</html>

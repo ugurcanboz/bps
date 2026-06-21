@@ -1,0 +1,9 @@
+{
+  "version": "G30.3",
+  "target": "question overview card polish",
+  "checks": [
+    "CSS appended",
+    "cache updated",
+    "neon home untouched"
+  ]
+}

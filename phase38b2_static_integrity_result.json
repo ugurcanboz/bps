@@ -1,0 +1,66 @@
+{
+  "phase": "38B.2",
+  "ok": true,
+  "checks": [
+    {
+      "check": "exists:data/language-ai-config.js",
+      "ok": true
+    },
+    {
+      "check": "exists:js/modules/language-ai-client.js",
+      "ok": true
+    },
+    {
+      "check": "exists:js/learning-coach-ui.js",
+      "ok": true
+    },
+    {
+      "check": "exists:tests_phase38b2_groq_frontend_integration.html",
+      "ok": true
+    },
+    {
+      "check": "exists:docs_PHASE38B2_GROQ_FRONTEND_INTEGRATION.md",
+      "ok": true
+    },
+    {
+      "check": "index loads language-ai-config",
+      "ok": true
+    },
+    {
+      "check": "index loads language-ai-client",
+      "ok": true
+    },
+    {
+      "check": "coach contains runRemoteCoach",
+      "ok": true
+    },
+    {
+      "check": "coach contains renderAiStatusCard",
+      "ok": true
+    },
+    {
+      "check": "coach contains ai-health",
+      "ok": true
+    },
+    {
+      "check": "coach contains ai-demo",
+      "ok": true
+    },
+    {
+      "check": "coach contains remoteCoachEnabled",
+      "ok": true
+    },
+    {
+      "check": "worker url configured",
+      "ok": true
+    },
+    {
+      "check": "no groq key in config",
+      "ok": true
+    },
+    {
+      "check": "no groq key in client",
+      "ok": true
+    }
+  ]
+}

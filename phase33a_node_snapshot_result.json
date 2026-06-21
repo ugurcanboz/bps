@@ -1,0 +1,27 @@
+{
+  "pass": true,
+  "errors": [],
+  "b2": {
+    "ok": true,
+    "phase": "33A",
+    "lessons": 10,
+    "totalTasks": 120,
+    "normalTasks": 80,
+    "speakingTasks": 40
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "33A",
+    "version": "G54.21-phase33a-b2-course-speaking-structure",
+    "hasB2Structure": true
+  }
+}

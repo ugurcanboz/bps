@@ -1,0 +1,84 @@
+{
+  "phase": "35A",
+  "version": "G54.29",
+  "label": "C2 Course + Speaking Structure",
+  "pass": true,
+  "checks": {
+    "nodeSnapshot": {
+      "pass": true,
+      "errors": [],
+      "c2": {
+        "ok": true,
+        "phase": "35A",
+        "lessons": 10,
+        "totalTasks": 120,
+        "normalTasks": 80,
+        "speakingTasks": 40
+      },
+      "regression": {
+        "a2": {
+          "ok": true,
+          "totalTasks": 430,
+          "speakingTasks": 80
+        },
+        "b1": {
+          "ok": true,
+          "totalTasks": 430,
+          "speakingTasks": 80
+        },
+        "b2": {
+          "ok": true,
+          "totalTasks": 430,
+          "speakingTasks": 80
+        },
+        "c1": {
+          "ok": true,
+          "totalTasks": 430,
+          "speakingTasks": 80
+        }
+      },
+      "diagnostics": {
+        "phase": "35A",
+        "version": "G54.29-phase35a-c2-course-speaking-structure",
+        "hasC2": true
+      }
+    },
+    "staticIntegrity": {
+      "pass": true,
+      "errors": []
+    },
+    "jsSyntax": "PASS",
+    "serviceWorkerSyntax": "PASS"
+  },
+  "summary": {
+    "ok": true,
+    "phase": "35A",
+    "lessons": 10,
+    "totalTasks": 120,
+    "normalTasks": 80,
+    "speakingTasks": 40
+  },
+  "regression": {
+    "a2": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "b1": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "b2": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "c1": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    }
+  },
+  "nextRecommendedPhase": "35B C2 Lessons 1-5 Content + Speaking Expansion"
+}

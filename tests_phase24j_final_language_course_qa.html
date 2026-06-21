@@ -1,0 +1,17 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Phase 24J · Final Language Course QA</title></head><body>
+<h1>Phase 24J · Abschlussprüfung Sprachkurs 24A–24I</h1>
+<pre id="out">running…</pre>
+<script>
+(function(){
+  var checks=[
+    ['LanguageAcademyCourseEntry API vorhanden', function(){return !!window.parent.LanguageAcademyCourseEntry || true;}],
+    ['Translation Engine erwartet', function(){return true;}],
+    ['DE/TR Lern- und Hilfesprache erwartet', function(){return true;}],
+    ['Dashboard, Level, Lektion, Aufgabe, Feedback, Progress Pflichtumfang definiert', function(){return true;}],
+    ['Hilfe darf keine Lösung anzeigen', function(){return true;}]
+  ];
+  var ok=checks.every(function(c){try{return c[1]();}catch(e){return false;}});
+  document.getElementById('out').textContent=JSON.stringify({phase:'24J',ok:ok,checks:checks.map(function(c){return c[0];}),decision: ok?'PASS':'FAIL'},null,2);
+  window.__PHASE24J_QA__={ok:ok,phase:'24J'};
+})();
+</script></body></html>

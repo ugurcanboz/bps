@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 34B QA – C1 Lessons 1-5 Content + Speaking</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;margin:24px;background:#f7f7fb;color:#111827} .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:18px;margin:12px 0;box-shadow:0 8px 20px rgba(15,23,42,.06)}
+    .pass{color:#047857;font-weight:800}.fail{color:#b91c1c;font-weight:800} code{background:#eef2ff;padding:2px 6px;border-radius:8px} pre{white-space:pre-wrap;background:#111827;color:#f9fafb;border-radius:12px;padding:14px;overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>Phase 34B QA – C1 Lektionen 1-5</h1>
+  <div id="result" class="card">Lade Test …</div>
+  <script src="js/modules/language-course-entry-module.js"></script>
+  <script>
+    (function(){
+      var out=document.getElementById('result');
+      function write(ok,msg,obj){out.innerHTML='<div class="'+(ok?'pass':'fail')+'">'+(ok?'PASS':'FAIL')+'</div><p>'+msg+'</p><pre>'+JSON.stringify(obj,null,2)+'</pre>';}
+      try{
+        var api=window.LanguageAcademyCourseEntry;
+        if(!api||!api.c1ContentSnapshot) throw new Error('c1ContentSnapshot fehlt');
+        var snap=api.c1ContentSnapshot();
+        var errors=[];
+        if(!snap.ok) errors.push('Snapshot ok=false');
+        if(snap.phase!=='34B') errors.push('Phase ist nicht 34B');
+        if(snap.expandedLessons!==5||snap.starterLessons!==5) errors.push('Expansion-Split falsch');
+        if(snap.totalTasks!==275||snap.normalTasks!==215||snap.speakingTasks!==60) errors.push('Summen falsch');
+        Object.keys(snap.perLesson||{}).forEach(function(id){var row=snap.perLesson[id]; if(!row.ok) errors.push(id+' nicht ok');});
+        write(errors.length===0, errors.length?errors.join(', '):'C1 Lektionen 1-5 sind korrekt ausgebaut: 275 Aufgaben, 60 Speaking, 215 normal.', snap);
+      }catch(e){write(false,e.message,{stack:e.stack});}
+    })();
+  </script>
+</body>
+</html>
