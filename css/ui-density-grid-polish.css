@@ -1,0 +1,394 @@
+/* =========================================================
+   G51.5 · Appweiter Kachel-/Grid-Abstands-Fix
+   Ziel:
+   - sichtbare, messbare Abstände zwischen Kacheln und Buttons
+   - Ergebnis-, Highscore-, Duell-, Admin- und Simulation-Flächen
+     auf ein gemeinsames Grid-/Spacing-System ziehen
+   - additive Override-Datei, bewusst NACH ui-spacing-polish.css geladen
+   ========================================================= */
+:root{
+  --ui-space-1: 6px;
+  --ui-space-2: 10px;
+  --ui-space-3: 14px;
+  --ui-space-4: 18px;
+  --ui-space-5: 22px;
+  --ui-space-6: 28px;
+  --ui-grid-gap: clamp(18px, 1.9vw, 28px);
+  --ui-grid-gap-sm: clamp(14px, 1.45vw, 20px);
+  --ui-section-gap: clamp(20px, 2.2vw, 32px);
+  --ui-card-min: 184px;
+  --ui-card-radius-lg: 24px;
+}
+
+/* Grundregel: sichtbare Hauptcontainer arbeiten als Stapel mit Abstand. */
+:where(.ui-analysis-wrap,.ui-highscore-page,.ui-duel-page,.ui-profile-page,#result,#analysis,#memory,#blockIntro,.training-cockpit,.egt-portal-body,.egt-admin-body){
+  min-width:0;
+  box-sizing:border-box;
+}
+
+:where(.ui-analysis-wrap,.ui-highscore-page,.ui-duel-page,.ui-profile-page){
+  display:grid !important;
+  gap: var(--ui-section-gap) !important;
+  align-content:start !important;
+}
+
+/* Appweite Raster: keine Kacheln mehr direkt aneinander pressen. */
+:where(
+  .statsgrid,
+  .analysis-pro-grid,
+  .heatmap,
+  .ui-training-area-grid,
+  .ui-quick-grid,
+  .ui-action-card-grid,
+  .ui-foundation-menu-grid,
+  .ui-deep-grid,
+  .ui-deep-benefits,
+  .ui-branch-sim-grid,
+  .training-mode-list,
+  .training-category-list,
+  .training-sheet-router,
+  .up-performance-grid,
+  .bps-userdb-coach-grid,
+  .cloud-health-grid,
+  .hs-action-grid,
+  .hs-rank-meta-grid,
+  .hs-activity-grid,
+  .egt-admin-stat-grid,
+  .egt-admin-mini-grid,
+  .egt-phase4-kpi-grid,
+  .egt-phase4-tools-grid,
+  .egt-phase5-kpis,
+  .egt-phase7-right-badges,
+  .egt-phase8-kpis,
+  .egt-phase8-type-grid,
+  .egt-phase9-kpis,
+  .egt-phase10-grid,
+  .egt-phase10-role-matrix
+){
+  gap: var(--ui-grid-gap) !important;
+}
+
+:where(.statsgrid,.analysis-pro-grid,.heatmap,.ui-action-card-grid,.ui-foundation-menu-grid,.ui-branch-sim-grid,.egt-admin-stat-grid,.egt-admin-mini-grid,.egt-phase4-kpi-grid,.egt-phase4-tools-grid,.egt-phase5-kpis,.egt-phase8-kpis,.egt-phase8-type-grid,.egt-phase9-kpis,.egt-phase10-grid){
+  display:grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--ui-card-min)), 1fr)) !important;
+  align-items:stretch !important;
+}
+
+/* Karten selbst: kein Ankleben von Text, einheitliche Atmung. */
+:where(
+  .stat,
+  .box,
+  .tipBox,
+  .reviewItem,
+  .ui-card,
+  .card,
+  .ui-panel,
+  .layout-card,
+  .section-card,
+  .settings-card,
+  .cloud-highscore-card,
+  .ui-highscore-card,
+  .hs-arena,
+  .hs-panel,
+  .hs-mini-card,
+  .hs-rank-card,
+  .hs-rank-card-v2,
+  .hs-ranking-list,
+  .hs-duel-card,
+  .ui-training-area-card,
+  .ui-quick-card,
+  .ui-action-card,
+  .ui-foundation-menu-card,
+  .ui-deep-card,
+  .training-mode-row,
+  .egt-admin-card,
+  .egt-admin-subcard,
+  .egt-admin-learner,
+  .egt-participant-row,
+  .egt-phase4-kpi,
+  .egt-phase9-ticket-row
+){
+  margin:0 !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+}
+
+/* Ergebnisbildschirm: Screenshot-Fehler gezielt beheben. */
+#result{
+  display:grid !important;
+  gap: var(--ui-section-gap) !important;
+  align-content:start !important;
+  width:min(1180px, calc(100% - 32px)) !important;
+  overflow:visible !important;
+}
+#result > h2{margin:0 !important;}
+#resultText,
+#tips,
+#review{
+  display:grid !important;
+  gap: var(--ui-space-5) !important;
+  min-width:0 !important;
+}
+#categoryStats.statsgrid,
+#result .statsgrid{
+  display:grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)) !important;
+  gap: clamp(22px, 2.2vw, 34px) !important;
+  align-items:stretch !important;
+  width:100% !important;
+}
+#categoryStats.statsgrid{margin:0 !important;}
+#result .stat{
+  min-height: 126px !important;
+  padding: clamp(18px, 1.8vw, 24px) !important;
+  display:grid !important;
+  align-content:start !important;
+  gap: 8px !important;
+  line-height:1.25 !important;
+}
+#result .stat b{display:block;line-height:1.15;overflow-wrap:anywhere;}
+#result .stat strong{display:block;font-size:clamp(20px,2.1vw,30px);line-height:1.05;margin-top:2px;}
+#result .box,
+#result .tipBox{
+  padding: clamp(18px, 2vw, 26px) !important;
+  display:grid !important;
+  gap: var(--ui-space-3) !important;
+}
+#result .row,
+body.egt-simulation-active #result .row{
+  display:grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)) !important;
+  gap: var(--ui-grid-gap) !important;
+  align-items:stretch !important;
+}
+#result .row .btn,
+#result .row button{
+  width:100% !important;
+  margin:0 !important;
+}
+#result .prognosis-card{
+  display:grid !important;
+  gap: var(--ui-space-3) !important;
+  padding: clamp(18px, 2vw, 24px) !important;
+  margin:0 !important;
+}
+#result .prognosis-row{margin:0 !important;display:grid !important;gap:8px !important;}
+#result .prognosis-note{margin:0 !important;}
+
+/* Simulation: Antwort- und Navigationsflächen mit gleichmäßigem Abstand. */
+#quiz.training-cockpit{
+  gap: var(--ui-section-gap) !important;
+}
+#quiz.training-cockpit :where(.topbar,#question,#visual,.answers,#answers,.task-nav,.quiz-footer-row,.learning-footer-row,.quiz-help-container,.feedback){
+  margin:0 !important;
+}
+#quiz.training-cockpit :where(.answers,#answers,.route-option-grid,.edv-option-grid){
+  gap: var(--ui-grid-gap-sm) !important;
+}
+#quiz.training-cockpit :where(.task-nav,.quiz-footer-row,.learning-footer-row,.route-action-row){
+  gap: var(--ui-grid-gap-sm) !important;
+  padding: var(--ui-space-3) !important;
+}
+#questionNav.qnav-drawer{
+  display:grid !important;
+  gap: 10px !important;
+  align-content:start !important;
+}
+
+/* Highscore und Duell: Listenelemente, Rows und Actions atmen lassen. */
+.ui-highscore-page .cloud-highscore-card,
+.ui-highscore-page .hs-arena,
+.ui-duel-page .hs-duel-card,
+.hs-duel-card,
+.hs-panel,
+.hs-mini-card,
+.hs-ranking-list{
+  border-radius: var(--ui-card-radius-lg) !important;
+  padding: clamp(16px, 1.75vw, 24px) !important;
+}
+.hs-arena-inner,
+.hs-grid,
+.hs-side-column,
+.hs-ranking-list,
+.hs-duel-list,
+.cloud-board-grid{
+  gap: var(--ui-grid-gap) !important;
+}
+.hs-top-controls,
+.cloud-refresh-row,
+.hs-panel-head,
+.hs-list-head,
+.hs-duel-winner,
+.hs-duel-score{
+  gap: var(--ui-space-3) !important;
+}
+.hs-ranking-row{
+  margin:0 0 var(--ui-space-3) 0 !important;
+  padding: var(--ui-space-3) !important;
+  border-radius: 18px !important;
+  gap: var(--ui-space-3) !important;
+}
+.hs-ranking-row:last-child{margin-bottom:0 !important;}
+.hs-duel-list{margin:0 !important;}
+.hs-duel-card{display:grid !important;gap:var(--ui-space-3) !important;}
+.hs-duel-winner{margin:0 !important;}
+.hs-duel-meta{margin-top:0 !important;}
+.hs-filter-row,.hs-duel-actions,.cloud-runtime-actions,.cloud-refresh-row{gap:var(--ui-space-3) !important;}
+
+/* Duell-Setup-Overlay. */
+.duel-setup-card{
+  display:grid !important;
+  gap: var(--ui-space-4) !important;
+  padding: clamp(20px, 2.2vw, 30px) !important;
+}
+.duel-setup-head,.duel-mode-tabs,.duel-history,.duel-vs-grid,.duel-blocks-wrap,.duel-ticks-wrap{margin:0 !important;}
+.duel-history,.duel-code-card,.duel-wait-card,.duel-player-card,.duel-blocks-wrap,.duel-ticks-wrap{padding:var(--ui-space-4) !important;border-radius:20px !important;}
+.duel-input-label{margin:0 !important;display:grid !important;gap:8px !important;}
+.duel-primary-btn,.duel-secondary-btn{margin:0 !important;}
+
+/* Admin / Dozentenportal: alte 8/10px-Mischung durch klares Raster übersteuern. */
+.egt-admin-modal *{box-sizing:border-box;min-width:0;}
+.egt-admin-panel{
+  display:flex !important;
+  flex-direction:column !important;
+  gap:0 !important;
+}
+.egt-admin-head,.egt-portal-head{
+  gap: var(--ui-space-4) !important;
+  padding: clamp(18px, 2vw, 26px) !important;
+}
+.egt-admin-body,.egt-portal-body{
+  display:grid !important;
+  gap: var(--ui-section-gap) !important;
+  padding: clamp(18px, 2vw, 28px) !important;
+}
+.egt-admin-tabs,.egt-portal-tabs,.egt-portal-tabbar{
+  gap: var(--ui-space-3) !important;
+  padding: var(--ui-space-2) !important;
+}
+.egt-admin-tab{
+  min-height:44px !important;
+  padding: 0 16px !important;
+  margin:0 !important;
+}
+.egt-admin-card,
+.egt-admin-subcard,
+.egt-profile-section,
+.egt-phase4-card,
+.egt-phase7-create,
+.egt-phase8-export-card,
+.egt-phase8-preview,
+.egt-phase9-ticket-row,
+.egt-phase10-system{
+  padding: clamp(18px, 1.8vw, 26px) !important;
+  border-radius: var(--ui-card-radius-lg) !important;
+}
+.egt-phase4-main-grid,
+.egt-phase5-layout,
+.egt-phase7-layout,
+.egt-phase8-layout,
+.egt-phase9-workspace,
+.egt-phase10-system,
+.egt-participant-detail,
+.egt-participant-all,
+.egt-phase2-layout,
+.egt-phase3-body{
+  gap: var(--ui-section-gap) !important;
+}
+.egt-participant-toolbar,
+.egt-participant-filterbar,
+.egt-phase2-toolbar,
+.egt-phase3-head,
+.egt-phase4-actions,
+.egt-phase7-form,
+.egt-phase8-export-actions,
+.egt-phase9-form,
+.egt-phase9-grid,
+.egt-phase10-checklist,
+.egt-admin-actions,
+.egt-admin-row{
+  gap: var(--ui-space-4) !important;
+}
+.egt-admin-list,
+.egt-phase7-list,
+.egt-phase9-list,
+.egt-phase4-risk-list,
+.egt-phase4-activity-list,
+.egt-group-learner-list{
+  display:grid !important;
+  gap: var(--ui-space-3) !important;
+}
+.egt-admin-btn{
+  min-height:46px !important;
+  padding: 0 16px !important;
+  margin:0 !important;
+}
+.egt-admin-input{min-height:46px !important;}
+
+/* Toast/Notice darf keine breite leere Stange über Inhalte legen. */
+.ui-notice{
+  max-width:min(560px, calc(100vw - 32px)) !important;
+  min-width:0 !important;
+  width:max-content !important;
+  white-space:normal !important;
+  overflow-wrap:anywhere !important;
+  text-align:center !important;
+  line-height:1.25 !important;
+}
+
+@media (max-width: 900px){
+  :root{--ui-card-min:170px;--ui-grid-gap:18px;--ui-section-gap:22px;}
+  #result{width:min(760px, calc(100% - 22px)) !important;}
+  #categoryStats.statsgrid,#result .statsgrid{grid-template-columns:repeat(auto-fit,minmax(min(100%, 170px),1fr)) !important;gap:18px !important;}
+  .egt-phase4-main-grid,.egt-phase5-layout,.egt-phase7-layout,.egt-phase8-layout,.egt-phase9-workspace,.egt-phase10-system,.egt-participant-detail,.egt-phase2-layout,.egt-phase3-body{grid-template-columns:1fr !important;}
+}
+@media (max-width: 560px){
+  :root{--ui-card-min:100%;--ui-grid-gap:14px;--ui-section-gap:18px;}
+  #result{width:calc(100% - 16px) !important;padding:16px !important;border-radius:22px !important;}
+  #categoryStats.statsgrid,#result .statsgrid{grid-template-columns:1fr !important;gap:14px !important;}
+  #result .stat{min-height:0 !important;}
+  .ui-highscore-page,.ui-duel-page,.ui-profile-page{padding-left:10px !important;padding-right:10px !important;}
+  .ui-action-card-grid,.ui-quick-grid,.ui-training-area-grid{gap:14px !important;}
+  .hs-ranking-row{grid-template-columns:44px minmax(0,1fr) 64px !important;}
+  .egt-admin-body,.egt-portal-body{padding:14px !important;}
+  .egt-admin-tabs,.egt-portal-tabs,.egt-portal-tabbar{gap:8px !important;}
+}
+
+/* G51.5a · Sichtbarkeits-Sicherheit: globale Layout-Regeln dürfen .hidden niemals überstimmen. */
+.hidden,
+#start.hidden,
+#memory.hidden,
+#blockIntro.hidden,
+#quiz.hidden,
+#result.hidden,
+#analysis.hidden,
+#review.hidden,
+#feedback.hidden,
+#quizHelpContainer.hidden{
+  display:none !important;
+}
+
+/* G51.5a · Ergebnis-Kreis darf in CSS-Grid nicht zur breiten Pille stretchen. */
+#result .bigScore{
+  justify-self:center !important;
+  align-self:center !important;
+  width:154px !important;
+  max-width:154px !important;
+  min-width:154px !important;
+  height:154px !important;
+  min-height:154px !important;
+  display:inline-flex !important;
+  flex:0 0 154px !important;
+  border-radius:999px !important;
+}
+@media (max-width:560px){
+  #result .bigScore{
+    width:132px !important;
+    max-width:132px !important;
+    min-width:132px !important;
+    height:132px !important;
+    min-height:132px !important;
+    flex-basis:132px !important;
+    font-size:28px !important;
+  }
+}

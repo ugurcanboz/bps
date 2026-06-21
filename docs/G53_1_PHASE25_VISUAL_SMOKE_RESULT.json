@@ -1,0 +1,979 @@
+{
+  "ok": true,
+  "failures": [],
+  "rows": [
+    {
+      "label": "desktop_chrome:home",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 1889,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:simulation_question",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 900,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 1311,
+        "y": 129,
+        "w": 96,
+        "h": 42
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:simulation_drawer",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active qnav-drawer-open",
+      "scrollY": 0,
+      "docHeight": 900,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 1292,
+        "y": 35,
+        "w": 105,
+        "h": 42
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:result",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "result"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1897,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": true,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 4,
+      "qnavButton": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:home_after_result_restart",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 1889,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:analysis",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1499,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:highscore",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1499,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "desktop_chrome:duel_direct",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1499,
+      "viewport": {
+        "w": 1440,
+        "h": 900,
+        "dpr": 1
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:home",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-desktop egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 2362,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:simulation_question",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-desktop egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1024,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 629,
+        "y": 119,
+        "w": 112,
+        "h": 44
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:simulation_drawer",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-desktop egt-gate-active quiz-screen-active qnav-drawer-open",
+      "scrollY": 0,
+      "docHeight": 1024,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 634,
+        "y": 31,
+        "w": 105,
+        "h": 42
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:result",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "result"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-desktop egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1822,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": true,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 4,
+      "qnavButton": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:home_after_result_restart",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 2362,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:analysis",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1522,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:highscore",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1522,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_portrait:duel_direct",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1522,
+      "viewport": {
+        "w": 768,
+        "h": 1024,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:home",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 1905,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:simulation_question",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 820,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 1051,
+        "y": 129,
+        "w": 96,
+        "h": 42
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:simulation_drawer",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active qnav-drawer-open",
+      "scrollY": 0,
+      "docHeight": 820,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 1032,
+        "y": 35,
+        "w": 105,
+        "h": 42
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:result",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "result"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1763,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": true,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 4,
+      "qnavButton": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:home_after_result_restart",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 1905,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "ipad_landscape:analysis",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1439,
+      "viewport": {
+        "w": 1180,
+        "h": 820,
+        "dpr": 2
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:home",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-compact egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 2618,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:simulation_question",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-compact egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1023,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 359,
+        "y": 141,
+        "w": 48,
+        "h": 48
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:simulation_drawer",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "quiz"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-compact egt-gate-active quiz-screen-active qnav-drawer-open",
+      "scrollY": 0,
+      "docHeight": 1023,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": true,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 4,
+      "categoryCards": 0,
+      "qnavButton": {
+        "x": 359,
+        "y": 29,
+        "w": 46,
+        "h": 46
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:result",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "result"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready training-sheet-compact egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 2809,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": false,
+      "resultVisible": true,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 4,
+      "qnavButton": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:home_after_result_restart",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "start"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active",
+      "scrollY": 0,
+      "docHeight": 2618,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": true,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    },
+    {
+      "label": "iphone_ios_viewport:analysis",
+      "appVersion": "G53.1-2026-06-15",
+      "releaseOk": true,
+      "problems": {
+        "missingGlobals": [],
+        "missingEngines": [],
+        "horizontalOverflow": 0,
+        "cardOverlaps": 0,
+        "buttonOverlaps": 0
+      },
+      "activeScreens": [
+        "analysis"
+      ],
+      "horizontalOverflow": 0,
+      "bodyClass": "ui-f-ui-home-ready egt-gate-active quiz-screen-active",
+      "scrollY": 0,
+      "docHeight": 1864,
+      "viewport": {
+        "w": 430,
+        "h": 932,
+        "dpr": 3
+      },
+      "quizVisible": false,
+      "resultVisible": false,
+      "startVisible": false,
+      "answerButtons": 0,
+      "categoryCards": 0,
+      "qnavButton": null,
+      "consoleErrors": []
+    }
+  ],
+  "screenshots": [
+    "debug_poly_home.png",
+    "debug_poly_sim.png",
+    "desktop_chrome_analysis.png",
+    "desktop_chrome_duel_direct.png",
+    "desktop_chrome_highscore.png",
+    "desktop_chrome_home.png",
+    "desktop_chrome_home_after_restart.png",
+    "desktop_chrome_result.png",
+    "desktop_chrome_simulation_drawer.png",
+    "desktop_chrome_simulation_question.png",
+    "ipadL_analysis.png",
+    "ipadL_analysis_debug.png",
+    "ipadL_duel_debug.png",
+    "ipadL_highscore.png",
+    "ipadL_highscore_debug.png",
+    "ipadL_home.png",
+    "ipadL_home_after_debug.png",
+    "ipadL_home_after_restart.png",
+    "ipadL_result.png",
+    "ipadL_simulation_drawer.png",
+    "ipadL_simulation_question.png",
+    "ipad_landscape_analysis.png",
+    "ipad_landscape_duel_direct.png",
+    "ipad_landscape_highscore.png",
+    "ipad_landscape_home.png",
+    "ipad_landscape_home_after_restart.png",
+    "ipad_landscape_result.png",
+    "ipad_landscape_simulation_drawer.png",
+    "ipad_landscape_simulation_question.png",
+    "ipad_portrait_analysis.png",
+    "ipad_portrait_duel_direct.png",
+    "ipad_portrait_highscore.png",
+    "ipad_portrait_home.png",
+    "ipad_portrait_home_after_restart.png",
+    "ipad_portrait_result.png",
+    "ipad_portrait_simulation_drawer.png",
+    "ipad_portrait_simulation_question.png",
+    "iphone_ios_viewport_analysis.png",
+    "iphone_ios_viewport_home.png",
+    "iphone_ios_viewport_home_after_restart.png",
+    "iphone_ios_viewport_result.png",
+    "iphone_ios_viewport_simulation_drawer.png",
+    "iphone_ios_viewport_simulation_question.png"
+  ]
+}

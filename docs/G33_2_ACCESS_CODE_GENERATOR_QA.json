@@ -1,0 +1,13 @@
+{
+  "build": "G33.2-ACCESS-CODE-GENERATOR-2026-06-08",
+  "scope": "phase 5-6",
+  "checks": {
+    "admin_code_generator_added": true,
+    "teacher_own_group_code_generator_added": true,
+    "firebase_access_code_path": "courses/{courseId}/accessCodes/{codeId}",
+    "fake_local_rights_prevented": true,
+    "training_logic_changed": false,
+    "highscore_logic_changed": false,
+    "hard_feature_locks_added": false
+  }
+}

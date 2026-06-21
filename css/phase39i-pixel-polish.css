@@ -1,0 +1,328 @@
+/* ═══════════════════════════════════════════════════════
+   Phase 39I · LOW-/Pixel-Polish nach Visual Observer Report
+   Ziel: kompakter Header, integriertes Tablet-Footer/Branding,
+         Performance-Fallbacks und Icon-QA-Absicherung.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --phase39i-compact-header-height: 58px;
+  --phase39i-soft-border: rgba(148, 163, 184, .18);
+}
+
+/* LOW 1: iPhone Header kompakter, ohne Lesbarkeit oder Touch-Fläche zu verlieren. */
+@media (max-width: 520px) {
+  .egt-gate-top {
+    min-height: var(--phase39i-compact-header-height) !important;
+    gap: 9px !important;
+    padding: max(10px, env(safe-area-inset-top, 0px)) 14px 9px !important;
+  }
+
+  .egt-gate-top .logo {
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  .egt-gate-top .brand {
+    min-width: 0 !important;
+    line-height: 1.08 !important;
+  }
+
+  .egt-gate-top .brand b {
+    font-size: .88rem !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.015em !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .egt-gate-top .brand small {
+    display: block !important;
+    font-size: .66rem !important;
+    line-height: 1.05 !important;
+    max-width: 210px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .egt-gate-mute {
+    min-width: 42px !important;
+    min-height: 42px !important;
+    padding: 8px 10px !important;
+    border-radius: 16px !important;
+  }
+
+  .egt-gate-mute span,
+  .egt-gate-mute .label {
+    display: none !important;
+  }
+}
+
+/* LOW 2: iPad Footer/Branding wirkt nicht mehr verloren am unteren Rand. */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .egt-gate-copyright {
+    align-self: center !important;
+    width: min(100%, 360px) !important;
+    margin-top: 18px !important;
+    padding: 9px 13px !important;
+    border-radius: 999px !important;
+    opacity: .82 !important;
+    color: rgba(203, 213, 225, .78) !important;
+    background: rgba(2, 6, 23, .28) !important;
+    border: 1px solid var(--phase39i-soft-border) !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 920px) {
+  .egt-gate-copyright {
+    margin-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* LOW 3: ältere/mobile Geräte bekommen eine leichtere Glas-Variante. */
+@media (max-width: 520px), (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+  .egt-gate-top,
+  .egt-gate-overlay,
+  .ui-sheet-backdrop,
+  #duellSetupOverlay,
+  .egt-practice-backdrop {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .stat,
+  .box,
+  .tipBox,
+  .warn,
+  .visualBox,
+  .blockIntroCard,
+  .ui-login-btn,
+  .ui-mod-card.ui-coach-card .ui-mod-icon {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .egt-gate-screen,
+  .egt-gate-overlay,
+  .egt-gate-sheet,
+  .ui-hero-target,
+  .ui-training-area-card,
+  .egt-gate-tile {
+    animation: none !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* LOW 4: neue/alte Icon-Träger bleiben SVG-/Bild-orientiert und erhalten ein sauberes Fallback-Feld. */
+:is(.ui-area-icon,
+    .ui-quick-icon,
+    .ui-deep-icon,
+    .egt-gate-tile .ic,
+    .product-track-head > span,
+    .ui-mod-icon) {
+  line-height: 1 !important;
+  text-rendering: geometricPrecision;
+}
+
+:is(.ui-area-icon,
+    .ui-quick-icon,
+    .ui-deep-icon,
+    .egt-gate-tile .ic,
+    .product-track-head > span,
+    .ui-mod-icon) > :is(svg, img, picture) {
+  display: block !important;
+  flex: 0 0 auto !important;
+}
+
+/* LOW 5: eindeutige Build-Markierung für spätere Observer-/Golden-Master-Vergleiche. */
+body::before {
+  content: '';
+  position: fixed;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+
+/* ==========================================================================
+   G54.42.3 · iPhone Portrait Visual/Scroll Hotfix
+   Scope: iPhone Hochformat Training-Karten + Deep-Sheet-Scroll.
+   Keine Logik-, Daten- oder Desktop-Änderung.
+   ========================================================================== */
+@media (max-width: 560px) and (orientation: portrait) {
+  /* Startseite: linke Bereichs-Icons sitzen stabil links mittig und überlappen den Text nicht. */
+  .ui-training-area-card {
+    min-height: 116px !important;
+    padding: 20px 58px 20px 106px !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    overflow: hidden !important;
+  }
+
+  .ui-training-area-card .ui-area-icon {
+    position: absolute !important;
+    left: 28px !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate3d(0, -50%, 0) !important;
+    margin: 0 !important;
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+  }
+
+  .ui-training-area-card .ui-area-icon svg,
+  .ui-training-area-card .ui-area-icon img,
+  .ui-training-area-card .ui-area-icon picture {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+  }
+
+  .ui-training-area-card b,
+  .ui-training-area-card small {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .ui-training-area-card b {
+    font-size: 18px !important;
+    line-height: 1.12 !important;
+  }
+
+  .ui-training-area-card small {
+    font-size: 13px !important;
+    line-height: 1.28 !important;
+  }
+
+  .ui-training-area-card::after {
+    right: 18px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate3d(0, -50%, 0) !important;
+  }
+
+  /* Deep Sheets: iOS scrollt den Inhalt nativ bis zum unteren Button. */
+  .ui-sheet.ui-deep-sheet,
+  .ui-deep-sheet {
+    top: max(8px, env(safe-area-inset-top, 0px)) !important;
+    bottom: max(8px, env(safe-area-inset-bottom, 0px)) !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    touch-action: pan-y !important;
+  }
+
+  .ui-deep-head {
+    flex: 0 0 auto !important;
+  }
+
+  .ui-deep-body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .product-flow,
+  .product-flow-branch-training,
+  .product-training-checkgrid {
+    min-height: max-content !important;
+    overflow: visible !important;
+  }
+
+  .product-training-startbox,
+  .ui-deep-startbox {
+    margin-bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* ========================================================================== 
+   G54.42.4 · iPhone Portrait Deep-Sheet Native Scroll Hotfix
+   Problem: Auf iPhone Hochformat konnte das Berufsfeld-/Training-Deep-Sheet
+   nicht zuverlässig bis zum unteren Startbutton weitergescrollt werden.
+   Lösung: Auf iPhone Hochformat scrollt das komplette Deep-Sheet nativ;
+   der Body darf in voller Höhe wachsen. Kein Desktop/iPad/Logik-Eingriff.
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) and (max-width: 560px) and (orientation: portrait) {
+  html.ui-overlay-open,
+  body.ui-overlay-open,
+  html.egt-layer-open,
+  body.egt-layer-open {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+  .ui-sheet.ui-deep-sheet.show,
+  .ui-sheet.ui-deep-sheet.is-visible,
+  .ui-deep-sheet.show,
+  .ui-deep-sheet.is-visible {
+    position: fixed !important;
+    left: 50% !important;
+    top: max(8px, env(safe-area-inset-top, 0px)) !important;
+    bottom: auto !important;
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    height: auto !important;
+    max-height: calc(100dvh - max(8px, env(safe-area-inset-top, 0px)) - max(8px, env(safe-area-inset-bottom, 0px))) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    display: block !important;
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-head,
+  .ui-deep-sheet .ui-deep-head {
+    position: relative !important;
+    flex: none !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-body,
+  .ui-deep-sheet .ui-deep-body,
+  .ui-sheet.ui-deep-sheet [data-sheet-scroll],
+  .ui-deep-sheet [data-sheet-scroll] {
+    display: block !important;
+    flex: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    -webkit-overflow-scrolling: auto !important;
+    overscroll-behavior: auto !important;
+    touch-action: pan-y !important;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-startbox,
+  .ui-deep-sheet .ui-deep-startbox,
+  .ui-sheet.ui-deep-sheet .product-training-startbox,
+  .ui-deep-sheet .product-training-startbox {
+    margin-bottom: calc(44px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

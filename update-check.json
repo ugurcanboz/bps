@@ -1,0 +1,14 @@
+{
+  "version": "G54.42.6-2026-06-21",
+  "latest": "G54.42.6-2026-06-21",
+  "required": true,
+  "force": false,
+  "label": "G54.42.6: Analyse Legacy-Restpfad Fix",
+  "build": "G54.42.6-2026-06-21",
+  "cache": "egt-trainer-g54-42-6",
+  "phase": "42.6",
+  "updatedAt": "2026-06-20T23:15:00+02:00",
+  "timestamp": "2026-06-20T23:15:00+02:00",
+  "notes": "Minimaler Frontend-Hotfix: iPhone-Hochformat Karten-Icons sauber ausgerichtet und Deep-Sheet-Scrolling bis zum unteren Startbutton repariert.",
+  "description": "iPhone Portrait Visual- und Scroll-Hotfix für Startseite und Trainings-Deep-Sheet."
+}

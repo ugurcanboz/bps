@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Phase 42 – Live Device QA</title>
+  <style>
+    :root{color-scheme:dark;background:#020617;color:#e5e7eb;font-family:Arial,sans-serif}
+    body{margin:0;padding:20px;background:linear-gradient(180deg,#020617,#0f172a);min-height:100vh}
+    .wrap{max-width:960px;margin:0 auto}.card{background:rgba(15,23,42,.92);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 18px 44px rgba(0,0,0,.22)}
+    button{min-height:44px;border:0;border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer}.ok{color:#86efac}.bad{color:#fca5a5}.warn{color:#fde68a}
+    pre{white-space:pre-wrap;word-break:break-word;line-height:1.45}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.pill{padding:10px;border-radius:14px;background:rgba(255,255,255,.06)}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Phase 42 – Live Device QA</h1>
+    <div class="card">
+      <p>Diese Seite ist für den echten GitHub-Pages-Gerätetest gedacht. Öffne sie nach dem Deploy auf iPhone, iPad und Desktop.</p>
+      <button onclick="runQA()">Live-Device-QA starten</button>
+    </div>
+    <div class="card grid" id="summary"></div>
+    <pre id="out" class="card">Bereit.</pre>
+  </main>
+  <script src="./js/core/app-config.js"></script>
+  <script>
+    async function exists(url){ try{ const r=await fetch(url,{cache:'no-store'}); return r.ok; }catch(e){ return false; } }
+    async function json(url){ try{ const r=await fetch(url,{cache:'no-store'}); return r.ok ? await r.json() : null; }catch(e){ return null; } }
+    function deviceKind(){
+      const w=innerWidth, ua=navigator.userAgent || '';
+      if(/iPhone|Android.+Mobile/.test(ua) || w < 620) return 'phone';
+      if(/iPad|Tablet/.test(ua) || (w >= 620 && w < 1024)) return 'tablet';
+      return 'desktop';
+    }
+    async function runQA(){
+      const checks=[]; const add=(name, ok, detail)=>checks.push({name, passed:!!ok, detail:detail||''});
+      const manifest=await json('./manifest.json');
+      const update=await json('./update-check.json');
+      const kind=deviceKind();
+      add('AppConfig Version G54.42+', window.AppConfig && String(window.AppConfig.version||'').indexOf('G54.42')===0, window.AppConfig && window.AppConfig.fullVersion);
+      add('Manifest erreichbar und G54.42+', manifest && String(manifest.version||'').indexOf('G54.42')===0, manifest && manifest.version);
+      add('Update-Check erreichbar und G54.42+', update && String(update.version||'').indexOf('G54.42')===0, update && update.version);
+      add('Service Worker Datei erreichbar', await exists('./service-worker.js'));
+      add('404-Fallback erreichbar', await exists('./404.html'));
+      add('Startseite erreichbar', await exists('./index.html'));
+      add('Phase 42 Report erreichbar', await exists('./docs/PHASE42_LIVE_DEVICE_QA.md'));
+      add('Phase 41 Report weiterhin erreichbar', await exists('./docs/PHASE41_GITHUB_PAGES_DEPLOY_CHECK.md'));
+      add('Service Worker API vorhanden', 'serviceWorker' in navigator, navigator.userAgent);
+      add('Viewport gültig', innerWidth >= 320 && innerHeight >= 480, innerWidth+'x'+innerHeight);
+      add('Kein initiales horizontales Overflow', document.documentElement.scrollWidth <= innerWidth + 2, document.documentElement.scrollWidth+' / '+innerWidth);
+      add('Touch/Pointer plausibel', matchMedia('(pointer: coarse)').matches || kind==='desktop', kind);
+      add('HTTPS oder localhost', location.protocol==='https:' || location.hostname==='localhost' || location.hostname==='127.0.0.1', location.href);
+      const result={phase:'42', name:'Live Device QA', device:kind, viewport:{width:innerWidth,height:innerHeight,dpr:devicePixelRatio}, version:(window.AppConfig&&window.AppConfig.fullVersion)||'unknown', checks};
+      result.passed=checks.every(c=>c.passed);
+      window.__PHASE42_LIVE_DEVICE_QA_RESULT__=result;
+      document.getElementById('summary').innerHTML = [
+        ['Version', result.version], ['Gerät', kind], ['Viewport', innerWidth+'×'+innerHeight], ['Status', result.passed?'PASSED':'FAILED']
+      ].map(x=>'<div class="pill"><strong>'+x[0]+'</strong><br>'+x[1]+'</div>').join('');
+      document.getElementById('out').textContent=JSON.stringify(result,null,2);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "ok": false,
+  "phase": "32A",
+  "devices": [
+    {
+      "device": "desktop-1440",
+      "viewport": "1440x900",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    },
+    {
+      "device": "desktop-1024",
+      "viewport": "1024x768",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    },
+    {
+      "device": "iphone-15-pro-max",
+      "viewport": "430x932",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    },
+    {
+      "device": "iphone-se",
+      "viewport": "375x667",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    },
+    {
+      "device": "ipad-11",
+      "viewport": "834x1194",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    },
+    {
+      "device": "ipad-12-9",
+      "viewport": "1024x1366",
+      "ok": false,
+      "error": "Page.goto: net::ERR_BLOCKED_BY_ADMINISTRATOR at http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\nCall log:\n  - navigating to \"http://127.0.0.1:8765/tests_phase32a_b1_course_speaking_structure.html\", waiting until \"networkidle\"\n"
+    }
+  ],
+  "error": null
+}

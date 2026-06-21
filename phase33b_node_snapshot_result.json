@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "errors": [],
+  "b2": {
+    "ok": true,
+    "phase": "33B",
+    "lessons": 10,
+    "expandedLessons": 5,
+    "starterLessons": 5,
+    "totalTasks": 275,
+    "normalTasks": 215,
+    "speakingTasks": 60
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "33B",
+    "version": "G54.22-phase33b-b2-lessons-1-5-content-speaking-expansion",
+    "hasB2Content": true
+  }
+}

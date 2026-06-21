@@ -1,0 +1,23 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Phase 24G Feedback Learning Logic Test</title></head><body>
+<h1>Phase 24G Feedback Learning Logic Test</h1><pre id="out">running...</pre>
+<script src="./js/i18n/language-store.js"></script>
+<script src="./js/i18n/translation-engine.js"></script>
+<script src="./js/i18n/help-system.js"></script>
+<script src="./js/modules/language-course-entry-module.js"></script>
+<script>
+(function(){
+  const results=[];
+  function ok(name, pass){ results.push((pass?'PASS ':'FAIL ')+name); if(!pass) throw new Error(name); }
+  ok('LanguageAcademyCourseEntry exists', !!window.LanguageAcademyCourseEntry);
+  ok('Phase 24G version set', /phase24g/i.test(window.LanguageAcademyCourseEntry.__version||''));
+  const d=window.LanguageAcademyCourseEntry.diagnostics();
+  ok('diagnostics phase 24G', d.phase==='24G');
+  localStorage.removeItem('language_academy_course_progress_v1');
+  window.EGTUILayer={openDeepSheet:function(cfg){ window.__lastSheet=cfg; const div=document.createElement('div'); div.innerHTML=cfg.bodyHtml; document.body.appendChild(div); return true; }};
+  window.LanguageAcademyCourseEntry.openTask('a1','a1-greetings',0);
+  ok('task ui exists', !!document.querySelector('[data-la-task-ui]'));
+  ok('learning status exists', !!document.querySelector('[data-la-learning-status="phase24g"]'));
+  ok('feedback metrics exist', document.querySelectorAll('.la-feedback-metrics div').length===4);
+  document.getElementById('out').textContent=results.join('\n');
+})();
+</script></body></html>
