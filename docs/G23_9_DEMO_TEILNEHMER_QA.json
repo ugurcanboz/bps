@@ -1,8 +1,0 @@
-{
-  "version": "G23.9",
-  "focus": "Demo-Teilnehmer und Testsystem",
-  "demoUsers": 3,
-  "demoPassword": "Demo12345!",
-  "deleteMode": "single or bulk demo delete",
-  "neonUiTouched": false
-}
