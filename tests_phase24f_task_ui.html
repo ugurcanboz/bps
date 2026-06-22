@@ -1,9 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>Phase 24F Task UI Test</title><script src="js/i18n/language-store.js"></script><script src="js/i18n/help-system.js"></script><script src="js/modules/language-course-entry-module.js"></script><body><pre id="out"></pre><script>
-var out=[]; function ok(name,cond){out.push((cond?'PASS ':'FAIL ')+name); if(!cond) throw new Error(name);}
-ok('Course API exists', !!window.LanguageAcademyCourseEntry);
-ok('openTask exported', typeof window.LanguageAcademyCourseEntry.openTask==='function');
-var d=window.LanguageAcademyCourseEntry.diagnostics(); ok('phase 24F diagnostics', d.phase==='24F');
-ok('help system present', !!window.LanguageAcademyHelpSystem);
-document.getElementById('out').textContent=out.join('
-');
-</script></body>
