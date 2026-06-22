@@ -1,0 +1,88 @@
+{
+  "phase": "G54.43.2",
+  "title": "Analyse Prognose-Engine Static QA",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Adapter version G54.43.2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "buildForecast exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "forecastDetail returned",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "risk fields exist",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "UI forecast renderer exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "UI has forecast marker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No guarantee wording present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Forecast CSS exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "AppConfig version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Update check version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Service worker cache",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Runtime dashboard dataReady",
+      "pass": true,
+      "detail": "{\"runs\":5}"
+    },
+    {
+      "name": "Runtime forecast probability numeric",
+      "pass": true,
+      "detail": "59"
+    },
+    {
+      "name": "Runtime risk label is derived",
+      "pass": true,
+      "detail": "{\"probability\":59,\"label\":\"unsichere Tendenz\",\"target\":75,\"trend\":\"steigend\",\"trendDelta\":17,\"confidence\":\"mittel\",\"confidenceLabel\":\"mittlere Datenbasis\",\"riskLevel\":\"mittel\",\"riskLabel\":\"Zahlenreihen\",\"riskValue\":61,\"riskGap\":14,\"readiness\":\"erst nach gezielter Stabilisierung\",\"stabilityPenalty\":3,\"activityBonus\":3,\"trendBonus\":6,\"riskPenalty\":6,\"wording\":\"Prognose vorsichtig: unsichere Tendenz. Risiko-Bereich: Zahlenreihen (61%). Trend: steigend (+17 Punkte). Keine Bestehensgarantie.\",\"recommendation\":\"Gezielt Zahlenreihen trainieren und nach 2–3 weiteren Läufen neu bewerten.\",\"formula\":[{\"label\":\"Ø Leistung\",\"value\":70,\"weight\":\"58%\"},{\"label\":\"Bestwert\",\"value\":78,\"weight\":\"16%\"},{\"label\":\"Aktivität\",\"value\":3,\"weight\":\"Bonus\"},{\"label\":\"Trend\",\"value\":6,\"weight\":\"Bonus/Malus\"},{\"label\":\"Risiko\",\"value\":6,\"weight\":\"Malus\"},{\"label\":\"Stabilität\",\"value\":3,\"weight\":\"Malus\"}],\"ready\":true}"
+    },
+    {
+      "name": "Runtime formula explainable",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "generatedAt": "2026-06-21T14:36:03.342Z"
+}

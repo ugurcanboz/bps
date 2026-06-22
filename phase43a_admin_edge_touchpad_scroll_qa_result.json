@@ -1,0 +1,61 @@
+{
+  "phase": "43A_ADMIN_EDGE_TOUCHPAD_SCROLL_HOTFIX",
+  "passed": true,
+  "checks": [
+    {
+      "name": "UI-Router enthält Admin-Modal Wheel/Touchpad Bypass",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Bypass ist nur aktiv, wenn Admin-Modal wirklich scrollen kann",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "WheelGuard bleibt global erhalten",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "TouchMove Guard bleibt global erhalten",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Admin CSS unverändert",
+      "passed": true,
+      "detail": "3b1ff67f16c04e0b6e8af0ffdaa294e54ef82e81a4801bc80a2a49267fbac5e0"
+    },
+    {
+      "name": "Admin HTML unverändert",
+      "passed": true,
+      "detail": "5f81ee84b6066e2165610a9d20c608bc1341e1480c6d031364724052e20a4a71"
+    },
+    {
+      "name": "AppConfig Hotfix Version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest Hotfix Version",
+      "passed": true,
+      "detail": "G54.42.1"
+    },
+    {
+      "name": "Update Check Hotfix Version",
+      "passed": true,
+      "detail": "G54.42.1-2026-06-20"
+    },
+    {
+      "name": "Service Worker Hotfix Cache",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Index Fallback Hotfix Version",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

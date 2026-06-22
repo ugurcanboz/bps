@@ -1,0 +1,29 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phase 32D · B1 Total QA</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#020617;color:#e5e7eb;margin:0;padding:20px}.card{background:#0f172a;border:1px solid #26344d;border-radius:18px;padding:16px;margin:12px 0}.pass{color:#22c55e}.fail{color:#ef4444}pre{white-space:pre-wrap;background:#111827;padding:12px;border-radius:12px;overflow:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}.metric{background:#111827;border-radius:14px;padding:12px}</style>
+<script src="./js/i18n/language-store.js"></script><script src="./js/i18n/language-adapter.js"></script><script src="./js/modules/language-course-cloud-sync.js"></script><script src="./js/modules/language-adaptive-engine.js"></script><script src="./js/modules/language-course-entry-module.js"></script></head><body>
+<h1>Phase 32D · B1 Gesamt-QA + Device-Simulation</h1><div id="out" class="card">Prüfung läuft...</div>
+<script>
+(function(){
+  function line(ok,text){return '<div class="'+(ok?'pass':'fail')+'">'+(ok?'✓ ':'✗ ')+text+'</div>';}
+  function run(){
+    var out=document.getElementById('out'), api=window.LanguageAcademyCourseEntry, rows=[], ok=true;
+    function check(cond,text){rows.push(line(!!cond,text)); if(!cond) ok=false;}
+    if(!api){out.innerHTML=line(false,'LanguageAcademyCourseEntry fehlt');return;}
+    var qa=api.phase32dQaSnapshot(), b1=api.b1ContentSnapshot(), a2=api.a2ContentSnapshot();
+    check(qa.ok,'Phase32D QA Snapshot OK');
+    check(b1.totalTasks===430,'B1 hat 430 Aufgaben');
+    check(b1.normalTasks===350,'B1 hat 350 normale Aufgaben');
+    check(b1.speakingTasks===80,'B1 hat 80 Sprechaufgaben');
+    check(b1.expandedLessons===10 && b1.starterLessons===0,'Alle 10 B1-Lektionen vollständig ausgebaut');
+    check(qa.duplicateIds.length===0,'Keine doppelten Task-IDs');
+    check(qa.missingFields.length===0,'Keine fehlenden Pflichtfelder');
+    check(qa.speakingFallbackReady,'Speaking-Fallback Phase30E vorhanden');
+    check(qa.flowReady,'Level/Lektion/Aufgabe Flow-Funktionen vorhanden');
+    check(qa.coachReady,'Coach kompatibel');
+    check(qa.cloudSafe,'Cloud-/Sync-Schnittstelle sicher vorhanden');
+    check(a2.ok && a2.totalTasks===430 && a2.speakingTasks===80,'A2 Regression weiterhin OK');
+    out.innerHTML='<h2 class="'+(ok?'pass':'fail')+'">'+(ok?'PASS':'FAIL')+'</h2><div class="grid"><div class="metric">B1 Aufgaben<br><b>'+b1.totalTasks+'</b></div><div class="metric">B1 Speaking<br><b>'+b1.speakingTasks+'</b></div><div class="metric">Unique IDs<br><b>'+qa.uniqueTaskIds+'</b></div><div class="metric">Gerät<br><b>'+navigator.userAgent.slice(0,80)+'</b></div></div>'+rows.join('')+'<h3>Snapshot</h3><pre>'+JSON.stringify(qa,null,2)+'</pre>';
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run); else run();
+})();
+</script></body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><title>Phase 26A · A1 Kursbaum Test</title>
+<body><pre id="out">läuft…</pre>
+<script src="js/i18n/language-store.js"></script>
+<script src="js/i18n/translation-engine.js"></script>
+<script src="js/i18n/language-adapter.js"></script>
+<script src="js/modules/language-adaptive-engine.js"></script>
+<script src="js/modules/language-course-entry-module.js"></script>
+<script>
+(function(){
+ const errors=[];
+ const api=window.LanguageAcademyCourseEntry;
+ if(!api) errors.push('LanguageAcademyCourseEntry fehlt');
+ if(!api.__version || api.__version.indexOf('phase26a')<0) errors.push('Version ist nicht Phase 26A');
+ const diag=api.diagnostics && api.diagnostics();
+ if(!diag || diag.phase!=='26A') errors.push('Diagnostics meldet nicht Phase 26A');
+ if(typeof api.openLevel!=='function') errors.push('openLevel fehlt');
+ if(typeof api.openTask!=='function') errors.push('openTask fehlt');
+ api.openTask('a1','a1-doctor',0);
+ api.openTask('a1','a1-everyday',1);
+ document.getElementById('out').textContent = errors.length ? 'FAIL\n- '+errors.join('\n- ') : 'PASS Phase 26A · A1 Kursbaum, 10-Lektionen-Struktur und neue Lektionen sind technisch erreichbar.';
+ document.body.dataset.result = errors.length ? 'fail':'pass';
+})();
+</script></body></html>

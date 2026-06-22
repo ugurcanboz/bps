@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phase 34D · C1 Total QA</title>
+<style>body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;margin:20px;background:#0f172a;color:#e5e7eb}.card{background:#111827;border:1px solid #334155;border-radius:14px;padding:16px;margin:12px 0}.pass{color:#22c55e}.fail{color:#ef4444}pre{white-space:pre-wrap;background:#020617;padding:12px;border-radius:12px;overflow:auto}button{padding:12px 16px;border-radius:12px;border:0;font-weight:700}</style></head>
+<body><h1>Phase 34D · C1 Gesamt-QA + Device Simulation</h1><p>Prüft C1-Vollausbau, Aufgabenintegrität, Speaking-Anteile, Regression A2/B1/B2 und UI-Flow-Annahmen.</p><button onclick="runQa()">QA starten</button><div id="out"></div>
+<script src="js/modules/language-course-entry-module.js"></script>
+<script>
+function row(name,ok,detail){return '<div class="card"><b>'+name+': </b><span class="'+(ok?'pass':'fail')+'">'+(ok?'PASS':'FAIL')+'</span><pre>'+JSON.stringify(detail,null,2)+'</pre></div>';}
+function runQa(){var out=document.getElementById('out');try{var api=window.LanguageAcademyCourseEntry;var qa=api.phase34dQaSnapshot();var c1=api.c1ContentSnapshot();var diag=api.diagnostics();var checks=[];checks.push(['API vorhanden',!!api,{version:api&&api.__version}]);checks.push(['C1 Content Snapshot',!!(c1&&c1.ok&&c1.totalTasks===430&&c1.speakingTasks===80),c1]);checks.push(['Phase34D QA Snapshot',!!(qa&&qa.ok&&qa.summary.totalTasks===430&&qa.summary.speakingTasks===80),qa]);checks.push(['Regression A2/B1/B2',!!(qa.regression&&qa.regression.a2.ok&&qa.regression.b1.ok&&qa.regression.b2.ok),qa.regression]);checks.push(['Device Profile vorbereitet',Array.isArray(qa.deviceSimulationProfiles)&&qa.deviceSimulationProfiles.length===6,qa.deviceSimulationProfiles]);checks.push(['Diagnostics Phase34D',!!(diag&&diag.phase==='34D'&&diag.phase34dQa&&diag.phase34dQa.ok),diag]);out.innerHTML=checks.map(function(c){return row(c[0],c[1],c[2]);}).join('');}catch(e){out.innerHTML=row('Exception',false,{message:e.message,stack:e.stack});}}
+runQa();
+</script></body></html>

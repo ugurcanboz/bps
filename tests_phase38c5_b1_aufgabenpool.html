@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 38C.5 – B1 Aufgabenpool Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Arial,sans-serif;margin:24px;line-height:1.45;background:#f8fafc;color:#0f172a}
+    .card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 6px 22px rgba(15,23,42,.06)}
+    button{padding:10px 14px;border-radius:10px;border:1px solid #cbd5e1;background:#fff;font-weight:700;margin:4px;cursor:pointer}
+    pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:14px;border-radius:12px;overflow:auto}
+    .ok{color:#047857;font-weight:800}.bad{color:#b91c1c;font-weight:800}
+  </style>
+</head>
+<body>
+  <h1>Phase 38C.5 – B1 Aufgabenpool Test</h1>
+  <div class="card">
+    <button id="diag">Diagnose starten</button>
+    <button id="attemptA">Versuch A erzeugen</button>
+    <button id="attemptB">Versuch B erzeugen</button>
+    <button id="shell">Exam Shell öffnen</button>
+  </div>
+  <div class="card"><pre id="out">Bereit.</pre></div>
+
+  <script src="data/language-ai-config.js"></script>
+  <script src="data/language-exam-blueprints.js"></script>
+  <script src="data/language-b1-exam-pilot.js"></script>
+  <script src="js/modules/language-speaking-ai-client.js"></script>
+  <script src="js/modules/language-exam-engine.js"></script>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    const out = document.getElementById('out');
+    function show(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+    document.getElementById('diag').onclick = () => {
+      show({
+        ok: !!window.LanguageB1ExamPilot && !!window.LanguageExamShell,
+        pool: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.poolInfo(),
+        b1Version: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.__version,
+        shell: window.LanguageExamShell && window.LanguageExamShell.diagnostics()
+      });
+    };
+    function attempt(seed){
+      const a = window.LanguageB1ExamPilot.buildAttempt(seed);
+      show({
+        id:a.id,
+        reading:a.reading.variantTitle,
+        listening:a.listening.variantTitle,
+        writing:a.writing.variantTitle,
+        speaking:a.speaking.variantTitle,
+        readingQuestions:a.reading.questions.length,
+        listeningQuestions:a.listening.questions.length,
+        poolMeta:a.poolMeta
+      });
+    }
+    document.getElementById('attemptA').onclick = () => attempt('phase38c5-test-a');
+    document.getElementById('attemptB').onclick = () => attempt('phase38c5-test-b');
+    document.getElementById('shell').onclick = () => window.LanguageExamShell.open();
+  </script>
+</body>
+</html>
