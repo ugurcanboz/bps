@@ -1,0 +1,10 @@
+{
+  "version": "G23.11",
+  "zip_target": "BPS-G23-11.zip",
+  "checks": {
+    "participant_dropdown": "implemented",
+    "unified_quote_ring": "implemented",
+    "old_large_participant_cards": "removed_from_visible_layout",
+    "neon_home": "untouched"
+  }
+}

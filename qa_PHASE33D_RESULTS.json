@@ -1,0 +1,59 @@
+{
+  "phase": "33D",
+  "version": "G54.24",
+  "label": "B2 Total QA + Device Simulation",
+  "pass": true,
+  "checks": {
+    "jsSyntax": "PASS",
+    "serviceWorkerSyntax": "PASS",
+    "nodeSnapshot": "PASS",
+    "staticIntegrity": "PASS",
+    "deviceSimulation": "blocked"
+  },
+  "b2": {
+    "ok": true,
+    "phase": "33C",
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80
+  },
+  "qaSummary": {
+    "lessons": 10,
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "duplicateTaskIds": 0,
+    "missingRequired": 0
+  },
+  "regression": {
+    "a2": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "b1": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    }
+  },
+  "deviceSimulation": {
+    "attempted": true,
+    "profiles": [
+      "Desktop 1440",
+      "Desktop 1024",
+      "iPhone 15 Pro Max",
+      "iPhone SE",
+      "iPad 11",
+      "iPad 12.9"
+    ],
+    "status": "blocked",
+    "reason": "Browser binaries/navigation are not guaranteed in this container; run tests_phase33d_b2_total_qa_device_simulation.html after deploy for real render validation.",
+    "notes": []
+  }
+}

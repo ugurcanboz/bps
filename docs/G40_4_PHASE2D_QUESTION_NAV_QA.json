@@ -1,0 +1,51 @@
+{
+  "version": "G40.4",
+  "phase": "2D",
+  "title": "Fragenübersicht / updateQuestionNav im Simulationsmodul",
+  "date": "2026-06-15",
+  "status": "passed-static-qa",
+  "changedFiles": [
+    "js/modules/egt-simulation-engine.js",
+    "js/app.js",
+    "js/core/app-config.js",
+    "module-manifest.json",
+    "manifest.json",
+    "update-check.json",
+    "service-worker.js",
+    "WORKING-PLAN_1.md",
+    "docs/WORKING-PLAN.md",
+    "docs/G40_4_PHASE2D_QUESTION_NAV_REPORT.md",
+    "docs/G40_4_PHASE2D_QUESTION_NAV_QA.json"
+  ],
+  "moduleMoves": {
+    "movedIntoEGTSimulation": [
+      "updateQuestionNav rendering",
+      "question overview drawer DOM rendering",
+      "30-per-page pagination",
+      "progress-dot state rendering",
+      "module-owned qnavManualPage"
+    ],
+    "keptAsShellHooks": [
+      "getQuestionNavTotal",
+      "ensureQuestionDrawerToggle",
+      "setQuestionDrawer",
+      "jumpToQuestion"
+    ],
+    "fallbacksKept": [
+      "updateQuestionNavInternal in app.js"
+    ]
+  },
+  "checks": {
+    "nodeCheckJsAndData": "passed",
+    "jsonValidation": "passed",
+    "serviceWorkerAssetCheck": "passed",
+    "serviceWorkerAssetCount": 174,
+    "zipIntegrity": "passed"
+  },
+  "knownLimitations": [
+    "No real browser runtime test was executed in this container.",
+    "jumpToQuestion remains in app.js because it contains exam lockBack and skip behavior.",
+    "Route-Memory, EDV-Multi, visual renderers and showResult remain app-shell/legacy adapters."
+  ],
+  "nextRecommendedPhase": "Phase 2E: define and modularize result/showResult boundary, or migrate Route-Memory renderer as a single isolated special renderer."
+}

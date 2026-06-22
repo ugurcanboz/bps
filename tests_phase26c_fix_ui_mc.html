@@ -1,0 +1,24 @@
+<!doctype html><meta charset="utf-8"><title>Phase 26C-FIX UI MC QA</title><pre id="out"></pre><script>
+(async function(){
+ const out=document.getElementById('out');
+ const files=[
+  './js/modules/language-course-entry-module.js',
+  './css/language-course.css'
+ ];
+ const [js,css]=await Promise.all(files.map(f=>fetch(f).then(r=>r.text())));
+ const checks=[
+  ['version fix', js.includes("26C-fix-ui-mc")],
+  ['capture click router', js.includes("document.addEventListener('click',routeLanguageCourseClick,true)")],
+  ['touchend router', js.includes("document.addEventListener('touchend'")],
+  ['open level routed', js.includes("language-course-open-level")],
+  ['select answer routed', js.includes("language-course-select-answer")],
+  ['selected state css', css.includes('.la-answer-choice.is-selected')],
+  ['dark sheet body', css.includes('Phase 26C-FIX') && css.includes('rgba(15,23,42,.86)')],
+  ['white bg overridden', css.includes('background:rgba(15,23,42,.58)!important')],
+  ['mobile level grid fixed', css.includes('@media(max-width:430px)')]
+ ];
+ const fail=checks.filter(x=>!x[1]);
+ out.textContent=checks.map(x=>(x[1]?'PASS ':'FAIL ')+x[0]).join('\n')+'\n\nRESULT: '+(fail.length?'FAIL':'PASS');
+ if(fail.length) throw new Error('Phase 26C-FIX failed: '+fail.map(x=>x[0]).join(', '));
+})();
+</script>

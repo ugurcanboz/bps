@@ -1,0 +1,49 @@
+{
+  "version": "G43.0",
+  "phase": "Phase 5",
+  "title": "Branchenspezifische Simulationsmodule",
+  "status": "passed-static-qa",
+  "createdAt": "2026-06-15",
+  "newFiles": [
+    "js/modules/egt-sim-it.js",
+    "js/modules/egt-sim-kaufm.js",
+    "js/modules/egt-sim-sozial.js",
+    "docs/G43_0_PHASE5_BRANCH_SIM_MODULES_REPORT.md",
+    "docs/G43_0_PHASE5_BRANCH_SIM_MODULES_QA.json"
+  ],
+  "updatedFiles": [
+    "index.html",
+    "js/core/module-host.js",
+    "js/ui-router.js",
+    "js/ui-home-renderer.js",
+    "js/modules/egt-simulation-entry-module.js",
+    "js/core/architecture-guard.js",
+    "service-worker.js",
+    "module-manifest.json",
+    "js/core/app-config.js",
+    "update-check.json",
+    "manifest.json",
+    "WORKING-PLAN_1.md",
+    "docs/WORKING-PLAN.md"
+  ],
+  "registeredModules": [
+    "sim-it",
+    "sim-kaufm",
+    "sim-sozial"
+  ],
+  "staticChecks": {
+    "jsSyntax": "passed",
+    "jsonValidation": "passed",
+    "serviceWorkerAssets": "passed",
+    "zipTest": "passed"
+  },
+  "notChanged": [
+    "buildQuiz",
+    "Generators",
+    "Result/Review",
+    "Highscore/Cloud-Sync",
+    "Coach-Auswertung",
+    "Admin/Auth/Firebase/Demo-Limits/Session-Keys"
+  ],
+  "nextRecommendedPhase": "Phase 6: Branch-QuestionPool-/Generator-Grenze definieren"
+}

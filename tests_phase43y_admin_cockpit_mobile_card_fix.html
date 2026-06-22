@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 43Y · Admin Cockpit Mobile Card Fix</title>
+  <link rel="stylesheet" href="css/admin-portal.css">
+  <style>
+    body{margin:0;background:#020617;color:#f8fafc;font-family:system-ui,-apple-system,Segoe UI,sans-serif}.test-wrap{max-width:440px;margin:0 auto;padding:16px}.egt-admin-modal{display:block!important;position:static!important;width:100%!important;height:auto!important;padding:0!important;background:transparent!important}.egt-admin-panel{margin:0!important;width:100%!important}.egt-admin-body{padding:14px!important}.qa-pass{padding:12px;border:1px solid rgba(34,197,94,.4);border-radius:12px;background:rgba(34,197,94,.1);margin-bottom:16px}
+  </style>
+</head>
+<body>
+  <div class="test-wrap">
+    <div class="qa-pass">G54.43.8J Test: Phase-1-Map darf nicht kleben. Phase-4-Hero darf rechts nicht clippen.</div>
+    <div id="egtAdminModal" class="egt-admin-modal show">
+      <div class="egt-admin-panel egt-portal-shell">
+        <div class="egt-admin-body egt-portal-body">
+          <div class="egt-admin-card egt-admin-card-wide egt-portal-phase1">
+            <span class="egt-session-kicker">Phase 1 · Portal-Struktur</span>
+            <h3>Admin-Cockpit sauber aufgeteilt</h3>
+            <p>Die Verwaltung ist ab jetzt nicht mehr als gemischtes Menü gedacht, sondern als feste Business-Struktur.</p>
+            <div class="egt-admin-stat-grid egt-phase1-map">
+              <div><b>Dashboard</b><span>KPI, Risiko, Aktivität</span></div>
+              <div><b>Teilnehmer</b><span>Suche, Profile, Bearbeitung</span></div>
+              <div><b>Gruppen</b><span>Kurse, Demo, Reset</span></div>
+              <div><b>Codes</b><span>Zugang, Rollen, Gültigkeit</span></div>
+            </div>
+          </div>
+          <div class="egt-phase4-dashboard egt-admin-card-wide" style="margin-top:16px">
+            <div class="egt-phase4-hero">
+              <div><span class="egt-session-kicker">Phase 4 · Dashboard</span><h3>Admin Cockpit</h3><p>Unternehmer-Übersicht: Teilnehmer, Risiken, Aktivität, Codes und Systemzustand auf einen Blick.</p></div>
+              <div class="egt-quote-card"><div class="egt-donut egt-donut-unified" style="--p:0"><strong>0%</strong><span>Ø Quote</span></div><small>Gesamtsystem</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
