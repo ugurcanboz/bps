@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phase 41 – GitHub Pages Deploy Check</title>
+  <style>body{font-family:Arial,sans-serif;margin:24px;background:#0f172a;color:#e5e7eb}.card{background:#111827;border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;margin:12px 0}.ok{color:#86efac}.bad{color:#fca5a5}button{min-height:44px;border-radius:12px;padding:10px 14px;font-weight:700}</style>
+</head>
+<body>
+  <h1>Phase 41 – GitHub Pages Deploy Check</h1>
+  <div class="card">
+    <p>Prüft Browser-seitig Version, Manifest, Service Worker und GitHub-Pages-Pfade.</p>
+    <button onclick="runQA()">Deploy-QA starten</button>
+  </div>
+  <pre id="out" class="card">Bereit.</pre>
+  <script src="./js/core/app-config.js"></script>
+  <script>
+    async function exists(url){ try{ const r=await fetch(url,{cache:'no-store'}); return r.ok; }catch(e){ return false; } }
+    async function runQA(){
+      const out=document.getElementById('out');
+      const checks=[];
+      function add(name, ok, detail){ checks.push({name, passed:!!ok, detail:detail||''}); }
+      add('AppConfig Version G54.41', window.AppConfig && window.AppConfig.version==='G54.41', window.AppConfig && window.AppConfig.fullVersion);
+      add('Relative Pfadbasis aktiv', location.pathname.indexOf('//')===-1);
+      add('Manifest erreichbar', await exists('./manifest.json'));
+      add('Update-Check erreichbar', await exists('./update-check.json'));
+      add('404-Fallback erreichbar', await exists('./404.html'));
+      add('Service Worker Datei erreichbar', await exists('./service-worker.js'));
+      add('PWA Service Worker API vorhanden', 'serviceWorker' in navigator, navigator.userAgent);
+      const result={phase:'41', version:(window.AppConfig&&window.AppConfig.fullVersion)||'unknown', checks};
+      result.passed=checks.every(c=>c.passed);
+      window.__PHASE41_DEPLOY_QA_RESULT__=result;
+      out.textContent=JSON.stringify(result,null,2);
+    }
+  </script>
+</body>
+</html>

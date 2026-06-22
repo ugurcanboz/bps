@@ -1,0 +1,11 @@
+{
+  "build": "G33.3-PROFILE-AVATAR-NICKNAME-2026-06-08",
+  "checks": {
+    "profile_ui": true,
+    "local_avatar_cache": true,
+    "no_avatar_upload": true,
+    "nickname_required": true,
+    "training_core_untouched": true,
+    "highscore_core_untouched": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "phase": "39D",
+  "title": "Button/Touch Target Normalisierung",
+  "checks": {
+    "phase_version": false,
+    "root_touch_tokens": true,
+    "global_button_selector": true,
+    "touch_action_manipulation": true,
+    "tap_highlight_removed": true,
+    "summary_min_height": true,
+    "admin_touch_normalization": true,
+    "language_touch_normalization": true,
+    "legacy_chip_normalization": true,
+    "browser_qa_present": true
+  },
+  "passed": false
+}

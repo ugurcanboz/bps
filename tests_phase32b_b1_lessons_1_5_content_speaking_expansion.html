@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 32B – B1 Lessons 1-5 Content + Speaking QA</title>
+  <link rel="stylesheet" href="css/language-course.css">
+  <style>body{font-family:Arial,sans-serif;background:#0f172a;color:#e5e7eb;padding:18px}.ok{color:#86efac}.bad{color:#fca5a5}pre{white-space:pre-wrap;background:#111827;padding:12px;border-radius:12px}</style>
+</head>
+<body>
+  <h1>Phase 32B – B1 Lektionen 1–5 Content + Speaking QA</h1>
+  <p>Dieser Test prüft, ob B1 Lektionen 1–5 auf 43 Aufgaben inklusive 8 Speaking-Aufgaben ausgebaut sind.</p>
+  <div id="result">Warte auf Modul...</div>
+  <pre id="json"></pre>
+  <script src="js/i18n/language-store.js"></script>
+  <script src="js/i18n/language-adapter.js"></script>
+  <script src="js/modules/language-adaptive-engine.js"></script>
+  <script src="js/modules/language-course-cloud-sync.js"></script>
+  <script src="js/modules/language-course-entry-module.js"></script>
+  <script>
+    setTimeout(function(){
+      var el=document.getElementById('result');
+      var out=document.getElementById('json');
+      try{
+        var api=window.LanguageAcademyCourseEntry;
+        var snap=api && api.b1ContentSnapshot && api.b1ContentSnapshot();
+        out.textContent=JSON.stringify(snap,null,2);
+        if(snap && snap.ok && snap.phase==='32B' && snap.expandedLessons===5 && snap.totalTasks===275 && snap.speakingTasks===60){
+          el.innerHTML='<strong class="ok">PASS</strong> – Phase 32B B1 Content + Speaking ist korrekt aufgebaut.';
+        }else{
+          el.innerHTML='<strong class="bad">FAIL</strong> – Snapshot erfüllt die Zielwerte nicht.';
+        }
+      }catch(e){ el.innerHTML='<strong class="bad">ERROR</strong> '+String(e.message||e); }
+    },300);
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "status": "pass",
+  "passed": 13,
+  "total": 13,
+  "checks": [
+    {
+      "name": "Version G54.43.8F",
+      "pass": true
+    },
+    {
+      "name": "collectVisualMonsterFindings vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Strength/Weakness Collision Detector vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Badge-Bar-Kollision erkannt",
+      "pass": true
+    },
+    {
+      "name": "Mobile two-line Hinweis vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Text Collision Detector vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Card Pressure Detector vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Viewport Risk Zones Detector vorhanden",
+      "pass": true
+    },
+    {
+      "name": "visualMonster im Capture enthalten",
+      "pass": true
+    },
+    {
+      "name": "visualFindings im Score enthalten",
+      "pass": true
+    },
+    {
+      "name": "Monster Visual QA Render Card vorhanden",
+      "pass": true
+    },
+    {
+      "name": "DeepSheet Intelligence bleibt erhalten",
+      "pass": true
+    },
+    {
+      "name": "AppConfig G54.43.8F synchron",
+      "pass": true
+    }
+  ]
+}

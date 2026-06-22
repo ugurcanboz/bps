@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    // Entwicklungs-Hinweis:
+    // Diese Datei ist ein Rollen-Entwurf für spätere echte Nutzer. Die App braucht dafür
+    // Profile mit role, groupId und firebaseUid. Bis dahin sind Test-Regeln mit signedIn()
+    // funktional, aber nicht produktiv sicher.
+
+    match /courses/{courseId} {
+      allow read: if signedIn();
+      allow write: if signedIn(); // später: nur admin
+
+      match /accessCodes/{codeId} {
+        allow read: if signedIn();
+        allow create, update, delete: if signedIn(); // später: admin oder teacher der eigenen groupId
+      }
+
+      match /learners/{learnerId} {
+        allow read, write: if signedIn(); // später: owner, admin oder teacher der gleichen groupId
+
+        match /attempts/{attemptId} {
+          allow read, write: if signedIn();
+        }
+        match /progress/{moduleId} {
+          allow read, write: if signedIn();
+        }
+        match /events/{eventId} {
+          allow read, write: if signedIn();
+        }
+        match /coach/{coachDoc} {
+          allow read, write: if signedIn();
+        }
+      }
+
+      // Für spätere echte Duelle, noch nicht aktiv durch die App beschrieben.
+      match /duelRequests/{duelId} {
+        allow read, write: if signedIn();
+      }
+      match /duelResults/{resultId} {
+        allow read, write: if signedIn();
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>G54.43.8A QA Overlay Interaction Hotfix Test</title></head>
+<body>
+<h1>G54.43.8A QA Overlay Interaction Hotfix</h1>
+<ul>
+  <li>Erwartung: QA-Buttons sind mindestens 44×44px.</li>
+  <li>Erwartung: Capture-, Live-QA- und Diff-Overlay besitzen einen Minimieren-Button.</li>
+  <li>Erwartung: Mobile Overlays halten den Bottom-Dock frei.</li>
+  <li>Erwartung: Capture ignoriert eigene Overlay-Buttons in der Touch-Target-Auswertung.</li>
+</ul>
+<script src="./js/qa/egt-live-visual-qa.js"></script>
+<script src="./js/qa/egt-visual-state-capture.js"></script>
+<script src="./js/qa/egt-visual-regression-diff.js"></script>
+<script>
+(function(){
+  var results = [];
+  function assert(name, ok){ results.push({name:name, ok:!!ok}); }
+  assert('Live Visual QA API vorhanden', !!window.EGTLiveVisualQA);
+  assert('Visual State Capture API vorhanden', !!window.EGTVisualStateCapture);
+  assert('Visual Regression Diff API vorhanden', !!window.EGTVisualRegressionDiff);
+  var pre = document.createElement('pre');
+  pre.textContent = results.map(function(r){ return (r.ok ? 'PASS ' : 'FAIL ') + r.name; }).join('\n');
+  document.body.appendChild(pre);
+})();
+</script>
+</body>
+</html>

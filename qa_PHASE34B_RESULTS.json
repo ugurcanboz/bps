@@ -1,0 +1,24 @@
+{
+  "phase": "34B",
+  "version": "G54.26",
+  "title": "C1 Lessons 1-5 Content + Speaking Expansion",
+  "checks": {
+    "jsSyntax": "PASS",
+    "serviceWorkerSyntax": "PASS",
+    "nodeSnapshot": "PASS",
+    "staticIntegrity": "PASS",
+    "a2Regression": "PASS",
+    "b1Regression": "PASS",
+    "b2Regression": "PASS"
+  },
+  "c1": {
+    "lessons": 10,
+    "expandedLessons": 5,
+    "starterLessons": 5,
+    "totalTasks": 275,
+    "normalTasks": 215,
+    "speakingTasks": 60,
+    "expandedLessonTarget": {"tasks": 43, "normal": 35, "speaking": 8}
+  },
+  "nextRecommendedPhase": "34C C1 Lessons 6-10 Content + Speaking Expansion"
+}

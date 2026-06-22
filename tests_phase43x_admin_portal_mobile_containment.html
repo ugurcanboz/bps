@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><title>G54.43.8H · Admin Portal Mobile Containment QA</title>
+<h1>G54.43.8H · Admin Portal Mobile Containment QA</h1><pre id="out"></pre>
+<script>
+(async()=>{
+  const files={
+    css: await fetch('./css/admin-portal.css').then(r=>r.text()),
+    qa: await fetch('./js/qa/egt-visual-state-capture.js').then(r=>r.text()),
+    app: await fetch('./js/core/app-config.js').then(r=>r.text()),
+    sw: await fetch('./service-worker.js').then(r=>r.text()),
+    update: await fetch('./update-check.json').then(r=>r.text())
+  };
+  const checks=[];
+  const ok=(name,cond)=>checks.push({name,ok:!!cond});
+  ok('Admin CSS G54.43.8H Block', files.css.includes('G54.43.8H · Admin Portal Mobile Containment Fix'));
+  ok('Modal max-width 100vw', files.css.includes('#egtAdminModal.egt-admin-modal') && files.css.includes('max-width: 100vw'));
+  ok('Tabgruppe begrenzter Horizontal-Scroller', files.css.includes('#egtAdminModal .egt-portal-tab-group') && files.css.includes('overflow-x: auto'));
+  ok('Dock bei Admin offen ausgeblendet', files.css.includes('body.egt-admin-sheet-open #egtBottomDock') && files.css.includes('display: none'));
+  ok('QA Dock-Kinder ignorieren', files.qa.includes('dockRect && !isInDock(el, dock)'));
+  ok('QA legitime Tab-Scroller nicht Offscreen', files.qa.includes('isAllowedHorizontalScroller'));
+  ok('AppConfig G54.43.8H', files.app.includes("var VERSION = 'G54.43.8H'"));
+  ok('SW Cache G54.43.8H', files.sw.includes('egt-trainer-g54-43-8h'));
+  ok('Update Check G54.43.8H', files.update.includes('G54.43.8H-2026-06-22'));
+  document.getElementById('out').textContent=JSON.stringify({passed:checks.filter(x=>x.ok).length,total:checks.length,checks},null,2);
+})();
+</script>

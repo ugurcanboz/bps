@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Phase 27E Coach Texte DE/TR</title></head>
+<body>
+<pre id="out">running</pre>
+<script>
+(async function(){
+  const out=document.getElementById('out');
+  try{
+    const js=await fetch('./js/modules/language-course-entry-module.js').then(r=>r.text());
+    const required=[
+      'G54.7-phase27e-coach-texts-i18n-v1',
+      'var COACH_TEXTS=',
+      "teacher:'KI-Lehrer'",
+      "teacher:'Dil Öğretmeni'",
+      'function ct(key,vars)',
+      'function coachLanguage()',
+      'data-la-coach="phase27e"',
+      'data-la-coach-panel="phase27e"',
+      'data-la-coach-recommendations="phase27e"',
+      'data-la-coach-review-sets="phase27e"'
+    ];
+    const missing=required.filter(x=>!js.includes(x));
+    if(missing.length) throw new Error('missing: '+missing.join(', '));
+    out.textContent='PASS Phase 27E: Coach-Texte DE/TR vorhanden und angebunden.';
+    out.style.color='green';
+  }catch(e){
+    out.textContent='FAIL Phase 27E: '+(e&&e.message?e.message:e);
+    out.style.color='red';
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+/* ═══════════════════════════════════════════════════════
+   Phase 39H · MEDIUM-Befunde aus Visual Observer Report
+   Ziel: Bottom-Dock-Reserve, Tablet-Gate-Balance, iOS-Scroll-Stabilität
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --phase39h-dock-height: 66px;
+  --phase39h-dock-gap: 18px;
+  --phase39h-dock-extra: 34px;
+  --phase39h-dock-reserve: calc(var(--phase39h-dock-height) + var(--phase39h-dock-gap) + var(--phase39h-dock-extra) + env(safe-area-inset-bottom, 0px));
+}
+
+html {
+  scroll-padding-bottom: var(--phase39h-dock-reserve);
+}
+
+body.ui-f-ui-home-ready .ui-home,
+body.ui-f-ui-home-ready .ui-home-scroll,
+body.ui-f-ui-home-ready .ui-tab-content,
+#uiTabContent,
+#uiHomeViewport,
+.ui-runtime-grid-holder,
+.ui-highscore-page,
+.learning-screen,
+.language-course-root,
+.language-course-shell,
+.language-course-screen {
+  padding-bottom: max(144px, var(--phase39h-dock-reserve)) !important;
+  scroll-padding-bottom: max(144px, var(--phase39h-dock-reserve)) !important;
+}
+
+#uiHomeViewport,
+#uiTabContent,
+.ui-home-scroll,
+.language-course-root,
+.language-course-shell,
+.admin-portal-root,
+.admin-shell,
+.admin-content {
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Tablet-Gate: harte 2-Spalten-Wirkung entschärfen und linke Fläche aktiv nutzen. */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .egt-gate-body {
+    display: grid !important;
+    grid-template-columns: minmax(360px, 1fr) minmax(360px, .92fr) !important;
+    align-items: stretch !important;
+  }
+
+  .egt-gate-left {
+    min-width: 0 !important;
+    padding: clamp(18px, 3vw, 34px) !important;
+    justify-content: center !important;
+  }
+
+  #egtGateCineMount {
+    flex: 0 1 min(58vh, 520px) !important;
+    min-height: 360px !important;
+    border-radius: 30px !important;
+    overflow: hidden !important;
+    box-shadow: 0 26px 80px rgba(0, 0, 0, .30), inset 0 1px 0 rgba(255, 255, 255, .08) !important;
+  }
+
+  .egt-gate-left::after {
+    content: 'Prüfungstraining · Simulation · Sprachkurs · Admin';
+    display: block;
+    margin: 18px auto 0;
+    max-width: 560px;
+    padding: 12px 16px;
+    border-radius: 999px;
+    text-align: center;
+    color: rgba(226, 232, 240, .78);
+    background: rgba(15, 23, 42, .54);
+    border: 1px solid rgba(148, 163, 184, .18);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, .18);
+    font-size: .82rem;
+    font-weight: 750;
+    letter-spacing: .01em;
+  }
+
+  .egt-gate-right {
+    width: auto !important;
+    min-width: 0 !important;
+    padding: clamp(24px, 3.2vw, 40px) clamp(20px, 2.7vw, 34px) max(28px, env(safe-area-inset-bottom, 0px)) !important;
+    justify-content: center !important;
+  }
+
+  .egt-gate-tiles {
+    flex: 0 0 auto !important;
+  }
+}
+
+/* Kleine Tablets/Querformat: kein rechter Block soll gequetscht wirken. */
+@media (min-width: 769px) and (max-width: 920px) {
+  .egt-gate-body {
+    grid-template-columns: 1fr !important;
+    overflow-y: auto !important;
+  }
+
+  .egt-gate-screen {
+    overflow-y: auto !important;
+  }
+
+  .egt-gate-left {
+    min-height: 340px !important;
+    border-bottom: 1px solid var(--gate-border, rgba(96,165,250,.18)) !important;
+  }
+
+  .egt-gate-right {
+    border-left: 0 !important;
+    border-top: 1px solid var(--gate-border, rgba(96,165,250,.18)) !important;
+    background: rgba(15, 26, 60, .72) !important;
+  }
+}
+
+/* iPhone: Dock-Reserve bewusst größer als Dock-Höhe, damit letzte Kachel nie darunter klebt. */
+@media (max-width: 520px) {
+  :root {
+    --phase39h-dock-height: 64px;
+    --phase39h-dock-gap: 9px;
+    --phase39h-dock-extra: 46px;
+  }
+
+  body.ui-f-ui-home-ready .ui-home,
+  body.ui-f-ui-home-ready .ui-home-scroll,
+  body.ui-f-ui-home-ready .ui-tab-content,
+  #uiTabContent,
+  #uiHomeViewport,
+  .ui-runtime-grid-holder,
+  .language-course-root,
+  .language-course-shell,
+  .language-course-screen {
+    padding-bottom: max(156px, var(--phase39h-dock-reserve)) !important;
+  }
+}
+
+/* Scrollcontainer-Härtung: horizontale Bereiche bleiben nutzbar, aber isolieren iOS-Gummiband/Seitenscrollen. */
+:is(.flowlogic-svg-shell,
+    .flowlogic-answer-table-wrap,
+    .admin-table-wrap,
+    .admin-list-wrap,
+    .admin-roster-table-wrap,
+    .admin-report-table-wrap,
+    .admin-overflow-x,
+    .language-course-table-wrap,
+    .ui-scroll-x,
+    .ctc-flowlogic-host .flowlogic-svg-shell,
+    .ctc-flowlogic-host .flowlogic-answer-table-wrap) {
+  -webkit-overflow-scrolling: touch !important;
+  overscroll-behavior: contain !important;
+  scrollbar-gutter: stable both-edges;
+  max-width: 100% !important;
+}
+
+@media (max-width: 820px) {
+  .ctc-flowlogic-host .flowlogic-input-root {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ctc-flowlogic-host .flowlogic-svg-shell {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    max-height: min(56vh, 520px) !important;
+  }
+
+  .ctc-flowlogic-host .flowlogic-svg {
+    min-width: min(620px, calc(100vw - 40px)) !important;
+  }
+
+  .ctc-flowlogic-host .flowlogic-form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

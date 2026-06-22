@@ -1,0 +1,38 @@
+{
+  "phase": "G54.43.0",
+  "passed": true,
+  "checks": [
+    [
+      "js/modules/egt-analysis-data-adapter.js contains G54.43.0-multiline-chart-data-binding",
+      true
+    ],
+    [
+      "js/modules/egt-analysis-data-adapter.js contains series:series",
+      true
+    ],
+    [
+      "js/ui-home-renderer.js contains analysisV2LegendHtml",
+      true
+    ],
+    [
+      "js/ui-home-renderer.js contains analysis-v2-chart-svg-multiline",
+      true
+    ],
+    [
+      "css/phase39i-pixel-polish.css contains line-e",
+      true
+    ],
+    [
+      "service-worker.js contains egt-trainer-g54-43-0",
+      true
+    ],
+    [
+      "manifest.json contains G54.43.0",
+      true
+    ],
+    [
+      "update-check.json contains G54.43.0",
+      true
+    ]
+  ]
+}

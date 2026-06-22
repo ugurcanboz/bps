@@ -1,0 +1,83 @@
+{
+  "phase": "G54.43.8B",
+  "total": 15,
+  "passed": 15,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "app_config_8b",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "css_loaded_last",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "scroll_guard_loaded",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "css_mobile_sheet_rules",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "css_no_has_dependency",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "qa_bubble_rules",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "scroll_guard_global",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "scroll_guard_mutation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vsc_version_8b",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vsc_event_delegation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "vsc_default_minimized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "service_worker_cache_8b",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "update_check_8b",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "manifest_8b",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "id": "test_file_present",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

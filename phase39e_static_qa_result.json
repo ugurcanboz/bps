@@ -1,0 +1,18 @@
+{
+  "phase": "39E",
+  "title": "Full App Smoke Test mit QA-Bypass",
+  "checks": {
+    "phase_version": false,
+    "qa_bypass_key_auth": true,
+    "qa_session_auth": true,
+    "gate_bypass": true,
+    "runner_present": true,
+    "runner_checks_actions": true,
+    "runner_checks_touch": true,
+    "index_loads_runner": true,
+    "browser_smoke_page": true,
+    "sw_includes_runner": true,
+    "sw_includes_smoke_test": true
+  },
+  "passed": false
+}
