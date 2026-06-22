@@ -1,9 +1,0 @@
-{
-  "version": "G54.43.8L-2026-06-22",
-  "latest": "G54.43.8L-2026-06-22",
-  "required": true,
-  "force": false,
-  "label": "G54.43.8L: Sprachtest-Simulation Deutsch Strukturtrennung",
-  "build": "G54.43.8L-2026-06-22",
-  "cache": "egt-trainer-g54-43-8l"
-}
