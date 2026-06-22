@@ -1,0 +1,13 @@
+{
+  "version": "G25.1",
+  "feature": "Hilfebedarf nach Priorität als Dropdown",
+  "neonHomeTouched": false,
+  "adminDashboard": "uses dropdown",
+  "dozentDashboard": "uses dropdown",
+  "participantProfile": "unchanged, reused",
+  "checks": {
+    "jsSyntax": "pending",
+    "serviceWorkerSyntax": "pending",
+    "zip": "pending"
+  }
+}
