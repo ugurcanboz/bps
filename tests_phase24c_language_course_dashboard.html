@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8"><title>Phase 24C Sprachkurs Dashboard Test</title><body><pre id="out">running</pre><script src="js/i18n/language-store.js"></script><script src="js/i18n/translation-engine.js"></script><script src="js/i18n/help-system.js"></script><script src="js/modules/language-course-entry-module.js"></script><script>
+(function(){
+  var out=document.getElementById('out');
+  var d=window.LanguageAcademyCourseEntry && window.LanguageAcademyCourseEntry.diagnostics && window.LanguageAcademyCourseEntry.diagnostics();
+  var ok=!!(d&&d.ok&&d.phase==='24C'&&d.dashboardCapable&&d.levels===6&&window.LanguageAcademyLanguageStore&&window.LanguageAcademyHelpSystem);
+  out.textContent=JSON.stringify({phase:'24C',ok:ok,diagnostics:d},null,2);
+  if(!ok) throw new Error('Phase 24C dashboard test failed');
+})();
+</script></body>

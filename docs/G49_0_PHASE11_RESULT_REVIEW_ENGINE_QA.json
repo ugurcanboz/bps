@@ -1,0 +1,112 @@
+{
+  "version": "G49.0",
+  "phase": 11,
+  "name": "Result Review Engine / Fehleranalyse-Grenze",
+  "date": "2026-06-15",
+  "status": "passed-static-qa-pending-browser-smoke-test",
+  "createdFiles": [
+    "js/core/result-review-engine.js",
+    "docs/G49_0_PHASE11_RESULT_REVIEW_ENGINE_REPORT.md",
+    "docs/G49_0_PHASE11_RESULT_REVIEW_ENGINE_QA.json"
+  ],
+  "updatedFiles": [
+    "js/app.js",
+    "index.html",
+    "service-worker.js",
+    "js/core/architecture-guard.js",
+    "js/core/app-config.js",
+    "manifest.json",
+    "update-check.json",
+    "module-manifest.json",
+    "START_HERE.md",
+    "WORKING-PLAN_1.md",
+    "docs/WORKING-PLAN.md"
+  ],
+  "newGlobal": "window.EGTResultReviewEngine",
+  "api": [
+    "buildSummary(ctx)",
+    "renderResultHeader(summary, hooks)",
+    "renderCategoryStats(ctx)",
+    "buildTipItems(ctx, percent)",
+    "renderTips(ctx, percent)",
+    "renderReview(ctx)",
+    "buildCategoryMap(ctx)",
+    "renderAnalysis(ctx)"
+  ],
+  "checks": [
+    {
+      "name": "Syntax result-review-engine",
+      "command": "node --check js/core/result-review-engine.js",
+      "status": "passed"
+    },
+    {
+      "name": "Syntax app.js",
+      "command": "node --check js/app.js",
+      "status": "passed"
+    },
+    {
+      "name": "Syntax architecture-guard",
+      "command": "node --check js/core/architecture-guard.js",
+      "status": "passed"
+    },
+    {
+      "name": "Version Sync",
+      "command": "node sync-version.js",
+      "status": "passed"
+    },
+    {
+      "name": "All JS syntax",
+      "command": "find . -name '*.js' -not -path './node_modules/*' -print0 | xargs -0 -n1 node --check",
+      "status": "passed"
+    },
+    {
+      "name": "All JSON valid",
+      "command": "python3 -m json.tool <file>",
+      "status": "passed"
+    },
+    {
+      "name": "Service Worker asset present",
+      "target": "./js/core/result-review-engine.js",
+      "status": "passed"
+    },
+    {
+      "name": "ArchitectureGuard global present",
+      "target": "EGTResultReviewEngine",
+      "status": "passed"
+    },
+    {
+      "name": "Engine smoke test",
+      "target": "buildSummary/renderCategoryStats/renderTips/renderReview/buildCategoryMap",
+      "status": "passed"
+    },
+    {
+      "name": "ZIP integrity",
+      "command": "unzip -t",
+      "status": "passed"
+    }
+  ],
+  "fallbacksPreserved": [
+    "EGTSimulation.prepareResult remains preferred path",
+    "showResult legacy header fallback remains",
+    "renderCategoryStats legacy inline fallback remains",
+    "renderTips legacy inline fallback remains",
+    "renderReview legacy inline fallback remains",
+    "showAnalysis legacy inline fallback remains",
+    "saveResult legacy category map fallback remains"
+  ],
+  "notChanged": [
+    "CSS/Layout",
+    "Layout shift behavior",
+    "HighscoreEngine",
+    "CloudHighscoreEngine",
+    "StorageEngine",
+    "Firebase/Auth",
+    "Admin portal",
+    "QuestionFactory",
+    "QuestionBankRouter",
+    "Generators",
+    "Question content"
+  ],
+  "browserSmokeTestRequired": true,
+  "nextRecommendedStep": "G49.0 im Browser smoke-testen. Danach entweder G50.0 Phase 12 Persistenz/Highscore/Coach-Hooks entkoppeln oder bei starkem Layout-Shift G49.5 No-Shift/UI-Fixphase einschieben."
+}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 38C.12A · Academy-Hartmodus UX-Fix</title>
+<link rel="stylesheet" href="css/ui-foundation.css">
+<link rel="stylesheet" href="css/language-course.css">
+<style>body{font-family:system-ui,Arial,sans-serif;background:#020617;color:#e5edff;margin:0;padding:24px}.box{max-width:980px;margin:auto;background:#0f172a;border:1px solid rgba(148,163,184,.25);border-radius:22px;padding:18px}.ok{color:#86efac}.fail{color:#fecaca}.grid{display:grid;gap:10px;margin-top:14px}.row{padding:10px;border-radius:14px;background:#111827}</style>
+</head>
+<body>
+<div class="box">
+<h1>Phase 38C.12A – Academy-Hartmodus UX-Fix</h1>
+<p>Dieser Test prüft statisch, ob die UX-Fix-Regeln und Dateien vorhanden sind.</p>
+<div id="result" class="grid"></div>
+<p><button onclick="window.location.href='index.html'">App öffnen</button></p>
+</div>
+<script>
+const checks=[
+ ['CSS geladen',()=>!![...document.styleSheets].find(s=>String(s.href||'').includes('language-course.css'))],
+ ['Exam-Sheet-Selektor im CSS vorhanden',()=>fetch('css/language-course.css').then(r=>r.text()).then(t=>t.includes('data-ui-deep-sheet="language-exam-shell"'))],
+ ['Hardmode-Text im JS vorhanden',()=>fetch('js/modules/language-exam-shell.js').then(r=>r.text()).then(t=>t.includes('Academy-Hartmodus')&&t.includes('G54.38C.12A'))],
+ ['Kein einfacher Standardmodus im Hero',()=>fetch('js/modules/language-exam-shell.js').then(r=>r.text()).then(t=>t.includes('Es gibt keinen einfachen Standardmodus mehr'))],
+ ['Update-Check 38C.12A',()=>fetch('update-check.json').then(r=>r.json()).then(j=>j.version==='G54.38C.12A')],
+ ['B2-Pilot bleibt vorhanden',()=>fetch('data/language-b2-exam-pilot.js').then(r=>r.text()).then(t=>t.includes('LanguageB2ExamPilot'))]
+];
+(async()=>{
+ const out=document.getElementById('result');
+ for(const [name,fn] of checks){
+   let ok=false; try{ ok=await fn(); }catch(e){ ok=false; }
+   const div=document.createElement('div'); div.className='row '+(ok?'ok':'fail'); div.textContent=(ok?'✅ ':'❌ ')+name; out.appendChild(div);
+ }
+})();
+</script>
+</body>
+</html>

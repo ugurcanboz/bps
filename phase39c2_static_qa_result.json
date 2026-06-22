@@ -1,0 +1,17 @@
+{
+  "phase": "39C.2",
+  "title": "SVG Dashboard Browser QA & Rest-Emoji Cleanup",
+  "checks": {
+    "phase_version": false,
+    "no_emoji_in_ui_home_renderer": true,
+    "no_emoji_in_home_dashboard_block": true,
+    "module_registry_uses_iconName": true,
+    "start_button_uses_inline_svg": true,
+    "central_svg_registry_present": true,
+    "module_cards_svg": true,
+    "deep_cards_svg": true,
+    "qa_html_present": true,
+    "css_39c2_present": true
+  },
+  "passed": false
+}

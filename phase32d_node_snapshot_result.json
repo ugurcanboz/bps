@@ -1,0 +1,330 @@
+{
+  "pass": true,
+  "errors": [],
+  "qa": {
+    "ok": true,
+    "phase": "32D",
+    "version": "G54.20-phase32d-b1-total-qa-device-simulation",
+    "level": "b1",
+    "qaScope": "B1 total QA + coding integrity + simulated device readiness",
+    "base": {
+      "ok": true,
+      "phase": "32C",
+      "level": "b1",
+      "expandedLessons": 10,
+      "starterLessons": 0,
+      "lessons": 10,
+      "totalTasks": 430,
+      "normalTasks": 350,
+      "speakingTasks": 80,
+      "expandedLessonTarget": {
+        "tasks": 43,
+        "speaking": 8
+      },
+      "perLesson": {
+        "b1-opinions-discussion": {
+          "title": "Meinung & Diskussion",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-work-communication": {
+          "title": "Kommunikation im Beruf",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-experience-past": {
+          "title": "Erfahrungen erzählen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-problems-solutions": {
+          "title": "Probleme & Lösungen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-media-information": {
+          "title": "Medien & Informationen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-education-plans": {
+          "title": "Bildung & Lernen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-travel-report": {
+          "title": "Reisen & Berichten",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-health-lifestyle": {
+          "title": "Gesundheit & Lebensstil",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-official-service": {
+          "title": "Amt & Service",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "b1-future-goals": {
+          "title": "Zukunft & Ziele",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        }
+      },
+      "parallelBuildPolicy": {
+        "active": true,
+        "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+      },
+      "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+    },
+    "uniqueTaskIds": 430,
+    "duplicateIds": [],
+    "missingFields": [],
+    "typeCoverage": {
+      "multiple_choice": 100,
+      "fill_blank": 80,
+      "sentence_order": 50,
+      "listening_choice": 50,
+      "true_false": 40,
+      "matching": 30,
+      "speaking_practice": 80
+    },
+    "perLesson": {
+      "b1-opinions-discussion": {
+        "title": "Meinung & Diskussion",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-work-communication": {
+        "title": "Kommunikation im Beruf",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-experience-past": {
+        "title": "Erfahrungen erzählen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-problems-solutions": {
+        "title": "Probleme & Lösungen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-media-information": {
+        "title": "Medien & Informationen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-education-plans": {
+        "title": "Bildung & Lernen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-travel-report": {
+        "title": "Reisen & Berichten",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-health-lifestyle": {
+        "title": "Gesundheit & Lebensstil",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-official-service": {
+        "title": "Amt & Service",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "b1-future-goals": {
+        "title": "Zukunft & Ziele",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      }
+    },
+    "speakingFallbackReady": true,
+    "flowReady": true,
+    "coachReady": true,
+    "cloudSafe": true,
+    "a2RegressionOk": true,
+    "a2Regression": {
+      "ok": true,
+      "totalTasks": 430,
+      "speakingTasks": 80
+    },
+    "simulatedDevices": [
+      "desktop-1440",
+      "desktop-1024",
+      "iphone-15-pro-max",
+      "iphone-se",
+      "ipad-11",
+      "ipad-12-9"
+    ],
+    "limits": {
+      "realMicrophoneTest": false,
+      "realSafariEngine": false,
+      "realDeviceScreenshots": false,
+      "playwrightNavigationBlockedInContainer": true
+    },
+    "nextRecommendedPhase": "33A B2 course + speaking structure parallel"
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "expandedLessons": 10,
+    "starterLessons": 0
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "32D",
+    "version": "G54.20-phase32d-b1-total-qa-device-simulation",
+    "hasPhase32dQa": true
+  }
+}

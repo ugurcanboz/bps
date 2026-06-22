@@ -1,0 +1,23 @@
+{
+  "version": "G24",
+  "build": "ui-b-neon-g24-rights-groups-model",
+  "checks": {
+    "js_syntax": "ok",
+    "service_worker_syntax": "ok",
+    "service_worker_assets_missing": 0,
+    "demo_groups": [
+      "2026-GK-A",
+      "2026-GK-B"
+    ],
+    "demo_dozenten": [
+      "DOZENT-A",
+      "DOZENT-B"
+    ],
+    "permissions": [
+      "canViewGroup",
+      "canViewLearner",
+      "groupAccessForRole"
+    ],
+    "neon_home_touched": false
+  }
+}

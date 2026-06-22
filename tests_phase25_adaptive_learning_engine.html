@@ -1,0 +1,21 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><title>Phase 25 Adaptive Engine Test</title><body><pre id="out">running</pre><script src="./js/modules/language-adaptive-engine.js"></script><script>
+(function(){
+ const out=document.getElementById('out');
+ const eng=window.LanguageAcademyAdaptiveEngine;
+ const errors=[];
+ if(!eng) errors.push('AdaptiveEngine fehlt');
+ const weak=eng.analyzeLesson('a1-greetings',{attempts:3,score:1,total:1,wrongTaskIds:['q1']},2);
+ const strong=eng.analyzeLesson('a1-greetings',{attempts:2,score:2,total:2,wrongTaskIds:[]},2);
+ if(!weak.needsReview) errors.push('Wiederholungsbedarf nicht erkannt');
+ if(strong.readiness!=='ready_next') errors.push('Bereit-für-nächste-Lektion nicht erkannt');
+ const rec=eng.recommendation(weak);
+ if(rec.type!=='review') errors.push('Review-Empfehlung fehlt');
+ eng.recordAnswer({lessonId:'a1-greetings',taskId:'q1',correct:false,state:{attempts:1,score:0,total:1,wrongTaskIds:['q1']},taskCount:2});
+ const saved=eng.read();
+ if(!saved.lessonInsights || !saved.lessonInsights['a1-greetings']) errors.push('Adaptive State nicht gespeichert');
+ out.textContent=errors.length?'FAIL
+'+errors.join('
+'):'PASS · Phase 25 Adaptive Lernengine';
+ document.body.dataset.phase25=errors.length?'fail':'pass';
+})();
+</script></body></html>

@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "errors": [],
+  "c1": {
+    "ok": true,
+    "phase": "34A",
+    "lessons": 10,
+    "totalTasks": 120,
+    "normalTasks": 80,
+    "speakingTasks": 40
+  },
+  "b2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "b1": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "a2": {
+    "ok": true,
+    "totalTasks": 430,
+    "speakingTasks": 80
+  },
+  "diagnostics": {
+    "phase": "34A",
+    "version": "G54.25-phase34a-c1-course-speaking-structure",
+    "hasC1Structure": true
+  }
+}

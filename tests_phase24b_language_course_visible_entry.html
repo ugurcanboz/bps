@@ -1,0 +1,9 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Phase 24B Test</title></head><body><pre id="out"></pre><script src="./js/i18n/language-store.js"></script><script src="./js/i18n/translation-engine.js"></script><script src="./js/i18n/help-system.js"></script><script src="./js/modules/language-course-entry-module.js"></script><script>
+var checks=[]; function check(name,ok){checks.push({name:name,ok:!!ok});}
+check('Language store exists', !!window.LanguageAcademyLanguageStore);
+check('Translation engine exists', !!window.LanguageAcademyTranslationEngine);
+check('Help system exists', !!window.LanguageAcademyHelpSystem);
+check('Course entry exists', !!window.LanguageAcademyCourseEntry);
+check('Hint does not expose answer', window.LanguageAcademyHelpSystem.getHint({hint:{de:'Hinweis',tr:'İpucu'},answer:'SECRET'}).indexOf('SECRET')===-1);
+var pass=checks.every(function(c){return c.ok;}); document.getElementById('out').textContent=JSON.stringify({phase:'24B',pass:pass,checks:checks},null,2); if(!pass) throw new Error('Phase 24B failed');
+</script></body></html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>G54.43.8C QA Bubble Interaction Fix Test</title></head>
+<body>
+<h1>G54.43.8C QA Bubble Interaction Fix</h1>
+<pre id="out">running...</pre>
+<script src="./js/qa/egt-visual-state-capture.js"></script>
+<script>
+(async function(){
+  const result={phase:'G54.43.8C',checks:[]};
+  const add=(id,ok,detail)=>result.checks.push({id,status:ok?'PASS':'FAIL',detail});
+  await new Promise(r=>setTimeout(r,80));
+  add('api_exists', !!window.EGTVisualStateCapture, 'EGTVisualStateCapture global vorhanden');
+  add('version_8c', window.EGTVisualStateCapture && window.EGTVisualStateCapture.version==='G54.43.8C', 'Version G54.43.8C');
+  window.EGTVisualStateCapture.init({autoCapture:false});
+  const overlay=document.getElementById('egt-visual-state-capture');
+  add('overlay_created', !!overlay, 'Overlay erzeugt');
+  add('starts_minimized', overlay && overlay.getAttribute('data-minimized')==='true', 'Start als QA-Bubble');
+  const head=overlay && overlay.querySelector('.egt-vsc__head');
+  if(head){ head.dispatchEvent(new Event('click',{bubbles:true,cancelable:true})); }
+  add('bubble_opens_on_click', overlay && overlay.getAttribute('data-minimized')==='false', 'Bubble öffnet per Click');
+  const captureBtn=overlay && overlay.querySelector('button[data-action="capture"]');
+  add('capture_button_exists', !!captureBtn, 'Capture Button vorhanden');
+  if(captureBtn){ captureBtn.dispatchEvent(new Event('click',{bubbles:true,cancelable:true})); }
+  await new Promise(r=>setTimeout(r,180));
+  add('capture_generated', !!(window.EGTVisualStateCapture.getLastCapture && window.EGTVisualStateCapture.getLastCapture()), 'Capture per Button erzeugt');
+  add('show_api_exists', typeof window.EGTVisualStateCapture.showLastCaptureText==='function', 'Text anzeigen API vorhanden');
+  if(window.EGTVisualStateCapture.showLastCaptureText){ window.EGTVisualStateCapture.showLastCaptureText(); }
+  add('textarea_created', !!document.querySelector('.egt-vsc__textarea'), 'JSON Textarea erzeugt');
+  const failed=result.checks.filter(c=>c.status==='FAIL');
+  document.getElementById('out').textContent=JSON.stringify(result,null,2);
+  if(failed.length) throw new Error('G54.43.8C QA bubble interaction test failed');
+})();
+</script>
+</body>
+</html>

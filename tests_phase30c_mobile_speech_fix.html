@@ -1,0 +1,34 @@
+<!doctype html><meta charset="utf-8"><title>Phase 30C-FIX Mobile Speech QA</title>
+<script>
+(function(){
+  function MockSpeechRecognition(){
+    this.lang=''; this.interimResults=false; this.maxAlternatives=1; this.continuous=true;
+    this.start=function(){ if(this.onstart) this.onstart(); };
+    this.stop=function(){};
+  }
+  window.SpeechRecognition=MockSpeechRecognition;
+})();
+</script>
+<script src="js/i18n/language-store.js"></script>
+<script src="js/i18n/language-adapter.js"></script>
+<script src="js/modules/language-adaptive-engine.js"></script>
+<script src="js/modules/language-course-cloud-sync.js"></script>
+<script src="js/modules/language-course-entry-module.js"></script>
+<body><pre id="out"></pre><script>
+(function(){
+  var out=[]; function ok(name, pass){ out.push((pass?'✅ ':'❌ ')+name); if(!pass) throw new Error(name); }
+  var api=window.LanguageAcademyCourseEntry;
+  ok('Course API exists', !!api);
+  var d=api.diagnostics();
+  ok('Speech QA snapshot exists', !!d.speechQa);
+  ok('Phase 30 speech snapshot exists', !!d.phase30Speech);
+  ok('Mobile-safe fallback is declared', d.phase30Speech.mobileSafeFallback===true);
+  ok('Speech support object contains mode', !!d.phase30Speech.support && !!d.phase30Speech.support.mode);
+  ok('iOS safe config exists', !!d.speechQa.config.iosSafeConfig);
+  ok('iOS interimResults is disabled for safe config', d.speechQa.config.iosSafeConfig.interimResults===false);
+  ok('iOS maxAlternatives is conservative', d.speechQa.config.iosSafeConfig.maxAlternatives===1);
+  ok('SpeechRecognition auto mode still works on desktop mock', d.phase30Speech.support.supported===true);
+  ok('Privacy note still present', !!d.phase30Speech.privacyNote);
+  document.getElementById('out').textContent=out.join('\n');
+})();
+</script></body>

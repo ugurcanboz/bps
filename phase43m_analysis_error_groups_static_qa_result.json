@@ -1,0 +1,61 @@
+{
+  "phase": "G54.43.4",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Adapter version G54.43.4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "errorAnalysis payload present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "buildErrorAnalysis function present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "priority function present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "training hints present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "UI error box present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "UI data hook present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SW cache version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Update check version",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

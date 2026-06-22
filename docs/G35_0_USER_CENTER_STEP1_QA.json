@@ -1,0 +1,5 @@
+{
+  "build":"G35.0-USER-CENTER-STEP1-2026-06-08",
+  "scope":"user-center-step1",
+  "checks":["top-right-user-entry","dashboard-auth-slot-removed","profile-quick-card-removed","avatar-in-header-prepared"]
+}
