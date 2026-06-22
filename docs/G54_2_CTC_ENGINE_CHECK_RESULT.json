@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "failures": [],
+  "counts": {
+    "mc": 49,
+    "ctcRuleArithmeticInput": 6,
+    "ctcLetterScanInput": 4,
+    "ctcCoordinateTableInput": 2,
+    "ctcFlowLogic": 1
+  },
+  "blocks": {
+    "1. Allgemeinwissen": 40,
+    "2. Mathematik Sprint": 9,
+    "3. CTC-Regelrechnung": 6,
+    "4. Buchstaben-Konzentration": 4,
+    "5. Tabellen ablesen": 2,
+    "6. CTC-Logik: Wenn-Dann-Ablauf": 1
+  },
+  "diagnostics": {
+    "version": "G54.2-ctc-lohr-real-exam-structure",
+    "totalQuestions": 62,
+    "totalSeconds": 1978,
+    "totalMinutes": 33,
+    "blocks": [
+      {
+        "key": "generalKnowledge",
+        "label": "1. Allgemeinwissen",
+        "count": 40,
+        "timeModel": "block",
+        "blockSeconds": 420,
+        "questionSeconds": 11,
+        "group": "Allgemeinwissen"
+      },
+      {
+        "key": "mathSprint",
+        "label": "2. Mathematik Sprint",
+        "count": 9,
+        "timeModel": "perQuestion",
+        "questionSeconds": 22,
+        "group": "Mathe"
+      },
+      {
+        "key": "ruleArithmetic",
+        "label": "3. CTC-Regelrechnung",
+        "count": 6,
+        "timeModel": "perQuestion",
+        "questionSeconds": 40,
+        "group": "Mathe"
+      },
+      {
+        "key": "letterScan",
+        "label": "4. Buchstaben-Konzentration",
+        "count": 4,
+        "timeModel": "perQuestion",
+        "questionSeconds": 40,
+        "group": "Konzentration"
+      },
+      {
+        "key": "coordinateTable",
+        "label": "5. Tabellen ablesen",
+        "count": 2,
+        "timeModel": "perQuestion",
+        "questionSeconds": 90,
+        "group": "Konzentration"
+      },
+      {
+        "key": "flowLogic",
+        "label": "6. CTC-Logik: Wenn-Dann-Ablauf",
+        "count": 1,
+        "timeModel": "perQuestion",
+        "questionSeconds": 780,
+        "group": "Logik"
+      }
+    ]
+  },
+  "sampleRule": "40-16-9/46+27-10"
+}

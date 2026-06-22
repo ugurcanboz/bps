@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 39F · Visual Observer QA Cockpit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root{--bg:#020617;--card:#0f172a;--line:rgba(148,163,184,.24);--text:#f8fafc;--muted:#94a3b8;--ok:#22c55e;--bad:#ef4444;--warn:#f59e0b;--blue:#38bdf8}
+    *{box-sizing:border-box}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);margin:0;padding:18px;line-height:1.5}
+    main{max-width:1440px;margin:auto}
+    h1{font-size:clamp(24px,3vw,40px);margin:0 0 8px}
+    .sub{color:var(--muted);max-width:980px}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0}
+    button,a.download{min-height:44px;border-radius:14px;border:1px solid rgba(96,165,250,.35);background:rgba(59,130,246,.18);color:#fff;padding:0 14px;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;text-decoration:none}
+    button:hover,a.download:hover{border-color:rgba(125,211,252,.8)}
+    .grid{display:grid;grid-template-columns:minmax(360px,1fr) minmax(360px,1.1fr);gap:16px}
+    .card{border:1px solid var(--line);background:rgba(15,23,42,.86);border-radius:22px;padding:16px;margin:14px 0;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+    .ok{color:var(--ok)}.bad{color:var(--bad)}.warn{color:var(--warn)}
+    .viewportBar{display:flex;gap:8px;flex-wrap:wrap}
+    .viewportBar button.active{background:rgba(34,197,94,.18);border-color:rgba(34,197,94,.55)}
+    iframe{width:100%;height:760px;border:1px solid rgba(148,163,184,.3);border-radius:22px;background:#020617}
+    pre{white-space:pre-wrap;word-break:break-word;background:rgba(2,6,23,.75);border-radius:14px;padding:12px;max-height:520px;overflow:auto;font-size:12px}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border-bottom:1px solid rgba(148,163,184,.22);padding:8px;text-align:left;font-size:13px;vertical-align:top}
+    .statgrid{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:10px}
+    .stat{border:1px solid var(--line);border-radius:18px;padding:12px;background:rgba(2,6,23,.38)}
+    .stat b{display:block;font-size:24px}.stat small{color:var(--muted)}
+    .visual{overflow:auto;background:#020617;border-radius:18px;border:1px solid var(--line);padding:8px;max-height:720px}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:980px){.grid,.split{grid-template-columns:1fr}.statgrid{grid-template-columns:repeat(2,1fr)} iframe{height:680px}}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Phase 39F · Visual Observer QA Cockpit</h1>
+  <p class="sub">Dieses Cockpit macht die App testbar wie mit „Augen“: App-Walk, Klickprüfung, Scroll-/Touch-/Icon-Audit, Layout-Map und exportierbarer JSON-Bericht. Echte Pixel-Screenshots bleiben browserseitig ohne Screen-Capture-Permission begrenzt; deshalb erzeugt der Observer zusätzlich eine präzise SVG-Visual-Map mit Elementboxen.</p>
+
+  <div class="toolbar">
+    <button id="run">Maximalen Observer-Lauf starten</button>
+    <button id="capture">Aktuellen Screen analysieren</button>
+    <button id="reload">Iframe neu laden</button>
+    <button id="open">App QA separat öffnen</button>
+    <a id="downloadJson" class="download" download="phase39f_visual_observer_result.json" href="#">JSON herunterladen</a>
+    <a id="downloadHtml" class="download" download="phase39f_visual_observer_report.html" href="#">HTML-Report herunterladen</a>
+  </div>
+
+  <div class="viewportBar">
+    <button data-vp="desktop" class="active">Desktop 1440</button>
+    <button data-vp="ipad">iPad 820</button>
+    <button data-vp="iphone">iPhone 390</button>
+  </div>
+
+  <div id="status" class="card">Bereit. Der Test lädt die App mit <code>?qa=1</code>.</div>
+
+  <div class="grid">
+    <section>
+      <iframe id="app" src="./index.html?qa=1&visualObserver=39f" title="Eignungstest-Trainer Visual QA"></iframe>
+    </section>
+    <section>
+      <div id="summary" class="card">Noch kein Ergebnis.</div>
+      <div id="visual" class="visual">Visual Map erscheint nach dem Lauf.</div>
+    </section>
+  </div>
+
+  <div class="split">
+    <div id="issues" class="card">Issues erscheinen nach dem Lauf.</div>
+    <div id="raw" class="card"><pre>{}</pre></div>
+  </div>
+</main>
+
+<script>
+(function(){
+  const frame=document.getElementById('app');
+  const status=document.getElementById('status');
+  const summary=document.getElementById('summary');
+  const issues=document.getElementById('issues');
+  const visual=document.getElementById('visual');
+  const raw=document.getElementById('raw');
+  const jsonLink=document.getElementById('downloadJson');
+  const htmlLink=document.getElementById('downloadHtml');
+  let latest=null;
+
+  const viewports={
+    desktop:{w:'100%',h:'760px',src:'./index.html?qa=1&visualObserver=39f&vp=desktop'},
+    ipad:{w:'820px',h:'1180px',src:'./index.html?qa=1&visualObserver=39f&vp=ipad'},
+    iphone:{w:'390px',h:'844px',src:'./index.html?qa=1&visualObserver=39f&vp=iphone'}
+  };
+
+  function wait(ms){return new Promise(r=>setTimeout(r,ms));}
+  function setStatus(msg, cls){status.innerHTML='<b class="'+(cls||'')+'">'+msg+'</b>';}
+  function safeJson(obj){return JSON.stringify(obj,null,2);}
+  function blobUrl(text,type){return URL.createObjectURL(new Blob([text],{type:type||'application/json'}));}
+
+  function reportHtml(res){
+    const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const rows=(res.final?.issues||[]).slice(0,80).map(i=>`<tr><td>${esc(i.severity)}</td><td>${esc(i.type)}</td><td>${esc(i.message)}</td></tr>`).join('');
+    return `<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Phase 39F Visual Observer Report</title><style>body{font-family:Arial;background:#020617;color:#f8fafc;padding:24px}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #334155;padding:8px;text-align:left}.ok{color:#22c55e}.bad{color:#ef4444}.map{background:#020617;border:1px solid #334155;border-radius:16px;overflow:auto}</style></head><body><h1>Phase 39F Visual Observer Report</h1><h2 class="${res.summary?.ok?'ok':'bad'}">${res.summary?.ok?'OK':'PRÜFEN'}</h2><pre>${esc(safeJson(res.summary||{}))}</pre><h2>Visual Map</h2><div class="map">${res.final?.visualMapSvg||res.start?.visualMapSvg||''}</div><h2>Issues</h2><table><tr><th>Severity</th><th>Typ</th><th>Beschreibung</th></tr>${rows}</table><h2>Rohdaten</h2><pre>${esc(safeJson(res))}</pre></body></html>`;
+  }
+
+  function render(res){
+    latest=res;
+    const ok=!!(res?.summary?.ok);
+    const totalIssues=(res?.summary?.high||0)+(res?.summary?.medium||0)+(res?.summary?.low||0);
+    summary.innerHTML=[
+      `<h2 class="${ok?'ok':'bad'}">${ok?'Observer-Lauf OK':'Observer-Lauf prüfen'}</h2>`,
+      '<div class="statgrid">',
+      `<div class="stat"><b>${res?.summary?.high||0}</b><small>High</small></div>`,
+      `<div class="stat"><b>${res?.summary?.medium||0}</b><small>Medium</small></div>`,
+      `<div class="stat"><b>${res?.summary?.low||0}</b><small>Low</small></div>`,
+      `<div class="stat"><b>${res?.actions?.length||0}</b><small>Aktionen</small></div>`,
+      '</div>',
+      '<h3>Empfehlungen</h3><ul>',
+      ...(res?.summary?.recommendations||[]).map(x=>`<li>${x}</li>`),
+      '</ul>'
+    ].join('');
+    const allIssues=(res?.final?.issues||[]).concat((res?.start?.issues||[])).slice(0,80);
+    issues.innerHTML='<h2>Issues</h2><table><tr><th>Severity</th><th>Typ</th><th>Beschreibung</th></tr>'+
+      allIssues.map(i=>`<tr><td>${i.severity}</td><td>${i.type}</td><td>${i.message||''}</td></tr>`).join('')+
+      '</table>';
+    visual.innerHTML=res?.final?.visualMapSvg || res?.start?.visualMapSvg || 'Keine Visual Map.';
+    raw.innerHTML='<pre>'+safeJson(res).slice(0,90000)+'</pre>';
+    jsonLink.href=blobUrl(safeJson(res),'application/json');
+    htmlLink.href=blobUrl(reportHtml(res),'text/html');
+  }
+
+  async function ensureObserver(){
+    const w=frame.contentWindow;
+    if(!w) throw new Error('Iframe nicht erreichbar.');
+    if(!w.Phase39FVisualObserver){
+      const s=frame.contentDocument.createElement('script');
+      s.src='./js/qa-visual-observer.js';
+      frame.contentDocument.head.appendChild(s);
+      await wait(700);
+    }
+    if(!w.Phase39FVisualObserver) throw new Error('Phase39FVisualObserver nicht geladen.');
+    return w.Phase39FVisualObserver;
+  }
+
+  async function run(){
+    setStatus('Maximaler Observer-Lauf läuft…','warn');
+    try{
+      const observer=await ensureObserver();
+      const res=await observer.runFullObservation({initialWait:700});
+      render(res);
+      setStatus(res.summary?.ok?'Observer-Lauf abgeschlossen: OK.':'Observer-Lauf abgeschlossen: Befunde prüfen.', res.summary?.ok?'ok':'bad');
+    }catch(e){
+      const res={summary:{ok:false,high:1,medium:0,low:0,recommendations:['Observer konnte nicht laufen: '+String(e)]},error:String(e)};
+      render(res);
+      setStatus('Observer-Fehler.','bad');
+    }
+  }
+
+  async function capture(){
+    setStatus('Analysiere aktuellen Screen…','warn');
+    try{
+      const observer=await ensureObserver();
+      observer.enableBypass();
+      await wait(300);
+      const res={version:observer.version,phase:'39F',time:new Date().toISOString(),summary:{ok:true,high:0,medium:0,low:0,recommendations:['Einzel-Screen-Capture erzeugt.']},start:observer.captureScreenState('manual-capture'),final:observer.captureScreenState('manual-capture'),actions:[],tabs:[]};
+      const issues=res.final.issues||[];
+      issues.forEach(i=>{ if(i.severity==='high')res.summary.high++; else if(i.severity==='medium')res.summary.medium++; else res.summary.low++; });
+      res.summary.ok=res.summary.high===0;
+      render(res);
+      setStatus('Aktueller Screen analysiert.', res.summary.ok?'ok':'bad');
+    }catch(e){ setStatus('Capture-Fehler: '+String(e),'bad'); }
+  }
+
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('capture').addEventListener('click', capture);
+  document.getElementById('reload').addEventListener('click',()=>{frame.src=frame.src.replace(/&ts=\d+/,'')+'&ts='+Date.now();});
+  document.getElementById('open').addEventListener('click',()=>window.open('./index.html?qa=1&visualObserver=39f','_blank'));
+
+  document.querySelectorAll('[data-vp]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('[data-vp]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const vp=viewports[btn.dataset.vp];
+      frame.style.width=vp.w; frame.style.height=vp.h; frame.src=vp.src+'&ts='+Date.now();
+    });
+  });
+
+  frame.addEventListener('load',()=>setTimeout(capture,900));
+})();
+</script>
+</body>
+</html>

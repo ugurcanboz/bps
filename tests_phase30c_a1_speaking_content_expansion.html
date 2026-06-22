@@ -1,0 +1,25 @@
+<!doctype html><meta charset="utf-8"><title>Phase 30C A1 Speaking Content Expansion QA</title>
+<script src="js/i18n/language-store.js"></script>
+<script src="js/i18n/language-adapter.js"></script>
+<script src="js/modules/language-adaptive-engine.js"></script>
+<script src="js/modules/language-course-cloud-sync.js"></script>
+<script src="js/modules/language-course-entry-module.js"></script>
+<body><pre id="out"></pre><script>
+(function(){
+  var out=[]; function ok(name, pass){ out.push((pass?'✅ ':'❌ ')+name); if(!pass) throw new Error(name); }
+  var d=window.LanguageAcademyCourseEntry.diagnostics();
+  var cov=d.phase30Speech.a1SpeakingCoverage;
+  ok('Coverage snapshot exists', !!cov);
+  ok('10 A1 lessons checked', cov.a1Lessons===10);
+  ok('Minimum speaking per lesson is 4', cov.minimumSpeakingPerLesson===4);
+  ok('Coverage complete', cov.complete===true);
+  ok('Total speaking tasks equals 40', cov.speakingTasks===40);
+  ok('Total A1 tasks equals 430', cov.totalTasks===430);
+  Object.keys(cov.speakingPerLesson).forEach(function(id){
+    ok(id+' has 4 speaking tasks', cov.speakingPerLesson[id].speakingTasks===4);
+    ok(id+' task count is 43', cov.speakingPerLesson[id].tasks===43);
+  });
+  ok('Parallel build policy active', d.phase30Speech.parallelBuildPolicy && d.phase30Speech.parallelBuildPolicy.active===true);
+  document.getElementById('out').textContent=out.join('\n');
+})();
+</script></body>

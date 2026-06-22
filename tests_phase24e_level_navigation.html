@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>Phase 24E Level Navigation Test</title><body><pre id="out"></pre><script src="js/i18n/language-store.js"></script><script src="js/i18n/translation-engine.js"></script><script src="js/i18n/help-system.js"></script><script src="js/modules/language-course-entry-module.js"></script><script>
+const out=[];function ok(n,c){out.push((c?'PASS ':'FAIL ')+n); if(!c) throw new Error(n)}
+ok('CourseEntry exists',!!window.LanguageAcademyCourseEntry);
+ok('Diagnostics phase 24E',window.LanguageAcademyCourseEntry.diagnostics().phase==='24E');
+ok('openLevel exported',typeof window.LanguageAcademyCourseEntry.openLevel==='function');
+ok('openLesson exported',typeof window.LanguageAcademyCourseEntry.openLesson==='function');
+document.getElementById('out').textContent=out.join('\n');
+</script></body>

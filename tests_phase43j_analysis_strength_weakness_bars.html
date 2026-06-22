@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>G54.43.1 Analyse Stärken/Schwächen Bars QA</title></head>
+<body><h1>G54.43.1 Analyse Stärken/Schwächen Bars QA</h1><pre id="out">running...</pre>
+<script>
+(async function(){
+  async function txt(p){ return fetch(p).then(r=>r.text()); }
+  const files = ['js/modules/egt-analysis-data-adapter.js','js/ui-home-renderer.js','css/phase39i-pixel-polish.css','service-worker.js','manifest.json','update-check.json'];
+  const t = {};
+  for (const f of files) t[f]=await txt('./'+f);
+  const checks=[];
+  checks.push(['Adapter version', t['js/modules/egt-analysis-data-adapter.js'].includes('G54.43.1-strengths-weakness-bars-data-binding')]);
+  checks.push(['Category real flags', t['js/modules/egt-analysis-data-adapter.js'].includes('real: real') && t['js/modules/egt-analysis-data-adapter.js'].includes('count: row.hits')]);
+  checks.push(['Top weaknesses payload', t['js/modules/egt-analysis-data-adapter.js'].includes('topWeaknesses') && t['js/modules/egt-analysis-data-adapter.js'].includes('topStrengths')]);
+  checks.push(['Bars display payload', t['js/modules/egt-analysis-data-adapter.js'].includes('barsDisplay') && t['js/modules/egt-analysis-data-adapter.js'].includes('barsMeta')]);
+  checks.push(['UI adapter-bound bars', t['js/ui-home-renderer.js'].includes('data-analysis-bars="adapter-bound-weakest-first"')]);
+  checks.push(['UI top weaknesses box', t['js/ui-home-renderer.js'].includes('analysisV2WeaknessHtml') && t['js/ui-home-renderer.js'].includes('data-analysis-top-weaknesses="adapter-bound"')]);
+  checks.push(['CSS top weakness', t['css/phase39i-pixel-polish.css'].includes('is-top-weakness') && t['css/phase39i-pixel-polish.css'].includes('analysis-v2-weakbox')]);
+  checks.push(['Cache updated', t['service-worker.js'].includes('egt-trainer-g54-43-1')]);
+  checks.push(['Manifest updated', t['manifest.json'].includes('G54.43.1')]);
+  checks.push(['Update check updated', t['update-check.json'].includes('G54.43.1')]);
+  const passed=checks.every(x=>x[1]);
+  document.getElementById('out').textContent=JSON.stringify({ phase:'G54.43.1', passed, checks }, null, 2);
+})();
+</script></body></html>

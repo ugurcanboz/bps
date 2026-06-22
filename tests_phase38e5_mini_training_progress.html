@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 38E.5 – Mini Training Progress QA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>body{font-family:system-ui;background:#0f172a;color:#e5e7eb;padding:24px}.pass{color:#86efac}.fail{color:#fca5a5}code{background:#020617;padding:2px 6px;border-radius:6px}</style>
+</head>
+<body>
+  <h1>Phase 38E.5 – Mini-Übungssets auswerten und Trainingsfortschritt speichern</h1>
+  <div id="result">Prüfung läuft…</div>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    (function(){
+      const out = document.getElementById('result');
+      const shell = window.LanguageExamShell;
+      const checks = [];
+      function ok(name, value){ checks.push({name, ok:!!value}); }
+      ok('Shell vorhanden', shell);
+      ok('Diagnostics Phase 38E.5', shell && shell.diagnostics && shell.diagnostics().phase === '38E.5');
+      ok('evaluateMiniTraining exportiert', shell && typeof shell.evaluateMiniTraining === 'function');
+      ok('loadTrainingProgress exportiert', shell && typeof shell.loadTrainingProgress === 'function');
+      ok('trainingProgressSummaryHtml exportiert', shell && typeof shell.trainingProgressSummaryHtml === 'function');
+      if(shell && shell.startTraining){ shell.startTraining('B2','grammar'); }
+      const html = document.body.innerHTML;
+      ok('Mini-Antwortfelder vorhanden', html.includes('data-la-mini-answer'));
+      ok('Mini-Checklisten vorhanden', html.includes('data-la-mini-check'));
+      ok('Auswertungsbutton vorhanden', html.includes('language-exam-mini-evaluate'));
+      ok('Reset-Button vorhanden', html.includes('language-exam-mini-reset'));
+      ok('Progress Storage Key nutzbar', (()=>{ try{ localStorage.setItem('language-academy-mini-training-progress-v1','[]'); return true; }catch(e){ return false; } })());
+      const passed = checks.every(x=>x.ok);
+      out.innerHTML = '<h2 class="'+(passed?'pass':'fail')+'">'+(passed?'BESTANDEN':'FEHLER')+'</h2><ul>'+checks.map(x=>'<li class="'+(x.ok?'pass':'fail')+'">'+(x.ok?'✓':'✗')+' '+x.name+'</li>').join('')+'</ul>';
+    })();
+  </script>
+</body>
+</html>

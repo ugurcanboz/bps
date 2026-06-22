@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phase 38D.4 · B2 Grammatik hart QA</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#07111f;color:#eef6ff;margin:0;padding:24px} .card{max-width:980px;margin:auto;background:#0f2138;border:1px solid rgba(130,190,255,.35);border-radius:20px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.35)} h1{margin-top:0}.ok{color:#7dffb2}.bad{color:#ff8e8e} code{background:#071827;padding:2px 6px;border-radius:8px}.row{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>Phase 38D.4 · B2 Grammatik & Sprachbausteine hart</h1>
+<div id="out">Prüfe...</div>
+</div>
+<script src="./data/language-level-difficulty-rules.js"></script>
+<script src="./data/language-b2-exam-pilot.js"></script>
+<script>
+(function(){
+ const out=document.getElementById('out');
+ const rows=[];
+ function add(name, ok, detail){ rows.push(`<div class="row"><b class="${ok?'ok':'bad'}">${ok?'✅':'❌'}</b> ${name}<br><small>${detail||''}</small></div>`); }
+ const p=window.LanguageB2ExamPilot;
+ add('LanguageB2ExamPilot geladen', !!p, p&&p.__version);
+ const info=p&&p.poolInfo?p.poolInfo():null;
+ add('B2 Grammatikpool hat 8 Varianten', !!info && info.grammar===8, info?JSON.stringify(info):'kein poolInfo');
+ const attempt=p&&p.buildAttempt?p.buildAttempt('phase38d4-b2-grammar'):null;
+ const grammar=p&&p.getAttemptPart?p.getAttemptPart(attempt,'grammar'):null;
+ add('Grammatikteil abrufbar', !!grammar, grammar&&grammar.variantTitle);
+ add('Grammatikteil hat 8 Fragen', !!grammar && Array.isArray(grammar.questions) && grammar.questions.length===8, grammar?('Fragen: '+(grammar.questions||[]).length):'');
+ add('PassScore ist hart gesetzt', !!grammar && Number(grammar.passScore)>=78, grammar&&('passScore: '+grammar.passScore));
+ add('B2 Fokus enthält anspruchsvolle Themen', !!grammar && /Passiv|Nominal|Konnektor|Register|Satz/i.test(JSON.stringify(grammar)), 'Konnektoren, Passiv, Nominalisierung, Register oder Satzbau erwartet');
+ add('Level-Regeln vorhanden', !!window.LanguageLevelDifficultyRules, window.LanguageLevelDifficultyRules&&window.LanguageLevelDifficultyRules.__version);
+ out.innerHTML=rows.join('');
+})();
+</script>
+</body>
+</html>

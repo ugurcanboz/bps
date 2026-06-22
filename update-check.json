@@ -1,0 +1,9 @@
+{
+  "version": "G54.43.8C-2026-06-21",
+  "latest": "G54.43.8C-2026-06-21",
+  "required": true,
+  "force": false,
+  "label": "G54.43.8C: QA Bubble Interaction Fix",
+  "build": "G54.43.8C-2026-06-21",
+  "cache": "egt-trainer-g54-43-8c"
+}
