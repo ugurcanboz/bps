@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 38D.3 · B2 Hören hart QA</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#07111f;color:#eaf2ff;margin:0;padding:24px;line-height:1.5}
+    .card{max-width:980px;margin:0 auto;background:#0f1d33;border:1px solid rgba(148,163,184,.25);border-radius:22px;padding:22px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    h1{margin-top:0}.ok{color:#86efac}.bad{color:#fca5a5}.item{padding:10px 0;border-bottom:1px solid rgba(148,163,184,.18)}
+    code{background:#111827;padding:2px 6px;border-radius:6px;color:#bfdbfe}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}.mini{background:#0b1628;border:1px solid rgba(148,163,184,.18);border-radius:16px;padding:14px}.muted{color:#b6c6dd}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Phase 38D.3 · B2 Hören hart QA</h1>
+    <p class="muted">Prüft, ob der B2-Hörpool hart ausgebaut ist und weiterhin mit dem Academy-Hartmodus läuft.</p>
+    <div id="result">Lade Prüfmodule…</div>
+    <div class="grid" id="pool"></div>
+  </div>
+  <script src="./data/language-exam-blueprints.js"></script>
+  <script src="./data/language-level-difficulty-rules.js"></script>
+  <script src="./data/language-b1-exam-pilot.js"></script>
+  <script src="./data/language-b2-exam-pilot.js"></script>
+  <script src="./js/modules/language-exam-engine.js"></script>
+  <script src="./js/modules/language-exam-shell.js"></script>
+  <script>
+    (function(){
+      const out=[];
+      function check(label, ok, extra){ out.push(`<div class="item"><b class="${ok?'ok':'bad'}">${ok?'✅':'❌'} ${label}</b>${extra?`<br><span class="muted">${extra}</span>`:''}</div>`); }
+      const pilot=window.LanguageB2ExamPilot;
+      const shell=window.LanguageExamShell;
+      const info=pilot && pilot.poolInfo ? pilot.poolInfo() : null;
+      check('LanguageB2ExamPilot geladen', !!pilot);
+      check('B2 Listening Pool hat 8 Varianten', !!info && info.listening === 8, info ? `listening=${info.listening}, combinations=${info.combinations}` : 'kein poolInfo');
+      check('B2 Reading bleibt 8 Varianten', !!info && info.reading === 8, info ? `reading=${info.reading}` : 'kein poolInfo');
+      check('B2 Kombinationen jetzt mindestens 576', !!info && info.combinations >= 576, info ? `combinations=${info.combinations}` : 'kein poolInfo');
+      const attempt = pilot && pilot.buildAttempt ? pilot.buildAttempt('phase38d3-qa') : null;
+      const listening = pilot && pilot.getAttemptPart ? pilot.getAttemptPart(attempt,'listening') : null;
+      check('Ausgewählte Hörvariante vorhanden', !!listening, listening ? listening.variantTitle : 'keine Hörvariante');
+      check('Hörvariante hat 8 Fragen', !!listening && Array.isArray(listening.questions) && listening.questions.length === 8, listening ? `questions=${listening.questions.length}` : '');
+      check('Maximal 2 Hörvorgänge', !!listening && listening.maxPlays === 2, listening ? `maxPlays=${listening.maxPlays}` : '');
+      check('Transkript bleibt zunächst verborgen', !!listening && listening.showTranscriptAfterPlays === 2, listening ? `showTranscriptAfterPlays=${listening.showTranscriptAfterPlays}` : '');
+      check('Shell Phase 38D.3 aktiv', !!shell && shell.diagnostics && shell.diagnostics().phase === '38D.3', shell && shell.diagnostics ? shell.diagnostics().phase : 'keine Diagnostics');
+      document.getElementById('result').innerHTML=out.join('');
+      if(pilot && pilot.poolInfo){
+        const seeds=['work','city','ai','health','housing','time','consume','privacy'];
+        document.getElementById('pool').innerHTML = seeds.map(seed=>{
+          const a=pilot.buildAttempt(seed);
+          const l=pilot.getAttemptPart(a,'listening');
+          return `<div class="mini"><b>${l.variantTitle}</b><br><span class="muted">${l.title}</span><br><code>${l.questions.length} Fragen · max ${l.maxPlays}x hören</code></div>`;
+        }).join('');
+      }
+    })();
+  </script>
+</body>
+</html>

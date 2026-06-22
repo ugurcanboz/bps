@@ -1,0 +1,42 @@
+{
+  "phase": "G54.43.8I Admin Portal Tabbar Residual Overflow Fix",
+  "checks": [
+    {
+      "name": "CSS enthält G54.43.8I Override",
+      "status": "pass"
+    },
+    {
+      "name": "Tabgruppe width auto",
+      "status": "pass"
+    },
+    {
+      "name": "Logout separates Flex-Element",
+      "status": "pass"
+    },
+    {
+      "name": "Admin Body overflow visible",
+      "status": "pass"
+    },
+    {
+      "name": "QA ignore inner scroller",
+      "status": "pass"
+    },
+    {
+      "name": "AppConfig Version G54.43.8I",
+      "status": "pass"
+    },
+    {
+      "name": "Service Worker Cache G54.43.8I",
+      "status": "pass"
+    },
+    {
+      "name": "Update Check G54.43.8I",
+      "status": "pass"
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "total": 8,
+    "status": "pass"
+  }
+}

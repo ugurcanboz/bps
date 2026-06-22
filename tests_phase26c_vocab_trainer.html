@@ -1,0 +1,11 @@
+<!doctype html><meta charset="utf-8"><title>Phase 26C Vocab Trainer Test</title><body><h1>Phase 26C – Vokabeltrainer</h1><pre id="out"></pre><script src="./js/i18n/language-store.js"></script><script src="./js/i18n/translation-engine.js"></script><script src="./js/i18n/help-system.js"></script><script src="./js/modules/language-adaptive-engine.js"></script><script src="./js/modules/language-course-entry-module.js"></script><script>
+const out=document.getElementById('out');
+function ok(name,pass){out.textContent += (pass?'✅ ':'❌ ')+name+'\n'; if(!pass) throw new Error(name);}
+const api=window.LanguageAcademyCourseEntry;
+ok('API vorhanden', !!api);
+ok('Phase 26C Version', /phase26c/.test(api.__version));
+ok('Vokabelübersicht Funktion vorhanden', typeof api.openVocabulary==='function');
+ok('Vokabeltraining Funktion vorhanden', typeof api.openVocabularyTraining==='function');
+const d=api.diagnostics(); ok('Diagnose Phase 26C', d.phase==='26C');
+out.textContent+='\nPASS';
+</script></body>

@@ -1,0 +1,10 @@
+{
+  "build": "G34.0-COACH-PROFILE-PERSONALIZATION-2026-06-08",
+  "checks": [
+    "Profil öffnet weiterhin",
+    "Profil zeigt Leistungsdashboard",
+    "Kontext aktualisieren lädt UserDatabase Coach-Kontext",
+    "KI-Coach zeigt persönlichen Coach-Kontext",
+    "Üben/Highscore/Demo-Simulation nicht umgebaut"
+  ]
+}

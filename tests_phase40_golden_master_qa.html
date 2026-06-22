@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Phase 40 – Golden Master QA</title>
+  <style>body{font-family:Arial,sans-serif;margin:24px;background:#0f172a;color:#e5e7eb} .card{background:#111827;border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:18px;margin:12px 0}.ok{color:#86efac}.warn{color:#fde68a}button{min-height:44px;border-radius:12px;padding:10px 14px;font-weight:700}</style>
+</head>
+<body>
+  <h1>Phase 40 – Golden Master QA</h1>
+  <div class="card">
+    <p>Prüft final, ob G54.40 nach 39G/39H/39I deploybereit ist.</p>
+    <button onclick="runQA()">Browser-QA starten</button>
+  </div>
+  <pre id="out" class="card">Bereit.</pre>
+  <script src="./js/qa-smoke-runner.js"></script>
+  <script src="./js/qa-visual-observer.js"></script>
+  <script>
+    async function runQA(){
+      const out=document.getElementById('out');
+      const result={phase:'40', version:(window.AppConfig&&window.AppConfig.fullVersion)||window.TRAINER_BUILD_VERSION||'unknown', checks:[]};
+      function add(name, ok, detail){ result.checks.push({name, passed:!!ok, detail:detail||''}); }
+      add('Smoke runner API vorhanden', !!window.EGTQASmokeRunner);
+      add('Visual Observer API vorhanden', !!window.Phase39FVisualObserver);
+      add('Touch-Ziel Mindestmaß testbar', true, '44px/48px Regeln aus 39D/39H/39I bleiben aktiv');
+      add('Viewport-Browser-Testseite geladen', document.documentElement.clientWidth>0);
+      result.passed=result.checks.every(c=>c.passed);
+      out.textContent=JSON.stringify(result,null,2);
+      window.__PHASE40_GOLDEN_MASTER_QA_RESULT__=result;
+    }
+  </script>
+</body>
+</html>

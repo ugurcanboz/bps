@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Phase 32C – B1 Lessons 6-10 Content + Speaking Expansion</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:20px;line-height:1.5}
+    .card{max-width:980px;margin:0 auto;background:#111827;border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:18px}
+    .pass{color:#86efac}.fail{color:#fca5a5}pre{white-space:pre-wrap;background:#020617;border-radius:12px;padding:12px;overflow:auto}
+    button{border:0;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Phase 32C – B1 Gesamtinhalt + Speaking</h1>
+    <p>Dieser Test prüft, ob B1 nach Phase 32C vollständig ausgebaut ist.</p>
+    <button onclick="runTest()">Test starten</button>
+    <h2 id="status">Bereit</h2>
+    <pre id="out"></pre>
+  </main>
+  <script src="js/modules/language-course-entry-module.js"></script>
+  <script>
+    function runTest(){
+      var out=document.getElementById('out'), status=document.getElementById('status');
+      var errors=[];
+      try{
+        var api=window.LanguageAcademyCourseEntry;
+        if(!api) throw new Error('LanguageAcademyCourseEntry fehlt');
+        var b1=api.b1ContentSnapshot();
+        var a2=api.a2ContentSnapshot();
+        if(!b1.ok) errors.push('b1.ok ist false');
+        if(b1.phase!=='32C') errors.push('Phase ist nicht 32C: '+b1.phase);
+        if(b1.expandedLessons!==10) errors.push('expandedLessons: '+b1.expandedLessons);
+        if(b1.starterLessons!==0) errors.push('starterLessons: '+b1.starterLessons);
+        if(b1.totalTasks!==430) errors.push('totalTasks: '+b1.totalTasks);
+        if(b1.normalTasks!==350) errors.push('normalTasks: '+b1.normalTasks);
+        if(b1.speakingTasks!==80) errors.push('speakingTasks: '+b1.speakingTasks);
+        Object.keys(b1.perLesson||{}).forEach(function(id){
+          var row=b1.perLesson[id];
+          if(row.tasks!==43||row.speakingTasks!==8||!row.expandedContent||!row.ok){errors.push(id+' fehlerhaft: '+JSON.stringify(row));}
+        });
+        if(!a2.ok||a2.totalTasks!==430||a2.speakingTasks!==80) errors.push('A2 Regression');
+        var result={pass:errors.length===0,errors:errors,b1:b1,a2:{ok:a2.ok,totalTasks:a2.totalTasks,speakingTasks:a2.speakingTasks}};
+        status.textContent=result.pass?'PASS':'FAIL';
+        status.className=result.pass?'pass':'fail';
+        out.textContent=JSON.stringify(result,null,2);
+      }catch(e){status.textContent='FAIL';status.className='fail';out.textContent=e.stack||String(e);}
+    }
+    window.addEventListener('load', runTest);
+  </script>
+</body>
+</html>

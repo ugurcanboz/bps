@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Phase 43U QA Bubble Always-On-Top</title></head>
+<body>
+<h1>G54.43.8D · QA Bubble Always-On-Top Hotfix</h1>
+<pre id="out">Running…</pre>
+<script>
+(async function(){
+  const checks = [];
+  async function text(path){ const r = await fetch(path); return r.text(); }
+  const css = await text('./css/phase43s-iphone-scroll-qa-bubble.css');
+  const js = await text('./js/qa/egt-visual-state-capture.js');
+  const index = await text('./index.html');
+  function check(name, pass, detail){ checks.push({name, pass: !!pass, detail: detail || ''}); }
+  check('Version marker G54.43.8D in index', index.includes('G54.43.8D'), 'index.html');
+  check('QA script version G54.43.8D', js.includes("var VERSION = 'G54.43.8D'"), 'egt-visual-state-capture.js');
+  check('QA active class is added', js.includes("egt-qa-capture-active"), 'body/html class');
+  check('QA uses max safe z-index', css.includes('2147483647') && js.includes('2147483647'), 'always-on-top');
+  check('Deep sheet z-index lowered only in QA mode', css.includes('html.egt-qa-capture-active .ui-sheet') && css.includes('2147483100'), 'scoped override');
+  check('Backdrop z-index lowered only in QA mode', css.includes('html.egt-qa-capture-active .ui-sheet-backdrop') && css.includes('2147483000'), 'scoped override');
+  check('Keep-on-top loop exists', js.includes('function keepQaOnTop') && js.includes('setInterval(lift, 700)'), 'reappend/lift');
+  check('QA bubble stays minimized-safe', css.includes('#egt-visual-state-capture[data-minimized="true"]'), 'bubble css');
+  check('No normal mode sheet override', !/\.ui-sheet\s*\{[^}]*2147483100/.test(css), 'only scoped');
+  const failed = checks.filter(c=>!c.pass);
+  document.getElementById('out').textContent = JSON.stringify({phase:'43U', passed:checks.length-failed.length, total:checks.length, failed, checks}, null, 2);
+})();
+</script>
+</body>
+</html>
