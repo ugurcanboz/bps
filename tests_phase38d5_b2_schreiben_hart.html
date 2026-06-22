@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phase 38D.5 · B2 Schreiben hart QA</title></head>
+<body style="font-family:Arial,sans-serif;background:#07111f;color:#eaf4ff;padding:24px">
+<h1>Phase 38D.5 · B2 Schreiben hart QA</h1>
+<pre id="out" style="white-space:pre-wrap;background:#0f1d33;border:1px solid #294260;border-radius:14px;padding:16px">Lade Tests...</pre>
+<script src="./data/language-exam-blueprints.js"></script>
+<script src="./data/language-level-difficulty-rules.js"></script>
+<script src="./data/language-b1-exam-pilot.js"></script>
+<script src="./data/language-b2-exam-pilot.js"></script>
+<script src="./js/modules/language-exam-engine.js"></script>
+<script src="./js/modules/language-exam-shell.js"></script>
+<script>
+(function(){
+ const lines=[];
+ function ok(name,val){ lines.push((val?'✅ ':'❌ ')+name); }
+ const info=window.LanguageB2ExamPilot && window.LanguageB2ExamPilot.poolInfo();
+ ok('B2 Pilot geladen', !!info);
+ ok('B2 Schreiben hat 8 Varianten', info && info.writing===8);
+ ok('B2 Kombinationen = 12288', info && info.combinations===12288);
+ const attempt=window.LanguageB2ExamPilot.buildAttempt('phase38d5-writing');
+ const task=window.LanguageB2ExamPilot.getAttemptPart(attempt,'writing');
+ ok('B2 Schreibaufgabe geladen', !!task && task.minWords>=180 && task.maxWords>=260);
+ ok('Schreibaufgabe hat mindestens 6 Pflichtpunkte', !!task && task.requiredPoints && task.requiredPoints.length>=6);
+ ok('Schreibaufgabe hat Strukturvorgaben', !!task && task.requiredStructure && task.requiredStructure.length>=5);
+ ok('Schreibaufgabe hat strenge Groq-Instruktion', !!task && task.assessmentRubric && /streng|B2/i.test(task.assessmentRubric.groqInstruction||''));
+ ok('Shell Phase 38D.5', window.LanguageExamShell && window.LanguageExamShell.diagnostics && window.LanguageExamShell.diagnostics().phase==='38D.5');
+ if(window.LanguageExamEngine && window.LanguageExamEngine.localAssessResponse){
+   const weak=window.LanguageExamEngine.localAssessResponse({level:'B2',part:'writing',task:task,userText:'Hallo, das Thema ist gut. Ich finde es gut, weil es gut ist. Viele Grüße Ali'});
+   ok('Kurze B1/A1-artige Antwort scheitert in B2', weak && (weak.score<60 || weak.forceFail || (weak.hardFailReasons||[]).length));
+ }
+ lines.push('
+PoolInfo:
+'+JSON.stringify(info,null,2));
+ document.getElementById('out').textContent=lines.join('
+');
+})();
+</script>
+</body></html>

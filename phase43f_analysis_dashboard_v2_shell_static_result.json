@@ -1,0 +1,18 @@
+{
+  "phase": "G54.42.7",
+  "passed": true,
+  "checks": {
+    "version_app_config": true,
+    "update_check_427": true,
+    "cache_427": true,
+    "analysis_v2_marker": true,
+    "dropdown_area": true,
+    "dropdown_period": true,
+    "dropdown_view": true,
+    "kpi_shell": true,
+    "line_chart_shell": true,
+    "bars_shell": true,
+    "coach_shell": true,
+    "css_shell": true
+  }
+}

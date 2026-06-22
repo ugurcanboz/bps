@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phase 38E.1 – Prüfungsdashboard QA</title>
+  <link rel="stylesheet" href="css/language-course.css">
+  <style>body{margin:0;background:#020617;color:#e5eefc;font-family:Arial,sans-serif}.qa{max-width:1100px;margin:24px auto;padding:18px}.ok{color:#86efac}.fail{color:#fca5a5}pre{white-space:pre-wrap;background:#0f172a;padding:14px;border-radius:14px}</style>
+</head>
+<body>
+  <main class="qa">
+    <h1>Phase 38E.1 – Prüfungsdashboard QA</h1>
+    <div id="result">Tests laufen …</div>
+    <div id="mount"></div>
+  </main>
+  <script src="data/language-exam-blueprints.js"></script>
+  <script src="data/language-level-difficulty-rules.js"></script>
+  <script src="data/language-b1-exam-pilot.js"></script>
+  <script src="data/language-b2-exam-pilot.js"></script>
+  <script src="js/modules/language-exam-engine.js"></script>
+  <script>
+    window.EGTUILayer = { openDeepSheet:function(opts){ document.getElementById('mount').innerHTML = opts.bodyHtml; return true; } };
+  </script>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    (function(){
+      var checks = [];
+      function check(name, ok){ checks.push({name:name, ok:!!ok}); }
+      var d = window.LanguageExamShell && window.LanguageExamShell.diagnostics ? window.LanguageExamShell.diagnostics() : null;
+      check('Shell vorhanden', !!window.LanguageExamShell);
+      check('Phase 38E.1 gemeldet', d && d.phase === '38E.1');
+      check('Dashboard-API vorhanden', !!(window.LanguageExamShell && window.LanguageExamShell.dashboardHtml));
+      check('History-API vorhanden', !!(window.LanguageExamShell && window.LanguageExamShell.loadHistory));
+      window.LanguageExamShell.open();
+      var html = document.getElementById('mount').innerHTML;
+      check('Dashboard sichtbar', html.indexOf('Prüfungsdashboard') >= 0);
+      check('A1 Kachel sichtbar', html.indexOf('data-la-dashboard-level="A1"') >= 0);
+      check('B2 Kachel sichtbar', html.indexOf('data-la-dashboard-level="B2"') >= 0);
+      check('Lernstandsvergleich sichtbar', html.indexOf('A1–B2 Vergleich') >= 0 || html.indexOf('A1-B2') >= 0);
+      check('Versuchshistorie sichtbar', html.indexOf('Letzte abgeschlossene Versuche') >= 0);
+      check('B2 weiterhin startbar', !!document.querySelector('[data-ui-action="language-exam-start"][data-la-exam-level="B2"]'));
+      var ok = checks.every(function(c){ return c.ok; });
+      document.getElementById('result').innerHTML = '<h2 class="'+(ok?'ok':'fail')+'">'+(ok?'BESTANDEN':'FEHLER')+'</h2><pre>'+JSON.stringify(checks,null,2)+'</pre>';
+    })();
+  </script>
+</body>
+</html>

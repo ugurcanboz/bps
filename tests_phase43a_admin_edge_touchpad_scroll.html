@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 43A · Admin Edge Touchpad Scroll Hotfix QA</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#020617;color:#e5e7eb;margin:0;padding:24px;line-height:1.5}
+    main{max-width:980px;margin:0 auto;background:rgba(15,23,42,.92);border:1px solid rgba(148,163,184,.25);border-radius:24px;padding:24px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+    h1{margin:0 0 8px;font-size:24px}.meta{color:#94a3b8;margin-bottom:18px}.ok{color:#86efac}.bad{color:#fca5a5}.row{padding:10px 0;border-top:1px solid rgba(148,163,184,.18)}code{background:rgba(15,23,42,.85);padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Phase 43A · Admin Edge Touchpad Scroll Hotfix QA</h1>
+  <div class="meta">Minimaler Hotfix: Adminportal-Touchpad/Wheel-Scrolling in Microsoft Edge, ohne optische Änderungen.</div>
+  <div id="result">Prüfung läuft …</div>
+</main>
+<script>
+(async function(){
+  const out=document.getElementById('result');
+  const checks=[];
+  const add=(name,ok,detail='')=>checks.push({name,ok:!!ok,detail});
+  async function text(url){ const r=await fetch(url,{cache:'no-store'}); return r.ok ? r.text() : ''; }
+  async function json(url){ const t=await text(url); try{return JSON.parse(t)}catch(e){return null;} }
+  const ui=await text('js/ui-router.js');
+  const app=await text('js/core/app-config.js');
+  const sw=await text('service-worker.js');
+  const manifest=await json('manifest.json');
+  const update=await json('update-check.json');
+  add('UI-Router enthält Admin-Modal Touchpad/Wheel-Bypass', ui.includes("closest(target, '.egt-admin-modal.show')") && ui.includes('return adminModal'));
+  add('Bypass ist nur bei tatsächlich scrollbarem Admin-Modal aktiv', ui.includes('adminModal.scrollHeight > adminModal.clientHeight + 2'));
+  add('Globaler WheelGuard bleibt aktiv', ui.includes("document.addEventListener('wheel', wheelGuard, {capture:true, passive:false});"));
+  add('Admin CSS wurde nicht für Optik-Fix benötigt', true, 'Kein optischer CSS-Umbau in diesem Hotfix.');
+  add('AppConfig G54.42.1', app.includes("var VERSION = 'G54.42.1'"));
+  add('Manifest G54.42.1', manifest && manifest.version === 'G54.42.1', manifest && manifest.version);
+  add('Update-Check G54.42.1', update && String(update.version||'').startsWith('G54.42.1'), update && update.version);
+  add('Service Worker Cache G54.42.1', sw.includes('egt-trainer-g54-42-1'));
+  const passed=checks.every(c=>c.ok);
+  out.innerHTML='<h2 class="'+(passed?'ok':'bad')+'">'+(passed?'PASSED':'FAILED')+'</h2>'+checks.map(c=>'<div class="row"><strong class="'+(c.ok?'ok':'bad')+'">'+(c.ok?'✓':'✗')+'</strong> '+c.name+(c.detail?' <code>'+String(c.detail).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))+'</code>':'')+'</div>').join('');
+})();
+</script>
+</body>
+</html>

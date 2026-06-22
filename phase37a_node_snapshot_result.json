@@ -1,0 +1,2490 @@
+{
+  "ok": true,
+  "snap": {
+    "ok": true,
+    "phase": "37A",
+    "module": "placement_test",
+    "levels": [
+      "a1",
+      "a2",
+      "b1",
+      "b2",
+      "c1",
+      "c2"
+    ],
+    "totalQuestions": 42,
+    "normalQuestions": 30,
+    "speakingQuestions": 12,
+    "questionsPerLevel": {
+      "a1": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      },
+      "a2": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      },
+      "b1": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      },
+      "b2": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      },
+      "c1": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      },
+      "c2": {
+        "total": 7,
+        "normal": 5,
+        "speaking": 2
+      }
+    },
+    "timerMinutes": 45,
+    "resultMode": "estimated_level_a1_to_c2",
+    "certificate": false,
+    "recommendation": true,
+    "nextRecommendedPhase": "Konzept Abschlusstest pro Niveau"
+  },
+  "qa": {
+    "ok": true,
+    "phase": "37A",
+    "version": "G54.33-phase37a-placement-test-a1-c2",
+    "placementTest": {
+      "ok": true,
+      "phase": "37A",
+      "module": "placement_test",
+      "levels": [
+        "a1",
+        "a2",
+        "b1",
+        "b2",
+        "c1",
+        "c2"
+      ],
+      "totalQuestions": 42,
+      "normalQuestions": 30,
+      "speakingQuestions": 12,
+      "questionsPerLevel": {
+        "a1": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        },
+        "a2": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        },
+        "b1": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        },
+        "b2": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        },
+        "c1": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        },
+        "c2": {
+          "total": 7,
+          "normal": 5,
+          "speaking": 2
+        }
+      },
+      "timerMinutes": 45,
+      "resultMode": "estimated_level_a1_to_c2",
+      "certificate": false,
+      "recommendation": true,
+      "nextRecommendedPhase": "Konzept Abschlusstest pro Niveau"
+    },
+    "regression": {
+      "a2": {
+        "ok": true,
+        "phase": "31C",
+        "level": "a2",
+        "expandedLessons": 10,
+        "starterLessons": 0,
+        "lessons": 10,
+        "totalTasks": 430,
+        "normalTasks": 350,
+        "speakingTasks": 80,
+        "expandedLessonTarget": {
+          "tasks": 43,
+          "speaking": 8
+        },
+        "perLesson": {
+          "a2-daily-routines": {
+            "title": "Tagesablauf",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-housing": {
+            "title": "Wohnen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-appointments": {
+            "title": "Termine vereinbaren",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-shopping-services": {
+            "title": "Einkaufen & Service",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-health": {
+            "title": "Gesundheit",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-work-school": {
+            "title": "Arbeit & Schule",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-travel-orientation": {
+            "title": "Reisen & Orientierung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-food-restaurant": {
+            "title": "Essen & Restaurant",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-past-experiences": {
+            "title": "Vergangenheit erzählen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "a2-opinions-plans": {
+            "title": "Meinung & Pläne",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          }
+        },
+        "parallelBuildPolicy": {
+          "active": true,
+          "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+        }
+      },
+      "b1": {
+        "ok": true,
+        "phase": "32C",
+        "level": "b1",
+        "expandedLessons": 10,
+        "starterLessons": 0,
+        "lessons": 10,
+        "totalTasks": 430,
+        "normalTasks": 350,
+        "speakingTasks": 80,
+        "expandedLessonTarget": {
+          "tasks": 43,
+          "speaking": 8
+        },
+        "perLesson": {
+          "b1-opinions-discussion": {
+            "title": "Meinung & Diskussion",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-work-communication": {
+            "title": "Kommunikation im Beruf",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-experience-past": {
+            "title": "Erfahrungen erzählen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-problems-solutions": {
+            "title": "Probleme & Lösungen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-media-information": {
+            "title": "Medien & Informationen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-education-plans": {
+            "title": "Bildung & Lernen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-travel-report": {
+            "title": "Reisen & Berichten",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-health-lifestyle": {
+            "title": "Gesundheit & Lebensstil",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-official-service": {
+            "title": "Amt & Service",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b1-future-goals": {
+            "title": "Zukunft & Ziele",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          }
+        },
+        "parallelBuildPolicy": {
+          "active": true,
+          "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+        },
+        "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+      },
+      "b2": {
+        "ok": true,
+        "phase": "33C",
+        "level": "b2",
+        "expandedLessons": 10,
+        "starterLessons": 0,
+        "lessons": 10,
+        "totalTasks": 430,
+        "normalTasks": 350,
+        "speakingTasks": 80,
+        "expandedLessonTarget": {
+          "tasks": 43,
+          "speaking": 8
+        },
+        "perLesson": {
+          "b2-work-applications": {
+            "title": "Bewerbung & Berufseinstieg",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-workplace-conflict": {
+            "title": "Konflikte am Arbeitsplatz",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-arguments-debate": {
+            "title": "Argumentieren & Debattieren",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-media-society": {
+            "title": "Medien & Gesellschaft",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-education-career": {
+            "title": "Bildung & Karriereplanung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-environment-consumption": {
+            "title": "Umwelt & Konsum",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-health-society": {
+            "title": "Gesundheitssystem & Prävention",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-digitalization-ai": {
+            "title": "Digitalisierung & KI",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-culture-integration": {
+            "title": "Kultur & Integration",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "b2-formal-writing-speaking": {
+            "title": "Formell schreiben & sprechen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          }
+        },
+        "parallelBuildPolicy": {
+          "active": true,
+          "rule": "B2-Lektionen 6-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut; B2 ist vollständig."
+        },
+        "regression": {
+          "a2": {
+            "ok": true,
+            "phase": "31C",
+            "level": "a2",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "a2-daily-routines": {
+                "title": "Tagesablauf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-housing": {
+                "title": "Wohnen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-appointments": {
+                "title": "Termine vereinbaren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-shopping-services": {
+                "title": "Einkaufen & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-health": {
+                "title": "Gesundheit",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-work-school": {
+                "title": "Arbeit & Schule",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-travel-orientation": {
+                "title": "Reisen & Orientierung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-food-restaurant": {
+                "title": "Essen & Restaurant",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-past-experiences": {
+                "title": "Vergangenheit erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-opinions-plans": {
+                "title": "Meinung & Pläne",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            }
+          },
+          "b1": {
+            "ok": true,
+            "phase": "32C",
+            "level": "b1",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "b1-opinions-discussion": {
+                "title": "Meinung & Diskussion",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-work-communication": {
+                "title": "Kommunikation im Beruf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-experience-past": {
+                "title": "Erfahrungen erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-problems-solutions": {
+                "title": "Probleme & Lösungen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-media-information": {
+                "title": "Medien & Informationen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-education-plans": {
+                "title": "Bildung & Lernen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-travel-report": {
+                "title": "Reisen & Berichten",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-health-lifestyle": {
+                "title": "Gesundheit & Lebensstil",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-official-service": {
+                "title": "Amt & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-future-goals": {
+                "title": "Zukunft & Ziele",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            },
+            "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+          }
+        },
+        "nextRecommendedPhase": "33D B2 Gesamt-QA + UI/Flow-Prüfung"
+      },
+      "c1": {
+        "ok": true,
+        "phase": "34C",
+        "level": "c1",
+        "expandedLessons": 10,
+        "starterLessons": 0,
+        "lessons": 10,
+        "totalTasks": 430,
+        "normalTasks": 350,
+        "speakingTasks": 80,
+        "expandedLessonTarget": {
+          "tasks": 43,
+          "speaking": 8
+        },
+        "perLesson": {
+          "c1-academic-argumentation": {
+            "title": "Akademisch argumentieren",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-nuanced-opinion": {
+            "title": "Nuancierte Meinung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-complex-texts": {
+            "title": "Komplexe Texte verstehen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-professional-negotiation": {
+            "title": "Professionell verhandeln",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-formal-correspondence": {
+            "title": "Formelle Korrespondenz",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-social-debate": {
+            "title": "Gesellschaftliche Debatten",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-science-technology": {
+            "title": "Wissenschaft & Technologie",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-economy-work": {
+            "title": "Wirtschaft & Arbeitswelt",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-cultural-interpretation": {
+            "title": "Kulturelle Deutung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          },
+          "c1-presentation-rhetoric": {
+            "title": "Präsentieren & Rhetorik",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "ok": true
+          }
+        },
+        "parallelBuildPolicy": {
+          "active": true,
+          "rule": "C1-Lektionen 1-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+        },
+        "regression": {
+          "a2": {
+            "ok": true,
+            "phase": "31C",
+            "level": "a2",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "a2-daily-routines": {
+                "title": "Tagesablauf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-housing": {
+                "title": "Wohnen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-appointments": {
+                "title": "Termine vereinbaren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-shopping-services": {
+                "title": "Einkaufen & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-health": {
+                "title": "Gesundheit",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-work-school": {
+                "title": "Arbeit & Schule",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-travel-orientation": {
+                "title": "Reisen & Orientierung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-food-restaurant": {
+                "title": "Essen & Restaurant",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-past-experiences": {
+                "title": "Vergangenheit erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-opinions-plans": {
+                "title": "Meinung & Pläne",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            }
+          },
+          "b1": {
+            "ok": true,
+            "phase": "32C",
+            "level": "b1",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "b1-opinions-discussion": {
+                "title": "Meinung & Diskussion",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-work-communication": {
+                "title": "Kommunikation im Beruf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-experience-past": {
+                "title": "Erfahrungen erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-problems-solutions": {
+                "title": "Probleme & Lösungen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-media-information": {
+                "title": "Medien & Informationen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-education-plans": {
+                "title": "Bildung & Lernen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-travel-report": {
+                "title": "Reisen & Berichten",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-health-lifestyle": {
+                "title": "Gesundheit & Lebensstil",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-official-service": {
+                "title": "Amt & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-future-goals": {
+                "title": "Zukunft & Ziele",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            },
+            "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+          },
+          "b2": {
+            "ok": true,
+            "phase": "33C",
+            "level": "b2",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "b2-work-applications": {
+                "title": "Bewerbung & Berufseinstieg",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-workplace-conflict": {
+                "title": "Konflikte am Arbeitsplatz",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-arguments-debate": {
+                "title": "Argumentieren & Debattieren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-media-society": {
+                "title": "Medien & Gesellschaft",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-education-career": {
+                "title": "Bildung & Karriereplanung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-environment-consumption": {
+                "title": "Umwelt & Konsum",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-health-society": {
+                "title": "Gesundheitssystem & Prävention",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-digitalization-ai": {
+                "title": "Digitalisierung & KI",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-culture-integration": {
+                "title": "Kultur & Integration",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-formal-writing-speaking": {
+                "title": "Formell schreiben & sprechen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "B2-Lektionen 6-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut; B2 ist vollständig."
+            },
+            "regression": {
+              "a2": {
+                "ok": true,
+                "phase": "31C",
+                "level": "a2",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "a2-daily-routines": {
+                    "title": "Tagesablauf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-housing": {
+                    "title": "Wohnen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-appointments": {
+                    "title": "Termine vereinbaren",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-shopping-services": {
+                    "title": "Einkaufen & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-health": {
+                    "title": "Gesundheit",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-work-school": {
+                    "title": "Arbeit & Schule",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-travel-orientation": {
+                    "title": "Reisen & Orientierung",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-food-restaurant": {
+                    "title": "Essen & Restaurant",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-past-experiences": {
+                    "title": "Vergangenheit erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-opinions-plans": {
+                    "title": "Meinung & Pläne",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                }
+              },
+              "b1": {
+                "ok": true,
+                "phase": "32C",
+                "level": "b1",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "b1-opinions-discussion": {
+                    "title": "Meinung & Diskussion",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-work-communication": {
+                    "title": "Kommunikation im Beruf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-experience-past": {
+                    "title": "Erfahrungen erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-problems-solutions": {
+                    "title": "Probleme & Lösungen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-media-information": {
+                    "title": "Medien & Informationen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-education-plans": {
+                    "title": "Bildung & Lernen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-travel-report": {
+                    "title": "Reisen & Berichten",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-health-lifestyle": {
+                    "title": "Gesundheit & Lebensstil",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-official-service": {
+                    "title": "Amt & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-future-goals": {
+                    "title": "Zukunft & Ziele",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                },
+                "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+              }
+            },
+            "nextRecommendedPhase": "33D B2 Gesamt-QA + UI/Flow-Prüfung"
+          }
+        },
+        "nextRecommendedPhase": "34D C1 Gesamt-QA + UI/Flow-Prüfung"
+      },
+      "c2": {
+        "ok": true,
+        "phase": "35C",
+        "level": "c2",
+        "expandedLessons": 10,
+        "starterLessons": 0,
+        "lessons": 10,
+        "totalTasks": 430,
+        "normalTasks": 350,
+        "speakingTasks": 80,
+        "expandedLessonTarget": {
+          "tasks": 43,
+          "speaking": 8
+        },
+        "perLesson": {
+          "c2-nuance-mastery": {
+            "title": "Präzise Nuancen",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35B",
+            "ok": true
+          },
+          "c2-register-style": {
+            "title": "Stilregister",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35B",
+            "ok": true
+          },
+          "c2-argument-analysis": {
+            "title": "Komplexe Argumentationsanalyse",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35B",
+            "ok": true
+          },
+          "c2-rhetorical-impact": {
+            "title": "Rhetorik & Wirkung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35B",
+            "ok": true
+          },
+          "c2-specialized-transfer": {
+            "title": "Fachsprache & Transfer",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35B",
+            "ok": true
+          },
+          "c2-implicit-meaning": {
+            "title": "Implizite Bedeutung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35C",
+            "ok": true
+          },
+          "c2-literary-cultural-critique": {
+            "title": "Literatur & Kulturkritik",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35C",
+            "ok": true
+          },
+          "c2-scientific-synthesis": {
+            "title": "Wissenschaftliche Synthese",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35C",
+            "ok": true
+          },
+          "c2-diplomacy-negotiation": {
+            "title": "Diplomatie & Verhandlung",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35C",
+            "ok": true
+          },
+          "c2-communication-mastery": {
+            "title": "Meisterprüfung Kommunikation",
+            "tasks": 43,
+            "normalTasks": 35,
+            "speakingTasks": 8,
+            "expandedContent": true,
+            "phase": "35C",
+            "ok": true
+          }
+        },
+        "parallelBuildPolicy": {
+          "active": true,
+          "rule": "C2-Lektionen 6-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut; C2 ist vollständig."
+        },
+        "regression": {
+          "a2": {
+            "ok": true,
+            "phase": "31C",
+            "level": "a2",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "a2-daily-routines": {
+                "title": "Tagesablauf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-housing": {
+                "title": "Wohnen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-appointments": {
+                "title": "Termine vereinbaren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-shopping-services": {
+                "title": "Einkaufen & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-health": {
+                "title": "Gesundheit",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-work-school": {
+                "title": "Arbeit & Schule",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-travel-orientation": {
+                "title": "Reisen & Orientierung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-food-restaurant": {
+                "title": "Essen & Restaurant",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-past-experiences": {
+                "title": "Vergangenheit erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "a2-opinions-plans": {
+                "title": "Meinung & Pläne",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            }
+          },
+          "b1": {
+            "ok": true,
+            "phase": "32C",
+            "level": "b1",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "b1-opinions-discussion": {
+                "title": "Meinung & Diskussion",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-work-communication": {
+                "title": "Kommunikation im Beruf",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-experience-past": {
+                "title": "Erfahrungen erzählen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-problems-solutions": {
+                "title": "Probleme & Lösungen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-media-information": {
+                "title": "Medien & Informationen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-education-plans": {
+                "title": "Bildung & Lernen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-travel-report": {
+                "title": "Reisen & Berichten",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-health-lifestyle": {
+                "title": "Gesundheit & Lebensstil",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-official-service": {
+                "title": "Amt & Service",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b1-future-goals": {
+                "title": "Zukunft & Ziele",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            },
+            "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+          },
+          "b2": {
+            "ok": true,
+            "phase": "33C",
+            "level": "b2",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "b2-work-applications": {
+                "title": "Bewerbung & Berufseinstieg",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-workplace-conflict": {
+                "title": "Konflikte am Arbeitsplatz",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-arguments-debate": {
+                "title": "Argumentieren & Debattieren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-media-society": {
+                "title": "Medien & Gesellschaft",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-education-career": {
+                "title": "Bildung & Karriereplanung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-environment-consumption": {
+                "title": "Umwelt & Konsum",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-health-society": {
+                "title": "Gesundheitssystem & Prävention",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-digitalization-ai": {
+                "title": "Digitalisierung & KI",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-culture-integration": {
+                "title": "Kultur & Integration",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "b2-formal-writing-speaking": {
+                "title": "Formell schreiben & sprechen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "B2-Lektionen 6-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut; B2 ist vollständig."
+            },
+            "regression": {
+              "a2": {
+                "ok": true,
+                "phase": "31C",
+                "level": "a2",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "a2-daily-routines": {
+                    "title": "Tagesablauf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-housing": {
+                    "title": "Wohnen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-appointments": {
+                    "title": "Termine vereinbaren",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-shopping-services": {
+                    "title": "Einkaufen & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-health": {
+                    "title": "Gesundheit",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-work-school": {
+                    "title": "Arbeit & Schule",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-travel-orientation": {
+                    "title": "Reisen & Orientierung",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-food-restaurant": {
+                    "title": "Essen & Restaurant",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-past-experiences": {
+                    "title": "Vergangenheit erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-opinions-plans": {
+                    "title": "Meinung & Pläne",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                }
+              },
+              "b1": {
+                "ok": true,
+                "phase": "32C",
+                "level": "b1",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "b1-opinions-discussion": {
+                    "title": "Meinung & Diskussion",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-work-communication": {
+                    "title": "Kommunikation im Beruf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-experience-past": {
+                    "title": "Erfahrungen erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-problems-solutions": {
+                    "title": "Probleme & Lösungen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-media-information": {
+                    "title": "Medien & Informationen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-education-plans": {
+                    "title": "Bildung & Lernen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-travel-report": {
+                    "title": "Reisen & Berichten",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-health-lifestyle": {
+                    "title": "Gesundheit & Lebensstil",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-official-service": {
+                    "title": "Amt & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-future-goals": {
+                    "title": "Zukunft & Ziele",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                },
+                "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+              }
+            },
+            "nextRecommendedPhase": "33D B2 Gesamt-QA + UI/Flow-Prüfung"
+          },
+          "c1": {
+            "ok": true,
+            "phase": "34C",
+            "level": "c1",
+            "expandedLessons": 10,
+            "starterLessons": 0,
+            "lessons": 10,
+            "totalTasks": 430,
+            "normalTasks": 350,
+            "speakingTasks": 80,
+            "expandedLessonTarget": {
+              "tasks": 43,
+              "speaking": 8
+            },
+            "perLesson": {
+              "c1-academic-argumentation": {
+                "title": "Akademisch argumentieren",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-nuanced-opinion": {
+                "title": "Nuancierte Meinung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-complex-texts": {
+                "title": "Komplexe Texte verstehen",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-professional-negotiation": {
+                "title": "Professionell verhandeln",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-formal-correspondence": {
+                "title": "Formelle Korrespondenz",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-social-debate": {
+                "title": "Gesellschaftliche Debatten",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-science-technology": {
+                "title": "Wissenschaft & Technologie",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-economy-work": {
+                "title": "Wirtschaft & Arbeitswelt",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-cultural-interpretation": {
+                "title": "Kulturelle Deutung",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              },
+              "c1-presentation-rhetoric": {
+                "title": "Präsentieren & Rhetorik",
+                "tasks": 43,
+                "normalTasks": 35,
+                "speakingTasks": 8,
+                "expandedContent": true,
+                "ok": true
+              }
+            },
+            "parallelBuildPolicy": {
+              "active": true,
+              "rule": "C1-Lektionen 1-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+            },
+            "regression": {
+              "a2": {
+                "ok": true,
+                "phase": "31C",
+                "level": "a2",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "a2-daily-routines": {
+                    "title": "Tagesablauf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-housing": {
+                    "title": "Wohnen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-appointments": {
+                    "title": "Termine vereinbaren",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-shopping-services": {
+                    "title": "Einkaufen & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-health": {
+                    "title": "Gesundheit",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-work-school": {
+                    "title": "Arbeit & Schule",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-travel-orientation": {
+                    "title": "Reisen & Orientierung",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-food-restaurant": {
+                    "title": "Essen & Restaurant",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-past-experiences": {
+                    "title": "Vergangenheit erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "a2-opinions-plans": {
+                    "title": "Meinung & Pläne",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                }
+              },
+              "b1": {
+                "ok": true,
+                "phase": "32C",
+                "level": "b1",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "b1-opinions-discussion": {
+                    "title": "Meinung & Diskussion",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-work-communication": {
+                    "title": "Kommunikation im Beruf",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-experience-past": {
+                    "title": "Erfahrungen erzählen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-problems-solutions": {
+                    "title": "Probleme & Lösungen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-media-information": {
+                    "title": "Medien & Informationen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-education-plans": {
+                    "title": "Bildung & Lernen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-travel-report": {
+                    "title": "Reisen & Berichten",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-health-lifestyle": {
+                    "title": "Gesundheit & Lebensstil",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-official-service": {
+                    "title": "Amt & Service",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b1-future-goals": {
+                    "title": "Zukunft & Ziele",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                },
+                "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+              },
+              "b2": {
+                "ok": true,
+                "phase": "33C",
+                "level": "b2",
+                "expandedLessons": 10,
+                "starterLessons": 0,
+                "lessons": 10,
+                "totalTasks": 430,
+                "normalTasks": 350,
+                "speakingTasks": 80,
+                "expandedLessonTarget": {
+                  "tasks": 43,
+                  "speaking": 8
+                },
+                "perLesson": {
+                  "b2-work-applications": {
+                    "title": "Bewerbung & Berufseinstieg",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-workplace-conflict": {
+                    "title": "Konflikte am Arbeitsplatz",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-arguments-debate": {
+                    "title": "Argumentieren & Debattieren",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-media-society": {
+                    "title": "Medien & Gesellschaft",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-education-career": {
+                    "title": "Bildung & Karriereplanung",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-environment-consumption": {
+                    "title": "Umwelt & Konsum",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-health-society": {
+                    "title": "Gesundheitssystem & Prävention",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-digitalization-ai": {
+                    "title": "Digitalisierung & KI",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-culture-integration": {
+                    "title": "Kultur & Integration",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  },
+                  "b2-formal-writing-speaking": {
+                    "title": "Formell schreiben & sprechen",
+                    "tasks": 43,
+                    "normalTasks": 35,
+                    "speakingTasks": 8,
+                    "expandedContent": true,
+                    "ok": true
+                  }
+                },
+                "parallelBuildPolicy": {
+                  "active": true,
+                  "rule": "B2-Lektionen 6-10 wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut; B2 ist vollständig."
+                },
+                "regression": {
+                  "a2": {
+                    "ok": true,
+                    "phase": "31C",
+                    "level": "a2",
+                    "expandedLessons": 10,
+                    "starterLessons": 0,
+                    "lessons": 10,
+                    "totalTasks": 430,
+                    "normalTasks": 350,
+                    "speakingTasks": 80,
+                    "expandedLessonTarget": {
+                      "tasks": 43,
+                      "speaking": 8
+                    },
+                    "perLesson": {
+                      "a2-daily-routines": {
+                        "title": "Tagesablauf",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-housing": {
+                        "title": "Wohnen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-appointments": {
+                        "title": "Termine vereinbaren",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-shopping-services": {
+                        "title": "Einkaufen & Service",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-health": {
+                        "title": "Gesundheit",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-work-school": {
+                        "title": "Arbeit & Schule",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-travel-orientation": {
+                        "title": "Reisen & Orientierung",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-food-restaurant": {
+                        "title": "Essen & Restaurant",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-past-experiences": {
+                        "title": "Vergangenheit erzählen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "a2-opinions-plans": {
+                        "title": "Meinung & Pläne",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      }
+                    },
+                    "parallelBuildPolicy": {
+                      "active": true,
+                      "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                    }
+                  },
+                  "b1": {
+                    "ok": true,
+                    "phase": "32C",
+                    "level": "b1",
+                    "expandedLessons": 10,
+                    "starterLessons": 0,
+                    "lessons": 10,
+                    "totalTasks": 430,
+                    "normalTasks": 350,
+                    "speakingTasks": 80,
+                    "expandedLessonTarget": {
+                      "tasks": 43,
+                      "speaking": 8
+                    },
+                    "perLesson": {
+                      "b1-opinions-discussion": {
+                        "title": "Meinung & Diskussion",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-work-communication": {
+                        "title": "Kommunikation im Beruf",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-experience-past": {
+                        "title": "Erfahrungen erzählen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-problems-solutions": {
+                        "title": "Probleme & Lösungen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-media-information": {
+                        "title": "Medien & Informationen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-education-plans": {
+                        "title": "Bildung & Lernen",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-travel-report": {
+                        "title": "Reisen & Berichten",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-health-lifestyle": {
+                        "title": "Gesundheit & Lebensstil",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-official-service": {
+                        "title": "Amt & Service",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      },
+                      "b1-future-goals": {
+                        "title": "Zukunft & Ziele",
+                        "tasks": 43,
+                        "normalTasks": 35,
+                        "speakingTasks": 8,
+                        "expandedContent": true,
+                        "ok": true
+                      }
+                    },
+                    "parallelBuildPolicy": {
+                      "active": true,
+                      "rule": "B1-Lektionen wurden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+                    },
+                    "nextRecommendedPhase": "32D B1 Gesamt-QA + UI/Flow-Prüfung"
+                  }
+                },
+                "nextRecommendedPhase": "33D B2 Gesamt-QA + UI/Flow-Prüfung"
+              }
+            },
+            "nextRecommendedPhase": "34D C1 Gesamt-QA + UI/Flow-Prüfung"
+          }
+        },
+        "nextRecommendedPhase": "35D C2 Gesamt-QA + UI/Flow-Prüfung"
+      }
+    },
+    "uiChecks": {
+      "dashboardEntry": true,
+      "routeActions": [
+        "language-course-placement-test",
+        "language-course-placement-answer",
+        "language-course-placement-reset"
+      ],
+      "resultReport": true,
+      "levelRecommendation": true,
+      "githubPagesCompatible": true
+    },
+    "handoff": "Nach Phase 37A im nächsten Chat Konzept und Umsetzung Abschlusstest pro Niveau planen."
+  }
+}

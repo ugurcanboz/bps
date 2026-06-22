@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head><meta charset="utf-8"><title>Phase 27A Coach Card Test</title></head>
+<body>
+<h1>Phase 27A Coach Card Test</h1>
+<pre id="out">running...</pre>
+<script>
+(function(){
+  var out=document.getElementById('out');
+  function ok(msg){out.textContent += '\n✅ '+msg;}
+  function fail(msg){out.textContent += '\n❌ '+msg; throw new Error(msg);}
+  out.textContent='Phase 27A QA';
+  fetch('./js/modules/language-course-entry-module.js').then(function(r){return r.text();}).then(function(src){
+    if(src.indexOf('function coachInsight()')<0) fail('coachInsight fehlt'); else ok('coachInsight vorhanden');
+    if(src.indexOf('function coachCardHtml()')<0) fail('coachCardHtml fehlt'); else ok('Coach-Karte vorhanden');
+    if(src.indexOf('language-course-open-coach')<0) fail('Coach-Panel-Route fehlt'); else ok('Coach-Panel-Route vorhanden');
+    if(src.indexOf('language-course-coach-start')<0) fail('Empfehlung starten fehlt'); else ok('Empfehlung starten vorhanden');
+    if(src.indexOf('openCoach:openCoachPanel')<0) fail('Coach Export fehlt'); else ok('Coach Export vorhanden');
+    return fetch('./css/language-course.css');
+  }).then(function(r){return r.text();}).then(function(css){
+    if(css.indexOf('.la-coach-card')<0) fail('Coach CSS fehlt'); else ok('Coach CSS vorhanden');
+    out.textContent += '\n\nPASS';
+  }).catch(function(e){out.textContent += '\n\nFAIL: '+e.message;});
+})();
+</script>
+</body>
+</html>

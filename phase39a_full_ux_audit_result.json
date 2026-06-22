@@ -1,0 +1,53 @@
+{
+  "phase": "39A",
+  "ok": true,
+  "scope": "Full App UX Audit & Design-System Stabilisierung (Audit ohne Funktionsfix)",
+  "basis": "G54.38E.5",
+  "browserSimulation": {
+    "engine": "Chromium Headless via Playwright",
+    "devices": ["desktop 1440x900", "iPad 820x1180", "iPhone 390x844"],
+    "screenshots": [
+      "qa_phase39a_screenshots/desktop-home.png",
+      "qa_phase39a_screenshots/desktop-language-dashboard.png",
+      "qa_phase39a_screenshots/desktop-exam-dashboard.png",
+      "qa_phase39a_screenshots/desktop-admin.png",
+      "qa_phase39a_screenshots/ipad-home.png",
+      "qa_phase39a_screenshots/ipad-language-dashboard.png",
+      "qa_phase39a_screenshots/ipad-exam-dashboard.png",
+      "qa_phase39a_screenshots/ipad-admin-fresh.png",
+      "qa_phase39a_screenshots/iphone-home-demo.png"
+    ],
+    "note": "Die Simulation wurde als Audit durchgeführt. Es wurden bewusst keine UI-Fixes in Phase 39A vorgenommen. Mobile Admin wurde zusätzlich frisch geladen, um Scroll-/Overlay-Schwere separat zu bewerten."
+  },
+  "staticAudit": {
+    "cssFiles": 18,
+    "importantRules": 4197,
+    "backdropFilterOccurrences": 103,
+    "boxShadowOccurrences": 278,
+    "overflowAutoScrollOccurrences": 61,
+    "homeEmojiLiterals": 112,
+    "adminEmojiLiterals": 70,
+    "languageExamEmojiLiterals": 12,
+    "pythonEmojiLiterals": 5,
+    "adminTabs": 14,
+    "adminTouchHandlers": 4,
+    "homeDataUiActions": 46,
+    "languageExamActions": 28
+  },
+  "findings": [
+    {"severity":"critical","area":"CSS/System","finding":"4197 !important-Regeln sind zu viel. Das Design-System ist historisch gewachsen und wird dadurch schwer wartbar."},
+    {"severity":"critical","area":"Admin iPad/iOS","finding":"Admin-Portal nutzt 14 Tabs, mehrere Scrollbereiche und Touch-Handler. Das erklärt das zähe Scrollgefühl auf iPad/iOS."},
+    {"severity":"high","area":"Icons","finding":"Gemischte SVG-, Emoji-, Text- und Badge-Icons. Dashboard und Home wirken dadurch uneinheitlich."},
+    {"severity":"high","area":"Performance","finding":"103 Backdrop-Filter-Vorkommen und 278 Box-Shadow-Vorkommen sind auf iOS/iPad performancekritisch, besonders im Admin-Portal."},
+    {"severity":"high","area":"Dashboard","finding":"Prüfungsdashboard ist funktional stark, aber visuelle Prioritäten sind nicht klar genug. Level, Empfehlung, Schwächen und Training konkurrieren optisch."},
+    {"severity":"medium","area":"Mini-Training","finding":"Mini-Übungssets sind gut, aber mobil zu lang. Accordion-/Step-Modus ist sinnvoll."},
+    {"severity":"medium","area":"Python-Modul","finding":"Python-Modul wirkt optisch noch stärker separiert als funktional integriert. Es braucht später eigenes konsistentes Modul-Design."},
+    {"severity":"medium","area":"Auth/Gate","finding":"Gate sieht hochwertig aus, blockiert aber Audit-Flows. Für QA braucht die App einen Test-/Demo-Bypass-Parameter."}
+  ],
+  "recommendedNextPhases": [
+    "39B Admin Portal Mobile/iPad Scroll & Performance Fix",
+    "39C Icon-System & Dashboard Unification",
+    "39D Button/Touch Target Normalisierung",
+    "39E Full App Smoke Test mit QA-Bypass"
+  ]
+}
