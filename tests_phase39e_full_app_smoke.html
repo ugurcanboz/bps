@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 39E · Full App Smoke Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#0f172a;color:#f8fafc;margin:0;padding:18px;line-height:1.5}
+    main{max-width:1280px;margin:auto}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+    button{min-height:44px;border-radius:14px;border:1px solid rgba(96,165,250,.35);background:rgba(59,130,246,.18);color:#fff;padding:0 14px;font-weight:900;cursor:pointer}
+    .card{border:1px solid rgba(148,163,184,.24);background:rgba(15,23,42,.82);border-radius:22px;padding:16px;margin:14px 0}
+    .ok{color:#22c55e}.bad{color:#ef4444}.warn{color:#f59e0b}
+    iframe{width:100%;height:760px;border:1px solid rgba(148,163,184,.3);border-radius:22px;background:#020617}
+    pre{white-space:pre-wrap;word-break:break-word;background:rgba(2,6,23,.75);border-radius:14px;padding:12px;max-height:520px;overflow:auto}
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th,td{border-bottom:1px solid rgba(148,163,184,.22);padding:8px;text-align:left;font-size:14px;vertical-align:top}
+  </style>
+</head>
+<body>
+<main>
+  <h1>Phase 39E · Full App Smoke Test mit QA-Bypass</h1>
+  <p>Öffnet die App im QA-Modus <code>?qa=1</code>, aktiviert lokalen Admin-Bypass und prüft Hauptaktionen, Tabs, Gate-Blockade, Touchflächen und horizontalen Overflow.</p>
+  <div class="toolbar">
+    <button id="run">Smoke Test starten</button>
+    <button id="reload">Iframe neu laden</button>
+    <button id="open">App mit QA-Bypass öffnen</button>
+  </div>
+  <div id="status" class="card">Bereit.</div>
+  <iframe id="app" src="./index.html?qa=1&smoke=39e" title="Eignungstest-Trainer QA"></iframe>
+  <div id="result" class="card">Noch kein Ergebnis.</div>
+</main>
+<script>
+(function(){
+  const frame = document.getElementById('app');
+  const status = document.getElementById('status');
+  const resultBox = document.getElementById('result');
+  const consoleErrors = [];
+  window.addEventListener('error', e => consoleErrors.push(String(e.message||e.error||e)));
+  window.addEventListener('unhandledrejection', e => consoleErrors.push(String(e.reason||e)));
+
+  function wait(ms){ return new Promise(resolve => setTimeout(resolve, ms)); }
+  function setStatus(msg, cls){ status.innerHTML='<b class="'+(cls||'')+'">'+msg+'</b>'; }
+  function render(res){
+    const ok = !!(res && res.passed);
+    const actionRows = (res.actions||[]).map(a => '<tr><td>'+a.action+'</td><td>'+(a.exists?'ja':'nein')+'</td><td>'+(a.clicked?'ja':'nein')+'</td><td>'+((a.after&&a.after.gateVisible)?'Gate sichtbar':'ok')+'</td></tr>').join('');
+    resultBox.innerHTML = [
+      '<h2 class="'+(ok?'ok':'bad')+'">'+(ok?'BESTANDEN':'PRÜFEN')+'</h2>',
+      '<table><tr><th>Check</th><th>Wert</th></tr>',
+      '<tr><td>QA-Bypass aktiv</td><td>'+res.qaBypassEnabled+'</td></tr>',
+      '<tr><td>Gate sichtbar</td><td>'+res.gateVisible+'</td></tr>',
+      '<tr><td>Touch Issues &lt;44px</td><td>'+((res.touchIssues||[]).length)+'</td></tr>',
+      '<tr><td>Horizontaler Overflow</td><td>'+res.overflowX+'</td></tr>',
+      '</table>',
+      '<h3>Aktionen</h3><table><tr><th>Aktion</th><th>Existiert</th><th>Klick</th><th>Gate</th></tr>'+actionRows+'</table>',
+      '<h3>Rohdaten</h3><pre>'+JSON.stringify(res,null,2)+'</pre>'
+    ].join('');
+  }
+  async function run(){
+    setStatus('Lade App und Smoke Runner…','warn');
+    try{
+      const w = frame.contentWindow;
+      if(!w) throw new Error('Iframe nicht erreichbar.');
+      // runner may already be loaded through app index; if not, inject it.
+      if(!w.Phase39ESmokeRunner){
+        const s = frame.contentDocument.createElement('script');
+        s.src = './js/qa-smoke-runner.js';
+        frame.contentDocument.head.appendChild(s);
+        await wait(900);
+      }
+      if(!w.Phase39ESmokeRunner) throw new Error('Phase39ESmokeRunner nicht geladen.');
+      const res = await w.Phase39ESmokeRunner.runSmoke();
+      res.consoleErrors = consoleErrors;
+      render(res);
+      setStatus(res.passed ? 'Smoke Test bestanden.' : 'Smoke Test abgeschlossen, Befunde prüfen.', res.passed ? 'ok' : 'bad');
+    }catch(e){
+      const res={passed:false,error:String(e),consoleErrors};
+      resultBox.innerHTML='<h2 class="bad">FEHLER</h2><pre>'+JSON.stringify(res,null,2)+'</pre>';
+      setStatus('Smoke Test konnte nicht vollständig laufen.','bad');
+    }
+  }
+  document.getElementById('run').addEventListener('click', run);
+  document.getElementById('reload').addEventListener('click', () => { frame.src='./index.html?qa=1&smoke=39e&ts='+Date.now(); });
+  document.getElementById('open').addEventListener('click', () => { window.open('./index.html?qa=1&smoke=39e','_blank'); });
+  frame.addEventListener('load', () => setTimeout(run, 1100));
+})();
+</script>
+</body>
+</html>

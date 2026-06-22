@@ -1,0 +1,9 @@
+{
+  "version": "G54.43.8K-2026-06-22",
+  "latest": "G54.43.8K-2026-06-22",
+  "required": true,
+  "force": false,
+  "label": "G54.43.8K: Admin Tabbar Gesture Scroll + Logout Separation Fix",
+  "build": "G54.43.8K-2026-06-22",
+  "cache": "egt-trainer-g54-43-8k"
+}

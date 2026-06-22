@@ -1,0 +1,278 @@
+{
+  "version": "G51.5",
+  "date": "2026-06-15",
+  "label": "Appwide Grid Density / Visual Audit Fix",
+  "checks": {
+    "desktop_home": {
+      "label": "desktop_home",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 1889
+      },
+      "overflowX": 0,
+      "cards": 12,
+      "buttons": 21,
+      "bad": [],
+      "overlaps": []
+    },
+    "desktop_result": {
+      "label": "desktop_result",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 1568
+      },
+      "overflowX": 0,
+      "cards": 14,
+      "buttons": 3,
+      "bad": [],
+      "overlaps": []
+    },
+    "desktop_sim_closed": {
+      "label": "desktop_sim_closed",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 900
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 11,
+      "bad": [],
+      "overlaps": []
+    },
+    "desktop_sim_drawer": {
+      "label": "desktop_sim_drawer",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 900
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 41,
+      "bad": [],
+      "overlaps": []
+    },
+    "desktop_admin": {
+      "label": "desktop_admin",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 900
+      },
+      "overflowX": 0,
+      "cards": 8,
+      "buttons": 13,
+      "bad": [],
+      "overlaps": []
+    },
+    "desktop_highscore_duel": {
+      "label": "desktop_highscore_duel",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": {
+        "w": 1440,
+        "h": 1403
+      },
+      "overflowX": 0,
+      "cards": 6,
+      "buttons": 7,
+      "bad": [],
+      "overlaps": []
+    },
+    "ipadL_result": {
+      "label": "ipadL_result",
+      "viewport": {
+        "w": 1180,
+        "h": 820
+      },
+      "scroll": {
+        "w": 1180,
+        "h": 1500
+      },
+      "overflowX": 0,
+      "cards": 14,
+      "buttons": 3,
+      "bad": [],
+      "overlaps": []
+    },
+    "ipadL_sim_closed": {
+      "label": "ipadL_sim_closed",
+      "viewport": {
+        "w": 1180,
+        "h": 820
+      },
+      "scroll": {
+        "w": 1180,
+        "h": 820
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 11,
+      "bad": [],
+      "overlaps": []
+    },
+    "ipadL_sim_drawer": {
+      "label": "ipadL_sim_drawer",
+      "viewport": {
+        "w": 1180,
+        "h": 820
+      },
+      "scroll": {
+        "w": 1180,
+        "h": 820
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 41,
+      "bad": [],
+      "overlaps": []
+    },
+    "ipadL_admin": {
+      "label": "ipadL_admin",
+      "viewport": {
+        "w": 1180,
+        "h": 820
+      },
+      "scroll": {
+        "w": 1180,
+        "h": 820
+      },
+      "overflowX": 0,
+      "cards": 8,
+      "buttons": 13,
+      "bad": [],
+      "overlaps": []
+    },
+    "ipadL_highscore_duel": {
+      "label": "ipadL_highscore_duel",
+      "viewport": {
+        "w": 1180,
+        "h": 820
+      },
+      "scroll": {
+        "w": 1180,
+        "h": 1330
+      },
+      "overflowX": 0,
+      "cards": 6,
+      "buttons": 7,
+      "bad": [],
+      "overlaps": []
+    },
+    "iphone_result": {
+      "label": "iphone_result",
+      "viewport": {
+        "w": 430,
+        "h": 932
+      },
+      "scroll": {
+        "w": 430,
+        "h": 3313
+      },
+      "overflowX": 0,
+      "cards": 14,
+      "buttons": 3,
+      "bad": [],
+      "overlaps": []
+    },
+    "iphone_sim_closed": {
+      "label": "iphone_sim_closed",
+      "viewport": {
+        "w": 430,
+        "h": 932
+      },
+      "scroll": {
+        "w": 430,
+        "h": 932
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 11,
+      "bad": [],
+      "overlaps": []
+    },
+    "iphone_sim_drawer": {
+      "label": "iphone_sim_drawer",
+      "viewport": {
+        "w": 430,
+        "h": 932
+      },
+      "scroll": {
+        "w": 430,
+        "h": 932
+      },
+      "overflowX": 0,
+      "cards": 0,
+      "buttons": 41,
+      "bad": [],
+      "overlaps": []
+    },
+    "iphone_admin": {
+      "label": "iphone_admin",
+      "viewport": {
+        "w": 430,
+        "h": 932
+      },
+      "scroll": {
+        "w": 430,
+        "h": 932
+      },
+      "overflowX": 0,
+      "cards": 8,
+      "buttons": 13,
+      "bad": [],
+      "overlaps": []
+    },
+    "iphone_highscore_duel": {
+      "label": "iphone_highscore_duel",
+      "viewport": {
+        "w": 430,
+        "h": 932
+      },
+      "scroll": {
+        "w": 430,
+        "h": 1297
+      },
+      "overflowX": 0,
+      "cards": 6,
+      "buttons": 7,
+      "bad": [],
+      "overlaps": []
+    }
+  },
+  "summary": {
+    "viewports": [
+      "desktop 1440x900",
+      "iPad landscape 1180x820",
+      "iPhone 430x932"
+    ],
+    "overflowXFailures": [],
+    "buttonHitboxFailures": [],
+    "cardOverlapFailures": [],
+    "status": "passed-headless-chromium-visual-audit"
+  },
+  "limitations": [
+    "Chromium viewport emulation, not physical iOS Safari",
+    "role/login-only special states require follow-up screenshots if they use unique classes"
+  ]
+}

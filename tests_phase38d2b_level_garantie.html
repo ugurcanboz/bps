@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phase 38D.2B – Level-Garantie QA</title>
+  <link rel="stylesheet" href="./css/language-course.css" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#07111f;color:#e5e7eb;margin:0;padding:24px}
+    .wrap{max-width:1100px;margin:auto}.card{background:#0f172a;border:1px solid rgba(148,163,184,.28);border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .ok{color:#86efac}.bad{color:#fca5a5} pre{white-space:pre-wrap;background:#020617;border-radius:12px;padding:12px;overflow:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.pill{display:inline-block;padding:4px 8px;border-radius:999px;background:#1e293b;margin:2px;color:#bfdbfe}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Phase 38D.2B – Level-Garantie QA</h1>
+  <p>Prüft, ob A1 und B2 wirklich unterschiedlich schwer bewertet werden.</p>
+  <div id="out" class="card">Lade Tests …</div>
+</div>
+<script src="./data/language-exam-blueprints.js"></script>
+<script src="./data/language-level-difficulty-rules.js"></script>
+<script src="./data/language-b1-exam-pilot.js"></script>
+<script src="./data/language-b2-exam-pilot.js"></script>
+<script src="./js/modules/language-exam-engine.js"></script>
+<script src="./js/modules/language-exam-shell.js"></script>
+<script>
+(function(){
+  const out=document.getElementById('out');
+  const rules=window.LanguageLevelDifficultyRules;
+  const engine=window.LanguageExamEngine;
+  const shell=window.LanguageExamShell;
+  const ruleValidation=rules && rules.validateDifferentiation ? rules.validateDifferentiation() : {ok:false};
+  const engineValidation=engine && engine.validateLevelDifferentiation ? engine.validateLevelDifferentiation() : {ok:false};
+  const diag=shell && shell.diagnostics ? shell.diagnostics() : {};
+  const rows=[];
+  function row(name, ok, extra){ rows.push(`<div class="card"><b class="${ok?'ok':'bad'}">${ok?'✅':'❌'} ${name}</b>${extra?`<pre>${extra}</pre>`:''}</div>`); }
+  row('Schwierigkeitsmatrix geladen', !!rules && !!ruleValidation.ok, JSON.stringify(ruleValidation,null,2));
+  row('Engine-Level-Garantie bestanden', !!engineValidation.ok, JSON.stringify(engineValidation.checks,null,2));
+  row('Shell Phase 38D.2B aktiv', diag.phase==='38D.2B', JSON.stringify(diag,null,2));
+  row('A1/B2 Profile sichtbar', !!(rules && rules.summary), rules ? [rules.summary('A1'), rules.summary('B2')].join('\n') : 'keine Regeln');
+  const a1=rules && rules.get ? rules.get('A1') : null;
+  const b2=rules && rules.get ? rules.get('B2') : null;
+  row('B2 Schreibumfang deutlich höher als A1', !!(a1 && b2 && b2.writingWords[0] >= a1.writingWords[0]*5), a1&&b2 ? `A1: ${a1.writingWords.join('–')} Wörter\nB2: ${b2.writingWords.join('–')} Wörter` : 'n/a');
+  out.innerHTML=`<h2 class="${engineValidation.ok?'ok':'bad'}">Gesamt: ${engineValidation.ok?'BESTANDEN':'FEHLER'}</h2><div class="grid">${rows.join('')}</div>`;
+})();
+</script>
+</body>
+</html>

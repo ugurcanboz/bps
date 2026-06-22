@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Phase 38C.3 – B1 Pilotprüfung hart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:Arial,sans-serif;margin:24px;line-height:1.45;background:#f8fafc;color:#0f172a;}
+    button{padding:10px 14px;border-radius:12px;border:1px solid #2563eb;background:#2563eb;color:#fff;font-weight:700;margin:4px;}
+    pre{background:#0f172a;color:#e2e8f0;padding:14px;border-radius:14px;overflow:auto;white-space:pre-wrap;}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin:12px 0;}
+  </style>
+</head>
+<body>
+  <h1>Phase 38C.3 – B1 Pilotprüfung hart</h1>
+  <div class="card">
+    <button id="diag">Diagnose</button>
+    <button id="start">B1 Prüfung starten</button>
+    <button id="localWriting">Harte lokale Schreibprüfung testen</button>
+    <button id="offtopic">Off-Topic-Test</button>
+  </div>
+  <pre id="out">Bereit.</pre>
+
+  <script src="data/language-ai-config.js"></script>
+  <script src="js/modules/language-ai-client.js"></script>
+  <script src="js/modules/language-speaking-ai-client.js"></script>
+  <script src="data/language-exam-blueprints.js"></script>
+  <script src="data/language-b1-exam-pilot.js"></script>
+  <script src="js/modules/language-exam-engine.js"></script>
+  <script src="js/modules/language-exam-shell.js"></script>
+  <script>
+    const out = document.getElementById('out');
+    function show(x){ out.textContent = typeof x === 'string' ? x : JSON.stringify(x,null,2); }
+    document.getElementById('diag').onclick = () => show({
+      shell: window.LanguageExamShell && window.LanguageExamShell.diagnostics(),
+      engine: window.LanguageExamEngine && window.LanguageExamEngine.__version,
+      b1Pilot: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.__version,
+      readingQuestions: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.listObjective('reading').length,
+      listeningQuestions: window.LanguageB1ExamPilot && window.LanguageB1ExamPilot.listObjective('listening').length
+    });
+    document.getElementById('start').onclick = () => window.LanguageExamShell.start('B1');
+    document.getElementById('localWriting').onclick = () => {
+      const task = window.LanguageB1ExamPilot.getFreeTask('writing');
+      const good = 'Sehr geehrte Damen und Herren, ich habe bei Ihnen einen B1-Onlinekurs gebucht. Leider funktionierte am ersten Abend mein Zugang nicht. Außerdem war die Hotline nicht erreichbar. Dadurch konnte ich nicht am Unterricht teilnehmen und habe wichtige Inhalte verpasst. Ich bitte Sie deshalb um einen Ersatztermin oder eine teilweise Rückerstattung der Kursgebühr. Bitte teilen Sie mir mit, welche Lösung Sie anbieten können. Mit freundlichen Grüßen';
+      show(window.LanguageExamEngine.localAssessResponse({level:'B1',part:'writing',task,userText:good}));
+    };
+    document.getElementById('offtopic').onclick = () => {
+      const task = window.LanguageB1ExamPilot.getFreeTask('speaking');
+      const bad = 'Ich spiele gerne Fußball und esse Pizza mit meinen Freunden. Am Wochenende gehe ich ins Kino und kaufe neue Schuhe.';
+      show(window.LanguageExamEngine.localAssessResponse({level:'B1',part:'speaking',task,userText:bad}));
+    };
+  </script>
+</body>
+</html>

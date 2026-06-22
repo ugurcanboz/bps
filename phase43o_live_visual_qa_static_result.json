@@ -1,0 +1,88 @@
+{
+  "phase": "G54.43.6",
+  "status": "PASSED",
+  "passed": 16,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "QA file exists",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Global API present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Auto activation query present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Auto activation hash present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Overlay present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Copy report present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Analysis open fallbacks present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Dashboard selector present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Touch target check present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Overflow check present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Bottom dock overlap check present",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Index includes QA script",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "AppConfig version updated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Service worker cache updated",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Test file exists",
+      "status": "PASS",
+      "detail": ""
+    },
+    {
+      "name": "Handoff exists",
+      "status": "PASS",
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>G54.43.8 Visual Regression Diff Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <main id="app"><section data-analysis-dashboard-v2><h1>Analyse</h1><button style="width:48px;height:48px">OK</button></section></main>
+  <script src="./js/qa/egt-visual-state-capture.js"></script>
+  <script src="./js/qa/egt-visual-regression-diff.js"></script>
+  <script>
+    (async function(){
+      const result={phase:'G54.43.8', checks:[]};
+      function add(id, ok, details){result.checks.push({id, status:ok?'PASS':'FAIL', details:details||null});}
+      add('api_exists', !!window.EGTVisualRegressionDiff, window.EGTVisualRegressionDiff&&window.EGTVisualRegressionDiff.version);
+      add('api_version', window.EGTVisualRegressionDiff && window.EGTVisualRegressionDiff.version==='G54.43.8');
+      const base={kind:'visual-state-capture', environment:{timestamp:'base', viewport:{width:390,height:844,dpr:3}, route:{hash:'#a'}}, score:{status:'pass',warnings:[],fails:[]}, importantElements:[{selector:'#app',text:'Analyse',visible:true,rect:{left:0,top:0,width:390,height:300,right:390,bottom:300}}], touchTargets:[{selector:'button',ok44:true,rect:{width:48,height:48}}], overflow:{pageHorizontalOverflow:false,offscreen:[],clipped:[]}, visibleTextBlocks:[{selector:'h1',text:'Analyse',rect:{}}], media:{svgs:[{}],canvases:[]}};
+      const cur=JSON.parse(JSON.stringify(base));
+      cur.environment.timestamp='current'; cur.importantElements[0].rect.top=30; cur.touchTargets=[{selector:'button',ok44:false,rect:{width:32,height:32}}]; cur.overflow.pageHorizontalOverflow=true; cur.overflow.offscreen=[{selector:'.bad'}];
+      const diff=window.EGTVisualRegressionDiff.compareCaptures(base,cur);
+      add('diff_created', diff && diff.kind==='visual-regression-diff', diff&&diff.summary);
+      add('detects_changes', diff && diff.summary.changed>=3, diff&&diff.findings);
+      add('detects_layout_shift', diff && diff.findings.some(x=>x.id==='layout-shifts'&&x.status==='warn'));
+      add('detects_overflow', diff && diff.findings.some(x=>x.id==='overflow-regression'&&x.status==='fail'));
+      add('detects_touch', diff && diff.findings.some(x=>x.id==='touch-target-regression'&&x.status==='warn'));
+      document.body.insertAdjacentHTML('beforeend','<pre id="result">'+JSON.stringify(result,null,2)+'</pre>');
+      if(result.checks.some(c=>c.status==='FAIL')) throw new Error('G54.43.8 visual regression test failed');
+    })();
+  </script>
+</body>
+</html>

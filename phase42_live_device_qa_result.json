@@ -1,0 +1,122 @@
+{
+  "phase": "42",
+  "name": "Live Deploy Device QA Static Readiness",
+  "checks": [
+    {
+      "name": "AppConfig G54.42",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "AppConfig label Phase42",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest G54.42",
+      "passed": true,
+      "detail": "G54.42"
+    },
+    {
+      "name": "Update check G54.42",
+      "passed": true,
+      "detail": "G54.42-2026-06-20"
+    },
+    {
+      "name": "Update phase 42",
+      "passed": true,
+      "detail": "42"
+    },
+    {
+      "name": "Service worker cache G54.42",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Index fallback G54.42",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest uses relative start_url",
+      "passed": true,
+      "detail": "./index.html"
+    },
+    {
+      "name": "Manifest uses relative scope",
+      "passed": true,
+      "detail": "./"
+    },
+    {
+      "name": "404 fallback exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Phase42 browser test exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Phase42 report exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SW asset listed and exists: tests_phase42_live_device_qa.html",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: phase42_live_device_qa.py",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: docs/PHASE42_LIVE_DEVICE_QA.md",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: tests_phase41_github_pages_deploy_check.html",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: docs/PHASE41_GITHUB_PAGES_DEPLOY_CHECK.md",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: tests_phase40_golden_master_qa.html",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "SW asset listed and exists: docs/PHASE40_GOLDEN_MASTER_QA_REPORT.md",
+      "passed": true,
+      "detail": "in_sw=True, exists=True"
+    },
+    {
+      "name": "No stale central 39F",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No stale central 39G",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No stale central 40 fallback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No stale central 41 current version",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "passed": true
+}

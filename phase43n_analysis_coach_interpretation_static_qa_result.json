@@ -1,0 +1,51 @@
+{
+  "phase": "G54.43.5",
+  "passed": true,
+  "checks": [
+    {
+      "name": "Adapter version G54.43.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Adapter liefert coachInsight",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "UI rendert Coach Insight",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Coach nutzt vorsichtige Formulierung",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "CSS Coach-Insight vorhanden",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Manifest version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Service Worker cache",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Update check",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "QA test file",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

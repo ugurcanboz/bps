@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><title>Phase 30C Speaking Trainer QA</title>
+<script src="js/i18n/language-store.js"></script>
+<script src="js/i18n/language-adapter.js"></script>
+<script src="js/modules/language-adaptive-engine.js"></script>
+<script src="js/modules/language-course-cloud-sync.js"></script>
+<script src="js/modules/language-course-entry-module.js"></script>
+<body><pre id="out"></pre><script>
+(function(){
+  var out=[]; function ok(name, pass){ out.push((pass?'✅ ':'❌ ')+name); if(!pass) throw new Error(name); }
+  ok('Course API exists', !!window.LanguageAcademyCourseEntry);
+  var d=window.LanguageAcademyCourseEntry.diagnostics();
+  ok('Phase 30C diagnostics', d.phase==='30C');
+  ok('Phase 30 speech snapshot exists', !!d.phase30Speech && d.phase30Speech.phase==='30C');
+  ok('Speaking renderer registered', d.phase30Speech.hasSpeakingRenderer===true);
+  ok('Recognition adapter present', d.phase30Speech.hasRecognitionAdapter===true);
+  ok('A1 speaking coverage complete', d.phase30Speech.a1SpeakingCoverage && d.phase30Speech.a1SpeakingCoverage.complete===true);
+  ok('A1 has 40 speaking tasks', d.phase30Speech.a1SpeakingTasks===40);
+  ok('A1 has 430 total tasks after speaking expansion', d.phase30Speech.a1TotalTasks===430);
+  ok('Phase 29 snapshot reports Phase 30C speaking', d.phase29Qa.speakingStatus==='phase30c-a1-speaking-expanded');
+  document.getElementById('out').textContent=out.join('\n');
+})();
+</script></body>

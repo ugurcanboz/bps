@@ -1,0 +1,573 @@
+{
+  "apiVersion": "G54.16-phase31d-a2-total-qa-device-simulation",
+  "a2": {
+    "ok": true,
+    "phase": "31C",
+    "level": "a2",
+    "expandedLessons": 10,
+    "starterLessons": 0,
+    "lessons": 10,
+    "totalTasks": 430,
+    "normalTasks": 350,
+    "speakingTasks": 80,
+    "expandedLessonTarget": {
+      "tasks": 43,
+      "speaking": 8
+    },
+    "perLesson": {
+      "a2-daily-routines": {
+        "title": "Tagesablauf",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-housing": {
+        "title": "Wohnen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-appointments": {
+        "title": "Termine vereinbaren",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-shopping-services": {
+        "title": "Einkaufen & Service",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-health": {
+        "title": "Gesundheit",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-work-school": {
+        "title": "Arbeit & Schule",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-travel-orientation": {
+        "title": "Reisen & Orientierung",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-food-restaurant": {
+        "title": "Essen & Restaurant",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-past-experiences": {
+        "title": "Vergangenheit erzählen",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      },
+      "a2-opinions-plans": {
+        "title": "Meinung & Pläne",
+        "tasks": 43,
+        "normalTasks": 35,
+        "speakingTasks": 8,
+        "expandedContent": true,
+        "ok": true
+      }
+    },
+    "parallelBuildPolicy": {
+      "active": true,
+      "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+    }
+  },
+  "phase31d": {
+    "ok": true,
+    "phase": "31D",
+    "version": "G54.16-phase31d-a2-total-qa-device-simulation",
+    "level": "a2",
+    "qaScope": "A2 total QA + coding integrity + simulated device readiness",
+    "base": {
+      "ok": true,
+      "phase": "31C",
+      "level": "a2",
+      "expandedLessons": 10,
+      "starterLessons": 0,
+      "lessons": 10,
+      "totalTasks": 430,
+      "normalTasks": 350,
+      "speakingTasks": 80,
+      "expandedLessonTarget": {
+        "tasks": 43,
+        "speaking": 8
+      },
+      "perLesson": {
+        "a2-daily-routines": {
+          "title": "Tagesablauf",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-housing": {
+          "title": "Wohnen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-appointments": {
+          "title": "Termine vereinbaren",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-shopping-services": {
+          "title": "Einkaufen & Service",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-health": {
+          "title": "Gesundheit",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-work-school": {
+          "title": "Arbeit & Schule",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-travel-orientation": {
+          "title": "Reisen & Orientierung",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-food-restaurant": {
+          "title": "Essen & Restaurant",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-past-experiences": {
+          "title": "Vergangenheit erzählen",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        },
+        "a2-opinions-plans": {
+          "title": "Meinung & Pläne",
+          "tasks": 43,
+          "normalTasks": 35,
+          "speakingTasks": 8,
+          "expandedContent": true,
+          "ok": true
+        }
+      },
+      "parallelBuildPolicy": {
+        "active": true,
+        "rule": "A2-Lektionen werden mit Kursaufgaben und Speaking gleichzeitig ausgebaut."
+      }
+    },
+    "uniqueTaskIds": 430,
+    "duplicateIds": [],
+    "missingFields": [],
+    "typeCoverage": {
+      "multiple_choice": 100,
+      "fill_blank": 80,
+      "sentence_order": 50,
+      "listening_choice": 50,
+      "true_false": 40,
+      "matching": 30,
+      "speaking_practice": 80
+    },
+    "perLesson": {
+      "a2-daily-routines": {
+        "title": "Tagesablauf",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-housing": {
+        "title": "Wohnen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-appointments": {
+        "title": "Termine vereinbaren",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-shopping-services": {
+        "title": "Einkaufen & Service",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-health": {
+        "title": "Gesundheit",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-work-school": {
+        "title": "Arbeit & Schule",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-travel-orientation": {
+        "title": "Reisen & Orientierung",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-food-restaurant": {
+        "title": "Essen & Restaurant",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-past-experiences": {
+        "title": "Vergangenheit erzählen",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      },
+      "a2-opinions-plans": {
+        "title": "Meinung & Pläne",
+        "tasks": 43,
+        "types": {
+          "multiple_choice": 10,
+          "fill_blank": 8,
+          "sentence_order": 5,
+          "listening_choice": 5,
+          "true_false": 4,
+          "matching": 3,
+          "speaking_practice": 8
+        },
+        "hasAllTypes": true,
+        "missingFields": [],
+        "ok": true
+      }
+    },
+    "speakingFallbackReady": true,
+    "simulatedDevices": [
+      "desktop-1440",
+      "desktop-1024",
+      "iphone-15-pro-max",
+      "iphone-se",
+      "ipad-11",
+      "ipad-12-9"
+    ],
+    "limits": {
+      "realMicrophoneTest": false,
+      "realSafariEngine": false,
+      "playwrightNavigationBlockedInContainer": true
+    },
+    "nextRecommendedPhase": "32A B1 course + speaking structure parallel"
+  },
+  "diagnosticsPhase": "31D",
+  "diagnosticsOk": true,
+  "speechSnapshot": {
+    "ok": true,
+    "phase": "30E",
+    "version": "G54.16-phase31d-a2-total-qa-device-simulation",
+    "support": {
+      "supported": false,
+      "recognitionAvailable": false,
+      "status": "unsupported",
+      "engine": "none",
+      "device": {
+        "userAgent": "Mozilla/5.0 QA Chrome",
+        "platform": "",
+        "maxTouchPoints": 0,
+        "isIOS": false,
+        "isAndroid": false,
+        "isMobile": false,
+        "isStandalone": false,
+        "isSecureContext": true,
+        "hostname": "example.github.io",
+        "isLocalIp": false
+      },
+      "mode": "mobile_fallback",
+      "fallbackSupported": true,
+      "message": "Bu cihazda tarayıcı konuşma tanıma desteği yok."
+    },
+    "languageDetection": {
+      "de": "de-DE",
+      "tr": "tr-TR",
+      "en": "en-US"
+    },
+    "config": {
+      "interimResults": true,
+      "maxAlternatives": 5,
+      "continuous": false,
+      "iosSafeConfig": {
+        "interimResults": false,
+        "maxAlternatives": 1,
+        "continuous": false
+      },
+      "statuses": [
+        "supported",
+        "unsupported",
+        "requesting",
+        "listening",
+        "processing",
+        "done",
+        "permission_denied",
+        "no_speech",
+        "start_failed",
+        "mobile_fallback",
+        "manual_excellent",
+        "manual_almost",
+        "manual_unsure",
+        "manual_repeat"
+      ]
+    },
+    "normalization": {
+      "german": "gruess gott aeoeue ss",
+      "turkish": "guenaydin seker cay"
+    },
+    "scoring": {
+      "exact": 100,
+      "almost": 86,
+      "partial": 62,
+      "wrong": 11,
+      "bestAlternative": 100
+    },
+    "wordFeedback": {
+      "words": [
+        {
+          "word": "guten",
+          "status": "close"
+        },
+        {
+          "word": "morgen",
+          "status": "correct"
+        }
+      ],
+      "correct": 1,
+      "close": 1,
+      "missing": 0,
+      "prefixCorrect": 2,
+      "total": 2
+    },
+    "feedback": {
+      "excellent": "Çok iyi telaffuz ettin.",
+      "almost": "Neredeyse doğru. Bir kelime eksik veya farklı duyuldu.",
+      "partial": "Başlangıç doğruydu. Son kısmı yavaşça tekrar et.",
+      "repeat": "Lütfen tekrar et. Algılanan cümle hedefe yeterince yakın değil."
+    },
+    "mobileSafeFallback": true,
+    "guidedSpeakingFallback": true,
+    "fallback": {
+      "unsupportedMessage": "Bu cihazda tarayıcı konuşma tanıma desteği yok.",
+      "privacy": "Mikrofon sadece düğmeye bastığında başlar.",
+      "guided": true,
+      "selfAssessmentOptions": 4
+    },
+    "contentCoverage": {
+      "a1Lessons": 10,
+      "totalTasks": 430,
+      "speakingTasks": 40,
+      "speakingPerLesson": {
+        "a1-greetings": {
+          "title": "Begrüßungen",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-introduce": {
+          "title": "Sich vorstellen",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-numbers": {
+          "title": "Zahlen",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-time": {
+          "title": "Uhrzeit",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-family": {
+          "title": "Familie",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-shopping": {
+          "title": "Einkaufen",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-doctor": {
+          "title": "Arzt & Termin",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-work": {
+          "title": "Beruf & Arbeit",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-traffic": {
+          "title": "Verkehr",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        },
+        "a1-everyday": {
+          "title": "Alltag",
+          "tasks": 43,
+          "speakingTasks": 4,
+          "ok": true
+        }
+      },
+      "minimumSpeakingPerLesson": 4,
+      "complete": true,
+      "parallelBuildPolicy": "Ab A2 werden Kursinhalt und Sprechaufgaben zeitgleich ausgebaut."
+    }
+  },
+  "errors": []
+}

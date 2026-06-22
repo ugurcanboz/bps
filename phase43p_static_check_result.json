@@ -1,0 +1,73 @@
+{
+  "phase": "G54.43.7",
+  "total": 13,
+  "passed": 13,
+  "failed": 0,
+  "checks": [
+    {
+      "name": "capture_module_exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "global_api",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "auto_start_params",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "manual_png_api",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "state_capture_api",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "overflow_capture",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "touch_target_capture",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "json_copy_download",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "index_script_registered",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "version_config",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "version_label",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "service_worker_cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "update_check",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

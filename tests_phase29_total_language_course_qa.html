@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <title>Phase 29 · Sprachkurs Gesamt-QA</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#0f172a;color:#e5e7eb;padding:24px;line-height:1.45}
+    .pass{color:#86efac}.fail{color:#fecaca} code{background:#111827;padding:2px 5px;border-radius:5px}
+    li{margin:6px 0}
+  </style>
+</head>
+<body>
+  <h1>Phase 29 · Sprachkurs Gesamt-QA</h1>
+  <p>Dieser Test prüft strukturell, ob die Phase-29-QA-Schicht im Sprachkurs vorhanden ist.</p>
+  <ul id="out"></ul>
+  <script>
+    const checks = [
+      ['Phase29 QA Snapshot exportiert', 'js/modules/language-course-entry-module.js', 'phase29QaSnapshot'],
+      ['Mikrofonstatus bewusst ausgewiesen', 'js/modules/language-course-entry-module.js', 'hasMicrophoneSpeaking'],
+      ['Sprachkurs öffnen vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-open'],
+      ['Antwortauswahl vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-select-answer'],
+      ['Antwort prüfen vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-check-answer'],
+      ['Weiter-Button vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-next-task'],
+      ['Coach Start-Action vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-coach-start'],
+      ['Cloud Sync Push vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-sync-push'],
+      ['Cloud Sync Pull vorhanden', 'js/modules/language-course-entry-module.js', 'language-course-sync-pull'],
+      ['Phase29 CSS Block vorhanden', 'css/language-course.css', 'Phase 29 · Gesamt-QA/UI-Fix'],
+      ['Mobile Button Umbruch vorhanden', 'css/language-course.css', 'white-space:normal!important'],
+      ['Touch-Manipulation vorhanden', 'css/language-course.css', 'touch-action:manipulation'],
+      ['Deep-Sheet Scrollregel vorhanden', 'css/language-course.css', 'max-height:calc(100dvh']
+    ];
+    async function run(){
+      const out=document.getElementById('out');
+      let ok=0;
+      for(const [label,file,needle] of checks){
+        try{
+          const txt=await fetch(file).then(r=>r.text());
+          const pass=txt.includes(needle);
+          if(pass) ok++;
+          out.insertAdjacentHTML('beforeend', `<li class="${pass?'pass':'fail'}">${pass?'PASS':'FAIL'} · ${label} <code>${needle}</code></li>`);
+        }catch(e){
+          out.insertAdjacentHTML('beforeend', `<li class="fail">FAIL · ${label} · Datei nicht lesbar: ${file}</li>`);
+        }
+      }
+      const passAll=ok===checks.length;
+      out.insertAdjacentHTML('beforeend', `<li class="${passAll?'pass':'fail'}"><strong>${passAll?'PASS':'FAIL'} · ${ok}/${checks.length} Checks bestanden</strong></li>`);
+    }
+    run();
+  </script>
+</body>
+</html>

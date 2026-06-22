@@ -1,0 +1,63 @@
+{
+  "pass": true,
+  "passed": 14,
+  "total": 14,
+  "checks": [
+    {
+      "name": "AppConfig G54.43.8G",
+      "pass": true
+    },
+    {
+      "name": "Index build G54.43.8G",
+      "pass": true
+    },
+    {
+      "name": "QA capture G54.43.8G",
+      "pass": true
+    },
+    {
+      "name": "Dashboard marker aktualisiert",
+      "pass": true
+    },
+    {
+      "name": "Mobile media max-width 520 vorhanden",
+      "pass": true
+    },
+    {
+      "name": "Bar row mobile two columns",
+      "pass": true
+    },
+    {
+      "name": "Bar row mobile two rows",
+      "pass": true
+    },
+    {
+      "name": "Bar track second row",
+      "pass": true
+    },
+    {
+      "name": "Bar track full width",
+      "pass": true
+    },
+    {
+      "name": "Label badge wrap",
+      "pass": true
+    },
+    {
+      "name": "Percent isolated",
+      "pass": true
+    },
+    {
+      "name": "Row min height",
+      "pass": true
+    },
+    {
+      "name": "Top weakness min height",
+      "pass": true
+    },
+    {
+      "name": "Monster detector still active",
+      "pass": true
+    }
+  ]
+}
