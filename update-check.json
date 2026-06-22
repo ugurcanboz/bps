@@ -1,0 +1,9 @@
+{
+  "version": "G54.43.8D-2026-06-21",
+  "latest": "G54.43.8D-2026-06-21",
+  "required": true,
+  "force": false,
+  "label": "G54.43.8D: QA Bubble Always-On-Top Hotfix",
+  "build": "G54.43.8D-2026-06-21",
+  "cache": "egt-trainer-g54-43-8c"
+}

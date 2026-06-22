@@ -1,0 +1,32 @@
+{
+  "version": "G54.2",
+  "phase": "28",
+  "title": "CTC Lohr Real Exam Structure",
+  "scope": "simulation-it-ctc-only",
+  "expectedTotalQuestions": 62,
+  "expectedTotalSeconds": 1978,
+  "expectedTotalDisplay": "ca. 33–35 Minuten",
+  "blocks": {
+    "1. Allgemeinwissen": { "count": 40, "time": "7 Minuten Gesamtblock / ca. 10.5 Sekunden je Frage" },
+    "2. Mathematik Sprint": { "count": 9, "time": "22 Sekunden je Aufgabe" },
+    "3. CTC-Regelrechnung": { "count": 6, "time": "40 Sekunden je Aufgabe", "display": "inline slash, no fraction bar", "answerMode": "input" },
+    "4. Buchstaben-Konzentration": { "count": 4, "time": "40 Sekunden je Aufgabe", "answerMode": "input" },
+    "5. Tabellen ablesen": { "count": 2, "time": "90 Sekunden je Block", "answerMode": "multi input" },
+    "6. CTC-Logik: Wenn-Dann-Ablauf": { "count": 1, "time": "13 Minuten", "answerMode": "flowlogic" }
+  },
+  "codingChecks": {
+    "nodeCheck": true,
+    "jsonValidation": true,
+    "serviceWorkerAssets": true,
+    "engineBlockCount": true,
+    "scopeNegativeBps": true,
+    "scopeNegativeSozial": true
+  },
+  "visualChecks": {
+    "desktopStaticRender": true,
+    "ipadPortraitStaticRender": true,
+    "ipadLandscapeStaticRender": true,
+    "iphoneStaticRender": true,
+    "chromiumLiveNote": "Chromium was unstable in this container session; static HTML/CSS rendering was used for visual QA. Physical iOS/Safari check recommended."
+  }
+}

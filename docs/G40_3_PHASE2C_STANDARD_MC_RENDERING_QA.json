@@ -1,0 +1,45 @@
+{
+  "version": "G40.3",
+  "phase": "2C",
+  "date": "2026-06-15",
+  "goal": "Move Standard-Multiple-Choice answer rendering physically from app.js into js/modules/egt-simulation-engine.js while keeping special renderers as adapters.",
+  "changedFiles": [
+    "js/modules/egt-simulation-engine.js",
+    "js/app.js",
+    "module-manifest.json",
+    "js/core/app-config.js",
+    "service-worker.js",
+    "update-check.json",
+    "manifest.json",
+    "docs/WORKING-PLAN.md",
+    "WORKING-PLAN_1.md",
+    "docs/G40_3_PHASE2C_STANDARD_MC_RENDERING_REPORT.md",
+    "docs/G40_3_PHASE2C_STANDARD_MC_RENDERING_QA.json"
+  ],
+  "movedIntoModule": [
+    "standard answer-card creation",
+    "answer index rendering",
+    "answer click binding through EGTSimulation.chooseAnswer",
+    "selected answer restoration",
+    "instant feedback restoration",
+    "feedback explanation restoration"
+  ],
+  "keptAsAdapters": [
+    "renderEdvMultiAnswers",
+    "renderRouteSequenceAnswers",
+    "isInstantFeedbackAllowed bridge",
+    "legacy app state bridge"
+  ],
+  "tests": {
+    "nodeCheckJsAndData": "passed",
+    "jsonRelevantFiles": "passed",
+    "serviceWorkerCachedAssetCheck": "passed",
+    "zipIntegrity": "passed",
+    "browserLiveTest": "not_run_environment_not_available"
+  },
+  "knownRisks": [
+    "No browser runtime test was available in this environment.",
+    "Special renderers still depend on app.js and must be migrated in later phases one by one."
+  ],
+  "nextRecommendedPhase": "2D: migrate updateQuestionNav into EGTSimulation before moving EDV-Multi or Route-Memory special renderers."
+}

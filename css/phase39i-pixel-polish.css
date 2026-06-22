@@ -1,0 +1,397 @@
+/* ═══════════════════════════════════════════════════════
+   Phase 39I · LOW-/Pixel-Polish nach Visual Observer Report
+   Ziel: kompakter Header, integriertes Tablet-Footer/Branding,
+         Performance-Fallbacks und Icon-QA-Absicherung.
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --phase39i-compact-header-height: 58px;
+  --phase39i-soft-border: rgba(148, 163, 184, .18);
+}
+
+/* LOW 1: iPhone Header kompakter, ohne Lesbarkeit oder Touch-Fläche zu verlieren. */
+@media (max-width: 520px) {
+  .egt-gate-top {
+    min-height: var(--phase39i-compact-header-height) !important;
+    gap: 9px !important;
+    padding: max(10px, env(safe-area-inset-top, 0px)) 14px 9px !important;
+  }
+
+  .egt-gate-top .logo {
+    width: 31px !important;
+    height: 31px !important;
+  }
+
+  .egt-gate-top .brand {
+    min-width: 0 !important;
+    line-height: 1.08 !important;
+  }
+
+  .egt-gate-top .brand b {
+    font-size: .88rem !important;
+    line-height: 1.08 !important;
+    letter-spacing: -.015em !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  .egt-gate-top .brand small {
+    display: block !important;
+    font-size: .66rem !important;
+    line-height: 1.05 !important;
+    max-width: 210px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .egt-gate-mute {
+    min-width: 42px !important;
+    min-height: 42px !important;
+    padding: 8px 10px !important;
+    border-radius: 16px !important;
+  }
+
+  .egt-gate-mute span,
+  .egt-gate-mute .label {
+    display: none !important;
+  }
+}
+
+/* LOW 2: iPad Footer/Branding wirkt nicht mehr verloren am unteren Rand. */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .egt-gate-copyright {
+    align-self: center !important;
+    width: min(100%, 360px) !important;
+    margin-top: 18px !important;
+    padding: 9px 13px !important;
+    border-radius: 999px !important;
+    opacity: .82 !important;
+    color: rgba(203, 213, 225, .78) !important;
+    background: rgba(2, 6, 23, .28) !important;
+    border: 1px solid var(--phase39i-soft-border) !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 920px) {
+  .egt-gate-copyright {
+    margin-bottom: max(10px, env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* LOW 3: ältere/mobile Geräte bekommen eine leichtere Glas-Variante. */
+@media (max-width: 520px), (prefers-reduced-transparency: reduce), (prefers-reduced-motion: reduce) {
+  .egt-gate-top,
+  .egt-gate-overlay,
+  .ui-sheet-backdrop,
+  #duellSetupOverlay,
+  .egt-practice-backdrop {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .stat,
+  .box,
+  .tipBox,
+  .warn,
+  .visualBox,
+  .blockIntroCard,
+  .ui-login-btn,
+  .ui-mod-card.ui-coach-card .ui-mod-icon {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .egt-gate-screen,
+  .egt-gate-overlay,
+  .egt-gate-sheet,
+  .ui-hero-target,
+  .ui-training-area-card,
+  .egt-gate-tile {
+    animation: none !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* LOW 4: neue/alte Icon-Träger bleiben SVG-/Bild-orientiert und erhalten ein sauberes Fallback-Feld. */
+:is(.ui-area-icon,
+    .ui-quick-icon,
+    .ui-deep-icon,
+    .egt-gate-tile .ic,
+    .product-track-head > span,
+    .ui-mod-icon) {
+  line-height: 1 !important;
+  text-rendering: geometricPrecision;
+}
+
+:is(.ui-area-icon,
+    .ui-quick-icon,
+    .ui-deep-icon,
+    .egt-gate-tile .ic,
+    .product-track-head > span,
+    .ui-mod-icon) > :is(svg, img, picture) {
+  display: block !important;
+  flex: 0 0 auto !important;
+}
+
+/* LOW 5: eindeutige Build-Markierung für spätere Observer-/Golden-Master-Vergleiche. */
+body::before {
+  content: '';
+  position: fixed;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+
+
+/* ==========================================================================
+   G54.42.3 · iPhone Portrait Visual/Scroll Hotfix
+   Scope: iPhone Hochformat Training-Karten + Deep-Sheet-Scroll.
+   Keine Logik-, Daten- oder Desktop-Änderung.
+   ========================================================================== */
+@media (max-width: 560px) and (orientation: portrait) {
+  /* Startseite: linke Bereichs-Icons sitzen stabil links mittig und überlappen den Text nicht. */
+  .ui-training-area-card {
+    min-height: 116px !important;
+    padding: 20px 58px 20px 106px !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    overflow: hidden !important;
+  }
+
+  .ui-training-area-card .ui-area-icon {
+    position: absolute !important;
+    left: 28px !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: translate3d(0, -50%, 0) !important;
+    margin: 0 !important;
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    max-width: 58px !important;
+    max-height: 58px !important;
+  }
+
+  .ui-training-area-card .ui-area-icon svg,
+  .ui-training-area-card .ui-area-icon img,
+  .ui-training-area-card .ui-area-icon picture {
+    width: 44px !important;
+    height: 44px !important;
+    max-width: 44px !important;
+    max-height: 44px !important;
+  }
+
+  .ui-training-area-card b,
+  .ui-training-area-card small {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .ui-training-area-card b {
+    font-size: 18px !important;
+    line-height: 1.12 !important;
+  }
+
+  .ui-training-area-card small {
+    font-size: 13px !important;
+    line-height: 1.28 !important;
+  }
+
+  .ui-training-area-card::after {
+    right: 18px !important;
+    top: 50% !important;
+    bottom: auto !important;
+    transform: translate3d(0, -50%, 0) !important;
+  }
+
+  /* Deep Sheets: iOS scrollt den Inhalt nativ bis zum unteren Button. */
+  .ui-sheet.ui-deep-sheet,
+  .ui-deep-sheet {
+    top: max(8px, env(safe-area-inset-top, 0px)) !important;
+    bottom: max(8px, env(safe-area-inset-bottom, 0px)) !important;
+    height: auto !important;
+    max-height: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+    touch-action: pan-y !important;
+  }
+
+  .ui-deep-head {
+    flex: 0 0 auto !important;
+  }
+
+  .ui-deep-body {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
+    overscroll-behavior-y: contain !important;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .product-flow,
+  .product-flow-branch-training,
+  .product-training-checkgrid {
+    min-height: max-content !important;
+    overflow: visible !important;
+  }
+
+  .product-training-startbox,
+  .ui-deep-startbox {
+    margin-bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* ========================================================================== 
+   G54.42.4 · iPhone Portrait Deep-Sheet Native Scroll Hotfix
+   Problem: Auf iPhone Hochformat konnte das Berufsfeld-/Training-Deep-Sheet
+   nicht zuverlässig bis zum unteren Startbutton weitergescrollt werden.
+   Lösung: Auf iPhone Hochformat scrollt das komplette Deep-Sheet nativ;
+   der Body darf in voller Höhe wachsen. Kein Desktop/iPad/Logik-Eingriff.
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) and (max-width: 560px) and (orientation: portrait) {
+  html.ui-overlay-open,
+  body.ui-overlay-open,
+  html.egt-layer-open,
+  body.egt-layer-open {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+  .ui-sheet.ui-deep-sheet.show,
+  .ui-sheet.ui-deep-sheet.is-visible,
+  .ui-deep-sheet.show,
+  .ui-deep-sheet.is-visible {
+    position: fixed !important;
+    left: 50% !important;
+    top: max(8px, env(safe-area-inset-top, 0px)) !important;
+    bottom: auto !important;
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    height: auto !important;
+    max-height: calc(100dvh - max(8px, env(safe-area-inset-top, 0px)) - max(8px, env(safe-area-inset-bottom, 0px))) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-y: contain !important;
+    touch-action: pan-y !important;
+    display: block !important;
+    transform: translate3d(-50%, 0, 0) !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-head,
+  .ui-deep-sheet .ui-deep-head {
+    position: relative !important;
+    flex: none !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-body,
+  .ui-deep-sheet .ui-deep-body,
+  .ui-sheet.ui-deep-sheet [data-sheet-scroll],
+  .ui-deep-sheet [data-sheet-scroll] {
+    display: block !important;
+    flex: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    -webkit-overflow-scrolling: auto !important;
+    overscroll-behavior: auto !important;
+    touch-action: pan-y !important;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .ui-sheet.ui-deep-sheet .ui-deep-startbox,
+  .ui-deep-sheet .ui-deep-startbox,
+  .ui-sheet.ui-deep-sheet .product-training-startbox,
+  .ui-deep-sheet .product-training-startbox {
+    margin-bottom: calc(44px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* G54.42.7 · Analyse Dashboard V2 Grundstruktur
+   Nur Analyse-Deep-Sheet: Filter, KPI-Karten, Chart-Platzhalter, Coach-Hinweis. */
+.analysis-v2-shell{display:flex;flex-direction:column;gap:14px;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.analysis-v2-filter-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.analysis-v2-filter-grid label{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px solid rgba(148,163,184,.18);border-radius:16px;background:rgba(15,23,42,.42)}
+.analysis-v2-filter-grid label span{font-size:11px;font-weight:800;letter-spacing:.02em;color:rgba(226,232,240,.72)}
+.analysis-v2-filter-grid select{width:100%;min-height:38px;border:0;border-radius:12px;background:rgba(255,255,255,.08);color:#f8fafc;font-size:13px;font-weight:800;padding:0 10px;outline:none;appearance:auto;-webkit-appearance:auto}
+.analysis-v2-filter-grid select option{color:#0f172a;background:#fff}
+.analysis-v2-dynamic{display:flex;flex-direction:column;gap:14px}
+.analysis-v2-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.analysis-v2-kpi{min-height:92px;border-radius:18px;padding:12px;border:1px solid rgba(148,163,184,.18);background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.045));box-shadow:0 12px 28px rgba(0,0,0,.16);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.analysis-v2-kpi small{font-size:11px;color:rgba(226,232,240,.68);font-weight:800;text-transform:uppercase;letter-spacing:.02em}.analysis-v2-kpi b{font-size:19px;line-height:1.1;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.analysis-v2-kpi span{font-size:12px;color:rgba(226,232,240,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.analysis-v2-chart-card,.analysis-v2-coach{border:1px solid rgba(148,163,184,.18);border-radius:20px;background:rgba(15,23,42,.38);padding:14px;box-shadow:0 12px 28px rgba(0,0,0,.14)}
+.analysis-v2-chart-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}.analysis-v2-chart-head b{font-size:15px;color:#fff}.analysis-v2-chart-head span{font-size:12px;color:rgba(226,232,240,.64);text-align:right;max-width:52%}
+.analysis-v2-chart-svg{width:100%;height:auto;display:block;border-radius:16px;background:linear-gradient(180deg,rgba(16,185,129,.10),rgba(15,23,42,.18));border:1px solid rgba(148,163,184,.12)}
+.analysis-v2-axis{stroke:rgba(226,232,240,.42);stroke-width:1}.analysis-v2-gridline{stroke:rgba(226,232,240,.12);stroke-width:1}.analysis-v2-line{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.analysis-v2-line.line-a,.analysis-v2-legend i.line-a{stroke:#22c55e;background:#22c55e}.analysis-v2-line.line-b,.analysis-v2-legend i.line-b{stroke:#38bdf8;background:#38bdf8}.analysis-v2-line.line-c,.analysis-v2-legend i.line-c{stroke:#f59e0b;background:#f59e0b}.analysis-v2-dot{fill:#fff;stroke:#22c55e;stroke-width:3}
+.analysis-v2-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.analysis-v2-legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(226,232,240,.75);font-weight:700}.analysis-v2-legend i{width:10px;height:10px;border-radius:999px;display:inline-block}
+.analysis-v2-bars{display:flex;flex-direction:column;gap:9px}.analysis-v2-bar-row{display:grid;grid-template-columns:minmax(84px,1fr) minmax(110px,2fr) 34px;align-items:center;gap:10px;font-size:12px;color:rgba(226,232,240,.78);font-weight:700}.analysis-v2-bar-track{height:10px;border-radius:999px;background:rgba(148,163,184,.16);overflow:hidden}.analysis-v2-bar-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#22c55e,#38bdf8)}.analysis-v2-bar-row b{font-size:12px;color:#fff;text-align:right}.analysis-v2-coach b{display:block;color:#fff;font-size:15px;margin-bottom:6px}.analysis-v2-coach p{margin:0;color:rgba(226,232,240,.76);font-size:13px;line-height:1.55}.analysis-v2-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.analysis-v2-actions .ui-deep-secondary{min-height:46px;border-radius:14px;border:1px solid rgba(148,163,184,.20);background:rgba(255,255,255,.07);color:#f8fafc;font-weight:800}
+@media (max-width:780px){.analysis-v2-filter-grid{grid-template-columns:1fr}.analysis-v2-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analysis-v2-chart-head{display:block}.analysis-v2-chart-head span{display:block;max-width:none;text-align:left;margin-top:3px}.analysis-v2-actions{grid-template-columns:1fr}.analysis-v2-bar-row{grid-template-columns:minmax(78px,1fr) minmax(96px,2fr) 30px}.analysis-v2-kpi{min-height:84px}.analysis-v2-kpi b{font-size:17px}}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-shell{gap:12px;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}.analysis-v2-filter-grid label{padding:9px;border-radius:15px}.analysis-v2-kpis{gap:8px}.analysis-v2-kpi{padding:10px;border-radius:16px;min-height:82px}.analysis-v2-kpi small{font-size:10px}.analysis-v2-kpi b{font-size:16px}.analysis-v2-kpi span{font-size:11px}.analysis-v2-chart-card,.analysis-v2-coach{padding:12px;border-radius:18px}.analysis-v2-bar-row{font-size:11px;gap:8px}.analysis-v2-legend span{font-size:11px}}
+
+/* G54.43.0 · Analyse Hauptdiagramm Multi-Line + Legenden-Datenbindung */
+.analysis-v2-line.line-d,.analysis-v2-legend i.line-d{stroke:#a78bfa;background:#a78bfa}.analysis-v2-line.line-e,.analysis-v2-legend i.line-e{stroke:#fb7185;background:#fb7185}.analysis-v2-series-dot{fill:#0f172a;stroke-width:2}.analysis-v2-series-dot.line-a{stroke:#22c55e}.analysis-v2-series-dot.line-b{stroke:#38bdf8}.analysis-v2-series-dot.line-c{stroke:#f59e0b}.analysis-v2-series-dot.line-d{stroke:#a78bfa}.analysis-v2-series-dot.line-e{stroke:#fb7185}.analysis-v2-xlabels text{fill:rgba(226,232,240,.58);font-size:9px;font-weight:800}.analysis-v2-legend-bound span{border:1px solid rgba(148,163,184,.14);border-radius:999px;padding:5px 8px;background:rgba(255,255,255,.045)}
+
+/* G54.42.9 · Analyse KPI-Karten + sauberer Empty-State */
+.analysis-v2-empty{border:1px solid rgba(251,191,36,.28);border-radius:18px;background:linear-gradient(180deg,rgba(251,191,36,.12),rgba(15,23,42,.26));padding:13px 14px;box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.analysis-v2-empty b{display:block;color:#fef3c7;font-size:15px;margin-bottom:5px}.analysis-v2-empty p{margin:0;color:rgba(254,243,199,.82);font-size:13px;line-height:1.45}.analysis-v2-empty div{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.analysis-v2-empty span{display:inline-flex;border:1px solid rgba(251,191,36,.20);border-radius:999px;padding:5px 8px;color:rgba(254,243,199,.86);font-size:11px;font-weight:800;background:rgba(0,0,0,.12)}
+.analysis-v2-data-chip{display:flex;align-items:center;gap:8px;flex-wrap:wrap;border:1px solid rgba(148,163,184,.16);border-radius:14px;background:rgba(15,23,42,.34);padding:9px 11px;color:rgba(226,232,240,.78);font-size:12px}.analysis-v2-data-chip b{color:#fff}.analysis-v2-data-chip span{color:rgba(226,232,240,.72)}
+.analysis-v2-kpi-empty b{color:rgba(226,232,240,.82)}.analysis-v2-kpi-empty{border-color:rgba(251,191,36,.20);background:linear-gradient(180deg,rgba(251,191,36,.08),rgba(255,255,255,.035))}.analysis-v2-kpi-ok b,.analysis-v2-kpi-best b,.analysis-v2-kpi-forecast b{color:#dcfce7}.analysis-v2-kpi-focus b{color:#e0f2fe}
+@media (max-width:780px){.analysis-v2-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-empty{padding:12px;border-radius:16px}.analysis-v2-empty b{font-size:14px}.analysis-v2-empty p{font-size:12px}.analysis-v2-data-chip{font-size:11px;padding:8px 10px}}
+
+/* G54.43.1 · Analyse Stärken-/Schwächen-Balken + Top-Schwächenlogik */
+.analysis-v2-bars[data-analysis-bars="adapter-bound-weakest-first"]{gap:10px}
+.analysis-v2-bar-row span{display:flex;align-items:center;justify-content:space-between;gap:6px;min-width:0}
+.analysis-v2-bar-row span em{font-style:normal;font-size:10px;color:rgba(226,232,240,.46);font-weight:900;border:1px solid rgba(148,163,184,.14);border-radius:999px;padding:2px 5px;background:rgba(255,255,255,.035)}
+.analysis-v2-bar-row.is-top-weakness{border:1px solid rgba(251,191,36,.20);border-radius:14px;padding:7px 8px;background:rgba(251,191,36,.07)}
+.analysis-v2-bar-row.is-top-weakness .analysis-v2-bar-track i{background:linear-gradient(90deg,#f97316,#facc15)}
+.analysis-v2-bar-row.is-real .analysis-v2-bar-track i{background:linear-gradient(90deg,#22c55e,#38bdf8)}
+.analysis-v2-bar-row.is-fallback .analysis-v2-bar-track i{background:linear-gradient(90deg,rgba(148,163,184,.65),rgba(226,232,240,.45))}
+.analysis-v2-weakbox{margin-top:12px;border:1px solid rgba(148,163,184,.16);border-radius:16px;background:rgba(255,255,255,.045);padding:12px}
+.analysis-v2-weakbox>div{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:8px}.analysis-v2-weakbox b{color:#fff;font-size:13px}.analysis-v2-weakbox span{font-size:11px;color:rgba(226,232,240,.56);text-align:right}.analysis-v2-weakbox ol{margin:0;padding-left:20px;display:grid;gap:6px}.analysis-v2-weakbox li{color:rgba(226,232,240,.80);font-size:12px}.analysis-v2-weakbox li strong{color:#fef3c7}.analysis-v2-weakbox li em{font-style:normal;color:#fff;font-weight:900;margin-left:6px}.analysis-v2-weakbox p{margin:10px 0 0;color:rgba(226,232,240,.70);font-size:12px;line-height:1.45}.analysis-v2-weakbox p strong{color:#e0f2fe}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-bar-row.is-top-weakness{padding:6px}.analysis-v2-bar-row span em{font-size:9px;padding:1px 4px}.analysis-v2-weakbox{padding:10px;border-radius:14px}.analysis-v2-weakbox>div{display:block}.analysis-v2-weakbox span{display:block;text-align:left;margin-top:2px}}
+
+/* G54.43.2 · Analyse Prognose-Engine */
+.analysis-v2-forecast-box{border:1px solid rgba(148,163,184,.18);border-radius:20px;background:linear-gradient(180deg,rgba(15,23,42,.92),rgba(15,23,42,.70));padding:14px;box-shadow:0 16px 34px rgba(2,6,23,.18)}
+.analysis-v2-forecast-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}.analysis-v2-forecast-top b{display:block;color:#fff;font-size:15px}.analysis-v2-forecast-top span{display:block;color:rgba(226,232,240,.60);font-size:12px;margin-top:2px}.analysis-v2-forecast-top strong{font-size:28px;line-height:1;color:#fff}
+.analysis-v2-forecast-box p{margin:0 0 11px;color:rgba(226,232,240,.76);font-size:12.5px;line-height:1.48}.analysis-v2-forecast-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:10px}.analysis-v2-forecast-grid span{border:1px solid rgba(148,163,184,.14);border-radius:14px;background:rgba(255,255,255,.045);padding:9px}.analysis-v2-forecast-grid small{display:block;color:rgba(226,232,240,.50);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.04em}.analysis-v2-forecast-grid b{display:block;color:#fff;font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.analysis-v2-forecast-box details{border-top:1px solid rgba(148,163,184,.13);padding-top:8px}.analysis-v2-forecast-box summary{cursor:pointer;color:#dbeafe;font-size:12px;font-weight:900}.analysis-v2-forecast-box ul{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:5px}.analysis-v2-forecast-box li{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;color:rgba(226,232,240,.70);font-size:11.5px}.analysis-v2-forecast-box li b{color:#fff}.analysis-v2-forecast-box li em{font-style:normal;color:rgba(226,232,240,.45)}.analysis-v2-forecast-note{margin-top:10px;border-radius:14px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.16);padding:9px 10px;color:rgba(226,232,240,.78);font-size:12px;line-height:1.4}.analysis-v2-forecast-note b{color:#bbf7d0}.analysis-v2-risk-hoch{border-color:rgba(248,113,113,.24)}.analysis-v2-risk-hoch .analysis-v2-forecast-top strong{color:#fecaca}.analysis-v2-risk-mittel{border-color:rgba(251,191,36,.24)}.analysis-v2-risk-mittel .analysis-v2-forecast-top strong{color:#fde68a}.analysis-v2-risk-niedrig{border-color:rgba(34,197,94,.24)}.analysis-v2-risk-niedrig .analysis-v2-forecast-top strong{color:#bbf7d0}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-forecast-box{padding:12px;border-radius:18px}.analysis-v2-forecast-grid{grid-template-columns:1fr}.analysis-v2-forecast-top strong{font-size:24px}.analysis-v2-forecast-box li{grid-template-columns:1fr auto}.analysis-v2-forecast-box li em{display:none}}
+
+
+/* G54.43.3 · Prognose-Diagramm mit Zielmarke, echter Leistungslinie und Prognoselinie */
+.analysis-v2-forecast-chart-card{border-color:rgba(59,130,246,.18);background:linear-gradient(180deg,rgba(15,23,42,.88),rgba(15,23,42,.66))}
+.analysis-v2-forecast-svg{width:100%;height:auto;display:block;margin-top:8px;overflow:visible}.analysis-v2-target-line{fill:none;stroke:rgba(251,191,36,.82);stroke-width:1.8;stroke-dasharray:5 4}.analysis-v2-target-label{fill:rgba(253,230,138,.92);font-size:8.5px;font-weight:900}.analysis-v2-actual-line{fill:none;stroke:#38bdf8;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.analysis-v2-forecast-line{fill:none;stroke:#a78bfa;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:6 4}.analysis-v2-actual-dot{fill:#38bdf8;stroke:rgba(15,23,42,.95);stroke-width:1.6}.analysis-v2-forecast-dot{fill:#a78bfa;stroke:rgba(15,23,42,.95);stroke-width:1.6}.analysis-v2-forecast-legend i.actual{background:#38bdf8}.analysis-v2-forecast-legend i.forecast{background:#a78bfa}.analysis-v2-forecast-legend i.target{background:#fbbf24}.analysis-v2-forecast-disclaimer{margin:8px 0 0;color:rgba(226,232,240,.62);font-size:11.5px;line-height:1.4}.analysis-v2-forecast-xlabels text{font-size:8.2px}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-forecast-disclaimer{font-size:11px}.analysis-v2-forecast-xlabels text{font-size:7.5px}.analysis-v2-forecast-svg{margin-top:6px}}
+
+
+/* G54.43.4 · Fehleranalyse mit echten Fehlergruppen, Priorität und Trainingshinweis */
+.analysis-v2-errorbox{border:1px solid rgba(248,113,113,.18);border-radius:20px;background:linear-gradient(180deg,rgba(15,23,42,.90),rgba(15,23,42,.68));padding:14px;box-shadow:0 16px 34px rgba(2,6,23,.16)}
+.analysis-v2-errorbox-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px}.analysis-v2-errorbox-head b{display:block;color:#fff;font-size:15px}.analysis-v2-errorbox-head span{display:block;color:rgba(226,232,240,.60);font-size:12px;margin-top:2px}.analysis-v2-errorbox-head strong{white-space:nowrap;border:1px solid rgba(251,191,36,.20);background:rgba(251,191,36,.08);border-radius:999px;padding:6px 8px;color:#fde68a;font-size:11px}
+.analysis-v2-error-list{display:grid;gap:8px}.analysis-v2-error-item{border:1px solid rgba(148,163,184,.14);background:rgba(255,255,255,.045);border-radius:16px;padding:10px;display:grid;grid-template-columns:1fr auto;gap:5px 10px}.analysis-v2-error-item div b{display:block;color:#fff;font-size:13px}.analysis-v2-error-item div span{display:block;color:rgba(226,232,240,.55);font-size:11px;margin-top:2px}.analysis-v2-error-item em{font-style:normal;color:#fff;font-weight:950;border-radius:12px;background:rgba(255,255,255,.07);padding:5px 7px;font-size:12px}.analysis-v2-error-item p{grid-column:1/-1;margin:2px 0 0;color:rgba(226,232,240,.72);font-size:12px;line-height:1.4}.analysis-v2-error-item.is-hoch{border-color:rgba(248,113,113,.25);background:rgba(248,113,113,.07)}.analysis-v2-error-item.is-hoch em{background:rgba(248,113,113,.16);color:#fecaca}.analysis-v2-error-item.is-mittel{border-color:rgba(251,191,36,.24);background:rgba(251,191,36,.06)}.analysis-v2-error-item.is-mittel em{background:rgba(251,191,36,.14);color:#fde68a}.analysis-v2-error-item.is-niedrig{border-color:rgba(34,197,94,.18)}.analysis-v2-error-item.is-niedrig em{background:rgba(34,197,94,.12);color:#bbf7d0}
+.analysis-v2-error-training{margin-top:10px;border-radius:14px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.16);padding:9px 10px;color:rgba(226,232,240,.78);font-size:12px;line-height:1.4}.analysis-v2-error-training b{color:#bfdbfe}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-errorbox{padding:12px;border-radius:18px}.analysis-v2-errorbox-head{display:block}.analysis-v2-errorbox-head strong{display:inline-block;margin-top:7px}.analysis-v2-error-item{border-radius:14px;padding:9px}.analysis-v2-error-item p{font-size:11.5px}}
+
+/* G54.43.5 · finale Coach-Auswertung aus Prognose, Top-Schwäche und Fehleranalyse */
+.analysis-v2-coach-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}.analysis-v2-coach-head b{margin:0}.analysis-v2-coach-head span{display:block;color:rgba(226,232,240,.58);font-size:12px;margin-top:2px}.analysis-v2-coach-head strong{white-space:nowrap;border:1px solid rgba(148,163,184,.20);background:rgba(255,255,255,.06);border-radius:999px;padding:5px 8px;color:#e2e8f0;font-size:11px;text-transform:capitalize}.analysis-v2-coach-next{margin-top:10px;border-radius:14px;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.16);padding:9px 10px;color:rgba(226,232,240,.80);font-size:12.5px;line-height:1.42}.analysis-v2-coach-next b{display:inline;margin:0;color:#bfdbfe}.analysis-v2-coach ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}.analysis-v2-coach li{position:relative;padding-left:14px;color:rgba(226,232,240,.68);font-size:11.8px;line-height:1.35}.analysis-v2-coach li:before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:999px;background:rgba(96,165,250,.9)}.analysis-v2-coach-good{border-color:rgba(34,197,94,.22)}.analysis-v2-coach-good .analysis-v2-coach-head strong{color:#bbf7d0;border-color:rgba(34,197,94,.22);background:rgba(34,197,94,.08)}.analysis-v2-coach-watch{border-color:rgba(251,191,36,.22)}.analysis-v2-coach-watch .analysis-v2-coach-head strong{color:#fde68a;border-color:rgba(251,191,36,.22);background:rgba(251,191,36,.08)}.analysis-v2-coach-risk{border-color:rgba(248,113,113,.24)}.analysis-v2-coach-risk .analysis-v2-coach-head strong{color:#fecaca;border-color:rgba(248,113,113,.24);background:rgba(248,113,113,.08)}.analysis-v2-coach-empty{border-color:rgba(148,163,184,.18)}
+@media (max-width:420px) and (orientation:portrait){.analysis-v2-coach-head{display:block}.analysis-v2-coach-head strong{display:inline-block;margin-top:7px}.analysis-v2-coach-next{font-size:12px}.analysis-v2-coach li{font-size:11.5px}}

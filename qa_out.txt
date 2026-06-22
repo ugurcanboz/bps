@@ -1,0 +1,46 @@
+{
+  "phase": "38E.2",
+  "checks": {
+    "node_js_syntax": {
+      "ok": true,
+      "detail": "140 JS files checked; bad=[]"
+    },
+    "json_syntax": {
+      "ok": true,
+      "detail": "169 JSON files checked; bad=[]"
+    },
+    "phase_marker_shell": {
+      "ok": true,
+      "detail": "Shell phase/version markers"
+    },
+    "weakness_api_present": {
+      "ok": true,
+      "detail": "Exported weakness APIs"
+    },
+    "weakness_ui_present": {
+      "ok": true,
+      "detail": "UI hook and CSS classes"
+    },
+    "service_worker_assets": {
+      "ok": true,
+      "detail": "295 assets; missing=[]"
+    },
+    "service_worker_cache": {
+      "ok": true,
+      "detail": "Cache name updated"
+    },
+    "secret_check": {
+      "ok": true,
+      "detail": "hits=[]"
+    },
+    "root_index_404": {
+      "ok": true,
+      "detail": "index.html and 404.html in root"
+    },
+    "node_runtime_diagnostics": {
+      "ok": true,
+      "detail": "{\"diag\": {\"ok\": true, \"phase\": \"38E.2\", \"version\": \"G54.38E.2-weakness-profile-training-paths\", \"hasEngine\": true, \"hasBlueprints\": true, \"routes\": [\"language-exam-open\", \"language-exam-start\", \"language-exam-hybrid-check\", \"language-exam-dashboard\"], \"levels\": [\"A1\", \"A2\", \"B1\", \"B2\", \"C1\", \"C2\"], \"storageKey\": \"language-academy-exam-shell-session-v21-weakness-profile\", \"features\": [\"visible exam shell\", \"level selection\", \"part navigation\", \"B1 hard reading pool\", \"B1 hard listening pool\", \"B1 writing task pool\", \"B1 speaking task pool\", \"Groq examiner for free answers\", \"strict final report\", \"readiness prognosis\", \"critical weakness report\", \"repeat recommendations\", \"no exam release gate\", \"B1 expanded pool\", \"hard edge case detection\", \"visual exam pressure\", \"countdown timer\", \"completion status strip\", \"mobile exam layout\", \"realistic listening mode\", \"browser tts playback\", \"listening repeat limit\", \"locked answers before listening\", \"hidden transcript\", \"strict b1 writing rub"
+    }
+  },
+  "errors": []
+}
