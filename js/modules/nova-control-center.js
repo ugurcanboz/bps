@@ -1,0 +1,31 @@
+/* Novura · Nova Control Center · G54.50.1 */
+(function(root){'use strict';
+var VERSION='G54.50.1-2026-07-12',active=null;
+var STYLE_KEY='novura.novaCompanionStyle.v1';
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]})}
+function readStyle(){try{return localStorage.getItem(STYLE_KEY)||((root.NovuraContextEngine&&root.NovuraContextEngine.load().companionStyle)||'balanced')}catch(e){return'balanced'}}
+function labelStyle(v){return v==='quiet'?'Zurückhaltend':v==='active'?'Aktiv':'Ausgewogen'}
+async function permissionState(name){
+ try{
+  if(name==='notifications')return !('Notification'in root)?'nicht unterstützt':Notification.permission==='granted'?'erlaubt':Notification.permission==='denied'?'abgelehnt':'nicht entschieden';
+  if(!navigator.permissions||!navigator.permissions.query)return'über Browser-Einstellungen prüfbar';
+  var map={location:'geolocation',microphone:'microphone'};var r=await navigator.permissions.query({name:map[name]});
+  return r.state==='granted'?'erlaubt':r.state==='denied'?'abgelehnt':'nicht entschieden';
+ }catch(e){return'über Browser-Einstellungen prüfbar'}
+}
+function icon(name){var m={location:'⌖',microphone:'◉',notifications:'◇'};return m[name]||'•'}
+function shell(){return '<div class="ncc-backdrop" data-ncc-close></div><section class="ncc-dialog" role="dialog" aria-modal="true" aria-labelledby="ncc-title"><header><div><small>Nova & Datenschutz</small><h2 id="ncc-title">Nova kontrollieren</h2><p>Du entscheidest, wie Nova dich begleitet und welche optionalen Funktionen genutzt werden.</p></div><button type="button" class="ncc-close" data-ncc-close aria-label="Schließen">×</button></header><div class="ncc-body"><div class="ncc-section"><h3>Begleitung</h3><p>Nova kann sich zurückhalten oder dich aktiver unterstützen.</p><div class="ncc-segment" role="group" aria-label="Begleitungsstil"><button data-ncc-style="quiet">Zurückhaltend</button><button data-ncc-style="balanced">Ausgewogen</button><button data-ncc-style="active">Aktiv</button></div><div class="ncc-current" data-ncc-current-style></div></div><div class="ncc-section"><h3>Einführung & Tour</h3><div class="ncc-actions"><button type="button" data-ncc-intro>Nova-Einführung erneut starten</button><button type="button" data-ncc-tour>App-Tour erneut starten</button></div></div><div class="ncc-section"><h3>Optionale Rechte</h3><p>Novura kann Browserrechte nicht selbst widerrufen. Änderungen nimmst du in den Geräte- oder Browser-Einstellungen vor.</p><div class="ncc-permissions" data-ncc-permissions><div class="ncc-loading">Status wird geprüft…</div></div></div><div class="ncc-section"><h3>Wetterpersonalisierung</h3><p>Gespeichert wird nur ein grober, zeitlich begrenzter Wetterkontext – niemals dein Standortverlauf.</p><div class="ncc-actions"><button type="button" data-ncc-weather-clear>Wetterkontext löschen</button></div><div class="ncc-note" data-ncc-note aria-live="polite"></div></div></div></section>'}
+function updateStyleUI(){if(!active)return;var s=readStyle();active.querySelectorAll('[data-ncc-style]').forEach(function(b){var on=b.dataset.nccStyle===s;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',on?'true':'false')});var c=active.querySelector('[data-ncc-current-style]');if(c)c.textContent='Aktuell: '+labelStyle(s)}
+async function renderPermissions(){if(!active)return;var box=active.querySelector('[data-ncc-permissions]');var names=['location','microphone','notifications'];var labels={location:'Standort',microphone:'Mikrofon',notifications:'Benachrichtigungen'};var rows=await Promise.all(names.map(async function(n){return{n:n,state:await permissionState(n)}}));if(!active)return;box.innerHTML=rows.map(function(r){return '<div class="ncc-permission"><span class="ncc-permission-icon" aria-hidden="true">'+icon(r.n)+'</span><div><b>'+labels[r.n]+'</b><small>'+esc(r.state)+'</small></div></div>'}).join('')}
+function note(t){if(!active)return;var n=active.querySelector('[data-ncc-note]');if(n)n.textContent=t}
+function close(){if(!active)return;var a=active;active=null;a.remove();document.body.classList.remove('ncc-active')}
+function setStyle(v){try{localStorage.setItem(STYLE_KEY,v)}catch(e){}if(root.NovuraContextEngine)root.NovuraContextEngine.patch({companionStyle:v});updateStyleUI();note('Begleitung auf „'+labelStyle(v)+'“ gesetzt.')}
+function replayIntro(){close();if(root.NovuraGuidedWelcomeUI){root.NovuraGuidedWelcomeUI.resetIntroduction();root.NovuraGuidedWelcomeUI.show({onAuth:function(action){if(root.EGTAuthProfileShell&&typeof root.EGTAuthProfileShell.open==='function')root.EGTAuthProfileShell.open(action)}})}}
+function replayTour(){close();if(root.NovuraProductTourUI){root.NovuraProductTourUI.reset();root.NovuraProductTourUI.showOffer({force:true})}}
+function clearWeather(){if(root.NovuraWeatherContext)root.NovuraWeatherContext.clear();note('Der gespeicherte Wetterkontext wurde gelöscht.')}
+function bind(){active.addEventListener('click',function(e){if(e.target.closest('[data-ncc-close]'))return close();var s=e.target.closest('[data-ncc-style]');if(s)return setStyle(s.dataset.nccStyle);if(e.target.closest('[data-ncc-intro]'))return replayIntro();if(e.target.closest('[data-ncc-tour]'))return replayTour();if(e.target.closest('[data-ncc-weather-clear]'))return clearWeather()});document.addEventListener('keydown',escapeOnce)}
+function escapeOnce(e){if(e.key==='Escape'&&active){document.removeEventListener('keydown',escapeOnce);close()}}
+function open(){if(active)return active;var wrap=document.createElement('div');wrap.className='ncc-overlay';wrap.innerHTML=shell();document.body.appendChild(wrap);document.body.classList.add('ncc-active');active=wrap;bind();updateStyleUI();renderPermissions();var first=wrap.querySelector('[data-ncc-style].is-active')||wrap.querySelector('button');if(first)first.focus();return wrap}
+document.addEventListener('click',function(e){var t=e.target.closest('[data-ui-action="nova-control-center"]');if(!t)return;e.preventDefault();e.stopPropagation();open()},true);
+root.NovuraControlCenter=Object.freeze({version:VERSION,open:open,close:close,isOpen:function(){return!!active},permissionState:permissionState,setStyle:setStyle,clearWeather:clearWeather});
+})(typeof window!=='undefined'?window:globalThis);

@@ -1,0 +1,381 @@
+{
+  "schemaVersion": 1,
+  "phase": "G54.47.15I",
+  "version": "G54.50.2C",
+  "createdAt": "2026-07-12T18:14:21.180Z",
+  "passed": 52,
+  "total": 52,
+  "releaseDecision": "LOCALLY_APPROVED",
+  "limitations": [
+    "Keine Aussage über produktive Firebase-Custom-Claims",
+    "Keine Aussage über Live-App-Check oder Worker-ID-Token-Verifikation",
+    "Keine reale Geräte-, Browser- oder Screenreader-Prüfung",
+    "Kein echter Firestore-Datenexport ohne explizite Übergabe"
+  ],
+  "results": [
+    {
+      "name": "qa/test-g54-46-10-exam-calibration.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.10\",\n  \"ok\": true,\n  \"passed\": 12,\n  \"total\": 12,\n  \"checks\": [\n    {\n      \"name\": \"calibration-engine-loaded\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"all-36-variants-calibrated\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"objective-load-increases-by-level\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"text-load-progresses\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"time-model-monotonic\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"weights-sum-100\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"weighted-final-score\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"part-minimum-cannot-be-compensated\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"helper-mode-caps-prognosis\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"two-variant-evidence-raises-cap\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"english-b2-local-writing-can-pass\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"simulation-snapshot-green\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-11-audio-integration.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.11\",\n  \"ok\": true,\n  \"passed\": 12,\n  \"total\": 12,\n  \"checks\": [\n    {\n      \"name\": \"index-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"sw-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-course\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-exam\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-uses-realism-engine\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-persists-audio-evidence\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-level-replay-policy\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-uses-realism-engine\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-shows-audio-profile\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-diagnostics-expose-audio\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"responsive-css\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"app-version\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-11-audio-realism.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.11\",\n  \"ok\": true,\n  \"passed\": 12,\n  \"total\": 12,\n  \"checks\": [\n    {\n      \"name\": \"engine-version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"profiles-monotonic-rate\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"pauses-decrease-by-level\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"replay-policy\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"explicit-dialogue-segmentation\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"advanced-inferred-speaker-change\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"a1-clear-narrator\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"plan-selects-distinct-voices\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"plan-duration-and-segments\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"play-runs-all-segments\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"diagnostics\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"ios-detection\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-12-audio-regression.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.12\",\n  \"ok\": true,\n  \"passed\": 12,\n  \"total\": 12,\n  \"checks\": [\n    {\n      \"name\": \"index-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"sw-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-course\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-exam\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-uses-realism-engine\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-persists-audio-evidence\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-level-replay-policy\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-uses-realism-engine\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-shows-audio-profile\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-diagnostics-expose-audio\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"responsive-css\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"app-version\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-12-speaking-evidence.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.12\",\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"engine-ready\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"manual-transcript-limited\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"recognition-confidence-not-pronunciation\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"untrusted-audio-downgraded\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"trusted-audio-analysis\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"transcript-fluency-becomes-text-flow\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"audio-scores-only-with-audio\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-12-speaking-integration.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.12\",\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"index-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"sw-exact-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-course\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"load-before-exam-engine\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"ai-null-audio-scores\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"ai-text-flow\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-passes-evidence\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-transparent-disclosure\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"exam-engine-attaches-assessment\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-recognition-evidence\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-text-similarity-label\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"course-not-pronunciation-label\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"ledger-persists-scope\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"current-version\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-13a-worker-security.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.13A\",\n  \"ok\": true,\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"worker-source-present\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"secret-server-side\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"cors-allowlist\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"kv-rate-limit\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"payload-validation\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"request-limits\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"request-id\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"prompt-injection-guard\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"structured-logging\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"client-compatible-endpoints\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-13b-resilience.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.46.13B\",\n  \"ok\": true,\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"worker-version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker-max-attempts\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker-exponential-backoff\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker-retry-after\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker-retryable-statuses\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"client-retry-config\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"client-timeout\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"client-stable-request-id\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"client-no-retry-explicit-4xx\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"fallback-remains-enabled\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-14-e2e.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.50.2C\",\n  \"ok\": true,\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"required-entry-files\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"version-single-source\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"json-validity\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"javascript-syntax\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"html-local-references\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"service-worker-assets\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"language-exam-coverage\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"ai-endpoints-and-fallback\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"admin-security-boundaries\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"pwa-minimum\",\n      \"ok\": true\n    }\n  ],\n  \"generatedAt\": \"2026-07-12T18:14:12.670Z\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-7-review-engine.js",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS engine version and schema\nPASS brand-new task is not review debt\nPASS catalog of 2726 untouched tasks produces zero due reviews\nPASS wrong answer is due immediately\nPASS first correct answer schedules future review, not immediate debt\nPASS scheduled review becomes due only after date is reached\nPASS manual mark is due even before first answer\nPASS unmarking untouched task returns it to new\nPASS correct answer after error resolves immediate debt and schedules one day\nPASS repeated correct reviews increase interval\nPASS paused review is excluded\nPASS legacy unanswered record stays new\nPASS legacy wrong answer without due date remains due\nPASS legacy correct answer without due date is not invented as due\nPASS mixed review stats count only due eligible entries\n{\n  \"ok\": true,\n  \"passed\": 15,\n  \"version\": \"G54.46.7-LANGUAGE-REVIEW\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-7-review-integration.js",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS review engine loaded exactly once before language course\nPASS review engine cached exactly once by service worker\nPASS English stats skip unanswered catalog tasks\nPASS English due list requires stored answer and due classification\nPASS German review no longer inserts next unfinished task\nPASS English unified review no longer includes untouched tasks\nPASS manual English review action exists\nPASS review session practiced action updates source data\nPASS empty review explains zero-debt rule\nPASS progress schema upgraded\nPASS new user guidance starts learning instead of review debt\nPASS review UI distinguishes due and marked from new tasks\nPASS public review diagnostics available\n{\n  \"ok\": true,\n  \"passed\": 13\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-8-language-content.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"internal-content-gate\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"no-active-placeholders-or-broken-templates\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"english-options-valid\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-b1-rich-content\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-b2-rich-content\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-c1-rich-content\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-c1-advanced-entry-not-vocabulary-only\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-c2-rich-content\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-c2-advanced-entry-not-vocabulary-only\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"en-c1-advanced-balance\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"en-c2-advanced-balance\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-8-level-differentiation.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"validator-green\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"a1-positive-fixture-passes\",\n      \"ok\": true,\n      \"details\": {\n        \"score\": 71,\n        \"words\": 31\n      }\n    },\n    {\n      \"name\": \"simple-answer-fails-b2\",\n      \"ok\": true,\n      \"details\": {\n        \"score\": 20\n      }\n    },\n    {\n      \"name\": \"structured-b2-passes\",\n      \"ok\": true,\n      \"details\": {\n        \"score\": 83,\n        \"words\": 185\n      }\n    },\n    {\n      \"name\": \"b2-harder-than-a1\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-9-didactic-integration.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"engine-index-exactly-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"engine-before-course-module\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"engine-service-worker-exactly-once\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"english-plan-rendered\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"german-plan-rendered\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"guided-targets-present\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"save-route-present\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"scroll-route-present\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"micro-feedback-english\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"micro-feedback-german\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"diagnostics-included\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"responsive-css\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-46-9-didactics.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"passed\": 14,\n  \"failed\": [],\n  \"summary\": {\n    \"plans\": 124,\n    \"german\": 60,\n    \"english\": 64,\n    \"minimumWords\": {\n      \"a1\": 3,\n      \"a2\": 8,\n      \"b1\": 20,\n      \"b2\": 45,\n      \"c1\": 70,\n      \"c2\": 90\n    }\n  }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-12a-info-center.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.12E\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"Portfolio-Modul vorhanden\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Portfolio-CSS vorhanden\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Index lädt Modul und CSS\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Einstellungen verlinken Informationscenter\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Router verarbeitet Info- und Legal-Aktionen\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Meine Reise enthält Kerndaten\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Rechtscenter enthält Pflichtbereiche\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Keine erfundene Kontaktadresse\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Service Worker cached neue Dateien\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Version konsistent\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-12b-portfolio.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Operator-Konfiguration vorhanden\nPASS Operator-Konfiguration geladen\nPASS Operator-Konfiguration im Cache\nPASS Portfolio enthält veredelte Hero-Struktur\nPASS Timeline enthält acht Stationen\nPASS Kontakt bietet Feedback und konfigurierbare Mail\nPASS Kontaktdaten stammen aus zentraler Konfiguration\nPASS Rechtlicher Betreiber-Check vorhanden\nPASS Impressum nutzt zentrale Konfiguration\nPASS Responsive und reduzierte Bewegung vorhanden\n10/10 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-12c-icons-legal.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.12E\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"SVG Icon-System geladen\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Info-Center ohne Emoji-Icons\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Kontextbezogene Icons vorhanden\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Betreiberdaten eingetragen\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Entwicklungsstatus klar\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Transparenzcenter integriert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Icon CSS responsiv und darkmode-kompatibel\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"App-Icon-Script in Index und Cache\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Version konsistent\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Keine externen Icon-Abhängigkeiten\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-14a-production-config.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.14A\",\n  \"passed\": 13,\n  \"total\": 13,\n  \"checks\": [\n    [\n      \"runtime environment exists\",\n      true\n    ],\n    [\n      \"environment development\",\n      true\n    ],\n    [\n      \"environment beta\",\n      true\n    ],\n    [\n      \"environment production\",\n      true\n    ],\n    [\n      \"no obsolete test channel\",\n      true\n    ],\n    [\n      \"current version\",\n      true\n    ],\n    [\n      \"worker environment aware\",\n      true\n    ],\n    [\n      \"firebase environment aware\",\n      true\n    ],\n    [\n      \"worker env.beta\",\n      true\n    ],\n    [\n      \"worker env.production\",\n      true\n    ],\n    [\n      \"no obsolete worker test env\",\n      true\n    ],\n    [\n      \"firebaserc example\",\n      true\n    ],\n    [\n      \"service worker caches runtime env\",\n      true\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-14b-release-channels.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.14B\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"exactly three runtime channels\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"public override blocked\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"runtime loads before app config\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"release guard loaded\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"non-production badge implemented\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"deployment mismatch guard implemented\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker only beta and production envs\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"version consistent\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"new assets cached\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"accessible status semantics\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-14c-backup.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.14C\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"name\": \"Backup-Generator vorhanden\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"SHA-256 Manifest\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Leere Firebase-Exporte blockiert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Firebase nicht fälschlich als gesichert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Backup-Ausgabe ausgeschlossen\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Verifier prüft SHA-256\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Rollback App dokumentiert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Rollback Worker dokumentiert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Firebase Restore abgesichert\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Produktions-Sicherheitsregel\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-14d-app-monitoring.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"suite\": \"G54.47.14D app monitoring\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    \"global errors\",\n    \"promise rejection\",\n    \"offline online\",\n    \"audio errors\",\n    \"api failures\",\n    \"exam lifecycle\",\n    \"privacy no messages\",\n    \"loaded\",\n    \"offline cache\",\n    \"worker ingest\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-14e-pwa-update.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.50.2C\",\n  \"passed\": 14,\n  \"total\": 14,\n  \"checks\": [\n    {\n      \"name\": \"version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"atomic core install\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"optional cache tolerant\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"scoped cache cleanup\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"navigation preload\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"network first mutable\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"stale while revalidate assets\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"no-store update files\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"waiting worker activation\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"controller change reload\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"updateViaCache none\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"manager loaded before app\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"no unregister on update\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"service worker cached\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15a-threat-model.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Phase korrekt\nPASS Mindestens 10 Schutzwerte · 10\nPASS Mindestens 8 Vertrauensgrenzen · 8\nPASS Mindestens 20 Bedrohungen · 22\nPASS Eindeutige IDs\nPASS Scores korrekt\nPASS P0/P1-Risiken erfasst\nPASS Release-Blocker erfasst · 6\nPASS Folgephasen B bis J dokumentiert\nPASS Grenzen transparent\nRESULT 10/10\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15b-auth-roles.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.15B\",\n  \"passed\": 11,\n  \"total\": 11,\n  \"checks\": [\n    [\n      \"participant training\",\n      true\n    ],\n    [\n      \"participant no admin\",\n      true\n    ],\n    [\n      \"participant profile\",\n      true\n    ],\n    [\n      \"teacher area\",\n      true\n    ],\n    [\n      \"teacher no role management\",\n      true\n    ],\n    [\n      \"admin area\",\n      true\n    ],\n    [\n      \"admin role management\",\n      true\n    ],\n    [\n      \"untrusted local admin rejected\",\n      true\n    ],\n    [\n      \"anonymous admin rejected\",\n      true\n    ],\n    [\n      \"admin entry calls central guard\",\n      true\n    ],\n    [\n      \"privileged session requires trusted claims\",\n      true\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15c-firestore-security.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.15C\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    [\n      \"rules mirrored\",\n      true\n    ],\n    [\n      \"deny all fallback\",\n      true\n    ],\n    [\n      \"custom claims roles\",\n      true\n    ],\n    [\n      \"verified privileged accounts\",\n      true\n    ],\n    [\n      \"anonymous rejected\",\n      true\n    ],\n    [\n      \"learner subcollections use firebaseUid\",\n      true\n    ],\n    [\n      \"direct performance writes denied\",\n      true\n    ],\n    [\n      \"ticket schema allowlist\",\n      true\n    ],\n    [\n      \"duel schema hardened\",\n      true\n    ],\n    [\n      \"admin privileged writes via backend only\",\n      true\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15d-worker-security.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.50.2C\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"production origin required\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"content type enforced\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"schema allowlist\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"request id sanitized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"production readiness gate\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"native limiter required\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"upstream error redaction\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"strict production vars\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"open auth risk documented\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15e-ai-security.mjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "TAP version 13\n# Subtest: detects prompt override and exfiltration attempts\nok 1 - detects prompt override and exfiltration attempts\n  ---\n  duration_ms: 2.066858\n  type: 'test'\n  ...\n# Subtest: scans history and context, not only current message\nok 2 - scans history and context, not only current message\n  ---\n  duration_ms: 2.102218\n  type: 'test'\n  ...\n# Subtest: wraps untrusted content and neutralizes closing tags\nok 3 - wraps untrusted content and neutralizes closing tags\n  ---\n  duration_ms: 0.563744\n  type: 'test'\n  ...\n# Subtest: rejects unsafe HTML/model leakage\nok 4 - rejects unsafe HTML/model leakage\n  ---\n  duration_ms: 0.725067\n  type: 'test'\n  ...\n# Subtest: normalizes coach output and limits corrections\nok 5 - normalizes coach output and limits corrections\n  ---\n  duration_ms: 0.692687\n  type: 'test'\n  ...\n# Subtest: recalculates speaking score from bounded criteria\nok 6 - recalculates speaking score from bounded criteria\n  ---\n  duration_ms: 0.346621\n  type: 'test'\n  ...\n# Subtest: recalculates examiner pass state instead of trusting model\nok 7 - recalculates examiner pass state instead of trusting model\n  ---\n  duration_ms: 0.301516\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 22.746905\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15f-frontend-security.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"suite\": \"G54.47.15F\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"DOM security module exists\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Event attributes blocked\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"javascript URLs blocked\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"DOM security loaded before app modules\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Result flow sanitizes dynamic HTML\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"QA harness blocked in production\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Production local role pins disabled\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Service worker caches security module\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Version updated\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"No raw document.write in admin\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15g-api-security.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.15G\",\n  \"passed\": 10,\n  \"total\": 10,\n  \"checks\": [\n    {\n      \"name\": \"API security module exists\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Query allowlist implemented\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Replay protection implemented\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Idempotency keys validated\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Method override blocked\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Ambiguous framing blocked\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Worker integrates API security\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Health reports API security version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Safe error codes include API findings\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"Dedicated worker fuzz tests exist\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15h-release-gate.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"suite\": \"G54.47.15H release hardening\",\n  \"passed\": 8,\n  \"total\": 8,\n  \"checks\": [\n    {\n      \"name\": \"current phase version\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"release gate exists\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"secret scan exists\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"rollback guide exists\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"backup copies dynamic rollback name\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"working plan contains 15H\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"release report documented\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"consistency test includes 15H\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-47-15i-production-validation.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.47.15I\",\n  \"passed\": 8,\n  \"total\": 8,\n  \"checks\": [\n    [\n      \"tools/production-validation.mjs\",\n      true\n    ],\n    [\n      \"docs/ROLLBACK-G54.47.15I.md\",\n      true\n    ],\n    [\n      \"version\",\n      true\n    ],\n    [\n      \"release gate included\",\n      true\n    ],\n    [\n      \"functions tests included\",\n      true\n    ],\n    [\n      \"firestore tests included\",\n      true\n    ],\n    [\n      \"workflow validation included\",\n      true\n    ],\n    [\n      \"limitations explicit\",\n      true\n    ]\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-48-0-rebranding-audit.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Scanner ausführbar\nPASS Zielmarke Novura\nPASS Assessments definiert\nPASS Exams definiert\nPASS Slogan korrekt\nPASS Projekt vollständig gescannt\nG54.48.0 Audit-Infrastruktur: 6/6\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-48-1-visible-branding.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Version G54.48.1 or later\nPASS Browser title Novura\nPASS PWA name Novura\nPASS Slogan in manifest\nPASS Brand config loaded\nPASS Central brand config\nPASS Gate branding\nPASS Home branding\nPASS Novura Exams visible\nPASS Legacy technical aliases preserved\nRESULT 10/10\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-48-2-brand-system.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Version aktuell\nPASS Brand config loaded\nPASS Novura Learn\nPASS Novura Assessments\nPASS Novura Exams\nPASS Novura Coach\nPASS Novura Progress\nPASS Novura Admin\nPASS Your Journey copy\nPASS Central brand helpers\nPASS Produktnamen sichtbar integriert\nPASS Brand CSS loaded\nRESULT 12/12\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-48-3-technical-migration.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"phase\": \"G54.48.3+\",\n  \"passed\": 9,\n  \"total\": 9,\n  \"status\": \"PASS\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS Version G54.48.4 oder neuer\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\nPASS Keine aktiven BPS/CTC-Dateinamen\nPASS Keine Alias-Schicht\nPASS Entfernt js/core/ctc-admin-report-engine.js\nPASS Entfernt js/core/ctc-lohr-exam-structure-engine.js\nPASS Entfernt js/core/ctc-simulation-stability-engine.js\nPASS Entfernt js/modules/ctc-flowlogic-adapter.js\nPASS Entfernt css/ctc-flowlogic-integration.css\nPASS Entfernt css/ctc-lohr-real-exam.css\nPASS Manifest ohne Legacyfelder\nG54.48.4 11/11\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0a-guided-welcome.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"ok\": true,\n  \"phase\": \"G54.49.0A-regression\",\n  \"version\": \"G54.50.1-2026-07-12\",\n  \"states\": 11\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0b-guided-welcome-ui.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS engine-bound\nPASS auth-actions\nPASS introduction-and-permissions\nPASS privacy-cleanup\nPASS legacy-auth-delegation\nPASS assets-once\nPASS responsive-a11y\nPASS service-worker-assets\nG54.49.0B regression: 8/8 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0c-nova-introduction.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "G54.49.0C regression: PASS\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0d-nova-personality.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "G54.49.0D regression: PASS\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0e-adaptive-nova.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "G54.49.0E Adaptive Nova: PASS\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0f-weather-context.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "G54.49.0F Weather Context: PASS\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0g-nova-micro-personalization.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "G54.49.0G Nova Micro Personalization: PASS\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0h-product-tour.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS engine\nPASS ui\nPASS integration\nPASS transition-copy\nPASS a11y-css\nG54.49.0H regression: 5/5 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0i-final-welcome-gate.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS release-version\nPASS guided-state-machine\nPASS permission-consent-first\nPASS privacy-weather\nPASS groq-guardrails\nPASS product-tour\nPASS a11y\nPASS auth-delegation\nPASS no-coordinate-memory\nPASS assets-integrated\nG54.50.1 Final Welcome Gate: 10/10 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-49-0j-nova-control-center.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "PASS module-and-version\nPASS settings-entry\nPASS introduction-replay\nPASS tour-replay\nPASS companion-control\nPASS permission-transparency\nPASS weather-delete\nPASS privacy\nPASS accessibility\nPASS assets-loaded\nG54.50.1 Nova Control Center: 10/10 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-50-1-code-health.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "✓ no nested release backups\n✓ functions package renamed\n✓ runtime versions synchronized\n✓ code-health audit clean\n✓ critical entry files exist\nG54.50.1 Code Health: 5/5 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-g54-50-2c-bootstrap-performance.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "✓ version is G54.50.2C\n✓ bootstrap callable exists\n✓ bootstrap completes permanently\n✓ normal codes still reject admin\n✓ bootstrap secret is represented only by a SHA-256 digest\n✓ bootstrap UI and client bridge exist\n✓ performance stylesheet loaded last\n✓ expensive hover motion disabled\n✓ legacy cinematic runtime removed\n✓ performance stylesheet precached\nG54.50.2C Bootstrap & Performance: 10/10 bestanden\n",
+      "stderr": ""
+    },
+    {
+      "name": "qa/test-release-consistency.cjs",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"suite\": \"release consistency\",\n  \"version\": \"G54.50.2C\",\n  \"passed\": 8,\n  \"total\": 8,\n  \"checks\": [\n    {\n      \"name\": \"version readable\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"manifest synchronized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"service worker synchronized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"update check synchronized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"worker synchronized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"rollback guide synchronized\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"backup generator reads version dynamically\",\n      \"ok\": true\n    },\n    {\n      \"name\": \"working plan has unique security phases\",\n      \"ok\": true\n    }\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "worker tests",
+      "ok": true,
+      "status": 0,
+      "stdout": "\":true,\"latencyMs\":357}\n# Subtest: complete Groq outage is contained after configured retries\nok 37 - complete Groq outage is contained after configured retries\n  ---\n  duration_ms: 398.078105\n  type: 'test'\n  ...\n# Subtest: invalid request flood never reaches Groq\nok 38 - invalid request flood never reaches Groq\n  ---\n  duration_ms: 25.31725\n  type: 'test'\n  ...\n# {\"event\":\"groq_retry\",\"requestId\":\"retry-test\",\"attempt\":1,\"nextAttempt\":2,\"upstreamStatus\":429,\"delayMs\":113}\n# {\"event\":\"groq_success\",\"requestId\":\"retry-test\",\"path\":\"/api/coach\",\"level\":\"B1\",\"latencyMs\":124,\"model\":\"test-model\",\"totalTokens\":10,\"attempts\":2}\n# {\"event\":\"groq_retry\",\"requestId\":\"retry-test\",\"attempt\":1,\"nextAttempt\":2,\"upstreamStatus\":503,\"delayMs\":113}\n# Subtest: retries 429 then succeeds\nok 39 - retries 429 then succeeds\n  ---\n  duration_ms: 223.591624\n  type: 'test'\n  ...\n# {\"event\":\"groq_retry\",\"requestId\":\"retry-test\",\"attempt\":2,\"nextAttempt\":3,\"upstreamStatus\":503,\"delayMs\":216}\n# {\"event\":\"groq_error\",\"requestId\":\"retry-test\",\"path\":\"/api/coach\",\"status\":502,\"error\":\"INTERNAL_ERROR\",\"retryable\":true,\"latencyMs\":335}\n# {\"event\":\"groq_error\",\"requestId\":\"retry-test\",\"path\":\"/api/coach\",\"status\":400,\"error\":\"INTERNAL_ERROR\",\"retryable\":false,\"latencyMs\":2}\n# Subtest: retries 5xx up to configured maximum\nok 40 - retries 5xx up to configured maximum\n  ---\n  duration_ms: 336.930031\n  type: 'test'\n  ...\n# Subtest: does not retry non-retryable 400\nok 41 - does not retry non-retryable 400\n  ---\n  duration_ms: 2.683376\n  type: 'test'\n  ...\n# Subtest: production rejects missing browser origin for AI routes\nok 42 - production rejects missing browser origin for AI routes\n  ---\n  duration_ms: 94.60902\n  type: 'test'\n  ...\n# Subtest: health remains available to originless probes\nok 43 - health remains available to originless probes\n  ---\n  duration_ms: 2.235862\n  type: 'test'\n  ...\n# Subtest: JSON endpoints reject wrong content type\nok 44 - JSON endpoints reject wrong content type\n  ---\n  duration_ms: 0.985153\n  type: 'test'\n  ...\n# Subtest: unknown and prototype-like payload fields are rejected\nok 45 - unknown and prototype-like payload fields are rejected\n  ---\n  duration_ms: 0.364709\n  type: 'test'\n  ...\n# Subtest: request IDs are restricted to safe characters\nok 46 - request IDs are restricted to safe characters\n  ---\n  duration_ms: 0.26022\n  type: 'test'\n  ...\n# Subtest: production readiness requires critical bindings\nok 47 - production readiness requires critical bindings\n  ---\n  duration_ms: 1.02639\n  type: 'test'\n  ...\n# Subtest: development can use controlled originless requests\nok 48 - development can use controlled originless requests\n  ---\n  duration_ms: 0.191693\n  type: 'test'\n  ...\n# Subtest: content type check only accepts application/json\nok 49 - content type check only accepts application/json\n  ---\n  duration_ms: 0.724175\n  type: 'test'\n  ...\n# Subtest: upstream details are redacted\nok 50 - upstream details are redacted\n  ---\n  duration_ms: 0.660844\n  type: 'test'\n  ...\n# Subtest: production blocks AI when security configuration is incomplete\nok 51 - production blocks AI when security configuration is incomplete\n  ---\n  duration_ms: 2.145475\n  type: 'test'\n  ...\n# Subtest: origin allowlist is exact\nok 52 - origin allowlist is exact\n  ---\n  duration_ms: 1.056797\n  type: 'test'\n  ...\n# Subtest: valid coach payload is normalized\nok 53 - valid coach payload is normalized\n  ---\n  duration_ms: 65.024917\n  type: 'test'\n  ...\n# Subtest: invalid level is rejected\nok 54 - invalid level is rejected\n  ---\n  duration_ms: 0.274635\n  type: 'test'\n  ...\n# Subtest: prompt injection patterns are rejected\nok 55 - prompt injection patterns are rejected\n  ---\n  duration_ms: 0.588608\n  type: 'test'\n  ...\n# Subtest: coach streaming returns SSE and tokens\nok 56 - coach streaming returns SSE and tokens\n  ---\n  duration_ms: 101.47727\n  type: 'test'\n  ...\n1..56\n# tests 56\n# suites 0\n# pass 56\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1016.668656\n",
+      "stderr": ""
+    },
+    {
+      "name": "secret scan",
+      "ok": true,
+      "status": 0,
+      "stdout": "{\n  \"suite\": \"secret scan\",\n  \"passed\": 1,\n  \"total\": 1,\n  \"findings\": []\n}\n",
+      "stderr": ""
+    }
+  ]
+}

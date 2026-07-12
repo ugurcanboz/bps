@@ -1,0 +1,9 @@
+{
+  "version": "G54.50.2C-2026-07-12",
+  "latest": "G54.50.2C-2026-07-12",
+  "required": true,
+  "force": false,
+  "label": "G54.50.2C: Einmaliger Admin-Bootstrap und Full-App-Performance-Stabilisierung",
+  "build": "G54.50.2C-2026-07-12",
+  "cache": "egt-trainer-g54-50-2c"
+}

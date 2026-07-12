@@ -1,0 +1,67 @@
+{
+  "phase": "G54.46.9",
+  "ok": true,
+  "checks": [
+    {
+      "name": "engine-index-exactly-once",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "engine-before-course-module",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "engine-service-worker-exactly-once",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "english-plan-rendered",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "german-plan-rendered",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "guided-targets-present",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "save-route-present",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "scroll-route-present",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "micro-feedback-english",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "micro-feedback-german",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "diagnostics-included",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "responsive-css",
+      "ok": true,
+      "details": null
+    }
+  ],
+  "checkedAt": "2026-07-12T18:14:14.340Z"
+}
