@@ -1,0 +1,298 @@
+{
+  "phase": "G54.46.8",
+  "ok": true,
+  "checks": [
+    {
+      "name": "validator-green",
+      "ok": true
+    },
+    {
+      "name": "a1-positive-fixture-passes",
+      "ok": true,
+      "details": {
+        "score": 71,
+        "words": 31
+      }
+    },
+    {
+      "name": "simple-answer-fails-b2",
+      "ok": true,
+      "details": {
+        "score": 20
+      }
+    },
+    {
+      "name": "structured-b2-passes",
+      "ok": true,
+      "details": {
+        "score": 83,
+        "words": 185
+      }
+    },
+    {
+      "name": "b2-harder-than-a1",
+      "ok": true
+    }
+  ],
+  "engineResult": {
+    "ok": true,
+    "phase": "G54.46.10",
+    "checks": [
+      {
+        "name": "difficulty-rules-valid",
+        "ok": true,
+        "details": [
+          {
+            "name": "A1-vs-B2-writing-gap",
+            "ok": true
+          },
+          {
+            "name": "A1-vs-B2-speaking-gap",
+            "ok": true
+          },
+          {
+            "name": "B2-has-argumentation",
+            "ok": true
+          },
+          {
+            "name": "A1-keeps-simple-communication",
+            "ok": true
+          },
+          {
+            "name": "six-levels-defined",
+            "ok": true
+          }
+        ]
+      },
+      {
+        "name": "simple-a1-answer-fails-b2",
+        "ok": true,
+        "score": 20,
+        "reasons": [
+          "Antwort deutlich zu kurz.",
+          "Schreibantwort deutlich unter der Niveau-Mindestlänge.",
+          "Antwort wirkt komplett am Thema vorbei.",
+          "Mehrere zentrale Pflichtpunkte fehlen.",
+          "Schreibaufbau/Register nicht prüfungstauglich.",
+          "Formelle Schreibstruktur unvollständig: Text ist nicht ausreichend gegliedert.",
+          "Gute Einzelsprache reicht nicht: zentrale Aufgabe wird inhaltlich nicht erfüllt.",
+          "Fast alle Pflichtpunkte fehlen.",
+          "B2: Umfang liegt unter dem Niveauprofil. Eine A1/A2/B1-Antwort darf hier nicht als B2 bestehen.",
+          "B2: Abwägung/Argumentationsansatz fehlt.",
+          "B2: eigene Position ist nicht klar erkennbar.",
+          "B2: Begründung/Argumentstütze fehlt.",
+          "B2: zu wenige niveaupassende Konnektoren/Strukturmarker.",
+          "B2: konkretes Beispiel fehlt."
+        ]
+      },
+      {
+        "name": "valid-a1-answer-can-pass-a1",
+        "ok": true,
+        "score": 71,
+        "reasons": [
+          "Schreibaufbau/Register nicht prüfungstauglich."
+        ]
+      },
+      {
+        "name": "structured-b2-answer-can-pass-b2",
+        "ok": true,
+        "score": 83,
+        "reasons": []
+      },
+      {
+        "name": "b2-profile-harder-than-a1",
+        "ok": true
+      }
+    ],
+    "samples": {
+      "simpleB2": {
+        "level": "B2",
+        "levelProfile": "B2 · Argumentation, indirekte Aussagen, differenzierte Sprache",
+        "part": "writing",
+        "taskId": "b2-writing-opinion",
+        "language": "de",
+        "wordCount": 10,
+        "minWords": 180,
+        "maxWords": 280,
+        "topicScore": 0,
+        "lengthScore": 4,
+        "structureScore": 45,
+        "lexicalDiversityScore": 100,
+        "writingStructure": {
+          "greeting": true,
+          "closing": false,
+          "polite": false,
+          "subject": true,
+          "paragraphLike": false,
+          "registerNeeded": false,
+          "argumentativeText": true,
+          "informalRisk": false,
+          "demandToneRisk": false,
+          "ok": false,
+          "missing": [
+            "Text ist nicht ausreichend gegliedert"
+          ]
+        },
+        "speakingStructure": null,
+        "requiredScore": 0,
+        "fulfilledRequiredPoints": 0,
+        "totalRequiredPoints": 5,
+        "missingPoints": [
+          "Einleitung",
+          "Chancen",
+          "Risiken",
+          "begründete Meinung",
+          "Schluss"
+        ],
+        "missingCorePoints": 5,
+        "offTopic": true,
+        "passedLocal": false,
+        "rawScore": 20,
+        "score": 20,
+        "capReasons": [
+          "Antwort deutlich zu kurz.",
+          "Schreibantwort deutlich unter der Niveau-Mindestlänge.",
+          "Antwort wirkt komplett am Thema vorbei.",
+          "Mehrere zentrale Pflichtpunkte fehlen.",
+          "Schreibaufbau/Register nicht prüfungstauglich.",
+          "Formelle Schreibstruktur unvollständig: Text ist nicht ausreichend gegliedert.",
+          "Gute Einzelsprache reicht nicht: zentrale Aufgabe wird inhaltlich nicht erfüllt.",
+          "Fast alle Pflichtpunkte fehlen.",
+          "B2: Umfang liegt unter dem Niveauprofil. Eine A1/A2/B1-Antwort darf hier nicht als B2 bestehen.",
+          "B2: Abwägung/Argumentationsansatz fehlt.",
+          "B2: eigene Position ist nicht klar erkennbar.",
+          "B2: Begründung/Argumentstütze fehlt.",
+          "B2: zu wenige niveaupassende Konnektoren/Strukturmarker.",
+          "B2: konkretes Beispiel fehlt."
+        ],
+        "edgeCaseReasons": [
+          "Formelle Schreibstruktur unvollständig: Text ist nicht ausreichend gegliedert.",
+          "Gute Einzelsprache reicht nicht: zentrale Aufgabe wird inhaltlich nicht erfüllt.",
+          "Fast alle Pflichtpunkte fehlen.",
+          "B2: Umfang liegt unter dem Niveauprofil. Eine A1/A2/B1-Antwort darf hier nicht als B2 bestehen.",
+          "B2: Abwägung/Argumentationsansatz fehlt.",
+          "B2: eigene Position ist nicht klar erkennbar.",
+          "B2: Begründung/Argumentstütze fehlt.",
+          "B2: zu wenige niveaupassende Konnektoren/Strukturmarker.",
+          "B2: konkretes Beispiel fehlt."
+        ],
+        "writingStructureScore": 86,
+        "levelSignals": {
+          "wordCount": 10,
+          "sentenceCount": 2,
+          "argumentConnectors": 0,
+          "ownPosition": false,
+          "proContra": false,
+          "example": false,
+          "justification": false
+        }
+      },
+      "validA1": {
+        "level": "A1",
+        "levelProfile": "A1 · elementare Alltagssprache",
+        "part": "writing",
+        "taskId": "a1-writing-message",
+        "language": "de",
+        "wordCount": 31,
+        "minWords": 30,
+        "maxWords": 70,
+        "topicScore": 7,
+        "lengthScore": 100,
+        "structureScore": 78,
+        "lexicalDiversityScore": 90,
+        "writingStructure": {
+          "greeting": true,
+          "closing": false,
+          "polite": true,
+          "subject": false,
+          "paragraphLike": false,
+          "registerNeeded": false,
+          "argumentativeText": false,
+          "informalRisk": false,
+          "demandToneRisk": false,
+          "ok": false,
+          "missing": [
+            "Text ist nicht ausreichend gegliedert"
+          ]
+        },
+        "speakingStructure": null,
+        "requiredScore": 100,
+        "fulfilledRequiredPoints": 4,
+        "totalRequiredPoints": 4,
+        "missingPoints": [],
+        "missingCorePoints": 0,
+        "offTopic": false,
+        "passedLocal": true,
+        "rawScore": 71,
+        "score": 71,
+        "capReasons": [
+          "Schreibaufbau/Register nicht prüfungstauglich."
+        ],
+        "edgeCaseReasons": [],
+        "writingStructureScore": 86,
+        "levelSignals": {
+          "wordCount": 31,
+          "sentenceCount": 4,
+          "argumentConnectors": 0,
+          "ownPosition": false,
+          "proContra": false,
+          "example": false,
+          "justification": false
+        }
+      },
+      "b2Full": {
+        "level": "B2",
+        "levelProfile": "B2 · Argumentation, indirekte Aussagen, differenzierte Sprache",
+        "part": "writing",
+        "taskId": "b2-writing-opinion",
+        "language": "de",
+        "wordCount": 185,
+        "minWords": 180,
+        "maxWords": 280,
+        "topicScore": 62,
+        "lengthScore": 100,
+        "structureScore": 92,
+        "lexicalDiversityScore": 79,
+        "writingStructure": {
+          "greeting": true,
+          "closing": true,
+          "polite": true,
+          "subject": false,
+          "paragraphLike": true,
+          "registerNeeded": false,
+          "argumentativeText": true,
+          "informalRisk": false,
+          "demandToneRisk": false,
+          "ok": true,
+          "missing": []
+        },
+        "speakingStructure": null,
+        "requiredScore": 80,
+        "fulfilledRequiredPoints": 4,
+        "totalRequiredPoints": 5,
+        "missingPoints": [
+          "Einleitung"
+        ],
+        "missingCorePoints": 1,
+        "offTopic": false,
+        "passedLocal": true,
+        "rawScore": 83,
+        "score": 83,
+        "capReasons": [],
+        "edgeCaseReasons": [],
+        "writingStructureScore": 100,
+        "levelSignals": {
+          "wordCount": 185,
+          "sentenceCount": 13,
+          "argumentConnectors": 7,
+          "ownPosition": true,
+          "proContra": true,
+          "example": true,
+          "justification": true
+        }
+      }
+    },
+    "checkedAt": "2026-07-12T19:58:22.965Z"
+  },
+  "checkedAt": "2026-07-12T19:58:22.965Z"
+}

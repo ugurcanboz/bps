@@ -1,0 +1,18 @@
+const fs=require('fs'),path=require('path');
+const ROOT=path.resolve(__dirname,'..');
+const read=f=>fs.readFileSync(path.join(ROOT,f),'utf8');
+const checks=[]; const test=(name,fn)=>{try{fn();checks.push({name,ok:true});}catch(e){checks.push({name,ok:false,error:e.message});}};
+const assert=(v,m)=>{if(!v)throw new Error(m)};
+test('Portfolio-Modul vorhanden',()=>assert(fs.existsSync(path.join(ROOT,'js/modules/info-legal-center.js')),'Modul fehlt'));
+test('Portfolio-CSS vorhanden',()=>assert(fs.existsSync(path.join(ROOT,'css/info-legal-center.css')),'CSS fehlt'));
+test('Index lädt Modul und CSS',()=>{const s=read('index.html');assert(s.includes('info-legal-center.css'),'CSS nicht geladen');assert(s.includes('info-legal-center.js'),'JS nicht geladen')});
+test('Einstellungen verlinken Informationscenter',()=>assert(read('js/ui-home-renderer.js').includes("actionCardHtml('info-center'"),'Einstieg fehlt'));
+test('Router verarbeitet Info- und Legal-Aktionen',()=>{const s=read('js/ui-router.js');assert(s.includes("action.indexOf('info-')"),'Info-Routing fehlt');assert(s.includes("action.indexOf('legal-')"),'Legal-Routing fehlt')});
+test('Meine Reise enthält Kerndaten',()=>{const s=read('js/modules/info-legal-center.js');['Acht Jahre Anlagenführer','Seit April 2025','Bildungsgutschein erhalten','Cyber Security'].forEach(x=>assert(s.includes(x),'Fehlt: '+x))});
+test('Rechtscenter enthält Pflichtbereiche',()=>{const s=read('js/modules/info-legal-center.js');['Impressum','Datenschutzerklärung','Nutzungsbedingungen','KI-Hinweise'].forEach(x=>assert(s.includes(x),'Fehlt: '+x))});
+test('Keine erfundene Kontaktadresse',()=>assert(!/mailto:[^"']+/.test(read('js/modules/info-legal-center.js')),'Erfundene Mail-Adresse gefunden'));
+test('Service Worker cached neue Dateien',()=>{const s=read('service-worker.js');assert(s.includes('info-legal-center.css'),'CSS nicht gecacht');assert(s.includes('info-legal-center.js'),'JS nicht gecacht')});
+test('Version konsistent',()=>{const app=read('js/core/app-config.js');const v=(app.match(/var VERSION = '([^']+)'/)||[])[1];assert(v,'App-Version fehlt');['manifest.json','update-check.json','service-worker.js'].forEach(f=>assert(read(f).includes(v),'Aktuelle Version fehlt in '+f));assert(/G54\.47\.(?:1[3-9]|[2-9]\d)/.test(read('js/modules/info-legal-center.js')),'Feature-Version fehlt oder ist zu alt')});
+const result={phase:'G54.47.12E',passed:checks.filter(x=>x.ok).length,total:checks.length,checks};
+fs.mkdirSync(path.join(ROOT,'release'),{recursive:true});fs.writeFileSync(path.join(ROOT,'release','G54.47.12E_INFO_CENTER_QA.json'),JSON.stringify(result,null,2));
+console.log(JSON.stringify(result,null,2));process.exit(result.passed===result.total?0:1);
