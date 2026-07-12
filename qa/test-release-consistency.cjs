@@ -1,0 +1,18 @@
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const app=read('js/core/app-config.js');
+const version=(app.match(/var VERSION = '([^']+)'/)||[])[1];
+const checks=[]; const ok=(name,value)=>checks.push({name,ok:!!value});
+ok('version readable',/^G54\.\d+\.\d+(?:[A-Z]|\.\d+)?$/.test(version||''));
+ok('manifest synchronized',JSON.parse(read('manifest.json')).version===version);
+ok('service worker synchronized',read('service-worker.js').includes(version));
+ok('update check synchronized',read('update-check.json').includes(version));
+ok('worker synchronized',read('worker/src/index.js').includes(version));
+ok('rollback guide synchronized',fs.existsSync(path.join(root,'docs',`ROLLBACK-${version}.md`)));
+ok('backup generator reads version dynamically',read('tools/release-backup.mjs').includes("app-config.js")&&!read('tools/release-backup.mjs').includes("const version = 'G54"));
+ok('working plan has unique security phases',['15A','15B','15C','15D','15E','15F','15G','15H'].every(x=>read('Working-Plan.md').includes(`## G54.47.${x}`)));
+const failed=checks.filter(x=>!x.ok);
+const result={suite:'release consistency',version,passed:checks.length-failed.length,total:checks.length,checks};
+console.log(JSON.stringify(result,null,2)); process.exit(failed.length?1:0);
