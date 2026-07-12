@@ -1,9 +1,0 @@
-PASS home has Eignungstest-Simulation
-PASS home has Sprachtest-Simulation
-PASS first card does not mention Sprachtest in small
-PASS simulation center language track removed
-PASS language action present
-PASS css language card style
-PASS appconfig version M
-PASS sw cache M
-PASS monster version M
