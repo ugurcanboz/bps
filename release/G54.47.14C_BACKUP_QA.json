@@ -1,0 +1,48 @@
+{
+  "phase": "G54.47.14C",
+  "passed": 6,
+  "total": 10,
+  "ok": false,
+  "checks": [
+    {
+      "name": "Backup-Generator vorhanden",
+      "ok": true
+    },
+    {
+      "name": "SHA-256 Manifest",
+      "ok": true
+    },
+    {
+      "name": "Leere Firebase-Exporte blockiert",
+      "ok": true
+    },
+    {
+      "name": "Firebase nicht fälschlich als gesichert",
+      "ok": true
+    },
+    {
+      "name": "Backup-Ausgabe ausgeschlossen",
+      "ok": true
+    },
+    {
+      "name": "Verifier prüft SHA-256",
+      "ok": true
+    },
+    {
+      "name": "Rollback App dokumentiert",
+      "ok": false
+    },
+    {
+      "name": "Rollback Worker dokumentiert",
+      "ok": false
+    },
+    {
+      "name": "Firebase Restore abgesichert",
+      "ok": false
+    },
+    {
+      "name": "Produktions-Sicherheitsregel",
+      "ok": false
+    }
+  ]
+}
