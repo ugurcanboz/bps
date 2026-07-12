@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "bbq-userdatabase-dev",
+    "beta": "bbq-userdatabase-beta",
+    "production": "bbq-userdatabase"
+  }
+}

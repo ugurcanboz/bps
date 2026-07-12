@@ -1,0 +1,58 @@
+{
+  "phase": "G54.47.15A",
+  "ok": true,
+  "passed": 10,
+  "total": 10,
+  "checks": [
+    {
+      "name": "Phase korrekt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Mindestens 10 Schutzwerte",
+      "ok": true,
+      "detail": "10"
+    },
+    {
+      "name": "Mindestens 8 Vertrauensgrenzen",
+      "ok": true,
+      "detail": "8"
+    },
+    {
+      "name": "Mindestens 20 Bedrohungen",
+      "ok": true,
+      "detail": "22"
+    },
+    {
+      "name": "Eindeutige IDs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Scores korrekt",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "P0/P1-Risiken erfasst",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Release-Blocker erfasst",
+      "ok": true,
+      "detail": "6"
+    },
+    {
+      "name": "Folgephasen B bis J dokumentiert",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Grenzen transparent",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

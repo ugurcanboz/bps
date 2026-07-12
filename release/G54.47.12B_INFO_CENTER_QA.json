@@ -1,0 +1,47 @@
+{
+  "phase": "G54.47.12E",
+  "passed": 10,
+  "total": 10,
+  "checks": [
+    {
+      "name": "Portfolio-Modul vorhanden",
+      "ok": true
+    },
+    {
+      "name": "Portfolio-CSS vorhanden",
+      "ok": true
+    },
+    {
+      "name": "Index lädt Modul und CSS",
+      "ok": true
+    },
+    {
+      "name": "Einstellungen verlinken Informationscenter",
+      "ok": true
+    },
+    {
+      "name": "Router verarbeitet Info- und Legal-Aktionen",
+      "ok": true
+    },
+    {
+      "name": "Meine Reise enthält Kerndaten",
+      "ok": true
+    },
+    {
+      "name": "Rechtscenter enthält Pflichtbereiche",
+      "ok": true
+    },
+    {
+      "name": "Keine erfundene Kontaktadresse",
+      "ok": true
+    },
+    {
+      "name": "Service Worker cached neue Dateien",
+      "ok": true
+    },
+    {
+      "name": "Version konsistent",
+      "ok": true
+    }
+  ]
+}
