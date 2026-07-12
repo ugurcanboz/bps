@@ -1,0 +1,226 @@
+/* =========================================================
+   G51.4 · Appweite UI-Abstände / Button- und Kachel-Polish
+   Ziel:
+   - gleiche Button-Höhen, Hitboxen, Innenabstände und Kachel-Gaps
+   - keine zu eng stehenden Buttons in Sheets, Profil, Analyse, Gate, Coach und Simulation
+   - additive Override-Datei, bewusst zuletzt geladen
+   ========================================================= */
+:root{
+  --ui-gap-2: 6px;
+  --ui-gap-3: 8px;
+  --ui-gap-4: 10px;
+  --ui-gap-5: 12px;
+  --ui-gap-6: 14px;
+  --ui-gap-7: 16px;
+  --ui-gap-8: 18px;
+  --ui-pad-card: clamp(16px, 1.7vw, 24px);
+  --ui-pad-card-sm: clamp(12px, 1.25vw, 16px);
+  --ui-hit: 46px;
+  --ui-hit-sm: 42px;
+  --ui-radius-action: 16px;
+  --ui-radius-panel: 24px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+/* Appweite Button-DNA: ausreichend Höhe, Abstand und keine gequetschte Schrift. */
+:where(button,.btn,.ui-btn,.ui-button,.ui-btn-primary,.ui-btn-info,.ui-sys-btn,.ui-primary,.ui-secondary,.ui-deep-primary,.ui-login-btn,.ui-sheet-close,.update-modal-actions button,.egt-gate-mute,.egt-gate-tile,.egt-gate-submit,.egt-gate-sheet-close,.novura-coach-send,.novura-coach-mic,.novura-coach-close,.novura-coach-dashboard-toggle,.training-sheet-startbar button,.route-action-row button,.qnav-drawer-toggle){
+  min-height: var(--ui-hit-sm);
+  border-radius: var(--ui-radius-action);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: var(--ui-gap-3);
+  line-height:1.15;
+  white-space:normal;
+  text-wrap:balance;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+:where(.btn,.ui-btn,.ui-button,.ui-btn-primary,.ui-btn-info,.ui-sys-btn,.ui-primary,.ui-secondary,.ui-deep-primary,.update-modal-actions button,.training-sheet-startbar button,.route-action-row button){
+  min-height: var(--ui-hit);
+  padding: 0 16px;
+}
+
+:where(.ui-login-btn,.egt-gate-mute){
+  padding: 0 16px !important;
+}
+
+:where(.btn-icon,.ui-sheet-close,.egt-gate-sheet-close,.novura-coach-close,.novura-coach-dashboard-toggle,.novura-coach-mic){
+  width:44px;
+  min-width:44px;
+  height:44px;
+  padding:0 !important;
+  border-radius:14px;
+  flex:0 0 auto;
+}
+
+:where(.novura-coach-close){width:40px;min-width:40px;height:40px;min-height:40px;}
+
+/* Button-Gruppen: nie pressen, immer mit messbarem Rhythmus. */
+:where(.row,.ui-actions,.ui-system-btns,.ui-branch-buttons,.ui-input-group,.result-actions,.update-modal-actions,.up-auth-actions,.training-sheet-startbar,.task-nav,.quiz-footer-row,.learning-footer-row,.route-action-row,.feedback-actions,.egt-gate-form-actions){
+  gap: var(--ui-gap-6) !important;
+}
+
+:where(.row,.result-actions,.update-modal-actions,.training-sheet-startbar,.route-action-row){
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+:where(.result-actions .btn,.row .btn,.update-modal-actions button,.route-action-row button,.route-action-row .btn){
+  flex: 1 1 160px;
+}
+
+/* Karten / Panels: einheitlicher Innenabstand und sichtbare Trennung. */
+:where(.ui-card,.card,.egt-card,.ui-panel,.box,.stat,.tipBox,.reviewItem,.layout-card,.section-card,.settings-card,.cloud-highscore-card,.profile-manager-card,.up-performance-panel,.assessments-userdb-coach-card,.training-mode-panel,.egt-gate-sheet,.update-modal-card){
+  border-radius: var(--ui-radius-panel) !important;
+  padding: var(--ui-pad-card) !important;
+}
+
+:where(.ui-training-area-card,.ui-quick-card,.ui-action-card,.ui-foundation-menu-card,.ui-deep-card,.ui-mod-card,.training-mode-row,.egt-gate-tile,.novura-coach-action,.novura-coach-mode,.novura-coach-stat,.up-duel-status,.up-sync-panel,.ui-branch-btn){
+  gap: var(--ui-gap-5) !important;
+  border-radius: clamp(16px, 1.5vw, 22px) !important;
+}
+
+:where(.ui-training-area-card){
+  padding: clamp(18px, 1.9vw, 24px) clamp(60px, 5vw, 72px) clamp(18px, 1.9vw, 24px) clamp(18px, 1.9vw, 24px) !important;
+}
+
+:where(.ui-quick-card){
+  min-height: 134px !important;
+  padding: 16px 14px !important;
+}
+
+:where(.ui-action-card,.ui-foundation-menu-card,.ui-deep-card){
+  min-height: 96px !important;
+  padding: 16px !important;
+}
+
+/* Grids: gleiche Lücken, keine zufälligen 8/10/18px-Mischungen. */
+:where(.ui-training-area-grid,.ui-quick-grid,.ui-deep-grid,.ui-deep-benefits,.ui-action-card-grid,.ui-foundation-menu-grid,.statsgrid,.up-performance-grid,.assessments-userdb-coach-grid,.ui-branch-sim-grid,.training-mode-list,.training-category-list,.training-sheet-router,.ui-system-btns,.ui-branch-buttons){
+  gap: var(--ui-gap-7) !important;
+}
+
+:where(.ui-deep-pills,.novura-coach-chiprow,.training-row-tags){gap: var(--ui-gap-3) !important;}
+
+/* Sheets und Dialoge: Kopf, Body und Footer in sauberem Raster. */
+:where(.ui-sheet,.ui-deep-sheet,.novura-coach-sheet,.egt-gate-sheet){
+  padding: 0 !important;
+  overflow:hidden !important;
+}
+:where(.ui-sheet-header,.ui-deep-head,.novura-coach-header,.egt-gate-sheet-head){
+  padding: clamp(18px, 2vw, 28px) !important;
+  margin:0 !important;
+  gap: var(--ui-gap-7) !important;
+}
+:where(.ui-sheet-body,.ui-deep-body,.novura-coach-body,.egt-gate-form){
+  padding: clamp(16px, 2vw, 28px) !important;
+}
+:where(.ui-deep-body,.novura-coach-body,.egt-gate-sheet){
+  -webkit-overflow-scrolling:touch;
+}
+
+/* Formulare: gleicher vertikaler Rhythmus und fingerfreundliche Inputs. */
+:where(input,textarea,select,.ui-input,.egt-gate-input){
+  min-height: var(--ui-hit);
+  border-radius: var(--ui-radius-action);
+  padding: 0 14px;
+}
+:where(textarea){padding-top:12px;padding-bottom:12px;line-height:1.35;}
+:where(label,.ui-input-group,.egt-gate-form){gap: var(--ui-gap-4) !important;}
+
+/* Ergebnis / Analyse / Profil: Aktionsbereiche als sauberes Auto-Grid. */
+:where(.ui-system-btns,.ui-branch-buttons){
+  display:grid !important;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr)) !important;
+}
+:where(.ui-system-btns button,.ui-branch-buttons button,.ui-action-card-grid button){
+  width:100%;
+}
+
+/* Gate-Sperrbildschirm: gleiche Kachelhöhe und bessere Lesbarkeit. */
+.egt-gate-tiles{gap: var(--ui-gap-5) !important;}
+.egt-gate-tile{
+  min-height: 64px !important;
+  padding: 14px 16px !important;
+}
+.egt-gate-tile.primary{min-height:72px !important;padding:16px 18px !important;}
+.egt-gate-tile b{line-height:1.18 !important;}
+.egt-gate-tile small{line-height:1.28 !important;}
+.egt-gate-sheet-close{border-radius:14px !important;}
+.egt-gate-submit{min-height:48px !important;padding:0 16px !important;}
+
+/* Coach: kleine Kopfbuttons bekommen endlich klare Hitboxen. */
+.novura-coach-header{align-items:center !important;}
+.novura-coach-footer{gap: var(--ui-gap-5) !important;}
+.novura-coach-send,.novura-coach-mic{min-height:44px !important;}
+.novura-coach-dashboard-toggle{min-height:44px !important;}
+
+/* Bottom-Dock: gleichmäßiger Abstand und Label darf nicht kleben. */
+#egtBottomDock.egt-bottom-dock-g37,#egtBottomDock{
+  gap: 6px !important;
+  padding: 7px !important;
+}
+#egtBottomDock .egt-dock-btn{
+  gap: 4px !important;
+  border-radius: 17px !important;
+}
+#egtBottomDock .egt-dock-label{line-height:1.05 !important;}
+
+/* Simulation: Actions/Antworten behalten die G51.3-Stabilität, werden aber konsistenter. */
+#quiz.training-cockpit .answers,
+#quiz.training-cockpit #answers,
+#quiz.training-cockpit .route-option-grid,
+#quiz.training-cockpit .edv-option-grid{gap: var(--ui-gap-5) !important;}
+#quiz.training-cockpit .answer-card,
+#quiz.training-cockpit .answers button,
+#quiz.training-cockpit .route-option-grid button,
+#quiz.training-cockpit .edv-option-grid button{
+  border-radius: var(--ui-radius-action) !important;
+  min-height: 48px !important;
+  padding: 10px 14px !important;
+}
+#quiz.training-cockpit .task-nav,
+#quiz.training-cockpit .quiz-footer-row,
+#quiz.training-cockpit .learning-footer-row{
+  gap: var(--ui-gap-5) !important;
+}
+#quiz.training-cockpit .task-nav .btn,
+#quiz.training-cockpit .quiz-footer-row .btn,
+#quiz.training-cockpit .learning-footer-row .btn{
+  min-height: 46px !important;
+  padding: 0 14px !important;
+}
+
+/* Kleine Geräte: große Flächen bleiben ordentlich, Buttons werden nicht zu Mini-Chips. */
+@media (max-width:760px){
+  :root{--ui-pad-card:16px;--ui-pad-card-sm:12px;--ui-hit:46px;}
+  :where(.ui-header,.ui-home-scroll,.ui-tab-content){width:calc(100% - 22px) !important;}
+  :where(.ui-training-area-grid,.ui-quick-grid,.ui-deep-grid,.ui-deep-benefits,.ui-action-card-grid,.ui-foundation-menu-grid,.statsgrid,.up-performance-grid,.assessments-userdb-coach-grid,.ui-branch-sim-grid,.training-mode-list,.training-category-list,.training-sheet-router){
+    gap: 12px !important;
+  }
+  :where(.ui-training-area-card){min-height:132px !important;padding:18px 54px 18px 18px !important;}
+  :where(.ui-quick-card){min-height:116px !important;}
+  :where(.ui-deep-head,.ui-sheet-header,.novura-coach-header,.egt-gate-sheet-head){padding:18px !important;}
+  :where(.ui-deep-body,.ui-sheet-body,.novura-coach-body,.egt-gate-form){padding:16px !important;}
+  :where(.result-actions,.row,.route-action-row,.update-modal-actions){display:grid !important;grid-template-columns:1fr !important;}
+  :where(.result-actions .btn,.row .btn,.route-action-row button,.update-modal-actions button){width:100% !important;}
+  .egt-gate-right{padding:22px 18px max(20px,env(safe-area-inset-bottom)) !important;}
+}
+
+@media (max-width:430px){
+  #egtBottomDock.egt-bottom-dock-g37,#egtBottomDock{width:calc(100vw - 14px) !important;gap:3px !important;padding:5px !important;}
+  #egtBottomDock .egt-dock-label{font-size:9.2px !important;}
+  :where(.ui-login-btn){min-width:88px !important;padding:0 12px !important;}
+}
+
+/* G51.4a · Final drawer-toggle hitbox: G51.3c reduced this to 36px while open. */
+body.qnav-drawer-open #qnavDrawerToggle.qnav-drawer-toggle,
+body.qnav-drawer-open.egt-simulation-active #qnavDrawerToggle.qnav-drawer-toggle,
+#qnavDrawerToggle.qnav-drawer-toggle{
+  min-height: 42px !important;
+  height: auto !important;
+  padding: 0 14px !important;
+}

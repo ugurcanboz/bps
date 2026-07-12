@@ -1,0 +1,23 @@
+'use strict';
+const assert=require('assert');
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const read=f=>fs.readFileSync(path.join(root,f),'utf8');
+let n=0;function ok(name,fn){fn();n++;console.log('✓',name);}
+const ui=read('js/modules/guided-welcome-ui.js');
+const css=read('css/guided-welcome.css');
+const sec=read('js/modules/egt-security-context.js');
+const auth=read('js/modules/egt-auth-engine.js');
+const fn=read('functions/index.js');
+ok('release version is G54.50.2E',()=>assert(read('js/core/app-config.js').includes("var VERSION = 'G54.50.2E'")));
+ok('chat messages are appended instead of replacing transcript',()=>{assert(ui.includes("insertAdjacentHTML('beforeend'"));assert(ui.includes('appendCoach'));assert(ui.includes('appendUser'));assert(!ui.includes('c.innerHTML=v.chat'));});
+ok('replay control exists and resets only the current conversation run',()=>{assert(ui.includes('data-nw-replay'));assert(ui.includes('Begrüßung erneut'));assert(ui.includes('replayGreeting'));assert(ui.includes('x.runId+=1'));});
+ok('scrollable readable transcript is accessible',()=>{assert(ui.includes('Gesprächsverlauf mit Nova'));assert(ui.includes('tabindex="0"'));assert(css.includes('max-height:330px'));assert(css.includes('overflow-y:auto'));assert(css.includes('overscroll-behavior:contain'));});
+ok('meaningful user choices are added to transcript',()=>{for(const token of ['Ja, ich bin zum ersten Mal hier.','Ich möchte direkt zum Zugang.','Begleitung: ','location:\'Standort\''])assert(ui.includes(token),token);});
+ok('bootstrap client exception is restricted by function name',()=>{assert(sec.includes("options.allowWithoutAppCheck===true && functionName==='bootstrapAdmin'"));assert(auth.includes("{allowWithoutAppCheck:true}"));});
+ok('bootstrap server exception is restricted to bootstrap callable',()=>{assert(fn.includes('const BOOTSTRAP_CALL_OPTIONS={enforceAppCheck:false'));assert(fn.includes('exports.bootstrapAdmin=onCall(BOOTSTRAP_CALL_OPTIONS'));assert((fn.match(/onCall\(BOOTSTRAP_CALL_OPTIONS/g)||[]).length===1);});
+ok('all other privileged callables retain App Check enforcement',()=>{assert(fn.includes('const CALL_OPTIONS={enforceAppCheck:true'));assert((fn.match(/onCall\(CALL_OPTIONS/g)||[]).length>=3);});
+ok('known production origins are accepted for the bootstrap call',()=>{for(const origin of ['https://ugurcan-boz.github.io','https://assessments-trainer.de','https://www.assessments-trainer.de'])assert(fn.includes(origin),origin);});
+ok('new service worker cache invalidates previous UI',()=>{const sw=read('service-worker.js');assert(sw.includes("var VERSION = 'G54.50.2E-2026-07-12'"));assert(sw.includes("var CACHE_NAME = 'egt-trainer-g54-50-2e'"));});
+console.log(`G54.50.2E Nova Transcript & Bootstrap App Check: ${n}/10 bestanden`);

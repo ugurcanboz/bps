@@ -1,0 +1,145 @@
+/* Novura G54.50.2C · Performance Stability
+   Reduces expensive hover repaints, glass blur and decorative infinite motion.
+   Functional state colors, focus rings, timers, recording and loading indicators remain intact. */
+
+:root{
+  --egt-glass:none;
+  --ap-blur:none;
+  --ui-motion:.10s ease;
+  --egt-anim-fast:.10s ease;
+  --egt-anim-soft:.12s ease;
+  --egt-anim-spring:.12s ease;
+  --egt-shadow-hover:0 12px 28px rgba(0,0,0,.20);
+}
+
+/* Always-visible glass layers are the largest persistent GPU cost. */
+#egtBottomDock,
+.ui-login-btn,
+.novura-coach-dock,
+.ui-mod-card.ui-coach-card .ui-mod-icon,
+.up-auth-panel,
+.ui-d-learning-screen,
+.coach-hero,
+.coach-panel,
+.card,
+.egt-card,
+.btn,
+.nw-card,
+.la-review-session-progress,
+.egt-phase3-head,
+.egt-admin-head,
+.egt-portal-head{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+/* Modal dimming remains, but blur is removed to avoid full-screen repaints. */
+.ui-sheet-backdrop,
+.novura-auth-overlay,
+.novura-coach-backdrop,
+.npt-backdrop,
+.ncc-backdrop,
+.egt-practice-backdrop,
+.egt-warning-popup,
+.egt-blocked-screen,
+.egt-pm-overlay,
+#duellSetupOverlay{
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
+}
+
+/* Hover should change color/border only; no layout/compositor work. */
+button,
+.btn,
+[role="button"],
+a,
+.ui-training-area-card,
+.ui-quick-card,
+.ui-sim-hero-card,
+.ui-deep-card,
+.card,
+.egt-card,
+.python-level-card,
+.training-mode-row,
+.nw-chip,
+.nw-auth,
+.nw-companion{
+  transition-property:background-color,border-color,color,opacity!important;
+  transition-duration:.10s!important;
+  transition-timing-function:ease!important;
+}
+
+@media (hover:hover) and (pointer:fine){
+  button:hover,
+  .btn:hover,
+  [role="button"]:hover,
+  a:hover,
+  .ui-training-area-card:hover,
+  .ui-quick-card:hover,
+  .ui-sim-hero-card:hover,
+  .ui-sim-hero-card.ui-sim-language-hero-card:hover,
+  .ui-deep-card:hover,
+  .card:hover,
+  .egt-card:hover,
+  .egt-card-hover:hover,
+  .python-level-card:hover,
+  .training-mode-row:hover,
+  .nw-chip:hover,
+  .nw-auth:hover,
+  .nw-companion:hover,
+  .edv-node:hover,
+  #quiz .answers button:hover,
+  #quiz .answer-card:hover,
+  #quiz .route-option-grid button:hover,
+  #quiz .edv-option-grid button:hover{
+    transform:none!important;
+    filter:none!important;
+  }
+
+  .ui-hero-cta:hover,
+  .ui-login-btn:hover,
+  .ui-login-btn.is-user-active:hover,
+  .ui-login-btn.is-admin:hover,
+  .ui-training-area-card:hover,
+  .ui-quick-card:hover,
+  .ui-sim-hero-card:hover,
+  .card:hover,
+  .egt-card:hover,
+  .python-level-card:hover{
+    box-shadow:none!important;
+  }
+}
+
+/* Decorative motion had a constant compositor cost even while the user was idle. */
+.ui-hero-target,
+.novura-coach-dock-orb,
+.novura-coach-dock::before,
+.route-stop-dot.show,
+.egt-admin-badge,
+.egt-cloud-state::before{
+  animation:none!important;
+  will-change:auto!important;
+  filter:none!important;
+}
+
+/* Keep click feedback lightweight and stable. */
+button:active,
+.btn:active,
+[role="button"]:active,
+.card:active,
+.egt-card:active{
+  transform:none!important;
+}
+
+/* Isolate the few fixed surfaces that remain on screen. */
+#egtBottomDock,
+.novura-coach-dock,
+.ui-login-btn{
+  contain:layout paint style;
+}
+
+@media (prefers-reduced-motion:reduce){
+  button,.btn,[role="button"],a,.card,.egt-card,.ui-training-area-card,.ui-quick-card{
+    transition:none!important;
+  }
+}
