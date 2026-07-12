@@ -1,7 +1,0 @@
-/* Novura · sichtbare Build-Kennzeichnung · G54.47.14D */
-.egt-release-channel-badge{position:fixed;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));z-index:99990;display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:7px 11px;border:1px solid currentColor;border-radius:999px;background:rgba(2,6,23,.92);color:#fff;font:800 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.08em;box-shadow:0 10px 30px rgba(0,0,0,.3);backdrop-filter:blur(10px)}
-.egt-release-channel-development{color:#bfdbfe}.egt-release-channel-beta{color:#fde68a}
-.egt-release-channel-warning{position:fixed;inset:auto 12px max(58px,calc(env(safe-area-inset-bottom) + 58px)) 12px;z-index:99991;max-width:680px;margin:auto;padding:12px 16px;border:2px solid #ef4444;border-radius:14px;background:#450a0a;color:#fff;font:700 14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center}
-@media (max-width:420px){.egt-release-channel-badge{right:8px;bottom:max(8px,env(safe-area-inset-bottom));min-height:32px;padding:6px 9px;font-size:11px}}
-@media print{.egt-release-channel-badge,.egt-release-channel-warning{display:none!important}}
-@media (forced-colors:active){.egt-release-channel-badge,.egt-release-channel-warning{forced-color-adjust:auto;background:Canvas;color:CanvasText}}
