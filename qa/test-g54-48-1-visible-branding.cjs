@@ -1,0 +1,25 @@
+const fs = require('fs');
+const path = require('path');
+const root = path.resolve(__dirname, '..');
+const read = p => fs.readFileSync(path.join(root,p),'utf8');
+const checks = [];
+function check(name, ok){ checks.push({name,ok:!!ok}); console.log((ok?'PASS ':'FAIL ')+name); }
+const index=read('index.html');
+const manifest=JSON.parse(read('manifest.json'));
+const cfg=read('js/core/app-config.js');
+const gate=read('js/modules/egt-gate-screen.js');
+const home=read('js/ui-home-renderer.js');
+const brand=read('js/core/brand-config.js');
+check('Version G54.48.1 or later', /var VERSION = 'G54\.48\.[1-9][0-9]*'/.test(cfg));
+check('Browser title Novura', index.includes("<title>Novura · One day, you'll thank today.</title>"));
+check('PWA name Novura', manifest.name==='Novura' && manifest.short_name==='Novura');
+check('Slogan in manifest', manifest.description.includes('One day, you’ll thank today.'));
+check('Brand config loaded', index.includes('./js/core/brand-config.js'));
+check('Central brand config', brand.includes("name: 'Novura'") && brand.includes("One day, you'll thank today."));
+check('Gate branding', gate.includes('<b>Novura</b>') && /One day, you\\?'ll thank today\./.test(gate));
+check('Home branding', (home.includes('ui-app-name\">Novura') || home.includes('BRAND.name')) && (home.includes("One day, you\\'ll thank today.") || home.includes('BRAND.slogan')));
+check('Novura Exams visible', home.includes('Novura Exams'));
+check('Legacy technical aliases preserved', brand.includes("novuraExams: 'novuraExams'") && brand.includes("assessments: 'novuraAssessments'"));
+const failed=checks.filter(x=>!x.ok);
+console.log(`RESULT ${checks.length-failed.length}/${checks.length}`);
+if(failed.length) process.exit(1);

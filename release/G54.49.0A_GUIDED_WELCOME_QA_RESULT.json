@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "phase": "G54.49.0A",
+  "version": "G54.49.0A-2026-07-12",
+  "states": 9,
+  "limits": {
+    "coachMessages": 4,
+    "userAnswers": 3,
+    "freeTextPerStep": 1,
+    "inputChars": 300
+  }
+}

@@ -1,0 +1,27 @@
+'use strict';
+const fs=require('fs');
+const assert=require('assert');
+const checks=[];
+function check(name,fn){try{fn();checks.push({name,ok:true});}catch(e){checks.push({name,ok:false,error:e.message});}}
+const index=fs.readFileSync('index.html','utf8');
+const sw=fs.readFileSync('service-worker.js','utf8');
+const exam=fs.readFileSync('js/modules/language-exam-shell.js','utf8');
+const course=fs.readFileSync('js/modules/language-course-entry-module.js','utf8');
+const css=fs.readFileSync('css/language-course.css','utf8');
+check('index-exact-once',()=>assert.equal(index.split('language-audio-realism-engine.js').length-1,1));
+check('sw-exact-once',()=>assert.equal(sw.split('language-audio-realism-engine.js').length-1,1));
+check('load-before-course',()=>assert(index.indexOf('language-audio-realism-engine.js')<index.indexOf('language-course-entry-module.js')));
+check('load-before-exam',()=>assert(index.indexOf('language-audio-realism-engine.js')<index.indexOf('language-exam-shell.js')));
+check('exam-uses-realism-engine',()=>assert(exam.includes("audio.play({id:st.key+'-'+st.plays")));
+check('exam-persists-audio-evidence',()=>{for(const token of ['segmentCount','voiceCount','distinctVoices','estimatedDurationMs','realism'])assert(exam.includes(token),token);});
+check('exam-level-replay-policy',()=>assert(exam.includes('examListeningPolicy(level).maxPlays')));
+check('course-uses-realism-engine',()=>assert(course.includes("audio.play({text:text")));
+check('course-shows-audio-profile',()=>assert(course.includes('data-la-audio-realism="G54.46.11"')));
+check('course-diagnostics-expose-audio',()=>assert(course.includes('audioRealismG544611')));
+check('responsive-css',()=>{assert(css.includes('G54.46.11 · Hörtraining und Audiorealismus'));assert(css.includes('@media(max-width:520px)'));});
+check('app-version',()=>assert(/var VERSION = 'G54\.(?:4[7-9]|[5-9]\d)\./.test(fs.readFileSync('js/core/app-config.js','utf8'))));
+const result={phase:'G54.46.12',ok:checks.every(x=>x.ok),passed:checks.filter(x=>x.ok).length,total:checks.length,checks};
+fs.mkdirSync('release', { recursive: true });
+fs.writeFileSync('release/G54.46.12_AUDIO_INTEGRATION_RESULT.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify(result,null,2));
+process.exit(result.ok?0:1);

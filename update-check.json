@@ -1,0 +1,9 @@
+{
+  "version": "G54.50.2-2026-07-12",
+  "latest": "G54.50.2-2026-07-12",
+  "required": true,
+  "force": false,
+  "label": "G54.50.2: Nova Kontrollzentrum und Berechtigungsverwaltung",
+  "build": "G54.50.2-2026-07-12",
+  "cache": "egt-trainer-g54-49-0f"
+}
