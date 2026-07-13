@@ -1,7 +1,0 @@
-﻿path,name,category,action
-css/ctc-flowlogic-integration.css,ctc-flowlogic-integration.css,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen
-css/ctc-lohr-real-exam.css,ctc-lohr-real-exam.css,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen
-js/core/ctc-admin-report-engine.js,ctc-admin-report-engine.js,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen
-js/core/ctc-lohr-exam-structure-engine.js,ctc-lohr-exam-structure-engine.js,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen
-js/core/ctc-simulation-stability-engine.js,ctc-simulation-stability-engine.js,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen
-js/modules/ctc-flowlogic-adapter.js,ctc-flowlogic-adapter.js,B,Datei-/Ordnername kontrolliert migrieren; Referenzen vorher auflösen

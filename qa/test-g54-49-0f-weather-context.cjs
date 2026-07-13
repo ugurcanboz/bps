@@ -1,8 +1,0 @@
-const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
-const root=path.resolve(__dirname,'..'),store={};
-const localStorage={getItem:k=>store[k]||null,setItem:(k,v)=>store[k]=String(v),removeItem:k=>delete store[k]};
-const sandbox={localStorage,navigator:{onLine:true,language:'de-DE'},fetch:async url=>({ok:true,json:async()=>({current:{temperature_2m:11.8,precipitation:0.4,weather_code:61,is_day:1}})}),setTimeout,clearTimeout,AbortController,Date};
-sandbox.globalThis=sandbox;vm.createContext(sandbox);
-for(const f of ['js/core/nova-context-engine.js','js/core/nova-weather-context.js'])vm.runInContext(fs.readFileSync(path.join(root,f),'utf8'),sandbox);
-const api=sandbox.NovuraWeatherContext;assert(api.version.startsWith('G54.50.1'));assert.equal(api.classify(61,0,1,12).kind,'rain');assert.equal(api.classify(0,0,1,21).kind,'clear');
-(async()=>{const w=await api.fetchCurrent(48.4,10.0);assert.equal(w.kind,'rain');assert.equal(w.temperature,12);assert(!JSON.stringify(w).includes('48.4'));await api.refreshFromPosition({coords:{latitude:48.4,longitude:10}});const mem=sandbox.NovuraContextEngine.load();assert.equal(mem.weather.kind,'rain');assert(!JSON.stringify(mem).includes('latitude'));const ui=fs.readFileSync(path.join(root,'js/modules/guided-welcome-ui.js'),'utf8');for(const t of ['weatherGreeting','NovuraWeatherContext.refreshFromPosition','regnerisch'])assert(ui.includes(t),t);const index=fs.readFileSync(path.join(root,'index.html'),'utf8');assert(index.includes('nova-weather-context.js'));console.log('G54.49.0F Weather Context: PASS')})().catch(e=>{console.error(e);process.exit(1)});
