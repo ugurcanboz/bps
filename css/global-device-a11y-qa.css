@@ -1,0 +1,38 @@
+/* G54.47.13 · Whole-app device/browser/accessibility hardening */
+:root{--egt-touch-min:48px;--egt-focus:3px solid #0b57d0;--egt-readable:72ch}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+body{min-width:320px;overflow-x:hidden}
+img,svg,video,canvas,audio{max-width:100%;height:auto}
+button,input,select,textarea,[role="button"],a.action,a.btn,.btn,.button{min-height:var(--egt-touch-min)}
+button,input,select,textarea{font:inherit}
+button,[role="button"],a[href],input,select,textarea{touch-action:manipulation}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:var(--egt-focus);outline-offset:3px}
+:where(p,li,dd,dt,label,.card,.panel,.sheet,.modal,.dialog){overflow-wrap:anywhere;word-break:normal}
+:where(.legal-text,.info-copy,.content-copy,.reading-text,.question-text,.feedback-text){max-width:var(--egt-readable)}
+[hidden]{display:none!important}
+.sr-only,.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+@media(max-width:420px){
+  body{font-size:max(16px,1rem)}
+  :where(.grid,.cards,.card-grid,.dashboard-grid,.module-grid){grid-template-columns:minmax(0,1fr)!important}
+  :where(.modal,.dialog,.sheet,.deep-sheet){max-width:100vw!important}
+  :where(.modal__content,.dialog__content,.sheet__content,.deep-sheet__content){padding-left:max(14px,env(safe-area-inset-left))!important;padding-right:max(14px,env(safe-area-inset-right))!important}
+}
+@media(max-height:500px) and (orientation:landscape){
+  :where(.modal,.dialog,.sheet,.deep-sheet){max-height:100dvh!important}
+  :where(.modal__content,.dialog__content,.sheet__content,.deep-sheet__content){overflow:auto!important;padding-bottom:max(16px,env(safe-area-inset-bottom))!important}
+}
+@media(pointer:coarse){
+  :where(button,[role="button"],a[href],input[type="checkbox"],input[type="radio"]){min-width:44px;min-height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+@media(prefers-contrast:more){
+  :where(button,.btn,.button,.card,.panel,input,select,textarea){border-width:2px!important}
+  :where(.muted,.subtle,.hint){opacity:1!important}
+}
+@media(forced-colors:active){
+  :where(button,.btn,.button,.card,.panel,input,select,textarea){forced-color-adjust:auto;border:1px solid CanvasText}
+  svg{forced-color-adjust:auto}
+}
+@supports(padding:max(0px)){body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}}

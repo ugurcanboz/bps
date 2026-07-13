@@ -1,0 +1,7 @@
+# Firebase private keys / local bootstrap secrets
+*firebase-adminsdk*.json
+service-account*.json
+**/service-account*.json
+.novura-admin-bootstrap-completed.json
+functions/node_modules/
+node_modules/

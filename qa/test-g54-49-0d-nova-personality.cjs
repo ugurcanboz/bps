@@ -1,0 +1,5 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
+const root=path.resolve(__dirname,'..');const ctx={globalThis:{}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(root,'js/core/guided-welcome-engine.js'),'utf8'),ctx);
+const api=ctx.globalThis.NovuraGuidedWelcomeEngine,e=api.create(),E=e.events,S=e.states;
+assert.equal(api.version.startsWith('G54.50.1'),true);e.dispatch(E.BOOT,{});e.dispatch(E.FIRST_VISIT_ANSWER,{firstVisit:true});e.dispatch(E.INTRO_START,{});e.dispatch(E.NEXT,{});e.dispatch(E.NEXT,{});e.dispatch(E.NEXT,{});e.dispatch(E.PERMISSIONS_DONE,{});assert.equal(e.snapshot().state,S.COMPANION_STYLE);assert.equal(e.dispatch(E.COMPANION_SELECTED,{companionStyle:'balanced'}).ok,true);assert.equal(e.snapshot().state,S.AUTH_CHOICE);assert.equal(e.snapshot().companionStyle,'balanced');
+const ui=fs.readFileSync(path.join(root,'js/modules/guided-welcome-ui.js'),'utf8');for(const token of ['Nova schreibt','data-nw-companion','Zurückhaltend','Ausgewogen','Aktiv','420'])assert(ui.includes(token),token);console.log('G54.49.0D regression: PASS');
