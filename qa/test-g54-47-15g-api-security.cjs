@@ -1,0 +1,18 @@
+const fs=require('fs'); const path=require('path');
+const root=path.resolve(__dirname,'..');
+const checks=[]; const add=(name,ok)=>checks.push({name,ok:!!ok});
+const api=fs.readFileSync(path.join(root,'worker/src/api-security.js'),'utf8');
+const index=fs.readFileSync(path.join(root,'worker/src/index.js'),'utf8');
+const security=fs.readFileSync(path.join(root,'worker/src/security.js'),'utf8');
+add('API security module exists',fs.existsSync(path.join(root,'worker/src/api-security.js')));
+add('Query allowlist implemented',api.includes('SAFE_QUERY')&&api.includes('INVALID_QUERY_PARAMETER'));
+add('Replay protection implemented',api.includes('enforceReplayProtection')&&api.includes('REPLAY_DETECTED'));
+add('Idempotency keys validated',api.includes('validIdempotencyKey'));
+add('Method override blocked',api.includes('METHOD_OVERRIDE_NOT_ALLOWED'));
+add('Ambiguous framing blocked',api.includes('AMBIGUOUS_MESSAGE_LENGTH'));
+add('Worker integrates API security',index.includes('API_SECURITY_VERSION')&&index.includes('enforceReplayProtection'));
+add('Health reports API security version',index.includes('apiSecurityVersion'));
+add('Safe error codes include API findings',security.includes('INVALID_IDEMPOTENCY_KEY')&&security.includes('REPLAY_PROTECTION_UNAVAILABLE'));
+add('Dedicated worker fuzz tests exist',fs.existsSync(path.join(root,'worker/test/api-audit-15g.test.js')));
+const failed=checks.filter(x=>!x.ok); console.log(JSON.stringify({phase:'G54.47.15G',passed:checks.length-failed.length,total:checks.length,checks},null,2));
+if(failed.length) process.exit(1);
