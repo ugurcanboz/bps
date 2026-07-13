@@ -1,0 +1,46 @@
+{
+  "phase": "G54.50.2J",
+  "title": "Appweite Text- und Kartenlayout-Stabilisierung",
+  "createdAt": "2026-07-13T07:00:00+02:00",
+  "sourceScreens": [
+    "Simulation Center mit überlappenden Modus-Badges",
+    "Informationscenter mit optisch asymmetrischer Kopfzeile"
+  ],
+  "findings": [
+    {
+      "severity": "high",
+      "issue": "overflow-wrap:anywhere zerlegte Text in engen Karten in einzelne Zeichen",
+      "fixed": true
+    },
+    {
+      "severity": "high",
+      "issue": "Lange Modus-Badges belegten eine eigene Grid-Spalte und verdrängten Titel/Beschreibung",
+      "fixed": true
+    },
+    {
+      "severity": "medium",
+      "issue": "Deep-Sheet-Kopfzeile hatte ungleiche Außenbereiche und wirkte optisch nicht zentriert",
+      "fixed": true
+    },
+    {
+      "severity": "medium",
+      "issue": "Lange Kontexttitel wurden vorzeitig mit Ellipse abgeschnitten",
+      "fixed": true
+    },
+    {
+      "severity": "medium",
+      "issue": "Feste Drei-Spalten-Raster konnten Karten unter die lesbare Mindestbreite drücken",
+      "fixed": true
+    }
+  ],
+  "automatedQA": {
+    "releaseGate": "59/59",
+    "textLayout": "11/11",
+    "releaseConsistency": "8/8",
+    "status": "LOCALLY_APPROVED"
+  },
+  "limitations": [
+    "Die isolierte Chromium-Umgebung blockiert alle URLs per Organisationsrichtlinie. Daher war keine echte Browser-Screenshot-Neuaufnahme möglich.",
+    "Der visuelle Endtest auf dem produktiven iPhone/Desktop bleibt nach Upload erforderlich."
+  ]
+}

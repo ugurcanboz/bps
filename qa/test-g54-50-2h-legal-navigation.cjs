@@ -1,0 +1,24 @@
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const currentVersion=(read('js/core/app-config.js').match(/var VERSION = '([^']+)'/)||[])[1]||'';
+const currentCache='egt-trainer-'+currentVersion.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+
+const checks=[]; const ok=(name,fn)=>{try{fn();checks.push({name,ok:true});console.log('✓ '+name);}catch(e){checks.push({name,ok:false,error:e.message});console.error('✗ '+name+': '+e.message);}};
+const assert=(v,m)=>{if(!v)throw new Error(m||'assertion failed');};
+const ui=read('js/ui-home-renderer.js');
+const info=read('js/modules/info-legal-center.js');
+const nav=read('js/core/deep-sheet-navigation.js');
+const css=read('css/deep-sheet-navigation.css');
+ok('release version remains in the G54.50.2 line',()=>assert(/^G54\.50\.2[A-Z]$/.test(currentVersion)));
+ok('legacy back callback remains a safe fallback',()=>assert(ui.includes("typeof config.onBack === 'function'")&&ui.includes('config.onBack()')));
+ok('back and close remain separate controls',()=>assert(ui.includes('id=\"uiSheetBack\"')&&ui.includes('id=\"uiSheetClose\"')&&ui.includes('ui-deep-current')));
+ok('legal documents keep explicit parent routes',()=>['legal-terms','legal-privacy','legal-imprint','legal-ai','legal-transparency','legal-operator'].forEach(x=>assert(info.includes("'"+x+"':'info-legal'"),'missing parent '+x)));
+ok('legal overview still maps to information center',()=>assert(info.includes("'info-legal':'info-center'")));
+ok('scroll position remains protected by both legacy and universal navigation',()=>assert(info.includes('scrollPositions')&&nav.includes('scrollTop')&&nav.includes('focusRef')));
+ok('mobile back label remains accessible',()=>assert(css.includes('.ui-deep-back-label')&&css.includes('@media(max-width:350px)')&&ui.includes('aria-label=\"Zurück zu ')));
+ok('navigation avoids blur and infinite animation',()=>assert(!/backdrop-filter|filter\s*:\s*blur|animation\s*:[^;]*infinite/.test(css)));
+ok('H rollback remains available',()=>assert(fs.existsSync(path.join(root,'docs/ROLLBACK-G54.50.2H.md'))));
+ok('service worker cache advanced to I',()=>{const sw=read('service-worker.js');assert(sw.includes(currentVersion+'-2026-07-13')&&sw.includes(currentCache));});
+const failed=checks.filter(x=>!x.ok);console.log(`G54.50.2H→I Legal Navigation Regression: ${checks.length-failed.length}/${checks.length} bestanden`);process.exit(failed.length?1:0);

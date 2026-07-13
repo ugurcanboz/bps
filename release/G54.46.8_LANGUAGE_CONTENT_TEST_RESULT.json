@@ -1,0 +1,764 @@
+{
+  "phase": "G54.46.8",
+  "ok": true,
+  "checks": [
+    {
+      "name": "internal-content-gate",
+      "ok": true,
+      "details": {
+        "phase": "G54.46.8",
+        "version": "G54.46.11-audio-realism",
+        "ok": true,
+        "english": {
+          "levels": {
+            "en-a1": {
+              "ok": true,
+              "lessons": 12,
+              "questions": 394,
+              "minQuestions": 31,
+              "lexicalQuestions": 190,
+              "lexicalRatio": 0.482,
+              "invalid": 0,
+              "duplicates": 0
+            },
+            "en-a2": {
+              "ok": true,
+              "lessons": 12,
+              "questions": 408,
+              "minQuestions": 34,
+              "lexicalQuestions": 192,
+              "lexicalRatio": 0.471,
+              "invalid": 0,
+              "duplicates": 0
+            },
+            "en-b1": {
+              "ok": true,
+              "lessons": 10,
+              "questions": 399,
+              "minQuestions": 39,
+              "lexicalQuestions": 199,
+              "lexicalRatio": 0.499,
+              "invalid": 0,
+              "duplicates": 0
+            },
+            "en-b2": {
+              "ok": true,
+              "lessons": 10,
+              "questions": 420,
+              "minQuestions": 42,
+              "lexicalQuestions": 200,
+              "lexicalRatio": 0.476,
+              "invalid": 0,
+              "duplicates": 0
+            },
+            "en-c1": {
+              "ok": true,
+              "lessons": 10,
+              "questions": 340,
+              "minQuestions": 34,
+              "lexicalQuestions": 100,
+              "lexicalRatio": 0.294,
+              "invalid": 0,
+              "duplicates": 0
+            },
+            "en-c2": {
+              "ok": true,
+              "lessons": 10,
+              "questions": 360,
+              "minQuestions": 36,
+              "lexicalQuestions": 100,
+              "lexicalRatio": 0.278,
+              "invalid": 0,
+              "duplicates": 0
+            }
+          },
+          "issues": []
+        },
+        "german": {
+          "levels": {
+            "a1": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 438,
+              "minTasks": 42,
+              "types": [
+                "multiple_choice",
+                "speaking_practice"
+              ],
+              "invalidLessons": 0
+            },
+            "a2": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 260,
+              "minTasks": 26,
+              "types": [
+                "multiple_choice",
+                "speaking_practice"
+              ],
+              "invalidLessons": 0
+            },
+            "b1": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 430,
+              "minTasks": 43,
+              "types": [
+                "fill_blank",
+                "listening_choice",
+                "sentence_order",
+                "multiple_choice",
+                "true_false",
+                "matching",
+                "speaking_practice"
+              ],
+              "invalidLessons": 0
+            },
+            "b2": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 430,
+              "minTasks": 43,
+              "types": [
+                "fill_blank",
+                "listening_choice",
+                "sentence_order",
+                "multiple_choice",
+                "true_false",
+                "matching",
+                "speaking_practice"
+              ],
+              "invalidLessons": 0
+            },
+            "c1": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 430,
+              "minTasks": 43,
+              "types": [
+                "listening_choice",
+                "sentence_order",
+                "fill_blank",
+                "true_false",
+                "matching",
+                "speaking_practice",
+                "multiple_choice"
+              ],
+              "invalidLessons": 0
+            },
+            "c2": {
+              "ok": true,
+              "lessons": 10,
+              "tasks": 430,
+              "minTasks": 43,
+              "types": [
+                "listening_choice",
+                "sentence_order",
+                "fill_blank",
+                "true_false",
+                "matching",
+                "speaking_practice",
+                "multiple_choice"
+              ],
+              "invalidLessons": 0
+            }
+          },
+          "issues": []
+        },
+        "levelDifferentiation": {
+          "en-a1": {
+            "complexity": 1,
+            "ok": true
+          },
+          "en-a2": {
+            "complexity": 2,
+            "ok": true
+          },
+          "en-b1": {
+            "complexity": 3,
+            "ok": true
+          },
+          "en-b2": {
+            "complexity": 4,
+            "ok": true
+          },
+          "en-c1": {
+            "complexity": 5,
+            "ok": true
+          },
+          "en-c2": {
+            "complexity": 6,
+            "ok": true
+          }
+        },
+        "checks": [
+          {
+            "name": "english-six-levels",
+            "ok": true
+          },
+          {
+            "name": "german-six-levels",
+            "ok": true
+          },
+          {
+            "name": "no-placeholders-or-broken-templates",
+            "ok": true
+          },
+          {
+            "name": "advanced-lexical-ratio-controlled",
+            "ok": true
+          },
+          {
+            "name": "german-b1-c2-rich-content-preserved",
+            "ok": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "no-active-placeholders-or-broken-templates",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "english-options-valid",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "german-b1-rich-content",
+      "ok": true,
+      "details": [
+        {
+          "lesson": "b1-opinions-discussion",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-work-communication",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-experience-past",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-problems-solutions",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-media-information",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-education-plans",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-travel-report",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-health-lifestyle",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-official-service",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b1-future-goals",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        }
+      ]
+    },
+    {
+      "name": "german-b2-rich-content",
+      "ok": true,
+      "details": [
+        {
+          "lesson": "b2-work-applications",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-workplace-conflict",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-arguments-debate",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-media-society",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-education-career",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-environment-consumption",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-health-society",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-digitalization-ai",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-culture-integration",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "b2-formal-writing-speaking",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        }
+      ]
+    },
+    {
+      "name": "german-c1-rich-content",
+      "ok": true,
+      "details": [
+        {
+          "lesson": "c1-academic-argumentation",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-nuanced-opinion",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-complex-texts",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-professional-negotiation",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-formal-correspondence",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-social-debate",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-science-technology",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-economy-work",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-cultural-interpretation",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c1-presentation-rhetoric",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        }
+      ]
+    },
+    {
+      "name": "german-c1-advanced-entry-not-vocabulary-only",
+      "ok": true,
+      "details": [
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice"
+      ]
+    },
+    {
+      "name": "german-c2-rich-content",
+      "ok": true,
+      "details": [
+        {
+          "lesson": "c2-nuance-mastery",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-register-style",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-argument-analysis",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-rhetorical-impact",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-specialized-transfer",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-implicit-meaning",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-literary-cultural-critique",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-scientific-synthesis",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-diplomacy-negotiation",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        },
+        {
+          "lesson": "c2-communication-mastery",
+          "count": 43,
+          "speaking": 8,
+          "types": 7
+        }
+      ]
+    },
+    {
+      "name": "german-c2-advanced-entry-not-vocabulary-only",
+      "ok": true,
+      "details": [
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice",
+        "listening_choice"
+      ]
+    },
+    {
+      "name": "en-c1-advanced-balance",
+      "ok": true,
+      "details": {
+        "ok": true,
+        "lessons": 10,
+        "questions": 340,
+        "minQuestions": 34,
+        "lexicalQuestions": 100,
+        "lexicalRatio": 0.294,
+        "invalid": 0,
+        "duplicates": 0
+      }
+    },
+    {
+      "name": "en-c2-advanced-balance",
+      "ok": true,
+      "details": {
+        "ok": true,
+        "lessons": 10,
+        "questions": 360,
+        "minQuestions": 36,
+        "lexicalQuestions": 100,
+        "lexicalRatio": 0.278,
+        "invalid": 0,
+        "duplicates": 0
+      }
+    }
+  ],
+  "contentReport": {
+    "phase": "G54.46.8",
+    "version": "G54.46.11-audio-realism",
+    "ok": true,
+    "english": {
+      "levels": {
+        "en-a1": {
+          "ok": true,
+          "lessons": 12,
+          "questions": 394,
+          "minQuestions": 31,
+          "lexicalQuestions": 190,
+          "lexicalRatio": 0.482,
+          "invalid": 0,
+          "duplicates": 0
+        },
+        "en-a2": {
+          "ok": true,
+          "lessons": 12,
+          "questions": 408,
+          "minQuestions": 34,
+          "lexicalQuestions": 192,
+          "lexicalRatio": 0.471,
+          "invalid": 0,
+          "duplicates": 0
+        },
+        "en-b1": {
+          "ok": true,
+          "lessons": 10,
+          "questions": 399,
+          "minQuestions": 39,
+          "lexicalQuestions": 199,
+          "lexicalRatio": 0.499,
+          "invalid": 0,
+          "duplicates": 0
+        },
+        "en-b2": {
+          "ok": true,
+          "lessons": 10,
+          "questions": 420,
+          "minQuestions": 42,
+          "lexicalQuestions": 200,
+          "lexicalRatio": 0.476,
+          "invalid": 0,
+          "duplicates": 0
+        },
+        "en-c1": {
+          "ok": true,
+          "lessons": 10,
+          "questions": 340,
+          "minQuestions": 34,
+          "lexicalQuestions": 100,
+          "lexicalRatio": 0.294,
+          "invalid": 0,
+          "duplicates": 0
+        },
+        "en-c2": {
+          "ok": true,
+          "lessons": 10,
+          "questions": 360,
+          "minQuestions": 36,
+          "lexicalQuestions": 100,
+          "lexicalRatio": 0.278,
+          "invalid": 0,
+          "duplicates": 0
+        }
+      },
+      "issues": []
+    },
+    "german": {
+      "levels": {
+        "a1": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 438,
+          "minTasks": 42,
+          "types": [
+            "multiple_choice",
+            "speaking_practice"
+          ],
+          "invalidLessons": 0
+        },
+        "a2": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 260,
+          "minTasks": 26,
+          "types": [
+            "multiple_choice",
+            "speaking_practice"
+          ],
+          "invalidLessons": 0
+        },
+        "b1": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 430,
+          "minTasks": 43,
+          "types": [
+            "fill_blank",
+            "listening_choice",
+            "sentence_order",
+            "multiple_choice",
+            "true_false",
+            "matching",
+            "speaking_practice"
+          ],
+          "invalidLessons": 0
+        },
+        "b2": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 430,
+          "minTasks": 43,
+          "types": [
+            "fill_blank",
+            "listening_choice",
+            "sentence_order",
+            "multiple_choice",
+            "true_false",
+            "matching",
+            "speaking_practice"
+          ],
+          "invalidLessons": 0
+        },
+        "c1": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 430,
+          "minTasks": 43,
+          "types": [
+            "listening_choice",
+            "sentence_order",
+            "fill_blank",
+            "true_false",
+            "matching",
+            "speaking_practice",
+            "multiple_choice"
+          ],
+          "invalidLessons": 0
+        },
+        "c2": {
+          "ok": true,
+          "lessons": 10,
+          "tasks": 430,
+          "minTasks": 43,
+          "types": [
+            "listening_choice",
+            "sentence_order",
+            "fill_blank",
+            "true_false",
+            "matching",
+            "speaking_practice",
+            "multiple_choice"
+          ],
+          "invalidLessons": 0
+        }
+      },
+      "issues": []
+    },
+    "levelDifferentiation": {
+      "en-a1": {
+        "complexity": 1,
+        "ok": true
+      },
+      "en-a2": {
+        "complexity": 2,
+        "ok": true
+      },
+      "en-b1": {
+        "complexity": 3,
+        "ok": true
+      },
+      "en-b2": {
+        "complexity": 4,
+        "ok": true
+      },
+      "en-c1": {
+        "complexity": 5,
+        "ok": true
+      },
+      "en-c2": {
+        "complexity": 6,
+        "ok": true
+      }
+    },
+    "checks": [
+      {
+        "name": "english-six-levels",
+        "ok": true
+      },
+      {
+        "name": "german-six-levels",
+        "ok": true
+      },
+      {
+        "name": "no-placeholders-or-broken-templates",
+        "ok": true
+      },
+      {
+        "name": "advanced-lexical-ratio-controlled",
+        "ok": true
+      },
+      {
+        "name": "german-b1-c2-rich-content-preserved",
+        "ok": true
+      }
+    ]
+  },
+  "activeTextEntries": 5261,
+  "checkedAt": "2026-07-13T06:54:05.024Z"
+}

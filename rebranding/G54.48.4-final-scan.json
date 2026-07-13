@@ -1,0 +1,355 @@
+{
+  "generatedAt": "2026-07-13T06:54:08.257Z",
+  "phase": "G54.48.4",
+  "targetBrand": "Novura",
+  "targetAssessmentBrand": "Novura Assessments",
+  "targetExamBrand": "Novura Exams",
+  "slogan": "One day, you'll thank today.",
+  "summary": {
+    "filesScanned": 455,
+    "activeContentHits": 0,
+    "historicalContentHits": 42,
+    "activeFilenameHits": 0,
+    "historicalFilenameHits": 0
+  },
+  "activeHits": [],
+  "historicalHits": [
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "Working-Plan.md",
+      "line": 842,
+      "historical": true,
+      "context": "- Keine aktiven Nutzer oder produktiven Altstände: technische BPS-/CTC-Schlüssel vollständig auf Novura Assessments und Novura Exams normalisiert."
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Schl",
+      "file": "Working-Plan.md",
+      "line": 842,
+      "historical": true,
+      "context": "- Keine aktiven Nutzer oder produktiven Altstände: technische BPS-/CTC-Schlüssel vollständig auf Novura Assessments und Novura Exams normalisiert."
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Dateien",
+      "file": "Working-Plan.md",
+      "line": 843,
+      "historical": true,
+      "context": "- Alte CTC-Dateien und die Alias-Schicht entfernt."
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "Working-Plan.md",
+      "line": 846,
+      "historical": true,
+      "context": "- Abschluss nur bei vollständigem Release-Gate und 0 aktiven BPS-/CTC-Treffern."
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Treffern",
+      "file": "Working-Plan.md",
+      "line": 846,
+      "historical": true,
+      "context": "- Abschluss nur bei vollständigem Release-Gate und 0 aktiven BPS-/CTC-Treffern."
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "docs/ROLLBACK-G54.48.4.md",
+      "line": 15,
+      "historical": true,
+      "context": "Da vor dieser Phase keine aktiven Nutzerbestände vorhanden waren, ist keine Rückmigration alter BPS- oder CTC-Schlüssel erforderlich."
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Schl",
+      "file": "docs/ROLLBACK-G54.48.4.md",
+      "line": 15,
+      "historical": true,
+      "context": "Da vor dieser Phase keine aktiven Nutzerbestände vorhanden waren, ist keine Rückmigration alter BPS- oder CTC-Schlüssel erforderlich."
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Inhaltstreffer",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Dateinamen",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-admin",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-lohr",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-simulation",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-flowlogic",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-flowlogic",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-lohr",
+      "file": "qa/test-g54-48-4-full-legacy-cleanup.cjs",
+      "line": 1,
+      "historical": true,
+      "context": "const fs=require('fs'),path=require('path'),cp=require('child_process');const root=path.resolve(__dirname,'..'),checks=[];const check=(n,v)=>{checks.push({n,ok:!!v});console.log((v?'PASS ':'FAIL ')+n)};cp.execFileSync(process.execPath,[path"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Inhaltstreffer",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Dateinamen",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-admin",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-lohr",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-simulation",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-flowlogic",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-flowlogic",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc-lohr",
+      "file": "release/G54.47.15I_RELEASE_GATE.json",
+      "line": 272,
+      "historical": true,
+      "context": "\"stdout\": \"PASS Version G54.48.4 oder neuer\\nPASS Keine aktiven BPS/CTC-Inhaltstreffer\\nPASS Keine aktiven BPS/CTC-Dateinamen\\nPASS Keine Alias-Schicht\\nPASS Entfernt js/core/ctc-admin-report-engine.js\\nPASS Entfernt js/core/ctc-lohr-exam-s"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 10,
+      "historical": true,
+      "context": "- Prüfung auf JavaScript-Laufzeitfehler, Konsolenfehler, horizontale Überläufe, Karten-/Button-Überlagerungen, fehlende Engines, alte sichtbare BPS-/CTC-Bezeichnungen und auffällige Touch-Ziele"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Bezeichnungen",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 10,
+      "historical": true,
+      "context": "- Prüfung auf JavaScript-Laufzeitfehler, Konsolenfehler, horizontale Überläufe, Karten-/Button-Überlagerungen, fehlende Engines, alte sichtbare BPS-/CTC-Bezeichnungen und auffällige Touch-Ziele"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 23,
+      "historical": true,
+      "context": "- 0 sichtbare BPS-/CTC-Bezeichnungen"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Bezeichnungen",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 23,
+      "historical": true,
+      "context": "- 0 sichtbare BPS-/CTC-Bezeichnungen"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 43,
+      "historical": true,
+      "context": "Die technische Umbenennung von BPS/CTC zu Novura Assessments/Novura Exams ist vollständig. In aktiven Laufzeitdateien und sichtbaren Oberflächen bestehen keine alten Markenreferenzen mehr. Die App ist lokal funktional und visuell konsistent"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC",
+      "file": "release/G54.48.4-FULL-USER-QA.md",
+      "line": 43,
+      "historical": true,
+      "context": "Die technische Umbenennung von BPS/CTC zu Novura Assessments/Novura Exams ist vollständig. In aktiven Laufzeitdateien und sichtbaren Oberflächen bestehen keine alten Markenreferenzen mehr. Die App ist lokal funktional und visuell konsistent"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.48.4_LEGACY_CLEANUP_REPORT.md",
+      "line": 4,
+      "historical": true,
+      "context": "- Aktive BPS-/CTC-Inhaltstreffer: 0"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Inhaltstreffer",
+      "file": "release/G54.48.4_LEGACY_CLEANUP_REPORT.md",
+      "line": 4,
+      "historical": true,
+      "context": "- Aktive BPS-/CTC-Inhaltstreffer: 0"
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "release/G54.48.4_LEGACY_CLEANUP_REPORT.md",
+      "line": 5,
+      "historical": true,
+      "context": "- Aktive BPS-/CTC-Dateinamen: 0"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Dateinamen",
+      "file": "release/G54.48.4_LEGACY_CLEANUP_REPORT.md",
+      "line": 5,
+      "historical": true,
+      "context": "- Aktive BPS-/CTC-Dateinamen: 0"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC-Dateiduplikate",
+      "file": "release/G54.48.4_LEGACY_CLEANUP_REPORT.md",
+      "line": 10,
+      "historical": true,
+      "context": "- Alte CTC-Dateiduplikate entfernt."
+    },
+    {
+      "term": "BPS",
+      "match": "BPS",
+      "file": "tools/rebranding-audit.mjs",
+      "line": 8,
+      "historical": true,
+      "context": "const patterns=[['BPS',/\\bBPS(?:[- _]?Trainer)?\\b|\\bbps(?:[_-][A-Za-z0-9]+|[A-Z][A-Za-z0-9]*)?\\b/g],['CTC',/\\bCTC[A-Za-z0-9_-]*\\b|\\bctc(?:[_-][A-Za-z0-9]+|[A-Z][A-Za-z0-9]*)?\\b/g]];"
+    },
+    {
+      "term": "CTC",
+      "match": "CTC",
+      "file": "tools/rebranding-audit.mjs",
+      "line": 8,
+      "historical": true,
+      "context": "const patterns=[['BPS',/\\bBPS(?:[- _]?Trainer)?\\b|\\bbps(?:[_-][A-Za-z0-9]+|[A-Z][A-Za-z0-9]*)?\\b/g],['CTC',/\\bCTC[A-Za-z0-9_-]*\\b|\\bctc(?:[_-][A-Za-z0-9]+|[A-Z][A-Za-z0-9]*)?\\b/g]];"
+    },
+    {
+      "term": "BPS",
+      "match": "bps",
+      "file": "tools/rebranding-audit.mjs",
+      "line": 12,
+      "historical": true,
+      "context": "for(const file of walk(root)){const rel=path.relative(root,file).replaceAll(path.sep,'/');const ext=path.extname(file).toLowerCase();if(/(?:^|[-_.])(bps|ctc)(?:[-_.]|$)/i.test(path.basename(file)))filenameHits.push({path:rel,historical:hist"
+    },
+    {
+      "term": "CTC",
+      "match": "ctc",
+      "file": "tools/rebranding-audit.mjs",
+      "line": 12,
+      "historical": true,
+      "context": "for(const file of walk(root)){const rel=path.relative(root,file).replaceAll(path.sep,'/');const ext=path.extname(file).toLowerCase();if(/(?:^|[-_.])(bps|ctc)(?:[-_.]|$)/i.test(path.basename(file)))filenameHits.push({path:rel,historical:hist"
+    }
+  ],
+  "filenameHits": []
+}

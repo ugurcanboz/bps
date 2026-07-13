@@ -1,0 +1,27 @@
+'use strict';
+const assert=require('assert');
+const fs=require('fs');
+const path=require('path');
+const root=path.resolve(__dirname,'..');
+const read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const currentVersion=(read('js/core/app-config.js').match(/var VERSION = '([^']+)'/)||[])[1]||'';
+const currentCache='egt-trainer-'+currentVersion.toLowerCase().replace(/[^a-z0-9]+/g,'-');
+
+let n=0;function ok(name,fn){fn();n++;console.log('✓',name);}
+const authUi=read('js/modules/novura-auth-access.js');
+const auth=read('js/modules/egt-auth-engine.js');
+const sec=read('js/modules/egt-security-context.js');
+const fn=read('functions/index.js');
+const local=read('functions/tools/bootstrap-admin.mjs');
+const ps=read('tools/local-admin-bootstrap.ps1');
+ok('release version remains in the G54.50.2 line',()=>assert(/^G54\.50\.2[A-Z]$/.test(currentVersion)));
+ok('remote bootstrap UI is removed',()=>{assert(!authUi.includes('data-submit="bootstrap"'));assert(!authUi.includes('data-open-sheet="bootstrap"'));});
+ok('remote bootstrap client bridge is removed',()=>assert(!auth.includes('registerBootstrapAdmin')));
+ok('App Check exception for bootstrap is removed',()=>{assert(!sec.includes('allowWithoutAppCheck'));assert(!fn.includes('BOOTSTRAP_CALL_OPTIONS'));});
+ok('remote bootstrap callable and embedded digest are removed',()=>{assert(!fn.includes('exports.bootstrapAdmin'));assert(!fn.includes('DEFAULT_BOOTSTRAP_CODE_SHA256'));});
+ok('local script verifies exact Firebase project',()=>{assert(local.includes('NOVURA_EXPECTED_PROJECT_ID'));assert(local.includes("serviceAccount.project_id!==expectedProject"));});
+ok('local script writes claims, profile and permanent lock',()=>{assert(local.includes('setCustomUserClaims'));assert(local.includes("status:'completed'"));assert(local.includes("db.doc('system/bootstrapAdmin')"));});
+ok('Windows launcher uses secure password prompt',()=>{assert(ps.includes('-AsSecureString'));assert(read('START-ADMIN-BOOTSTRAP.cmd').includes('ExecutionPolicy Bypass'));});
+ok('service account keys are excluded from source control',()=>{const gi=read('.gitignore');assert(gi.includes('*firebase-adminsdk*.json'));assert(gi.includes('service-account*.json'));});
+ok('normal access codes still cannot issue admin role',()=>assert(fn.includes("issuedRole==='admin'")));
+console.log(`G54.50.2I Local Admin Bootstrap: ${n}/10 bestanden`);
