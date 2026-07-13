@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const store={};const localStorage={getItem:k=>store[k]||null,setItem:(k,v)=>store[k]=String(v),removeItem:k=>delete store[k]};
+const ctx={globalThis:{localStorage,navigator:{onLine:true,language:'de-DE'}},Date};vm.createContext(ctx);
+vm.runInContext(fs.readFileSync(path.join(root,'js/core/nova-context-engine.js'),'utf8'),ctx);
+const api=ctx.globalThis.NovuraContextEngine;assert(/^G54\.(49\.0[EFGHIJ]|50\.1)/.test(api.version));assert.equal(api.schema,2);
+let c=api.build();assert(c.timeOfDay);api.patch({introductionSeen:true,companionStyle:'quiet',permissions:{location:'erlaubt'}});let m=api.load();assert.equal(m.introductionSeen,true);assert.equal(m.companionStyle,'quiet');assert.equal(m.permissions.location,'erlaubt');
+const pool=[{id:'a',text:'A'},{id:'b',text:'B'}];const one=api.select(pool,'greeting',c),two=api.select(pool,'greeting',c);assert.notEqual(one.id,two.id);
+const ui=fs.readFileSync(path.join(root,'js/modules/guided-welcome-ui.js'),'utf8');for(const t of ['NovuraContextEngine','DIALOG','selectDialog','g-morning-1','introductionSeen:true'])assert(ui.includes(t),t);
+const index=fs.readFileSync(path.join(root,'index.html'),'utf8');assert(index.includes('nova-context-engine.js'));console.log('G54.49.0E Adaptive Nova: PASS');

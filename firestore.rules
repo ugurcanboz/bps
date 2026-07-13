@@ -1,0 +1,123 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function trusted() { return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    function role() { return signedIn() && request.auth.token.role != null ? request.auth.token.role : 'guest'; }
+    function emailVerified() { return signedIn() && request.auth.token.email_verified == true; }
+    function isAdmin() { return trusted() && emailVerified() && (request.auth.token.admin == true || role() == 'admin'); }
+    function isTeacher() { return trusted() && emailVerified() && (request.auth.token.teacher == true || role() == 'teacher'); }
+    function isParticipant() { return trusted() && role() == 'participant'; }
+    function hasCourse(courseId) {
+      return isAdmin() || ((isTeacher() || isParticipant()) && request.auth.token.courseIds is list && request.auth.token.courseIds.hasAny([courseId]));
+    }
+    function teacherHasGroup(groupId) {
+      return isTeacher() && request.auth.token.assignedGroups is list && request.auth.token.assignedGroups.hasAny([groupId]);
+    }
+    function ownsLearner(learnerId, data) {
+      return trusted() && (request.auth.uid == learnerId || data.firebaseUid == request.auth.uid);
+    }
+    function teacherCanReadLearner(data) { return teacherHasGroup(data.groupId); }
+    function learnerDoc(courseId, learnerId) { return get(/databases/$(database)/documents/courses/$(courseId)/learners/$(learnerId)).data; }
+    function ownsLearnerDoc(courseId, learnerId) { return trusted() && learnerDoc(courseId, learnerId).firebaseUid == request.auth.uid; }
+    function validTicketCreate() {
+      return request.resource.data.keys().hasOnly(['reporterUid','groupId','title','description','category','status','createdAt','updatedAt'])
+        && request.resource.data.reporterUid == request.auth.uid
+        && request.resource.data.groupId is string
+        && request.resource.data.title is string && request.resource.data.title.size() > 0 && request.resource.data.title.size() <= 160
+        && (!request.resource.data.keys().hasAny(['description']) || (request.resource.data.description is string && request.resource.data.description.size() <= 3000))
+        && (!request.resource.data.keys().hasAny(['status']) || request.resource.data.status == 'open');
+    }
+    function validDuelCreate() {
+      return request.resource.data.keys().hasOnly(['hostUid','host','guestUid','guest','status','mode','level','createdAt','updatedAt','results'])
+        && request.resource.data.hostUid == request.auth.uid
+        && request.resource.data.status == 'waiting'
+        && (!request.resource.data.keys().hasAny(['guestUid']) || request.resource.data.guestUid == null)
+        && (!request.resource.data.keys().hasAny(['results']) || request.resource.data.results == null);
+    }
+    function selfSafeLearnerUpdate() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+        'coachStyle','updatedAt','languageProgress','preferences','learningPlan','reviewState',
+        'avatarMode','personalDataOptional','pendingWarning','mustChangePassword','passwordChangedAt'
+      ])
+      && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['pendingWarning']) || request.resource.data.pendingWarning == null)
+      && (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['mustChangePassword']) || request.resource.data.mustChangePassword == false)
+      && request.resource.data.firebaseUid == resource.data.firebaseUid
+      && request.resource.data.role == resource.data.role
+      && request.resource.data.groupId == resource.data.groupId
+      && request.resource.data.status == resource.data.status
+      && request.resource.data.blocked == resource.data.blocked;
+    }
+
+    match /courses/{courseId} {
+      allow read: if hasCourse(courseId);
+      allow write: if false; // Stammdaten nur über Admin SDK / Callable Functions.
+
+      match /learners/{learnerId} {
+        allow read: if hasCourse(courseId) && (isAdmin() || teacherCanReadLearner(resource.data) || ownsLearner(learnerId,resource.data));
+        allow create, delete: if false;
+        allow update: if hasCourse(courseId) && ownsLearner(learnerId,resource.data) && selfSafeLearnerUpdate();
+
+        // Leistungsdaten sind append-only und werden ausschließlich durch die
+        // validierende Callable Function recordLearningSession geschrieben.
+        match /progress/{docId} {
+          allow read: if hasCourse(courseId) && (isAdmin() || teacherCanReadLearner(get(/databases/$(database)/documents/courses/$(courseId)/learners/$(learnerId)).data) || ownsLearnerDoc(courseId, learnerId));
+          allow write: if false;
+        }
+        match /attempts/{docId} {
+          allow read: if hasCourse(courseId) && (isAdmin() || teacherCanReadLearner(get(/databases/$(database)/documents/courses/$(courseId)/learners/$(learnerId)).data) || ownsLearnerDoc(courseId, learnerId));
+          allow write: if false;
+        }
+        match /sessions/{sessionId} {
+          allow read: if hasCourse(courseId) && (isAdmin() || teacherCanReadLearner(get(/databases/$(database)/documents/courses/$(courseId)/learners/$(learnerId)).data) || ownsLearnerDoc(courseId, learnerId));
+          allow write: if false;
+        }
+        match /events/{docId} {
+          allow read: if hasCourse(courseId) && (isAdmin() || teacherCanReadLearner(get(/databases/$(database)/documents/courses/$(courseId)/learners/$(learnerId)).data) || ownsLearnerDoc(courseId, learnerId));
+          allow write: if false;
+        }
+      }
+
+      match /accessCodes/{codeId} {
+        allow read: if hasCourse(courseId) && (isAdmin() || (isTeacher() && teacherHasGroup(resource.data.groupId)));
+        allow create, update, delete: if false;
+      }
+      match /userArchive/{entryId} {
+        allow read: if hasCourse(courseId) && (isAdmin() || (isTeacher() && teacherHasGroup(resource.data.groupId)));
+        allow write: if false;
+      }
+      match /securityAudit/{entryId} {
+        allow read: if hasCourse(courseId) && isAdmin();
+        allow write: if false;
+      }
+      match /auditMeta/{entryId} {
+        allow read: if hasCourse(courseId) && isAdmin();
+        allow write: if false;
+      }
+      match /settings/{settingId} {
+        allow read: if hasCourse(courseId) && isAdmin();
+        allow write: if false;
+      }
+      match /tickets/{ticketId} {
+        allow create: if hasCourse(courseId) && trusted() && validTicketCreate();
+        allow read: if hasCourse(courseId) && (isAdmin() || resource.data.reporterUid == request.auth.uid || (isTeacher() && teacherHasGroup(resource.data.groupId)));
+        allow update, delete: if false;
+      }
+      match /duels/{duelId} {
+        allow create: if hasCourse(courseId) && trusted() && validDuelCreate();
+        allow get: if hasCourse(courseId) && trusted() && (resource.data.hostUid == request.auth.uid || resource.data.guestUid == request.auth.uid || resource.data.status == 'waiting');
+        allow list: if false;
+        allow update: if hasCourse(courseId) && trusted() && (
+          (resource.data.hostUid == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['results','status','updatedAt'])) ||
+          (resource.data.guestUid == null && request.resource.data.guestUid == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['guest','guestUid','status','updatedAt'])) ||
+          (resource.data.guestUid == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['results','status','updatedAt']))
+        );
+        allow delete: if hasCourse(courseId) && resource.data.hostUid == request.auth.uid;
+      }
+      match /{document=**} { allow read, write: if false; }
+    }
+
+    match /securityRateLimits/{docId} { allow read, write: if false; }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

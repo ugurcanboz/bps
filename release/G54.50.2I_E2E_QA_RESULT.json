@@ -1,0 +1,17 @@
+{
+  "phase": "G54.50.2I",
+  "ok": true,
+  "releaseDecision": "LOCALLY_APPROVED",
+  "passed": 58,
+  "total": 58,
+  "scope": [
+    "universal deep-sheet navigation",
+    "release consistency",
+    "authentication and roles",
+    "Nova welcome regression",
+    "local admin bootstrap security",
+    "Firestore and worker security",
+    "PWA and service worker",
+    "language and simulation regressions"
+  ]
+}

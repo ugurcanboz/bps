@@ -1,0 +1,183 @@
+{
+  "phase": "G54.46.9",
+  "ok": true,
+  "checks": [
+    {
+      "name": "engine-present",
+      "ok": true,
+      "details": {
+        "version": "G54.46.9",
+        "schema": "egt-language-didactic-v1"
+      }
+    },
+    {
+      "name": "catalog-audit-green",
+      "ok": true,
+      "details": {
+        "phase": "G54.46.9",
+        "version": "G54.46.11-audio-realism",
+        "ok": true,
+        "total": 124,
+        "german": 60,
+        "english": 64,
+        "failed": [],
+        "schema": "egt-language-didactic-v1",
+        "storageKey": "language_academy_didactic_progress_v1"
+      }
+    },
+    {
+      "name": "all-lessons-covered",
+      "ok": true,
+      "details": {
+        "phase": "G54.46.9",
+        "version": "G54.46.11-audio-realism",
+        "ok": true,
+        "total": 124,
+        "german": 60,
+        "english": 64,
+        "failed": [],
+        "schema": "egt-language-didactic-v1",
+        "storageKey": "language_academy_didactic_progress_v1"
+      }
+    },
+    {
+      "name": "plans-complete",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "cefr-transfer-demand-rises",
+      "ok": true,
+      "details": {
+        "a1": 3,
+        "a2": 8,
+        "b1": 20,
+        "b2": 45,
+        "c1": 70,
+        "c2": 90
+      }
+    },
+    {
+      "name": "a1-transfer-ready",
+      "ok": true,
+      "details": {
+        "status": "ready",
+        "response": "Hallo, ich bin Liya.",
+        "words": 4,
+        "sentences": 1,
+        "checkedCriteria": [
+          "0",
+          "1"
+        ],
+        "requiredWords": 3,
+        "targetSentences": 1,
+        "message": "Die Anwendung erfüllt die formalen Lernkriterien. Grammatik und inhaltliche Genauigkeit werden dadurch nicht automatisch zertifiziert.",
+        "ready": true
+      }
+    },
+    {
+      "name": "b2-short-not-ready",
+      "ok": true,
+      "details": {
+        "status": "short",
+        "response": "I recommend a pilot.",
+        "words": 4,
+        "sentences": 1,
+        "checkedCriteria": [
+          "0",
+          "1",
+          "2"
+        ],
+        "requiredWords": 45,
+        "targetSentences": 4,
+        "message": "Die Antwort ist noch zu kurz für dieses Niveau. Nutze das Modell und formuliere vollständiger.",
+        "ready": false
+      }
+    },
+    {
+      "name": "b2-transfer-ready-with-demand",
+      "ok": true,
+      "details": {
+        "status": "ready",
+        "response": "evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence evidence. Another perspective matters. Therefore we should review the result.",
+        "words": 57,
+        "sentences": 3,
+        "checkedCriteria": [
+          "0",
+          "1",
+          "2"
+        ],
+        "requiredWords": 45,
+        "targetSentences": 4,
+        "message": "Die Anwendung erfüllt die formalen Lernkriterien. Grammatik und inhaltliche Genauigkeit werden dadurch nicht automatisch zertifiziert.",
+        "ready": true
+      }
+    },
+    {
+      "name": "recommendation-start-guided",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "recommendation-repeat-low-accuracy",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "recommendation-review-due",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "recommendation-transfer-before-next",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "recommendation-next-lesson",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "transfer-persistence",
+      "ok": true,
+      "details": {
+        "schema": "egt-language-didactic-v1",
+        "response": "Hallo, ich bin Liya.",
+        "checkedCriteria": [
+          "0",
+          "1"
+        ],
+        "evaluation": {
+          "status": "ready",
+          "response": "Hallo, ich bin Liya.",
+          "words": 4,
+          "sentences": 1,
+          "checkedCriteria": [
+            "0",
+            "1"
+          ],
+          "requiredWords": 3,
+          "targetSentences": 1,
+          "message": "Die Anwendung erfüllt die formalen Lernkriterien. Grammatik und inhaltliche Genauigkeit werden dadurch nicht automatisch zertifiziert.",
+          "ready": true
+        },
+        "updatedAt": "2026-07-13T06:26:39.963Z"
+      }
+    }
+  ],
+  "summary": {
+    "plans": 124,
+    "german": 60,
+    "english": 64,
+    "minimumWords": {
+      "a1": 3,
+      "a2": 8,
+      "b1": 20,
+      "b2": 45,
+      "c1": 70,
+      "c2": 90
+    }
+  },
+  "checkedAt": "2026-07-13T06:26:39.964Z"
+}
